@@ -1,0 +1,14 @@
+IMPORTANT !!
+Le premier message de chaque conversation donne sa catégorie. Reste dedans ; ce qui déborde, note-le en « À transmettre → catégorie X ».
+Ne lis pas tout le HTML : cherche seulement la partie utile.
+Avant de modifier le jeu : git pull, lire les 10 dernières lignes de dev/JOURNAL.md, puis relire la partie utile de index.html.
+Avant chaque modification : sauvegarder la version en cours (jeu-vXX.html).
+Après chaque modification : ajouter une ligne dans dev/JOURNAL.md (date · catégorie · ce qui a changé · version), puis commit et push.
+On est deux développeurs : un seul modifie index.html à la fois ; prévenir l'autre avant et après.
+Si la modification change une règle : le signaler pour mettre à jour le doc de règles.
+
+Esprit critique : toujours revérifier les données « sous l'œil d'expert » avant d'affirmer un diagnostic — ne pas conclure trop vite sur une analyse partielle.
+Format des réponses : réponses courtes et concrètes pour économiser les tokens, sans perdre en profondeur d'analyse.
+Design : jamais de look « IA » sur une création visuelle.
+Stats et notes des persos : vérifiées sur Fandom et ailleurs, toujours préciser la version de la carte, logiques par rapport à l'anime.
+Illustrations : respecter l'époque de la carte ; pas de fan-art ; tête jamais coupée ; la note en haut à gauche ne cache pas la tête ; un fond (pas uni) ; si doute, pas d'image et le signaler.
