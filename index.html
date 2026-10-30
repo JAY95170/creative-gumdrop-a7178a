@@ -1362,6 +1362,8 @@ body{--t1:#1A2040;--t2:#0A0D1C;background:radial-gradient(90% 52% at 50% 16%,var
  .lri{flex-direction:row;align-items:flex-start}.lri-c{width:200px;flex:none}
  .home .hm-g .lrb{height:170px}
 }
+/* v100 — PC : le jeu prend toute la largeur (comme les sites concurrents), plafonné à 1800 px */
+@media (min-width:1024px){.app{max-width:1800px}.home{max-width:none}.stack.pf,.bk{max-width:none!important}}
 </style>
 
 <div class="app">
@@ -2684,7 +2686,7 @@ function vTour(){
   const t=evalTeam(rows,run.ids);
   if(run.ph==='draft'){const n=run.ids.filter(Boolean).length;
     return `<div class="stack"><section class="sec"><div><div class="eyebrow">Draft · ${FORMS[run.form].n} · ${n} / 7</div><h2>${n<7?'Touche une case':'Équipe prête'}</h2></div>
-    <p class="small muted" style="margin:0">${n<7?'Commence par le poste que tu veux. 4 cartes te seront proposées pour cette case. Touche une carte posée pour la voir en grand.':'Ton adversaire jouera la même formation.'}</p></section>
+    ${run.pend!=null&&!run.ids[run.pend]&&run.optsBy&&run.optsBy[run.pend]?`<button class="btn primary wide" data-act="trSlot" data-v="${run.pend}">Reprendre le choix · case ${POS[rows.flat()[run.pend]]}</button>`:''}<p class="small muted" style="margin:0">${n<7?'Commence par le poste que tu veux. 4 cartes te seront proposées pour cette case. Touche une carte posée pour la voir en grand.':'Ton adversaire jouera la même formation.'}</p></section>
     ${trTeamHead(t)}<div class="team-pitch">${pitchHTML(rows,t,'trSlot',1)}</div>
     ${n===7?'<button class="btn primary" data-act="trRecap">Valider mon équipe</button>':''}<button class="btn ghost" data-act="trQuit">Abandonner</button></div>`}
   if(run.ph==='recap')return recapHTML(run);
@@ -3024,7 +3026,7 @@ const ACT={
   bdg:v=>{const b=BADGES.find(x=>x[0]===v);if(b)toast(b[1]+' : '+b[3]+(b[4]()?' (obtenu)':''))},
   pfSound:()=>{ACT.mute();render()},
   lang:v=>{S.lang=v;document.documentElement.lang=v;save();render()},
-  tab:v=>{const need={sbc:'sbc',tour:'tour'}[v];if(need&&!unl(need)){toast(UNLOCK_N[need]+' : niveau '+UNLOCK[need]+' requis.');return}S.tab=v;save();render();$('#main').scrollTop=0},
+  tab:v=>{const need={sbc:'sbc',tour:'tour'}[v];if(need&&!unl(need)){toast(UNLOCK_N[need]+' : niveau '+UNLOCK[need]+' requis.');return}if(v!==S.tab){/* v100 : en quittant un onglet, il reviendra sur son sous-onglet de départ */({shop:()=>S.bsub='shop',album:()=>S.asub='coll',tour:()=>S.psub='tw'}[S.tab]||(()=>0))()}S.tab=v;save();render();$('#main').scrollTop=0},
   initgo:v=>{const x=INIT[+v];if(!x)return;if(x.go==='tour')S.psub=x.sub;if(x.go==='album')S.asub=x.sub;if(x.go==='shop')S.bsub=x.bsub||(S.inv.length?'inv':'shop');ACT.tab(x.go)},
   initClaim:()=>{const i=initStep();if(i<0||!initDone(i))return;S.init['ok'+i]=1;const x=INIT[i];grant(x.rw);addXp(30);if(i===INIT.length-1)S.init.done=true;SFX.coin();save();render();
     showReward(i===INIT.length-1?'Initiation terminée':'Initiation · '+(i+1)+' / '+INIT.length,i===INIT.length-1?'Ton booster de bienvenue':x.t,x.rw.pack?{pack:x.rw.pack}:null,rwText(x.rw)+(x.rw.pack?' ajouté à Mes boosters':''))},
@@ -3047,10 +3049,10 @@ const ACT={
   trStart:()=>{const st=trState();if(st.run)return;st.n++;st.run={ph:'form',ids:[]};SFX.tap();save();render()},
   trForm:v=>{const r=trState().run;r.form=v;r.ids=FORMS[v].rows.flat().map(()=>null);r.optsBy={};r.ph='draft';SFX.tap();save();render();$('#main').scrollTop=0},
   trSlot:v=>{const r=trState().run;if(!r||r.ph!=='draft')return;let i=+v;if(r.ids[i]){viewCard(r.ids[i]);return}if(r.pend!=null&&!r.ids[r.pend]&&r.optsBy[r.pend])i=r.pend;const p=FORMS[r.form].rows.flat()[i];r.pend=i;
-    const fresh=!r.optsBy[i];if(fresh){r.optsBy[i]=draftOpts(p,r.ids.filter(Boolean));save()}CTX={tr:i,lock:true};
-    $('#shTitle').textContent='Case '+POS[p];$('#shBack').hidden=true;
-    $('#shBody').innerHTML=`<p class="small muted" style="margin:0">Touche une carte pour la prendre, glisse-la sur le côté pour voir ses stats. Elles sont toutes de même rareté : regarde la chemistry. Choisis-en une pour continuer.</p><div class="deal ${fresh?'anim':''}">${r.optsBy[i].map((id,k)=>`<button class="cw" data-act="trPick" data-v="${id}" style="--k:${k}"><div data-swipe>${cardHTML(CARD[id],{back:true})}</div>${S.seen[id]?'':'<span class="hc-band">HORS COLLECTION</span>'}</button>`).join('')}</div><button class="btn wide" data-act="trPeek">Voir mon équipe (${r.ids.filter(Boolean).length} / ${r.ids.length})</button>`;
-    openSheet();if(fresh&&!S.mute)r.optsBy[i].forEach((_,k)=>setTimeout(()=>SFX.flip(),k*260+120))},
+    const fresh=!r.optsBy[i];if(fresh){r.optsBy[i]=draftOpts(p,r.ids.filter(Boolean));save()}CTX={tr:i};/* v100 : on peut fermer pour regarder son équipe ; toucher n'importe quelle case rouvre CETTE case tant qu'elle n'est pas choisie */
+    $('#shTitle').textContent='Case '+POS[p];$('#shBack').hidden=false;
+    $('#shBody').innerHTML=`<p class="small muted" style="margin:0">Touche une carte pour la prendre, glisse-la sur le côté pour voir ses stats. Elles sont toutes de même rareté : regarde la chemistry. Choisis-en une pour continuer. Tu peux fermer pour regarder ton équipe : tu reviendras sur ces 4 cartes.</p><div class="deal ${fresh?'anim':''}">${r.optsBy[i].map((id,k)=>`<button class="cw" data-act="trPick" data-v="${id}" style="--k:${k}"><div data-swipe>${cardHTML(CARD[id],{back:true})}</div>${S.seen[id]?'':'<span class="hc-band">HORS COLLECTION</span>'}</button>`).join('')}</div>`;
+    render();openSheet();if(fresh&&!S.mute)r.optsBy[i].forEach((_,k)=>setTimeout(()=>SFX.flip(),k*260+120))},
   trPeek:()=>{const r=trState().run;if(!r||r.ph!=='draft'||!CTX||CTX.tr==null)return;const rows=FORMS[r.form].rows,t=evalTeam(rows,r.ids);
     $('#shTitle').textContent='Mon équipe';$('#shBody').innerHTML=`<p class="small muted" style="margin:0">Voilà ton équipe pour l'instant. La case en cours est la case ${POS[rows.flat()[CTX.tr]]}. Touche une carte pour la voir.</p>${trTeamHead(t)}<div class="team-pitch">${pitchHTML(rows,t,'noop',1)}</div><button class="btn primary wide" data-act="trUnpeek">Retour aux 4 cartes</button>`;$('#sheet .sh-body').scrollTop=0},
   trUnpeek:()=>{const r=trState().run;if(!r||r.ph!=='draft'||!CTX||CTX.tr==null)return;const i=CTX.tr;CTX=null;ACT.trSlot(String(i))},
