@@ -1550,16 +1550,16 @@ function rollScene(key){for(const r of ['LR','UR','SSR','SR','R','N']){const L=S
 
 const URS=CARDS.filter(c=>c.r==='UR');const SPECIAL=CARDS.filter(c=>c.r==='UR'||c.r==='LR');const LRS=CARDS.filter(c=>c.r==='LR');
 const BYR={N:[],R:[],SR:[],SSR:[],UR:[],LR:[]};CARDS.forEach(c=>BYR[c.r].push(c.id));
-const A={N:.798,R:.2,SSR:.002},/* Bronze : 0,2 % de SSR par carte, sans pitié */B={N:.6,R:.32,SR:.08},C={N:.4,R:.4,SR:.169,SSR:.03,UR:.001};
+const A={N:.798,R:.2,SSR:.002},/* Bronze : 0,2 % de SSR par carte, sans pitié */B={N:.6,R:.32,SR:.08},C={N:.4,R:.4,SR:.175,SSR:.022,UR:.003};/* v98 : SSR 2,2 %/carte, UR 0,3 %/carte (≈1,2 % par booster Or) */
 const PACKS={
   bronze:{n:'Booster Bronze',k:'銅',price:400,desc:'5 cartes, surtout des N. Pour nourrir les SBC. Très rarement une SSR.',slots:[A,A,A,A,A]},
   argent:{n:'Booster Argent',k:'銀',price:1500,desc:'5 cartes, 1 R garantie, chance de SR.',slots:[{R:.85,SR:.15},B,B,B,B]},
-  or:{n:'Booster Or',k:'金',price:7500,desc:'5 cartes, 1 SR garantie, chance de SSR, UR très rare, et 0,02 % de chance de la LR de la saison.',slots:[{SR:.9,SSR:.1},C,C,C,C]},
+  or:{n:'Booster Or',k:'金',price:7500,desc:'5 cartes, 1 SR garantie, environ 16 % de chance de SSR, UR très rare (≈1,2 %), et 0,02 % de chance de la LR de la saison.',slots:[{SR:.92,SSR:.08},C,C,C,C]},
   admimg:{n:'Booster Illustrées (admin)',k:'絵',price:null,desc:'Toutes les cartes qui ont déjà une illustration, outil de test.',slots:[]},
   admbase:{n:'Booster Cartes de base des scènes (admin)',k:'基',price:null,desc:'Les cartes de base qui ont une scène iconique, outil de test.',slots:[]},
   admscn:{n:'Booster Scènes (admin)',k:'回',price:null,desc:'Toutes les scènes iconiques, outil de test.',slots:[]},
   admin:{n:'Booster UR (admin)',k:'極',price:null,desc:'Toutes les UR et LR, outil de test.',slots:[]},
-  bienv:{n:'Booster de bienvenue',k:'始',price:null,desc:'1 SSR et 1 SR garanties. La récompense de l\'initiation.',slots:[{SSR:1},{SR:1},C,C,C]},
+  bienv:{n:'Booster de bienvenue',k:'始',price:null,desc:'2 SR garanties. La récompense de l\'initiation.',slots:[{SR:1},{SR:1},C,C,C]},
   srp:{n:'Booster SR',k:'選',price:null,desc:'5 cartes dont 1 SR garantie (tirée au hasard, peut être un doublon).',slots:[{SR:1},B,B,B,B]},
   ssrp:{n:'Booster SSR',k:'極',price:null,desc:'1 SSR garantie, tirée au hasard (peut être un doublon). 3 % que ce soit une UR.',slots:[{SSR:.97,UR:.03}]},
   ecl:{n:'Booster Éclatant',k:'輝',price:null,desc:'1 SSR et 1 SR garanties, 3 % que la SSR soit une UR.',slots:[{SSR:.97,UR:.03},{SR:1},C,C,C]}
@@ -1636,7 +1636,7 @@ const OBJ_W=[
   {id:'w_sell40',ev:'sell',n:40,t:'Vends 40 cartes',rw:{coins:600}},
   {id:'w_spend',ev:'spend',n:40000,t:'Dépense 40 000 pièces',rw:{pack:'or'}},
   {id:'w_team18',check:()=>teamChem()>=18,t:'Atteins 18 de chemistry dans Mon équipe',rw:{pack:'or'}},
-  {id:'w_tw5',check:()=>Math.max(...twState().fls)>=5,t:'Conquiers l\'étage 5 de La Tour Céleste',rw:{pack:'argent'}},
+  {id:'w_tw5',check:()=>Math.max(...twState().best)>=5,t:'Conquiers l\'étage 5 de La Tour Céleste',rw:{pack:'argent'}},
   {id:'w_all5',ev:'daily_all',n:5,t:'Termine tous tes défis du jour, 5 jours',rw:{pack:'or'}}
 ];
 const OBJ_M=[
@@ -1985,7 +1985,7 @@ function loginHTML(){
 
 /* ---------- Profil (v88) : carte joueur, vitrine, niveau, série, records, badges, réglages ---------- */
 function rec(){const r=S.rec=S.rec||{};r.tw=r.tw||[0,0,0];r.n=r.n||{};r.dr=r.dr||{p:0,c:0,b:0};return r}
-function recUpd(){const r=rec(),q=S.tw;if(q&&q.fls)q.fls.forEach((f,i)=>{if(f>r.tw[i])r.tw[i]=Math.min(f,10)})}
+function recUpd(){const r=rec(),q=S.tw;if(q&&q.fls)q.fls.forEach((f,i)=>{if(r.tw[i]==null)r.tw[i]=0;if(f>r.tw[i])r.tw[i]=Math.min(f,10)})}
 function profCode(){const p=S.prof=S.prof||{};if(!p.code){let c='';for(let i=0;i<5;i++)c+='ABCDEFGHJKLMNPQRSTUVWXYZ23456789'[Math.floor(Math.random()*32)];p.code='ACG-'+c}return p.code}
 function vitList(){const p=S.prof||{},v=p.vit||[],L=[null,null,null],ok=id=>id&&CARD[id]&&S.owned[id]>0;
   for(let i=0;i<3;i++)if(ok(v[i]))L[i]=v[i];
@@ -2633,7 +2633,7 @@ function hitDmg(atk,def,kind,fx){if(kind!=='spec'&&!def.nd&&Math.random()<Math.m
   if(kind==='spec')dmg*=ENG.SPEC*(1+fx.spec);let crit=false;if(kind!=='spec'&&Math.random()*100<atk.s[4]/ENG.CRITD+fx.crit){crit=true;dmg*=ENG.CRIT}if(kind==='dbl')dmg*=ENG.DBLDMG;return {dmg:Math.round(dmg),crit,dodge:false}}
 function firstChance(va,vb){return va*va/(va*va+vb*vb)}
 function duel(A,B,fa,fb){
-  const hp={a:A.s[0]*ENG.HPX,b:B.s[0]*ENG.HPX},max={...hp},log=[];const F={a:A,b:B},FX={a:fa,b:fb};
+  const max={a:A.s[0]*ENG.HPX,b:B.s[0]*ENG.HPX},hp={a:max.a*(A.h0==null?1:A.h0),b:max.b*(B.h0==null?1:B.h0)},log=[];const F={a:A,b:B},FX={a:fa,b:fb};
   const pA=firstChance(A.s[3],B.s[3]);const first=Math.random()<pA?'a':'b',sec=first==='a'?'b':'a';
   const dch=Math.max(0,Math.min(ENG.DBLMAX,(F[first].s[3]/F[sec].s[3]-1)*ENG.DBLK));let dbl=false;
   const P=()=>({ha:Math.round(hp.a/max.a*100),hb:Math.round(hp.b/max.b*100)});
@@ -2652,7 +2652,7 @@ function playMatch(a,b){
   const ta=evalTeam(FORMS[a.form].rows,a.ids),tb=evalTeam(FORMS[b.form].rows,b.ids);
   const fa=teamFx(ta),fb=teamFx(tb);
   const ord=x=>x.slice().sort((u,v)=>PORD.indexOf(u.c.poste)-PORD.indexOf(v.c.poste));
-  const pa=ord(fighters(ta,fa,fb,a.boost)),pb=ord(fighters(tb,fb,fa,b.boost));let wa=0,wb=0;if(b.sure)pa.forEach(x=>x.nd=true);if(a.sure)pb.forEach(x=>x.nd=true);
+  const pa=ord(fighters(ta,fa,fb,a.boost)),pb=ord(fighters(tb,fb,fa,b.boost));if(a.hp0)pa.forEach((x,i)=>x.h0=a.hp0[i]);if(b.hp0)pb.forEach((x,i)=>x.h0=b.hp0[i]);let wa=0,wb=0;if(b.sure)pa.forEach(x=>x.nd=true);if(a.sure)pb.forEach(x=>x.nd=true);
   const duels=pa.map((x,i)=>{const d=duel(x,pb[i],fa,fb);if(d.win==='a')wa++;else wb++;return d});
   const ra=duels.reduce((s,d)=>s+d.pa,0),rb=duels.reduce((s,d)=>s+d.pb,0);
   return {duels,wa,wb,win:wa>wb||(wa===wb&&ra>=rb),tie:wa===wb,fxA:fa,fxB:fb};
@@ -2734,8 +2734,8 @@ const FXC={'Tireur':'shot','Épéiste':'slash','Bagarreur':'punch','Mage':'orb',
 function resInfo(run){const m=run.m;
   if(run.nextAct==='twNext'){const T=TOWERS[run.t],top=run.f===TW_N-1,win=run.win,fl=twFloor(run.f,S.form,null,run.t);
     return {kind:win?(top?'champ':'win'):'lose',big:win?(top?'TOUR CONQUISE':'VICTOIRE'):'DÉFAITE',eb:win?(top?'Tour '+T.n+' · étage 10':'Étage '+(run.f+1)+' conquis'):'Étage '+(run.f+1)+' · '+twName(fl),
-      sub:win?(top&&run.t<2?'La tour '+TOWERS[run.t+1].n+' est ouverte.':''):'1 essai perdu · il t\'en reste '+twState().tries+' aujourd\'hui'+(run.tot>1?' · tombé en phase '+run.ms.length+' / '+run.tot:''),
-      rw:win?twRw(run.f,run.t):null,rwLbl:'Récompense',got:true,xp:XP_EV.tw_fight,btn:'Continuer'}}
+      sub:win?(top&&run.t<TOWERS.length-1?'La tour '+TOWERS[run.t+1].n+' est ouverte.':''):'1 essai perdu · il t\'en reste '+twState().tries+' aujourd\'hui'+(run.tot>1?' · tombé en phase '+run.ms.length+' / '+run.tot:''),
+      rw:win?(run.rw||twRw(run.f,run.t)):null,rwLbl:'Récompense',got:true,xp:XP_EV.tw_fight,btn:'Continuer'}}
   const r2=run.round,win=m.win;
   if(win&&r2<3)return {kind:'win',big:'VICTOIRE',eb:TR_ROUNDS[r2]+' gagné',sub:'Prochain match : '+TR_ROUNDS[r2+1]+'.',rw:TR_RW[r2+1],rwLbl:'Palier atteint · reçu à la fin du tournoi',got:false,xp:XP_EV.tr_match,btn:'Prochain match'};
   if(win)return {kind:'champ',big:'CHAMPION',eb:'Finale gagnée',sub:'Tu remportes le tournoi.',rw:TR_RW[4],rwLbl:'Récompense',got:true,xp:XP_EV.tr_match,btn:'Continuer'};
@@ -2865,39 +2865,48 @@ function awkGo(id){const c=CARD[id],a=CARD[id+'~e'];if(!awkCan(id))return;const 
    Récompense à la première victoire de la semaine sur chaque étage. */
 const TW_N=10,TW_TRY=3,TW_RETRY=10000,TW_FAIL=.15;const TW_WP=7;
 /* 3 tours de 10 étages : Facile, Moyen, Difficile. Une tour s'ouvre quand la précédente est conquise.
-   T = note visée par étage (courbe aplatie). Le 10e étage est un boss : gardiens d'un même monde (Facile : tous mondes),
+   T = note visée par étage (v98 : courbe relevée ; le boss a une note plus basse car il se joue en plusieurs phases avec PV gardés). Le 10e étage est un boss : gardiens d'un même monde (Facile : tous mondes),
    avec un effet de combat (fx). Récompenses des tours 2 et 3 : packs plus hauts. */
 const TOWERS=[
- {k:'facile',n:'Facile',desc:'La tour de départ. Les gardiens montent doucement d\'un étage à l\'autre.',T:[44,46,48,50,52,54,56,58,60,63],
-  rw:[{coins:300},{pack:'bronze'},{coins:500},{pack:'argent'},{coins:1000},{pack:'argent'},{coins:1500},{pack:'or'},{coins:2000},{pack:'ecl'}],
+ {k:'facile',n:'Facile',desc:'La tour de départ. Les premiers étages se passent avec des R, la fin demande des SR solides, et le sommet quelques SSR.',T:[50,53,56,59,62,65,67,69,72,65],
+  rw:[{coins:270},{pack:'bronze'},{coins:450},{pack:'argent'},{coins:900},{pack:'argent'},{coins:1350},{pack:'or'},{coins:1800},{pack:'or'}],
   boss:{nm:'Le Maître de la Tour',m:null,au:.15,weak:{k:'cl',v:'Épéiste'},
    fx:{k:'hk',nm:'Haki des rois',kj:'覇',phases:1,mal:.94,txt:'L\'aura du Maître écrase ton équipe dès le premier échange : −6 % de stats pour toutes tes cartes pendant tout le combat.',iT:'Le Maître de la Tour',iS:'Son aura écrase ton équipe : −6 % de stats pendant tout le combat.'}}},
- {k:'moyen',n:'Moyen',desc:'Ouverte quand la tour Facile est conquise. Des gardiens plus solides, et un boss qui joue avec ton esprit.',T:[64,65,66,67,68,69,70,71,72,78],
-  rw:[{coins:600},{pack:'argent'},{coins:1000},{pack:'or'},{coins:2000},{pack:'or'},{coins:3000},{pack:'ecl'},{coins:4000},{pack:'ecl',coins:1500}],
+ {k:'moyen',n:'Moyen',desc:'Ouverte quand la tour Facile est conquise. Il faut plusieurs SSR, et un boss qui se relève.',T:[70,72,74,75,76,77,78,79,80,70],
+  rw:[{coins:540},{pack:'argent'},{coins:900},{pack:'or'},{coins:1800},{pack:'or'},{coins:2700},{pack:'or'},{coins:3600},{pack:'or',coins:1350}],
   boss:{nm:'Le Clan Uchiwa',m:'na',au:0,weak:{k:'cl',v:'Tireur'},
-   fx:{k:'gj',nm:'Genjutsu',kj:'幻',phases:2,up:1.06,txt:'',iT:'Le Clan Uchiwa',iS:'Ne croise pas leur regard : il y a deux phases à gagner d\'affilée.',pT:'Tout était une illusion',pS:'Le Clan se relève : 100 % de PV, +6 % de stats. Tu repars de zéro.'}}},
- {k:'difficile',n:'Difficile',desc:'Pour les équipes presque complètes. Le boss final change les règles du combat.',T:[78,79,80,81,82,83,84,85,86,82],
-  rw:[{coins:900},{pack:'or'},{coins:1500},{pack:'ecl'},{coins:3000},{pack:'ecl'},{coins:4500},{pack:'ecl',coins:1500},{coins:6000},{pack:'ecl',coins:5000}],
+   fx:{k:'gj',nm:'Genjutsu',kj:'幻',phases:2,hp:.3,txt:'',iT:'Le Clan Uchiwa',iS:'Deux phases d\'affilée. Entre les deux, ils récupèrent 30 % de PV, toi rien.',pT:'Tout était une illusion',pS:'Le Clan se relève : +30 % de PV. Tes cartes gardent leurs PV restants.'}}},
+ {k:'difficile',n:'Difficile',desc:'Pour une équipe de SSR avec de la chemistry. Le boss final change les règles du combat.',T:[82,83,84,85,86,87,88,89,90,74],
+  rw:[{coins:810},{pack:'or'},{coins:1350},{pack:'or'},{coins:2700},{pack:'or'},{coins:4050},{pack:'or',coins:1350},{coins:5400},{pack:'ecl',coins:4500}],
   boss:{nm:'Le Domaine Infini',m:'jjk',au:0,weak:{k:'m',v:'bl'},
-   fx:{k:'dm',nm:'Expansion de domaine',kj:'域',phases:3,up:1.06,sure:true,txt:'Chaque victoire referme le Domaine : ils se relèvent à 100 % de PV avec +6 % de stats. 3 phases d\'affilée, et dans le Domaine tes cartes ne peuvent plus esquiver.',iT:'Le Domaine Infini',iS:'Trois phases d\'affilée. Dans le Domaine, tes cartes ne peuvent plus esquiver.',pT:'Le Domaine se referme',pS:'Ils se relèvent : 100 % de PV, +6 % de stats. Impossible d\'esquiver.'}}}
+   fx:{k:'dm',nm:'Expansion de domaine',kj:'域',phases:3,hp:.3,sure:true,txt:'3 phases d\'affilée. À chaque phase, ils récupèrent 30 % de PV et toi rien. Dans le Domaine, tes cartes ne peuvent plus esquiver.',iT:'Le Domaine Infini',iS:'Trois phases d\'affilée. Dans le Domaine, tes cartes ne peuvent plus esquiver.',pT:'Le Domaine se referme',pS:'Ils récupèrent 30 % de PV. Tes cartes gardent leurs PV restants. Impossible d\'esquiver.'}}},
+ {k:'infernale',n:'Infernale',rel:true,desc:'Le sommet du jeu. Il faut des UR et des cartes éveillées. Elle monte avec les plus fortes cartes du jeu.',T:[90,91,92,93,94,95,96,97,98,75],
+  rw:[{coins:1500},{pack:'or'},{coins:2500},{pack:'or'},{coins:4000},{pack:'or'},{coins:6000},{pack:'or',coins:2000},{coins:8000},{pack:'ecl',coins:8000}],
+  boss:{nm:'Les Dieux de la Destruction',m:'db',au:0,weak:{k:'cl',v:'Mage'},
+   fx:{k:'gj',nm:'Hakai',kj:'破',phases:3,hp:.3,txt:'',iT:'Les Dieux de la Destruction',iS:'Trois phases d\'affilée. Entre chaque phase, ils récupèrent 30 % de PV, toi rien.',pT:'Ils ne tombent pas',pS:'Ils récupèrent 30 % de PV. Tes cartes gardent leurs PV restants.'}}}
 ];
 const TW_KJ=['一','二','三','四','五','六','七','八','九','十'];
-function twRw(f,t){t=t==null?twState().t:t;return TOWERS[t].rw[f]}
-function twState(){const w=wk(),d=dk();if(!S.tw||S.tw.wk!==w){recUpd();S.tw={wk:w,fls:[0,0,0],t:0,day:d,tries:TW_TRY,run:null,log:{}}}const q=S.tw;
-  if(!q.fls){q.fls=[Math.min(q.fl||0,TW_N),0,0];delete q.fl}if(q.t==null)q.t=0;if(q.run&&q.run.t==null)q.run.t=0;
+const TW_REPLAY={coins:10};/* v98 : récompense d'un étage déjà conquis une fois */
+function twRw(f,t){const q=twState();t=t==null?q.t:t;return f<q.best[t]?TW_REPLAY:TOWERS[t].rw[f]}
+function twTop(){return Math.max(...CARDS.filter(c=>c.r!=='LR').map(c=>c.note))}
+function twState(){const w=wk(),d=dk();if(!S.tw){S.tw={wk:w,fls:[0,0,0,0],best:[0,0,0,0],t:0,day:d,tries:TW_TRY,run:null,log:{}}}const q=S.tw;q.wk=w;
+  if(!q.fls){q.fls=[Math.min(q.fl||0,TW_N),0,0];delete q.fl}while(q.fls.length<TOWERS.length)q.fls.push(0);
+  if(!q.best)q.best=q.fls.slice();while(q.best.length<TOWERS.length)q.best.push(0);if(q.t==null)q.t=0;if(q.run&&q.run.t==null)q.run.t=0;
   if(q.day!==d){q.day=d;q.tries=TW_TRY}
-  while(q.t>0&&q.fls[q.t-1]<TW_N)q.t--;return q}
+  while(q.t>0&&q.best[q.t-1]<TW_N)q.t--;return q}
 function twWorlds(seed){const r=srng('twm'+(seed||wk()));return Object.keys(MONDES).map(k=>[r(),k]).sort((a,b)=>a[0]-b[0]).map(x=>x[1])}
 /* les gardiens d'un étage ne dépendent pas de la formation : la case DPS n°1 a le même gardien en Lance, Pluie ou Rempart (pas de tirage à refaire en changeant de formation) */
 function twFloor(f,form,seed,t){
   t=t==null?twState().t:t;const TT=TOWERS[t],boss=f===TW_N-1;
-  const sd=seed||wk(),key=sd+'-'+t+'-'+f,m=boss?TT.boss.m:twWorlds(sd+'t'+t)[f%13],sl=FORMS[form].rows.flat(),T=TT.T[f],ids=[],cnt={};
+  const sd=seed||wk(),key=sd+'-'+t+'-'+f,m=boss?TT.boss.m:twWorlds(sd+'t'+t)[f%13],sl=FORMS[form].rows.flat(),T=TT.T[f]+(TT.rel?Math.max(0,twTop()-95):0),ids=[],cnt={};
   const pool=CARDS.filter(c=>c.r!=='LR'&&(c.r!=='UR'||T>=84));
   sl.forEach(p=>{const k=cnt[p]=(cnt[p]||0)+1;const r=srng('twf'+key+p+k);let best=null,bs=1e9;
     pool.forEach(c=>{if(c.poste!==p||ids.includes(c.id))return;const sc=Math.abs(c.note-T)+(!m||c.m===m?0:TW_WP)+r()*4;if(sc<bs){bs=sc;best=c.id}});ids.push(best)});
   const r=srng('tww'+key),cls=['Épéiste','Bagarreur','Mage','Tireur'],ow=Object.keys(MONDES).filter(k=>k!==m);
   const weak=boss?TT.boss.weak:r()<.5?{k:'cl',v:cls[Math.floor(r()*cls.length)]}:{k:'m',v:ow[Math.floor(r()*ow.length)]};
-  return {f,t,m,form,ids,weak,T,boss,au:boss?TT.boss.au:0,fx:boss?TT.boss.fx:null};
+  /* v98 : une carte plus faible que la note visée reçoit un bonus de stats (note visée / note) : la tour reste juste même sans carte assez forte */
+  const mu={};ids.forEach(id=>{mu[id]=Math.max(1,T/CARD[id].note)});const note=Math.round(ids.reduce((a,id)=>a+CARD[id].note*mu[id],0)/ids.length);
+  return {f,t,m,form,ids,weak,T,mu,note,boss,au:boss?TT.boss.au:0,fx:boss?TT.boss.fx:null};
 }
 function twName(fl){return fl.boss?TOWERS[fl.t].boss.nm:'Les '+CREW[fl.m]}
 function twLeader(fl){const cs=fl.ids.map(id=>CARD[id]).sort((a,b)=>b.note-a.note);return cs.find(c=>c.m===fl.m)||cs[0]}
@@ -2918,24 +2927,24 @@ function vTower(){
   const st=twState();if(st.run&&st.run.ph==='match')return matchHTML(st.run);
   const form=S.form,team=S.team,full=team.filter(Boolean).length===7,mt=evalTeam(FORMS[form].rows,team);
   const t=st.t,TT=TOWERS[t],fl0=st.fls[t],floors=[...Array(TW_N)].map((_,f)=>twFloor(f,form,null,t));
-  const story=f=>{const fl=floors[f],done=f<fl0,cur=f===fl0,ld=twLeader(fl),gt=evalTeam(FORMS[form].rows,fl.ids),rw=TT.rw[f];
+  const story=f=>{const fl=floors[f],done=f<fl0,cur=f===fl0,ld=twLeader(fl),gt={note:fl.note},rw=twRw(f,t);
     return `<div class="tw-roof" style="--w:${100-f*2.2}%">${TW_ROOF}</div><button class="tw-st ${done?'done':cur?'cur':'lock'} ${st.justWon===f?'new':''} ${f===TW_N-1?'boss':''}" style="--w:${96-f*2.2}%" data-act="twFl" data-v="${f}">
       <span class="tw-pl" aria-hidden="true">${fl.boss?fl.fx.kj:TW_KJ[f]}</span>
       <span class="tw-b"><b>${twName(fl)}</b><small>${fl.boss?fl.fx.nm+' · note '+gt.note:(MONDES[fl.m].n+' · gardien '+ld.nom+' · note '+gt.note)}${fl.au?' · aura +'+Math.round(fl.au*100)+' %':''}</small><small class="tw-fl">Faille : ${twWeakText(fl.weak)}</small></span>
       <span class="tw-r">${done?'<span class="tw-seal" aria-label="Conquis">制</span>':cur?'':`<span class="tw-rw">${rw.pack?pk(rw.pack):`<span class="coin"></span><em>${rw.coins>=1000?rw.coins/1000+'k':rw.coins}</em>`}</span>`}${cur?'<span class="tw-go">DÉFIER</span>':''}</span></button>`};
   const lw=st.last;let banner='';
   if(lw&&lw.wk===st.wk&&lw.t===t){const fl=floors[lw.f];
-    banner=lw.win?(lw.f===TW_N-1&&lw.t===t?`<div class="tw-msg ok"><b>Tour ${TT.n} conquise.</b> Elle revient lundi avec de nouveaux gardiens.${t<2?'<br><span class="small">La tour '+TOWERS[t+1].n+' est ouverte.</span>':''}</div>`:'')
+    banner=lw.win?(lw.f===TW_N-1&&lw.t===t?`<div class="tw-msg ok"><b>Tour ${TT.n} conquise.</b> Tu peux la recommencer quand tu veux (10 pièces par étage, les passages comptent pour les SBC).${t<TOWERS.length-1?'<br><span class="small">La tour '+TOWERS[t+1].n+' est ouverte.</span>':''}</div>`:'')
       :`<div class="tw-msg ko"><b>Défaite ${lw.wa} – ${lw.wb}</b> contre ${twName(fl)}${lw.tot>1?' (phase '+lw.ph+' / '+lw.tot+')':''}. ${st.tries?`Il te reste ${st.tries} essai${st.tries>1?'s':''} aujourd'hui.`:'Plus d\'essai aujourd\'hui.'}<br><span class="small">Leur faille : ${twWeakText(fl.weak)} (+${Math.round(TW_FAIL*100)} %). Tu en as ${twWeakCount(fl,team)} en combat.${mt.chem<12?' Ta chemistry ('+mt.chem+') peut monter : chaque point donne +5 % de stats.':''}</span></div>`}
   const adsLeft=ADS_MAX-adState().used;
-  const nxt=fl0>=TW_N&&t<2,act=nxt?`<button class="btn primary wide" data-act="twTab" data-v="${t+1}">Ouvrir la tour ${TOWERS[t+1].n}</button>`:fl0>=TW_N?'':!full?`<button class="btn primary wide" data-act="tab" data-v="team">Compléter mon équipe (${team.filter(Boolean).length} / 7)</button>`
+  const nxt=fl0>=TW_N&&t<TOWERS.length-1,rst=fl0>=TW_N?`<button class="btn wide" data-act="twRestart">Recommencer la tour ${TT.n}</button>`:'',act=nxt?`<button class="btn primary wide" data-act="twTab" data-v="${t+1}">Ouvrir la tour ${TOWERS[t+1].n}</button>${rst}`:fl0>=TW_N?rst:!full?`<button class="btn primary wide" data-act="tab" data-v="team">Compléter mon équipe (${team.filter(Boolean).length} / 7)</button>`
     :st.tries?`<button class="btn primary wide" data-act="twFl" data-v="${fl0}">Défier l'étage ${fl0+1}</button>`
     :`<button class="btn wide" data-act="twPay" ${S.coins>=TW_RETRY?'':'disabled'}><span class="coin"></span>${fmt(TW_RETRY)} · Retenter (+1 essai)</button>`;
   return `<section class="sec"><div><div class="eyebrow">Avec ta propre équipe</div><h2>La Tour Céleste</h2></div>
-    <p class="small muted" style="margin:0">3 tours de 10 étages : Facile, Moyen, Difficile. Tu montes avec Mon équipe : tes cartes ne sont jamais consommées. Chaque étage donne sa récompense une fois par semaine.</p>
-    <div class="seg tws" role="group" aria-label="Choisir la tour">${TOWERS.map((x,i)=>{const un=i===0||st.fls[i-1]>=TW_N;return `<button class="${un?'':'lk'}" data-act="twTab" data-v="${i}" aria-pressed="${t===i}"><span>${x.n}</span><small>${un?'':'<svg viewBox="0 0 16 16" width="10" height="10" aria-hidden="true"><rect x="3" y="7" width="10" height="7" rx="1.5"></rect><path d="M5 7V5a3 3 0 016 0v2"></path></svg>'}${un?st.fls[i]+' / '+TW_N:'Verrouillée'}</small></button>`}).join('')}</div>
+    <p class="small muted" style="margin:0">4 tours de 10 étages : Facile, Moyen, Difficile, Infernale. Tu montes avec Mon équipe : tes cartes ne sont jamais consommées. Chaque étage donne sa récompense une seule fois ; ensuite, 10 pièces.</p>
+    <div class="seg tws" role="group" aria-label="Choisir la tour">${TOWERS.map((x,i)=>{const un=i===0||st.best[i-1]>=TW_N;return `<button class="${un?'':'lk'}" data-act="twTab" data-v="${i}" aria-pressed="${t===i}"><span>${x.n}</span><small>${un?'':'<svg viewBox="0 0 16 16" width="10" height="10" aria-hidden="true"><rect x="3" y="7" width="10" height="7" rx="1.5"></rect><path d="M5 7V5a3 3 0 016 0v2"></path></svg>'}${un?st.fls[i]+' / '+TW_N:'Verrouillée'}</small></button>`}).join('')}</div>
     <p class="small muted" style="margin:0">${TT.desc}</p>
-    <div class="tw-stats"><div><span class="eyebrow">Étage</span><b>${Math.min(fl0,TW_N)}<small> / ${TW_N}</small></b></div><div><span class="eyebrow">Essais</span><b>${st.tries}<small> / ${TW_TRY}</small></b></div><div><span class="eyebrow">Nouvelle tour</span><b class="sm">${daysToMonday()===1?'demain':'dans '+daysToMonday()+' j'}</b></div></div>
+    <div class="tw-stats"><div><span class="eyebrow">Étage</span><b>${Math.min(fl0,TW_N)}<small> / ${TW_N}</small></b></div><div><span class="eyebrow">Essais</span><b>${st.tries}<small> / ${TW_TRY}</small></b></div><div><span class="eyebrow">Nouveaux gardiens</span><b class="sm">${daysToMonday()===1?'demain':'dans '+daysToMonday()+' j'}</b></div></div>
     ${banner}${act}</section>
   <div class="tower t${t}" role="list"><div class="tw-sky" aria-hidden="true"><i class="moon"></i>${TW_SKY}<svg class="tw-mt" viewBox="0 0 400 120" preserveAspectRatio="none"><path d="M0 120 L0 70 L40 44 L70 62 L110 26 L150 58 L180 40 L220 72 L260 34 L300 60 L340 30 L380 56 L400 46 L400 120Z"/><path class="mt2" d="M0 120 L0 92 L50 74 L90 90 L140 66 L190 88 L240 70 L290 92 L340 72 L400 90 L400 120Z"/></svg></div><div class="tw-spire" aria-hidden="true">${TW_SPIRE}</div>
     ${[...Array(TW_N)].map((_,k)=>story(TW_N-1-k)).join('')}<div class="tw-base"><span>${full?`Mon équipe · note ${mt.note} · chemistry ${mt.chem}`:'Mon équipe est incomplète'}</span></div></div>
@@ -2944,30 +2953,33 @@ function vTower(){
     <li>Une victoire te fait monter d'un étage et donne la récompense de l'étage. Une défaite coûte 1 essai : ${TW_TRY} essais par jour, ils ne se cumulent pas. Quand tu n'en as plus, un essai de plus coûte ${fmt(TW_RETRY)} pièces.</li>
     <li>Chaque étage a une faille : une classe ou un monde que les gardiens craignent. Tes combattants concernés ont +${Math.round(TW_FAIL*100)} % de stats pendant ce combat. Change ton équipe pour en profiter.</li>
     <li>Rien n'est perdu : ni tes cartes, ni tes doublons. Tes cartes éveillées jouent avec leurs stats éveillées.</li>
-    <li>Chaque lundi, la Tour change de gardiens et repart de l'étage 1.</li></ul></section>`}
-function twSheet(f){const st=twState(),fl=twFloor(f,S.form),rows=FORMS[S.form].rows,gt=evalTeam(rows,fl.ids),mt=evalTeam(rows,S.team),full=S.team.filter(Boolean).length===7;
+    <li>Ta progression est gardée. Chaque lundi, les gardiens changent. Une tour finie peut être recommencée : 10 pièces par étage, et les passages comptent pour les SBC.</li><li>Boss à plusieurs phases : tes cartes gardent leurs PV d'une phase à l'autre, le boss récupère 30 % de ses PV.</li></ul></section>`}
+function twSheet(f){const st=twState(),fl=twFloor(f,S.form),rows=FORMS[S.form].rows,gt=Object.assign(evalTeam(rows,fl.ids),{note:twFloor(f,S.form).note}),mt=evalTeam(rows,S.team),full=S.team.filter(Boolean).length===7;
   const cur=f===st.fls[st.t],done=f<st.fls[st.t],n=twWeakCount(fl,S.team);CTX={tw:f};
   $('#shTitle').textContent='Étage '+(f+1)+' · '+twName(fl);$('#shBack').textContent='Fermer';
   $('#shBody').innerHTML=`<div class="tw-cmp"><div><span class="eyebrow">Mon équipe</span><b>${mt.note}</b><small>chem ${mt.chem}</small></div><span class="vs-x">VS</span><div><span class="eyebrow">Gardiens</span><b>${gt.note}</b><small>chem ${gt.chem}${fl.au?' · aura +'+Math.round(fl.au*100)+' %':''}</small></div></div>
     <div class="tw-weak"><span class="tw-wk">弱</span><div><b>Faille : ${twWeakText(fl.weak)}</b><span class="small muted">Tes combattants ${fl.weak.k==='cl'?fl.weak.v+'s':MONDES[fl.weak.v].n} ont +${Math.round(TW_FAIL*100)} % de stats ici. Tu en as ${n} en combat.</span></div></div>
     ${fl.au?`<p class="small muted" style="margin:0">${twName(fl)} a une aura de +${Math.round(fl.au*100)} % sur toutes ses stats.</p>`:''}${fl.boss&&fl.fx.k!=='gj'?`<div class="tw-weak"><span class="tw-wk bk">${fl.fx.kj}</span><div><b>${fl.fx.nm}${fl.fx.phases>1?' · '+fl.fx.phases+' phases':''}</b><span class="small muted">${fl.fx.txt}</span></div></div>`:''}
     <div class="eyebrow">Les gardiens · touche une carte pour la voir</div><div class="team-pitch">${pitchHTML(rows,gt,'twView',1)}</div>
-    <div class="rwl">${rwIcon(twRw(f))}Récompense : ${rwText(twRw(f))}${done?' · déjà gagnée cette semaine':''}</div>
+    <div class="rwl">${rwIcon(twRw(f))}Récompense : ${rwText(twRw(f))}${f<st.best[st.t]?' · récompense pleine déjà reçue':''}</div>
     ${cur?(full?(st.tries?`<button class="btn primary" data-act="twFight">Combattre · 1 essai si tu perds (${st.tries} / ${TW_TRY})</button>`:`<button class="btn primary" data-act="twPay" ${S.coins>=TW_RETRY?'':'disabled'}><span class="coin"></span>${fmt(TW_RETRY)} · Retenter (+1 essai)</button><p class="small muted" style="margin:0">Plus d\'essai aujourd\'hui. Reviens demain ou rachète un essai.</p>`):'<button class="btn primary" data-act="twTeam">Compléter mon équipe</button>')
-      :done?'<p class="small muted" style="margin:0">Étage déjà conquis cette semaine.</p>':`<p class="small muted" style="margin:0">Conquiers d'abord l'étage ${st.fls[st.t]+1}.</p>`}
+      :done?'<p class="small muted" style="margin:0">Étage déjà conquis. Recommence la tour pour le rejouer.</p>':`<p class="small muted" style="margin:0">Conquiers d'abord l'étage ${st.fls[st.t]+1}.</p>`}
     ${cur&&full?'<button class="btn" data-act="twTeam">Modifier mon équipe</button>':''}`;
   openSheet();$('#sheet .sh-body').scrollTop=0}
 function twFight(){const st=twState();if(st.run||st.fls[st.t]>=TW_N||st.tries<=0)return;if(S.team.filter(Boolean).length<7){toast('Ton équipe doit avoir 7 cartes.');return}
   const t=st.t,f=st.fls[t],fl=twFloor(f,S.form),fx=fl.fx,n=fx?fx.phases:1,wb=twBoost(fl.weak),ms=[];
   /* boss à effets : Haki −6 % sur ton équipe · Genjutsu / Domaine : plusieurs phases d'affilée, le boss repart à 100 % de PV avec +6 % de stats à chaque phase (Domaine : plus d'esquive pour toi) */
+  /* v98 : entre deux phases, tes cartes gardent leurs PV restants ; le boss récupère fx.hp (30 %) de ses PV */
+  let ha=null,hb=null;
   for(let p=0;p<n;p++){const up=fx&&fx.up?Math.pow(fx.up,p):1,mal=fx&&fx.mal?fx.mal:1;
-    const m=playMatch({form:S.form,ids:S.team.slice(),boost:c=>wb(c)*mal},{form:S.form,ids:fl.ids,boost:()=>(1+fl.au)*up,sure:!!(fx&&fx.sure)});
-    ms.push(m);if(!m.win)break}
+    const m=playMatch({form:S.form,ids:S.team.slice(),boost:c=>wb(c)*mal,hp0:ha},{form:S.form,ids:fl.ids,boost:c=>(1+fl.au)*up*(fl.mu[c.id]||1),sure:!!(fx&&fx.sure),hp0:hb});
+    ms.push(m);if(!m.win)break;
+    if(fx&&fx.hp){ha=m.duels.map(d=>d.pa/100);hb=m.duels.map(d=>Math.min(1,d.pb/100+fx.hp))}}
   const lm=ms[ms.length-1],win=ms.length===n&&lm.win;
   /* le résultat est appliqué tout de suite : fermer l'appli pendant l'animation ne change rien */
-  if(win){st.fls[t]=f+1;grant(twRw(f,t));if(t===2&&f===TW_N-1){sealAdd();setTimeout(()=>toast('Sceau du Kaio : '+Math.min(seals(),3)+' / 3 cette saison.'),3200)}}else st.tries--;
+  const rw=twRw(f,t);if(win){st.fls[t]=f+1;if(f>=st.best[t])st.best[t]=f+1;grant(rw);recUpd();if(t===2&&f===TW_N-1){sealAdd();setTimeout(()=>toast('Sceau du Kaio : '+Math.min(seals(),3)+' / 3 cette saison.'),3200)}}else st.tries--;
   st.last={wk:st.wk,t,f,win,wa:lm.wa,wb:lm.wb,ph:ms.length,tot:n};
-  st.run={t,f,ph:'match',m:ms[0],ms,pi:0,tot:n,win,step:0,fin:false,lbl:'Étage '+(f+1)+(n>1?' · phase 1 / '+n:''),nextAct:'twNext',skipAct:'twSkip'};
+  st.run={t,f,rw,ph:'match',m:ms[0],ms,pi:0,tot:n,win,step:0,fin:false,lbl:'Étage '+(f+1)+(n>1?' · phase 1 / '+n:''),nextAct:'twNext',skipAct:'twSkip'};
   closeSheet();SFX.tap();const rr=st.run;if(fx&&(fx.k==='hk'||fx.k==='dm'))HOLDR=rr;save();render();$('#main').scrollTop=0;
   if(fx&&(fx.k==='hk'||fx.k==='dm'))playTrans(fx.k==='hk'?'haki':'intro',t,{},()=>{HOLDR=null;if(S.tw&&S.tw.run===rr)trAnim()})}
 /* ---------- boss : effets de transition (Haki des rois, Genjutsu, Expansion de domaine) ---------- */
@@ -2989,8 +3001,8 @@ function phaseAuto(r){if(r.pt)return;r.pt=1;clearTimeout(PHT);
     playTrans('phase',r.t,{pi:pi+1,tot:r.tot},()=>{if(S.tw&&S.tw.run===r&&r.pi===pi)twPhase()})},1300)}
 function twPhase(){const st=twState(),r=st.run;if(!r||!r.ms||r.pi>=r.ms.length-1)return;r.pi++;r.m=r.ms[r.pi];r.step=0;r.fin=false;r.cnt=0;r.pt=0;clearTimeout(PHT);r.lbl='Étage '+(r.f+1)+' · phase '+(r.pi+1)+' / '+r.tot;save();render();$('#main').scrollTop=0}
 function twNext(silent){const st=twState(),r=st.run;if(!r)return;st.run=null;const T=TOWERS[r.t];
-  if(r.win){st.justWon=r.f;const rw=twRw(r.f,r.t),top=r.f===TW_N-1;save();render();setTimeout(()=>{if(S.tw)delete S.tw.justWon},1500);
-    if(!silent)showReward(top?'Tour '+T.n+' conquise':'Étage '+(r.f+1)+' conquis',top?(r.t<2?'La tour '+TOWERS[r.t+1].n+' est ouverte':'La Tour Céleste est à toi'):twName(twFloor(r.f,S.form,null,r.t))+' battus',rw.pack?{pack:rw.pack}:null,rwText(rw)+(rw.pack?' ajouté à Mes boosters':''))}
+  if(r.win){st.justWon=r.f;const rw=r.rw||twRw(r.f,r.t),top=r.f===TW_N-1;save();render();setTimeout(()=>{if(S.tw)delete S.tw.justWon},1500);
+    if(!silent)showReward(top?'Tour '+T.n+' conquise':'Étage '+(r.f+1)+' conquis',top?(r.t<TOWERS.length-1?'La tour '+TOWERS[r.t+1].n+' est ouverte':'La Tour Céleste est à toi'):twName(twFloor(r.f,S.form,null,r.t))+' battus',rw.pack?{pack:rw.pack}:null,rwText(rw)+(rw.pack?' ajouté à Mes boosters':''))}
   else{save();render()}
   $('#main').scrollTop=0}
 
@@ -3017,7 +3029,8 @@ const ACT={
   psub:v=>{if(v==='tr'&&!unl('draft')){toast('Tournoi draft : débloqué au niveau '+UNLOCK.draft+'.');return}S.psub=v;clearTimeout(TRT);TRT=null;save();render();$('#main').scrollTop=0},
   twFl:v=>twSheet(+v),
   twTeam:()=>{closeSheet();ACT.tab('team')},
-  twTab:v=>{const st=twState(),t=+v;if(t>0&&st.fls[t-1]<TW_N){toast('Conquiers d\'abord la tour '+TOWERS[t-1].n+'.');return}st.t=t;save();render();$('#main').scrollTop=0},
+  twRestart:()=>{const st=twState();if(st.run||st.fls[st.t]<TW_N)return;st.fls[st.t]=0;st.last=null;save();render();toast('Tour '+TOWERS[st.t].n+' recommencée.')},
+  twTab:v=>{const st=twState(),t=+v;if(t>0&&st.best[t-1]<TW_N){toast('Conquiers d\'abord la tour '+TOWERS[t-1].n+'.');return}st.t=t;save();render();$('#main').scrollTop=0},
   twPhase:()=>twPhase(),
   trovSkip:()=>endTrans(),
   twView:v=>{const f=CTX&&CTX.tw;if(f==null)return;viewCard(twFloor(f,S.form).ids[+v])},
