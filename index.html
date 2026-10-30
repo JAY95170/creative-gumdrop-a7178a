@@ -1364,6 +1364,148 @@ body{--t1:#1A2040;--t2:#0A0D1C;background:radial-gradient(90% 52% at 50% 16%,var
 }
 /* v100 — PC : le jeu prend toute la largeur (comme les sites concurrents), plafonné à 1800 px */
 @media (min-width:1024px){.app{max-width:1800px}.home{max-width:none}.stack.pf,.bk{max-width:none!important}}
+
+/* ===== v101 — booster A : sachet scellé ===== */
+.pk.sa{background:none;border-radius:0;box-shadow:none!important;overflow:visible;aspect-ratio:5/8}
+.pk.sa::before{display:none}
+.pk.sa .sa-w{position:absolute;inset:0;filter:drop-shadow(0 3cqw 4.5cqw rgba(0,0,0,.55))}
+.pk.sa .sc{position:absolute;inset:0;clip-path:polygon(0.00% 0%,6.25% 1.4%,12.50% 0%,18.75% 1.4%,25.00% 0%,31.25% 1.4%,37.50% 0%,43.75% 1.4%,50.00% 0%,56.25% 1.4%,62.50% 0%,68.75% 1.4%,75.00% 0%,81.25% 1.4%,87.50% 0%,93.75% 1.4%,100.00% 0%,100.00% 100.0%,93.75% 98.6%,87.50% 100.0%,81.25% 98.6%,75.00% 100.0%,68.75% 98.6%,62.50% 100.0%,56.25% 98.6%,50.00% 100.0%,43.75% 98.6%,37.50% 100.0%,31.25% 98.6%,25.00% 100.0%,18.75% 98.6%,12.50% 100.0%,6.25% 98.6%,0.00% 100.0%);background:linear-gradient(90deg,#6e4122 0%,#c48a55 22%,#8a5530 46%,#e0aa72 70%,#7a4a28 100%);overflow:hidden}
+.pk.sa.t2 .sc{background:linear-gradient(90deg,#6f7786 0%,#dfe4ea 24%,#98a1af 48%,#f4f6f9 72%,#727a89 100%)}
+.pk.sa.t3 .sc{background:linear-gradient(90deg,#7c5810 0%,#f3d27a 24%,#a87a1c 48%,#ffe6a3 72%,#835d12 100%)}
+.pk.sa.t4 .sc{background:linear-gradient(90deg,#9c2c58 0%,#f6c9d6 22%,#e2b03c 46%,#fff0c4 64%,#c9407a 100%)}
+.pk.sa.t0 .sc{background:linear-gradient(90deg,color-mix(in srgb,var(--pc) 55%,#000),var(--pc) 24%,color-mix(in srgb,var(--pc) 65%,#fff) 50%,var(--pc) 74%,color-mix(in srgb,var(--pc) 55%,#000))}
+.pk.sa .sa-art{position:absolute;left:0;right:0;top:8.5%;height:82.5%;overflow:hidden;background:#121226}
+.pk.sa.t1 .sa-art{background:#EEEBD3}
+.pk.sa .sa-art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 28%;display:block;pointer-events:none}
+.pk.sa.t1 .sa-art img{top:50%;height:auto;transform:translateY(-50%)}
+.pk.sa .sa-k{position:absolute;inset:0;display:grid;place-items:center;font:400 62cqw/1 "Dela Gothic One",var(--f-display);font-style:normal;color:color-mix(in srgb,var(--pc) 55%,transparent)}
+.pk.sa .sa-holo{position:absolute;inset:0;background:linear-gradient(125deg,rgba(217,70,124,.55),rgba(242,194,48,.35) 35%,rgba(127,214,194,.4) 60%,rgba(181,124,240,.5));mix-blend-mode:color-dodge;opacity:.5}
+.pk.sa .sa-cr{position:absolute;left:0;right:0;background:repeating-linear-gradient(90deg,rgba(0,0,0,.24) 0 1px,rgba(255,255,255,.16) 1px 2px,transparent 2px 5px)}
+.pk.sa .sa-cr.a{top:0;height:8.5%}.pk.sa .sa-cr.b{top:91%;height:9%}
+.pk.sa .sa-sh{position:absolute;left:0;right:0;height:1cqw;min-height:2px}
+.pk.sa .sa-sh.a{top:8.5%;background:linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,0))}
+.pk.sa .sa-sh.b{top:calc(91% - 1cqw);background:linear-gradient(rgba(0,0,0,0),rgba(0,0,0,.45))}
+.pk.sa .sa-tear{position:absolute;left:6%;right:6%;top:4.6%;border-top:1px dashed rgba(20,16,10,.45);display:flex;justify-content:flex-end}
+.pk.sa .sa-tt{font:600 2.4cqw/1 var(--f-mono);letter-spacing:.08em;color:rgba(20,16,10,.62);transform:translateY(-130%);white-space:nowrap}
+.pk.sa .sa-word{position:absolute;top:11.5%;left:7%;display:flex;flex-direction:column;gap:1.2cqw;font:900 11.5cqw/.9 var(--f-display);letter-spacing:-.03em;color:#F3EEE4;text-shadow:0 1px 6px rgba(0,0,0,.35)}
+.pk.sa.t1 .sa-word{color:#1A1830;text-shadow:none}
+.pk.sa .sa-word span{font:600 3cqw/1 var(--f-mono);letter-spacing:.14em;opacity:.8;text-shadow:none}
+.pk.sa .sa-shade{position:absolute;left:0;right:0;top:62%;height:29%;background:linear-gradient(rgba(10,10,22,0),rgba(10,10,22,.86))}
+.pk.sa .sa-tier{position:absolute;left:7%;bottom:12.5%;display:flex;flex-direction:column;gap:1cqw}
+.pk.sa .sa-tier b{font:900 8.2cqw/1 var(--f-display);color:#F3EEE4;letter-spacing:-.01em;white-space:nowrap}
+.pk.sa .sa-sub{font:700 3.6cqw/1.2 var(--f-body,Manrope,sans-serif);color:rgba(243,238,228,.78);white-space:nowrap}
+.pk.sa .sa-hk{position:absolute;right:7%;bottom:12%;width:17cqw;height:17cqw;background:#C8322B;border-radius:1.8cqw;color:#F6EEE0;font:400 10cqw/1 "Dela Gothic One",sans-serif;font-style:normal;display:grid;place-items:center;transform:rotate(-6deg);box-shadow:inset 0 0 0 .7cqw rgba(246,238,224,.6);opacity:.94}
+.pk.sa .sa-pil{position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.42) 0%,rgba(255,255,255,.16) 3.5%,transparent 13%,transparent 84%,rgba(255,255,255,.08) 93%,rgba(0,0,0,.46) 100%),radial-gradient(130% 75% at 50% 48%,transparent 62%,rgba(0,0,0,.28) 100%)}
+.pk.sa .sa-sheen{position:absolute;inset:0;background:linear-gradient(105deg,transparent 38%,rgba(255,255,255,.30) 48%,transparent 58%) 150% 0/250% 100% no-repeat;pointer-events:none;animation:saSheen 4.2s cubic-bezier(.45,0,.2,1) infinite}
+@keyframes saSheen{0%{background-position:150% 0}55%,100%{background-position:-50% 0}}
+@container (max-width:110px){.pk.sa .sa-tt,.pk.sa .sa-sub{display:none}}
+@container (max-width:64px){.pk.sa .sa-word span,.pk.sa .sa-hk{display:none}}
+@media (prefers-reduced-motion:reduce){.pk.sa .sa-sheen{animation:none}}
+
+/* ===== v101 — boutique : carrousel 3D, achat, barre En stock ===== */
+.shp{display:flex;flex-direction:column;gap:14px;width:100%}
+.shp-r{order:-1}
+.shp-l{display:flex;flex-direction:column;gap:10px}
+.car3{position:relative;--bw:min(46vw,180px);--cx:calc(var(--bw)*.83);height:calc(var(--bw)*1.6 + 44px);perspective:1000px;margin:0 -16px}
+.car3-i{position:absolute;inset:0;transform-style:preserve-3d}
+.car3 .cp{position:absolute;left:50%;top:14px;width:var(--bw);margin-left:calc(var(--bw)/-2);padding:0;border:0;background:none;cursor:pointer;transition:transform .65s cubic-bezier(.2,.8,.2,1),filter .65s}
+.car3 .cp .pk{width:100%;transform:none;box-shadow:none}
+.car3 .cp.on .pk{animation:bob 4.6s ease-in-out infinite}
+.car3 .cn{display:none}
+.dots{display:flex;justify-content:center;gap:8px}
+.dots i{display:block;width:6px;height:6px;border-radius:6px;background:rgba(255,255,255,.3);transition:width .3s,background .3s}
+.dots i.on{width:18px;background:var(--text)}
+.shp-i{display:flex;flex-direction:column;gap:12px}
+.bi-a{display:flex;flex-direction:column;gap:10px}
+.bi-h{display:flex;align-items:baseline;gap:12px}
+.bi-n{font:900 24px/1 var(--f-display);letter-spacing:-.02em}
+.bi-k{font:400 18px/1 "Dela Gothic One",sans-serif;font-style:normal}
+.bi-d{margin:0;font-size:13px;line-height:1.45;color:var(--muted)}
+.bi-r{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.bi-c{padding:6px 8px;border-radius:7px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);font:600 11px/1 var(--f-mono)}
+.bi-l{padding:6px 4px;font:700 11px/1 var(--f-body);text-decoration:underline;text-underline-offset:3px;color:var(--text)}
+.bi-b{display:flex;flex-direction:column;gap:8px}
+.bi-go{height:52px;font-size:15px;border-radius:13px}
+.bi-x{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px}
+.bi-x .btn{flex-direction:column;gap:3px;min-height:46px;padding:8px 6px;line-height:1.15;font-size:12px;border-radius:11px;background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.22)}
+.bi-x small{font:600 10px var(--f-mono);opacity:.7}
+.stbar{display:flex;align-items:center;flex-wrap:wrap;gap:10px 14px;padding:12px 14px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid var(--line)}
+.stbar .eyebrow{flex:none}
+.stbar-p{display:flex;gap:8px;align-items:center}
+.stbar-m{display:block;width:30px}.stbar-m .pk{width:100%;animation:none}
+.stbar-t{font:700 13px/1.3 var(--f-body);color:var(--text)}.stbar-t.muted{color:var(--muted)}
+.stbar-sep{flex:1;min-width:0}
+.stbar-f{display:flex;flex-direction:column;gap:4px}
+.stbar-f b{font:800 13px/1 var(--f-body)}
+.stbar-f span{font:600 11px/1.3 var(--f-mono);color:var(--muted)}.stbar-f span.ok{color:var(--good)}.stbar-f em{font-style:normal}
+.stbar>.btn{min-height:40px;padding:8px 16px}
+.stbar-all{border-color:#F2C230!important;color:#F2C230;background:none}
+.rt-h{margin:14px 0 4px;font:900 13px/1 var(--f-display);letter-spacing:.04em}
+.rt-r{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid var(--line);font-size:13px}.rt-r b{font:700 12px var(--f-mono);white-space:nowrap}
+.rt-s{margin:10px 0 0}
+@media (min-width:1024px){
+ .shp{display:grid;grid-template-columns:minmax(0,1fr) 340px;column-gap:40px;row-gap:16px;align-items:start}
+ .shp-l{grid-column:1;grid-row:1}.shp-st{grid-column:1;grid-row:2}.shp-ad{grid-column:1;grid-row:3}
+ .shp-r{grid-column:2;grid-row:1/4;order:0}.shp-r .lrb{height:640px;border-radius:20px}.shp-r .lrb-t b{font-size:54px}
+ .car3{--bw:260px;--cx:330px;perspective:1600px;margin:0}
+ .car3 .cn{display:grid;place-items:center;position:absolute;top:44%;width:48px;height:48px;border-radius:50%;border:1px solid rgba(243,238,228,.2);background:rgba(6,7,11,.6);color:var(--text);z-index:6;cursor:pointer}
+ .car3 .cn.l{left:8px}.car3 .cn.r{right:8px}
+ .dots{display:none}
+ .shp-i{display:grid;grid-template-columns:minmax(0,1fr) 380px;column-gap:40px;align-items:start}
+ .bi-n{font-size:40px}.bi-k{font-size:26px}.bi-d{font-size:15px;max-width:520px}.bi-c{font-size:12px;padding:7px 10px}.bi-go{height:56px;font-size:16px}.bi-x .btn{min-height:48px;font-size:13px}
+ .stbar{flex-wrap:nowrap}
+}
+
+/* ===== v101 — ouverture ×10 + révélation : taux de la carte ===== */
+.rvc-n{display:block;font:900 40px/.95 var(--f-display);letter-spacing:-.04em}
+.rvc-s{font:600 11px/1.3 var(--f-mono);letter-spacing:.06em;color:var(--muted)}
+.stage.rvc-on{gap:12px}
+.stage.rvc-on .reveal-card{width:min(58vw,232px)}
+.stage.rvc-on .rv-cap{gap:7px;max-width:420px;width:100%}
+.rvr{display:flex;align-items:flex-end;gap:14px;padding:12px 14px;border-radius:14px;background:color-mix(in srgb,var(--rcx,#E9B23A) 10%,transparent);border:1px solid color-mix(in srgb,var(--rcx,#E9B23A) 42%,transparent);text-align:left;margin-top:2px}
+.rvr-l{display:flex;flex-direction:column;gap:6px}
+.rvr-l span{font:600 9px/1 var(--f-mono);letter-spacing:.14em;color:var(--rcx)}
+.rvr-l b{font:900 40px/.85 var(--f-display);letter-spacing:-.04em}.rvr-l b i{font-size:22px;font-style:normal}
+.rvr-r{display:flex;flex-direction:column;gap:4px;padding-bottom:2px}
+.rvr-r span{font:800 13px/1.3 var(--f-body)}.rvr-r small{font:600 11px/1.3 var(--f-body);color:var(--muted)}
+.stage>.rvx-lines{position:absolute;left:50%;top:38%;width:1600px;height:1600px;margin:-800px 0 0 -800px;z-index:0;pointer-events:none;background:repeating-conic-gradient(from 0deg,transparent 0 2.4deg,color-mix(in srgb,var(--rcx) 26%,transparent) 2.4deg 2.8deg,transparent 2.8deg 5deg);-webkit-mask:radial-gradient(closest-side,#000 8%,transparent 70%);mask:radial-gradient(closest-side,#000 8%,transparent 70%);animation:rvSpin 60s linear infinite}
+.stage>.rvx-word{position:absolute;left:-10px;top:30px;z-index:0;pointer-events:none;font:900 190px/.8 var(--f-display);letter-spacing:-.06em;color:transparent;-webkit-text-stroke:1.5px color-mix(in srgb,var(--rcx) 50%,transparent)}
+.stage>.rvx-ring{position:absolute;left:50%;top:32%;width:340px;height:340px;margin:-170px 0 0 -170px;z-index:0;pointer-events:none;border-radius:50%;border:3px solid color-mix(in srgb,var(--rcx) 70%,transparent);animation:rvRing 1.8s cubic-bezier(.2,.7,.3,1) infinite}
+@keyframes rvSpin{to{rotate:360deg}}
+@keyframes rvRing{0%{transform:scale(.4);opacity:.9}100%{transform:scale(1.6);opacity:0}}
+.stage>.reveal-card,.stage>.rv-cap{z-index:1}
+.mx{width:100%;max-width:560px;display:flex;flex-direction:column;gap:16px;min-height:0;max-height:100%;overflow-y:auto;overflow-x:hidden;padding:4px 2px 6px;cursor:default}
+.mx-h{display:flex;justify-content:space-between;align-items:flex-end;gap:10px}
+.mx-h b{display:block;margin-top:6px;font:900 24px/1 var(--f-display);letter-spacing:-.02em}
+.mx-g{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:24px 12px;justify-items:center;padding-top:24px}
+.mx-p{position:relative;width:54px;max-width:100%;--c:var(--muted)}
+.mx-p .pk{width:100%}
+.mx-p .bm{position:absolute;left:50%;top:-16px;width:22px;height:26px;margin-left:-11px;background:linear-gradient(0deg,var(--c),transparent);filter:blur(5px);pointer-events:none;animation:mxBeam 1.6s ease-in-out infinite;z-index:2}
+.mx-p.hot .bm{top:-36px;width:40px;height:50px;margin-left:-20px}
+.mx-p.hot{animation:mxShake .42s linear infinite}
+.mx-p em{display:block;text-align:center;margin-top:5px;font:600 10px/1 var(--f-mono);font-style:normal;letter-spacing:.08em;color:var(--muted)}
+.mx-p.hot em{color:var(--c)}
+.mx-b{position:relative;height:220px;flex:none}
+.mx-c{position:absolute;left:50%;top:26px;width:104px;height:146px;margin-left:calc(var(--dx) - 52px);padding:0;border:0;border-radius:7px;overflow:hidden;cursor:pointer;background:radial-gradient(120% 80% at 30% 10%,#1d1a26,#0b0a10 65%);box-shadow:0 0 0 2px var(--c),0 0 26px var(--c),0 18px 34px rgba(0,0,0,.6);transform-origin:50% 100%;rotate:var(--rot);animation:mxShake .42s linear infinite}
+.mx-c.mid{top:0;width:134px;height:188px;margin-left:calc(var(--dx) - 67px);z-index:2}
+.mx-s{position:absolute;left:50%;top:50%;width:52%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;border:2px solid var(--c);background:#0b0a10;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:var(--text);box-shadow:0 0 16px var(--c)}
+.mx-s b{font:900 11px/1 var(--f-display)}.mx-s i{font:400 20px/1 "Dela Gothic One",sans-serif;font-style:normal;color:var(--c)}
+.mx-c u{position:absolute;left:0;right:0;bottom:7%;text-decoration:none;text-align:center;font:900 13px/1 var(--f-display);letter-spacing:.08em;color:var(--c)}
+.mx-t{margin:0;text-align:center;font:700 13px/1.4 var(--f-body);color:var(--muted)}
+.mx-bt{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:10px;position:sticky;bottom:0;padding-top:6px}
+.mx-bt .btn{height:52px;border-radius:13px}
+@keyframes mxBeam{0%,100%{opacity:.55}50%{opacity:1}}
+@keyframes mxShake{0%,100%{translate:0 0}20%{translate:-2px 1px}40%{translate:2px -1px}60%{translate:-1px -1px}80%{translate:1px 1px}}
+@media (prefers-reduced-motion:reduce){.mx-p.hot,.mx-c,.stage>.rvx-lines,.stage>.rvx-ring,.mx-p .bm{animation:none}}
+@media (min-width:1024px){
+ .mx{max-width:780px}.mx-g.many{grid-template-columns:repeat(auto-fill,minmax(72px,1fr))}.mx-p{width:68px}
+ .stage.rvc-on{display:grid;grid-template-columns:auto minmax(0,560px);justify-content:center;align-content:center;align-items:center;column-gap:90px;row-gap:0}
+ .stage.rvc-on .reveal-card{width:330px;grid-column:1}
+ .stage.rvc-on .rv-cap{grid-column:2;align-items:flex-start;text-align:left;max-width:560px;gap:14px}
+ .rvc-n{font-size:84px}.rvc-s{font-size:14px}
+ .rvr{padding:20px 24px;gap:22px;margin-top:8px}.rvr-l span{font-size:11px}.rvr-l b{font-size:72px}.rvr-l b i{font-size:38px}.rvr-r span{font-size:16px}.rvr-r small{font-size:13px}
+ .stage>.rvx-word{font-size:480px;left:-30px;top:280px}.stage>.rvx-lines{left:34%;top:50%}.stage>.rvx-ring{left:34%;top:50%;width:520px;height:520px;margin:-260px 0 0 -260px}
+}
 </style>
 
 <div class="app">
@@ -1764,15 +1906,15 @@ function cardHTML(c,o={}){
     <div class="plate"><div class="nm ${nmCls(c.nom)}">${c.nom}</div><div class="mt">${m.n}</div><div class="vr${(c.scn||c.vl).length>18?' lg':''}">${c.scn||c.vl}</div></div></div>${back}</div></div>`;
 }
 /* v97 — saisons : visuels de boosters communs par saison (village qui grandit avec le tier), LR de la saison */
-const SEASONS=[{id:'S1',n:'Saison 1',from:'2026-10-26',to:'2026-12-31',lr:'db-son-ultra-instinct',img:{bronze:'images/packs/s1-1.webp',argent:'images/packs/s1-2.webp',or:'images/packs/s1-3.webp'}}];
+const SEASONS=[{id:'S1',n:'Saison 1',from:'2026-10-26',to:'2026-12-31',lr:'db-son-ultra-instinct',img:{bronze:'images/packs/a-1.webp',argent:'images/packs/a-2.webp',or:'images/packs/a-3.webp'}}];
 function season(){const t=+now();return SEASONS.find(x=>t>=+new Date(x.from+'T00:00:00')&&t<=+new Date(x.to+'T23:59:59'))||SEASONS[SEASONS.length-1]}
 function seasonLeft(){return Math.max(0,Math.ceil((new Date(season().to+'T23:59:59')-now())/864e5))}
 const LR_OR=.0002;/* 0,02 % par Booster Or, sans garantie */
 function seals(){const x=season();return (S.seal&&S.seal[x.id])||0}
 function sealAdd(){const x=season();S.seal=S.seal||{};S.seal[x.id]=(S.seal[x.id]||0)+1}
-function pk(key){const p=P(key),im=!p.tgt&&season().img&&season().img[key];
-  if(im)return `<div class="pk pki ${key}" style="--pc:${p.bg};background-image:url(${im})"><span class="pki-a">ACG</span><span class="pki-s">${season().n.toUpperCase()}</span></div>`;
-  return `<div class="pk ${p.tgt?'tgt':key}" style="--pc:${p.bg}"><span class="pk-k">${p.k}</span><span class="pk-l">${p.lbl}</span></div>`}
+const SA_T={bronze:[1,'村','BRONZE','Hameau'],argent:[2,'町','ARGENT','Bourg'],or:[3,'都','OR','Cité'],ecl:[4,'輝','ÉCLATANT','Céleste']};
+function pk(key){const p=P(key),T=SA_T[key],t=T?T[0]:0,im=T&&season().img&&season().img[key==='ecl'?'or':key],kj=T?T[1]:p.k,nm=T?T[2]:String(p.lbl||'').toUpperCase(),n=p.slots&&p.slots.length,sub=(T?T[3]+' · ':'')+(n?n+' carte'+(n>1?'s':''):'');
+  return `<div class="pk sa t${t}" style="--pc:${p.bg}"><div class="sa-w"><div class="sc"><div class="sa-art">${im?`<img src="${im}" alt="" draggable="false">`:`<i class="sa-k">${kj}</i>`}${t===4?'<i class="sa-holo"></i>':''}</div><i class="sa-cr a"></i><i class="sa-cr b"></i><i class="sa-sh a"></i><i class="sa-sh b"></i><div class="sa-tear"><span class="sa-tt">開封 · OUVRIR ICI</span></div><div class="sa-word">ACG<span>${season().n.toUpperCase()}</span></div><i class="sa-shade"></i><div class="sa-tier"><b>${nm}</b><span class="sa-sub">${sub}</span></div>${im||T?`<i class="sa-hk">${kj}</i>`:''}<i class="sa-pil"></i><i class="sa-sheen"></i></div></div></div>`}
 function lrBanner(){const x=season(),c=CARD[x.lr];if(!c)return '';const u=artOf(c,true),own=S.owned[x.lr]>0;
   return `<button class="lrb" data-act="lrInfo" aria-label="LR de la saison : ${c.nom}, voir comment l'obtenir"><span class="lrb-im"${u?` style="background-image:url(${u})"`:''}></span><span class="lrb-sh"></span><span class="lrb-t"><i>LR de la saison · ${x.n}</i><b>${c.nom}</b><em>${c.vl}</em><small>${own?'Dans ta collection':'Fin de la saison dans '+seasonLeft()+' j'}</small></span><span class="lrb-r">LR</span></button>`}
 function lrInfo(){const x=season(),c=CARD[x.lr];if(!c)return;const n=seals(),own=S.owned[x.lr]>0,sb=allSbc().find(z=>z.lr),done=sb&&isDone(sb);
@@ -2085,12 +2227,20 @@ function vHome(){
 /* ---------- Ouvrir : boutique en carrousel (Bronze / Argent / Or), mes boosters, récompenses ---------- */
 let BSEL=null;const BK=['bronze','argent','or'],BKTINT={bronze:'#8A4E22',argent:'#5E6678',or:'#9C7412'};
 function bkSel(){if(!BK.includes(BSEL))BSEL=[...BK].reverse().find(k=>S.coins>=PACKS[k].price)||'bronze';return BSEL}
-function bkStyle(rel){return rel===0?'transform:translateX(0) rotateY(-12deg) scale(1);z-index:3':rel===1?'transform:translateX(118px) translateZ(-60px) rotateY(-30deg) scale(.7) rotate(6deg);z-index:2;opacity:.6;filter:brightness(.75)':'transform:translateX(-118px) translateZ(-60px) rotateY(10deg) scale(.7) rotate(-6deg);z-index:2;opacity:.6;filter:brightness(.75)'}
-function bkInfo(k){const p=PACKS[k],can=S.coins>=p.price;
-  return `<div class="bk-t"><b>${p.n}</b><span class="small muted">${p.desc}</span></div>${k==='or'?`<div class="pity"><div class="bar"><b style="width:${S.pity/PITY*100}%"></b></div><span>Garantie SSR : ${S.pity} / ${PITY} boosters</span></div>`:''}
-  <button class="btn primary wide" data-act="buy" data-v="${k}" ${can?'':'disabled'}><span class="coin"></span>${fmt(p.price)} · Acheter</button>
-  <button class="btn wide" data-act="buy10" data-v="${k}" ${S.coins>=p.price*10?'':'disabled'}><span class="coin"></span>${fmt(p.price*10)} · Acheter et ouvrir ×10</button>`}
-function bkSet(k){BSEL=k;const i=BK.indexOf(k);document.querySelectorAll('.cp').forEach(b=>{b.style.cssText=bkStyle((BK.indexOf(b.dataset.v)-i+3)%3)});const el=$('#bkInfo');if(el)el.innerHTML=bkInfo(k);applyTint();if(!S.mute)SFX.tap()}
+const BKKJ={bronze:'#C48A55',argent:'#C9CFDA',or:'#F2C230'},RCOLV={R:'var(--r-r)',SR:'var(--r-sr)',SSR:'var(--r-ssr)',UR:'var(--r-ur)',LR:'#F2F0EA'};
+function bkStyle(rel){const d=rel===1?1:rel===2?-1:0;return d===0?'transform:translateX(0) translateZ(40px) rotateY(0deg) scale(1);z-index:3;filter:none':`transform:translateX(calc(var(--cx)*${d})) translateZ(-200px) rotateY(${d*-38}deg) scale(.8);z-index:1;filter:brightness(.5)`}
+/* chance d'une carte précise dans un booster (≈ une fois sur N) */
+function cardRate(key,c){let p;try{p=P(key)}catch(e){return 0}if(!p||!p.slots||!p.slots.length)return 0;
+  if(c.r==='LR')return key==='or'&&c.id===season().lr?LR_OR:0;
+  if(c.scn)return scnRate(key,c.r);
+  const pool=(poolFor(p,c.r)||[]).length||1;return 1-p.slots.reduce((a,sl)=>a*(1-(sl[c.r]||0)/pool),1)}
+function bkRates(k){const p=PACKS[k],o=[];for(const r of ['R','SR','SSR','UR']){const pr=1-p.slots.reduce((a,sl)=>a*(1-(sl[r]||0)),1);if(pr<=0)continue;o.push([r,pr>=.999?'garantie':'≈ '+pct(pr)+' %'])}if(k==='or')o.push(['LR',pct(LR_OR)+' %']);return o}
+function bkInfo(k){const p=PACKS[k],T=SA_T[k],can=S.coins>=p.price,ch=bkRates(k).map(([r,v])=>`<span class="bi-c"><b style="color:${RCOLV[r]}">${r}</b> ${v}</span>`).join('');
+  return `<div class="bi-a"><div class="bi-h"><b class="bi-n">${p.n}</b><i class="bi-k" style="color:${BKKJ[k]}">${T[1]}</i></div><p class="bi-d">${p.desc}</p>
+  <div class="bi-r">${ch}<button class="bi-l" data-act="rates" data-v="${k}">Taux par perso</button></div>${k==='or'?`<div class="pity"><div class="bar"><b style="width:${S.pity/PITY*100}%"></b></div><span>Garantie SSR : ${S.pity} / ${PITY} boosters</span></div>`:''}</div>
+  <div class="bi-b"><button class="btn primary wide bi-go" data-act="buyopen" data-v="${k}" ${can?'':'disabled'}><span class="coin"></span>${fmt(p.price)} · Acheter et ouvrir</button>
+  <div class="bi-x"><button class="btn" data-act="buy10" data-v="${k}" ${S.coins>=p.price*10?'':'disabled'}><span>×10 · ouvrir</span><small>${fmt(p.price*10)}</small></button><button class="btn" data-act="buy10s" data-v="${k}" ${S.coins>=p.price*10?'':'disabled'}><span>×10 · au stock</span><small>${fmt(p.price*10)}</small></button></div></div>`}
+function bkSet(k){BSEL=k;const i=BK.indexOf(k);document.querySelectorAll('.cp').forEach(b=>{const r=(BK.indexOf(b.dataset.v)-i+3)%3;b.style.cssText=bkStyle(r);b.classList.toggle('on',r===0)});document.querySelectorAll('#bkDots i').forEach((d,n)=>d.classList.toggle('on',n===i));const el=$('#bkInfo');if(el)el.innerHTML=bkInfo(k);applyTint();if(!S.mute)SFX.tap()}
 function vShop(){
   const sel=bkSel(),si=BK.indexOf(sel);
   const keys=[...new Set(S.inv)],nSl=Math.max(6,Math.ceil(keys.length/3)*3);
@@ -2098,19 +2248,17 @@ function vShop(){
   const inv=`<section class="sec"><div><div class="eyebrow">Gagnés ou offerts</div><h2>Mes boosters${S.inv.length?` · ${S.inv.length}`:''}</h2></div>
     <div class="inv">${slots}</div>
     ${S.inv.length?`<p class="small muted" style="margin:0">Touche un booster pour l'ouvrir.</p>`:`<p class="small muted" style="margin:0">Les boosters gagnés en défis, en SBC, en paliers d'album ou offerts s'ajoutent ici. Tu les ouvres quand tu veux.</p><button class="btn" data-act="bsub" data-v="shop">Aller à la boutique</button>`}
-    ${keys.filter(k=>S.inv.filter(z=>z===k).length>=10).map(k=>`<button class="btn wide" data-act="inv10" data-v="${k}">Ouvrir ×10 · ${P(k).n}</button>`).join('')}</section>`;
+    ${S.inv.length>1?`<button class="btn primary wide" data-act="invAll">Tout ouvrir · ${S.inv.length} boosters</button>`:''}${keys.filter(k=>S.inv.filter(z=>z===k).length>=10).map(k=>`<button class="btn wide" data-act="inv10" data-v="${k}">Ouvrir ×10 · ${P(k).n}</button>`).join('')}</section>`;
   const f=freeState(),a=adState(),adsLeft=ADS_MAX-a.used;
-  const car=`<div class="car">${BK.map((k,i)=>`<button class="cp" data-act="bk" data-v="${k}" style="${bkStyle((i-si+3)%3)}" aria-label="${PACKS[k].n}">${pk(k)}</button>`).join('')}</div>`;
-  const free=`<div class="pack-row">${pk('bronze')}<div class="info"><div class="ttl">Booster gratuit</div><div class="small muted">1 Booster Bronze toutes les ${FREE_H} h, ${FREE_MAX} en stock maximum. ${f.stock<FREE_MAX?`Prochain dans <b id="freeCd">${fmtDur(freeLeft())}</b>.`:'Stock plein.'}</div>
-    <button class="btn ${f.stock?'primary':''}" data-act="freeopen" ${f.stock?'':'disabled'} style="align-self:flex-start">Ouvrir · ${f.stock} / ${FREE_MAX}</button></div></div>`;
+  const car=`<div class="car3" id="car3"><div class="car3-i">${BK.map((k,i)=>{const r=(i-si+3)%3;return `<button class="cp${r===0?' on':''}" data-act="bk" data-v="${k}" style="${bkStyle(r)}" aria-label="${PACKS[k].n}">${pk(k)}</button>`}).join('')}</div><button class="cn l" data-act="bkgo" data-v="-1" aria-label="Booster précédent"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button><button class="cn r" data-act="bkgo" data-v="1" aria-label="Booster suivant"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button></div><div class="dots" id="bkDots">${BK.map(k=>`<i class="${k===sel?'on':''}"></i>`).join('')}</div>`;
+  const stBar=`<div class="stbar"><span class="eyebrow">En stock</span>${S.inv.length?`<div class="stbar-p">${keys.slice(0,6).map(k=>`<span class="stbar-m">${pk(k)}</span>`).join('')}</div><span class="stbar-t">${keys.map(k=>S.inv.filter(z=>z===k).length+' '+P(k).n.replace('Booster ','')).join(' · ')}</span><button class="btn stbar-all" data-act="invAll">Tout ouvrir · ${S.inv.length}</button>`:`<span class="stbar-t muted">Aucun booster en stock.</span>`}<span class="stbar-sep"></span><div class="stbar-f"><b>Booster gratuit</b><span class="${f.stock?'ok':''}">${f.stock?'prêt':'en attente'} · ${f.stock} / ${FREE_MAX}${f.stock<FREE_MAX?` · prochain dans <em id="freeCd">${fmtDur(freeLeft())}</em>`:''}</span></div><button class="btn ${f.stock?'primary':''}" data-act="freeopen" ${f.stock?'':'disabled'}>Ouvrir</button></div>`;
   const ads=`<section class="sec glassb"><div class="sub-h"><h2 style="font-size:16px">Bonus pub</h2><span class="eyebrow">${adsLeft} / ${ADS_MAX} aujourd'hui</span></div>
     <p class="small muted" style="margin:0">Toujours au choix, jamais imposé. Une courte pub contre un petit bonus.</p>
     <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn" data-act="adfree" ${adsLeft&&f.stock<FREE_MAX?'':'disabled'}>Recharger le booster gratuit</button>
     <button class="btn" data-act="adbn" ${adsLeft&&!a.bn?'':'disabled'}>Bonneteau du jour (3 SR)${a.bn?' · fait':''}</button></div></section>`;
   const sub=S.bsub||'shop',nInv=S.inv.length,lg=canLogin();
   const seg=`<div class="seg"><button data-act="bsub" data-v="shop" aria-pressed="${sub==='shop'}">Boutique</button><button data-act="bsub" data-v="inv" aria-pressed="${sub==='inv'}">Mes boosters${nInv?` <span class="seg-n">${nInv}</span>`:''}</button><button data-act="bsub" data-v="rw" aria-pressed="${sub==='rw'}">Récompenses${lg?'<span class="dot"></span>':''}</button></div>`;
-  const bk3=`<div class="bk3">${BK.map(k=>`<div class="bk3-c"><div class="bk3-p">${pk(k)}</div>${bkInfo(k)}</div>`).join('')}</div>`;
-  const body={shop:()=>`${lrBanner()}${bk3}<div class="bk"><div class="bkL"><div><div class="eyebrow">Boutique</div><h2>Ouvrir des boosters</h2></div>${car}<div class="bk-i" id="bkInfo">${bkInfo(sel)}</div><span class="bk-h">← Touche un booster pour changer →</span></div><div class="bkR">${free}${ads}</div></div>`,
+  const body={shop:()=>`<div class="shp"><div class="shp-l">${car}<div class="shp-i" id="bkInfo">${bkInfo(sel)}</div></div><div class="shp-r">${lrBanner()}</div><div class="shp-st">${stBar}</div><div class="shp-ad">${ads}</div></div>`,
     inv:()=>inv,
     rw:()=>`${loginHTML()}<button class="sbr" data-act="tab" data-v="obj"><span class="emb">◎</span><span class="sb-b"><b>Défis</b><small>Défis du jour et de la semaine : pièces et boosters à gagner.</small></span>${claimables()?`<span class="sp ok">${claimables()} à récupérer</span>`:'<span class="sp">Voir</span>'}</button>`}[sub]||(()=>'');
   return `<div class="stack">${initHTML()}${seg}${body()}</div>`;
@@ -2273,10 +2421,13 @@ function packStats(ids,nw,p,key){ev('open');ev('open_'+(p.tgt?'tgt':key));if(nw)
 function openPackN(key,n,src){const p=P(key);
   if(src==='inv'){if(S.inv.filter(k=>k===key).length<n){toast('Pas assez de boosters.');return}let c=n;S.inv=S.inv.filter(k=>{if(k===key&&c>0){c--;return false}return true})}
   else{const tot=(p.price||0)*n;if(!p.price||S.coins<tot){toast('Pas assez de pièces.');return}S.coins-=tot;ev('spend',tot)}
-  const out=[];let nw=0;
-  for(let k=0;k<n;k++){const ids=rollIds(key);let nk=0;ids.forEach(id=>{const isNew=!S.seen[id];if(isNew)nk++;S.seen[id]=1;S.owned[id]=(S.owned[id]||0)+1;out.push({id,isNew})});nw+=nk;packStats(ids,nk,p,key)}
+  openMany(Array(n).fill(key))}
+/* ouvrir une liste de boosters (même clé ou mélange) : chaque carte garde son booster d'origine (key, pi) */
+function openMany(keys){const out=[];
+  keys.forEach((key,pi)=>{const p=P(key),ids=rollIds(key);let nk=0;ids.forEach(id=>{const isNew=!S.seen[id];if(isNew)nk++;S.seen[id]=1;S.owned[id]=(S.owned[id]||0)+1;out.push({id,isNew,key,pi})});packStats(ids,nk,p,key)});
   out.sort((a,b)=>RORD[CARD[a.id].r]-RORD[CARD[b.id].r]||CARD[a.id].note-CARD[b.id].note);
-  save();render();startReveal(key,out,{skip:true})}
+  const top=keys.reduce((a,k)=>(PACKS[k]&&PACKS[k].price||0)>(PACKS[a]&&PACKS[a].price||0)?k:a,keys[0]);
+  save();render();startReveal(top,out,{skip:true,packs:keys})}
 function openPack(key,invIdx){
   const p=P(key);
   if(invIdx==='free'){}
@@ -2304,13 +2455,11 @@ function sndAllStop(){clipAudStop();sndStop(SCNA,.2);SCNA=null;SCNK=null}
 
 /* v94 — taux d'obtention affiché sur les cartes SR et plus */
 function pct(x){const v=x*100;return (v>=10?v.toFixed(0):v>=1?v.toFixed(1):v>=.1?v.toFixed(2):v.toFixed(3)).replace('.',',')}
-function rateLine(key,id){const c=CARD[id];if(!c||RORD[c.r]<2)return '';if(c.r==='LR'&&key==='or')return `<span class="rv-rate">LR de la saison · ${pct(LR_OR)} % par Booster Or</span>`;
-  if(c.scn)return `<span class="rv-rate">SCÈNE ICONIQUE · ${pct(scnRate(key,c.r))} % par booster</span>`;
-  let p;try{p=P(key)}catch(e){return ''}if(!p||!p.slots||!p.slots.length)return '';
-  const miss=p.slots.reduce((a,sl)=>a*(1-(sl[c.r]||0)),1),pr=1-miss;if(pr<=0)return '';
-  const pool=(poolFor(p,c.r)||[]).length||1,one=1-p.slots.reduce((a,sl)=>a*(1-(sl[c.r]||0)/pool),1);
-  return `<span class="rv-rate">${c.r} · ${pr>=.999?'garantie':pct(pr)+' %'} par ${p.n}<br>Cette carte : ${pct(one)} %</span>`}
-function startReveal(key,cards,opt){cards.forEach(x=>{const c=CARD[x.id];preArt(artOf(c,true));preVid(clipOf(c));if(c.scn){[CLIP_AUD[c.base],SCN_SND[c.base]].forEach(u=>{if(u){preSnd(u);sndBuf(u)}})}});RV={key,cards,i:-1,ph:'pack',merged:{},skip:!!(opt&&opt.skip)};$('#reveal').hidden=false;drawRV()}
+function rateLine(key,id){const c=CARD[id];if(!c||RORD[c.r]<2)return '';let p;try{p=P(key)}catch(e){return ''}if(!p||!p.slots||!p.slots.length)return '';
+  const one=cardRate(key,c);if(!(one>0))return '';
+  const nm=p.n.replace('Booster','booster'),n=Math.round(1/one);
+  return `<div class="rvr" style="--rcx:${RCOL[c.r]}"><div class="rvr-l"><span>CHANCE D'AVOIR CETTE CARTE</span><b>${pct(one)}<i> %</i></b></div><div class="rvr-r"><span>par ${nm}</span>${n>1?`<small>environ 1 sur ${fmt(n)}</small>`:''}</div></div>`}
+function startReveal(key,cards,opt){cards.forEach(x=>{const c=CARD[x.id];preArt(artOf(c,true));preVid(clipOf(c));if(c.scn){[CLIP_AUD[c.base],SCN_SND[c.base]].forEach(u=>{if(u){preSnd(u);sndBuf(u)}})}});const mx=!!(opt&&opt.packs&&opt.packs.length>1);RV={key,cards,i:-1,ph:mx?'multi':'pack',merged:{},skip:mx?false:!!(opt&&opt.skip),packs:mx?opt.packs:null};$('#reveal').hidden=false;drawRV()}
 const RAYC={};function raysURL(col){if(RAYC[col])return RAYC[col];try{const z=360,cv=document.createElement('canvas');cv.width=cv.height=z;const g=cv.getContext('2d');g.translate(z/2,z/2);g.fillStyle=col;g.globalAlpha=.55;const n=22,w=Math.PI*2/n;for(let i=0;i<n;i++){g.beginPath();g.moveTo(0,0);g.arc(0,0,z/2,i*w,i*w+w*.31);g.closePath();g.fill()}g.globalAlpha=1;g.globalCompositeOperation='destination-in';const rg=g.createRadialGradient(0,0,0,0,0,z/2);rg.addColorStop(0,'#000');rg.addColorStop(.16,'#000');rg.addColorStop(.6,'rgba(0,0,0,0)');g.fillStyle=rg;g.fillRect(-z/2,-z/2,z,z);RAYC[col]=cv.toDataURL()}catch(e){RAYC[col]=''}return RAYC[col]}
 function sparks(n){return `<div class="sparks">${Array.from({length:n},(_,i)=>`<i class="spark" style="--a:${Math.round(i*360/n+Math.random()*12)}deg;--d:${110+Math.round(Math.random()*90)}px;animation-delay:${Math.round(Math.random()*120)}ms"></i>`).join('')}</div>`}
 function rvClue(){const c=CARD[RV.cards[RV.i].id],st=$('#stage');let el=st.querySelector('.clues');if(!el)return;const m=MONDES[c.m];
@@ -2324,8 +2473,19 @@ function rvQueue(){let q=$('#rvQ');const on=RV&&RV.cards.length>1&&RV.i>=0&&RV.p
   if(!q){q=document.createElement('div');q.id='rvQ';q.setAttribute('aria-hidden','true');document.body.appendChild(q)}
   q.innerHTML=RV.cards.map((x,i)=>{const r=CARD[x.id].r,hi=RORD[r]>=3&&i>RV.i;return `<i class="q${r} ${i<RV.i?'done':i===RV.i?'cur':''}${hi?' hi':''}" style="--rc:var(--r-${r.toLowerCase()})"></i>`}).join('')}
 function drawRV(){scnSndSync();if(!RV||RV.ph==='pack'||RV.ph==='tear'||RV.ph==='sum'){const q=$('#rvQ');if(q)q.remove()}
-  const st=$('#stage');const n=RV.cards.length;st.classList.remove('shake','white','is-sum','fbk');
+  const st=$('#stage');const n=RV.cards.length;st.classList.remove('shake','white','is-sum','fbk','rvc-on');
   $('#rvSkip').hidden=RV.ph==='sum'||(RV.i>=0&&RV.cards[RV.i]&&prot(CARD[RV.cards[RV.i].id])&&RV.ph!=='card');
+  if(RV.ph==='multi'){const N=RV.packs.length,top=r=>RORD[r];
+    const best=RV.packs.map((_,pi)=>RV.cards.filter(x=>x.pi===pi).reduce((a,x)=>top(CARD[x.id].r)>top(a)?CARD[x.id].r:a,'N'));
+    const names=[...new Set(RV.packs.map(k=>P(k).n.replace('Booster ','').toUpperCase()))].join(' · ');
+    const hotC=RV.cards.filter(x=>RORD[CARD[x.id].r]>=2).slice(-3).reverse();
+    const lay=hotC.length>=3?[hotC[1],hotC[0],hotC[2]]:hotC.length===2?[hotC[1],hotC[0]]:hotC;
+    const KJ={SR:'選',SSR:'極',UR:'神',LR:'究'};
+    st.style.setProperty('--glow',hotC.length?RCOL[CARD[hotC[0].id].r]:'var(--line)');$('#rvCount').textContent='';$('#rvSkip').hidden=true;
+    st.innerHTML=`<div class="mx"><div class="mx-h"><div><span class="eyebrow" style="color:var(--accent)">OUVERTURE ×${N} · ${names}</span><b>${RV.cards.length} cartes</b></div><button class="btn ghost" data-act="mxHot">Passer N et R</button></div>
+    <div class="mx-g${N>10?' many':''}">${RV.packs.map((k,pi)=>{const r=best[pi],hot=RORD[r]>=3;return `<div class="mx-p${hot?' hot':''}" style="--c:${RCOL[r]}">${RORD[r]>=2?'<i class="bm"></i>':''}${pk(k)}<em>${r}</em></div>`}).join('')}</div>
+    ${hotC.length?`<div class="mx-b">${lay.map((x,i)=>{const r=CARD[x.id].r,mid=lay.length===3?i===1:lay.length===1,dx=lay.length===1?0:lay.length===2?(i?70:-70):(i-1)*108;return `<button class="mx-c${mid?' mid':''}" data-act="mxHot" aria-label="Carte ${r} face cachée" style="--c:${RCOL[r]};--dx:${dx}px;--rot:${mid?0:(i?9:-9)}deg"><span class="mx-s"><b>ACG</b><i>${KJ[r]||'選'}</i></span><u>${r}</u></button>`}).join('')}</div><p class="mx-t">${hotC.length} carte${hotC.length>1?'s':''} rare${hotC.length>1?'s':''} · touche pour révéler</p>`:`<p class="mx-t">Pas de carte rare cette fois.</p>`}
+    <div class="mx-bt"><button class="btn" data-act="mxOne">Une par une</button><button class="btn primary" data-act="mxAll">Tout révéler</button></div></div>`;return}
   if(RV.ph==='pack'||RV.ph==='tear'){const pp=P(RV.key);const best=RV.cards.reduce((a,x)=>Math.max(a,RORD[CARD[x.id].r]),0),br=Object.keys(RORD).find(k=>RORD[k]===best);st.style.setProperty('--glow',RV.ph==='tear'?RCOL[br]:pp.glow);$('#rvCount').textContent=pp.n.toUpperCase();
     const fly=RV.ph==='tear'?`<div class="fly" aria-hidden="true">${RV.cards.map((x,i)=>{const r=CARD[x.id].r;return `<i class="fc r${r}${RORD[r]>=3?' hi':''}" style="--i:${i};--o:${(i-(n-1)/2).toFixed(2)};--rc:var(--r-${r.toLowerCase()})"><b>ACG</b></i>`}).join('')}</div>`:'';
     st.innerHTML=`<div class="big-pack ${RV.ph==='tear'?'tearing':''}" style="--pc:${P(RV.key).bg}">${pk(RV.key)}<div class="strip"></div>${fly}</div>${RV.ph==='tear'?`<i class="tear-rays" aria-hidden="true" style="background-image:url(${raysURL(br==='UR'?'#A63BFF':br==='LR'?'#FFFFFF':getComputedStyle(document.documentElement).getPropertyValue('--r-'+br.toLowerCase()).trim()||'#fff')})"></i>`:''}<div class="rv-cap"><span class="hint">${RV.ph==='tear'?'':'Touche pour ouvrir'}</span></div>`;return}
@@ -2344,7 +2504,8 @@ function drawRV(){scnSndSync();if(!RV||RV.ph==='pack'||RV.ph==='tear'||RV.ph==='
   if(RV.ph==='flash'){if(c.scn){st.classList.add('fbk');st.innerHTML=`<div class="flash fb"><span class="fb-k">回想</span><b>SCÈNE ICONIQUE</b><i>${c.nom} · « ${c.scn} »</i></div><div class="rv-cap"></div>`;return}const rcol=getComputedStyle(st).getPropertyValue('--glow').trim()||'#fff';const cl=clueC(c);if(cl)st.style.setProperty('--glow',RCOL[c.r]);const rc2=cl?(c.r==='UR'?'#A63BFF':c.r==='LR'?'#FFFFFF':rcol):rcol;
     st.innerHTML=`<div class="tease t-${c.r}"><i class="rays" style="background-image:url(${raysURL(rc2)})"></i><div class="cback"><span>ACG</span></div><b class="rl">${c.r}</b></div><div class="rv-cap">${cl?'<div class="clues"></div><span class="hint clue-h">Touche pour le premier indice</span>':''}</div>`;return}
   const sp=c.r==='LR'?sparks(28):c.r==='UR'?sparks(20):c.r==='SSR'?sparks(14):c.r==='SR'?sparks(8):'';
-  st.innerHTML=`<div class="reveal-card pre">${sp}${cardHTML(c,{big:true})}<i class="fl"></i></div><div class="rv-cap">${x.isNew?'<span class="newtxt">NOUVELLE CARTE</span>':`<span class="newtxt" style="color:var(--muted)">DOUBLON · ×${S.owned[x.id]||1}</span>`}${rateLine(RV.key,x.id)}<span class="hint">${RV.i<n-1?'Touche pour la suivante':'Touche pour voir le résumé'}</span></div>`;
+  const fx=RORD[c.r]>=3?`<i class="rvx-lines" style="--rcx:${RCOL[c.r]}"></i><b class="rvx-word" style="--rcx:${RCOL[c.r]}">${c.r}</b><i class="rvx-ring" style="--rcx:${RCOL[c.r]}"></i>`:'';st.classList.add('rvc-on');
+  st.innerHTML=`${fx}<div class="reveal-card pre">${sp}${cardHTML(c,{big:true})}<i class="fl"></i></div><div class="rv-cap">${x.isNew?'<span class="newtxt">NOUVELLE CARTE</span>':`<span class="newtxt" style="color:var(--muted)">DOUBLON · ×${S.owned[x.id]||1}</span>`}<b class="rvc-n">${c.nom}</b><span class="rvc-s">${c.vl} · ${MONDES[c.m].n}</span>${rateLine(x.key||RV.key,x.id)}<span class="hint">${RV.i<n-1?'Touche pour la suivante':'Touche pour voir le résumé'}</span></div>`;
   const rc=st.querySelector('.reveal-card'),i0=RV.i;let fl=false;
   const flip=()=>{if(fl||!RV||RV.i!==i0||!rc.isConnected)return;fl=true;rc.classList.replace('pre','flipin');if(c.r==='SSR'||c.r==='UR'||c.r==='LR'){st.classList.add('shake','white')}else if(c.r==='SR'){st.classList.add('white')}};
   requestAnimationFrame(()=>requestAnimationFrame(flip));setTimeout(flip,500);
@@ -2384,6 +2545,7 @@ function nextCard(){
   RV.ph='flash';SFX.charge(r);drawRV();rvT=setTimeout(()=>{if(RV&&RV.ph==='flash')showCard()},r==='LR'?2300:r==='UR'?1900:r==='SSR'?1350:r==='SR'?850:450);
 }
 function stepRV(){
+  if(RV.ph==='multi')return;
   if(RV.ph==='flash'&&clueC(CARD[RV.cards[RV.i].id])){if(Date.now()-RV.ct<(RV.clue===0?900:550))return;if(RV.clue<2){RV.clue++;RV.ct=Date.now();rvClue();return}showCard();return}
   if((RV.ph==='flash'||RV.ph==='swirl'||RV.ph==='clip')&&prot(CARD[RV.cards[RV.i].id]))return;
   if(RV.ph==='merge'){if(!RV.mdone)return;RV.mdone=false;RV.ph='card';if(RV.skip){goNextNew();return}if(RV.i>=RV.cards.length-1){RV.ph='sum';SFX.tap();drawRV()}else nextCard();return}
@@ -2395,7 +2557,7 @@ function stepRV(){
 }
 /* Tout voir : saute les doublons, garde l'animation des nouvelles cartes */
 function goNextNew(){
-  const j=RV.cards.findIndex((x,k)=>k>RV.i&&(x.isNew||prot(CARD[x.id])));
+  const j=RV.cards.findIndex((x,k)=>k>RV.i&&((RV.hot?RORD[CARD[x.id].r]>=2:x.isNew)||prot(CARD[x.id])));
   if(j===-1){RV.ph='sum';SFX.tap();drawRV();return}
   RV.i=j-1;nextCard();
 }
@@ -3078,6 +3240,20 @@ const ACT={
   hv:v=>homeSet(+v),agrid:v=>{S.agrid=v==='2'?'2':'3';save();render()},hdup:()=>{S.hideDup=!S.hideDup;save();render()},bk:v=>bkSet(v),homeinv:()=>{S.bsub='inv';ACT.tab('shop')},
   inv:v=>openPack(S.inv[+v],+v),
   inv10:v=>openPackN(v,10,'inv'),
+  mxOne:()=>{if(!RV)return;RV.skip=false;RV.hot=false;RV.ph='pack';drawRV()},
+  mxAll:()=>{if(!RV)return;RV.skip=true;RV.hot=false;RV.ph='pack';stepRV()},
+  mxHot:()=>{if(!RV)return;RV.skip=true;RV.hot=true;RV.ph='pack';stepRV()},
+  invAll:()=>{if(!S.inv.length)return;const L=S.inv.slice();S.inv=[];openMany(L)},
+  buyopen:v=>openPack(v,null),
+  buy10s:v=>{const p=PACKS[v],t=p.price*10;if(S.coins<t){toast('Pas assez de pièces.');return}S.coins-=t;ev('spend',t);for(let i=0;i<10;i++)S.inv.push(v);SFX.coin();save();render();toast('10 × '+p.n+' ajoutés à Mes boosters.')},
+  bkgo:v=>{const i=BK.indexOf(bkSel());bkSet(BK[(i+(+v)+BK.length)%BK.length])},
+  rates:v=>{const p=P(v);CTX={rates:v};$('#shTitle').textContent='Taux par personnage';$('#shBack').textContent='Fermer';
+    const row=c=>`<div class="rt-r"><span>${c.nom} · ${c.vl}</span><b>${pct(cardRate(v,c))} %</b></div>`;
+    let h=`<p class="small muted" style="margin:0 0 10px">${p.n} : chance qu'un booster contienne cette carte précise.</p>`;
+    if(v==='or'&&CARD[season().lr])h+=`<h3 class="rt-h"><i style="color:#F2F0EA">LR</i> de la saison</h3>${row(CARD[season().lr])}`;
+    for(const r of ['UR','SSR','SR']){if(!p.slots.some(sl=>sl[r]))continue;const L=(poolFor(p,r)||[]).map(id=>CARD[id]).filter(Boolean).sort((a,b)=>b.note-a.note);if(!L.length)continue;h+=`<h3 class="rt-h"><i style="color:${RCOLV[r]}">${r}</i> · ${L.length} cartes</h3>${L.map(row).join('')}`}
+    for(const r of ['R','N']){if(!p.slots.some(sl=>sl[r]))continue;const L=poolFor(p,r)||[];if(L.length)h+=`<p class="small muted rt-s"><b style="color:${RCOLV[r]||'var(--r-n)'}">${r}</b> · ${L.length} cartes, chacune ≈ ${pct(cardRate(v,CARD[L[0]]))} % par booster.</p>`}
+    $('#shBody').innerHTML=h;openSheet()},
   buy10:v=>openPackN(v,10,'buy'),
   coins:()=>{S.coins+=5000;save();render();toast('+5 000 pièces.')},
   nextday:()=>{S.dayOff++;save();render();toast('Jour suivant : nouveaux SBC et défis du jour.')},
