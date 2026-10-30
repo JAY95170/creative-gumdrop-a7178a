@@ -169,7 +169,7 @@ nav.tabs button[aria-current="page"] svg{color:var(--accent)}
 .bk-st i{display:block;height:2.6cqw;border-radius:2cqw;background:var(--line);overflow:hidden}
 .bk-st i b{display:block;height:100%;background:var(--rc)}
 .bk-tags{display:flex;flex-wrap:wrap;gap:1.2cqw;margin-top:auto}
-.bk-tags em{font-style:normal;font-size:4.4cqw;font-weight:700;padding:.6cqw 1.8cqw;border-radius:2cqw;border:.5cqw solid var(--line)}
+.bk-tags em{font-style:normal;font-size:5cqw;font-weight:700;padding:.6cqw 1.8cqw;border-radius:2cqw;border:.5cqw solid var(--line)}
 .badge{position:absolute;z-index:3;font-family:var(--f-mono);font-weight:600;font-size:10px;letter-spacing:.06em;padding:2px 6px;border-radius:6px}
 .badge.new{top:-6px;left:50%;transform:translateX(-50%);background:var(--accent);color:var(--accent-ink);white-space:nowrap}
 .badge.cnt{bottom:5px;right:5px;background:var(--bg);border:1px solid var(--line)}
@@ -216,6 +216,7 @@ nav.tabs button[aria-current="page"] svg{color:var(--accent)}
 .csearch input{flex:1;min-width:0;font:inherit;font-size:16px;color:var(--text);background:none;border:0;outline:0;padding:11px 0}
 .csearch:focus-within{border-color:var(--text)}
 .cfil-r{display:flex;flex-direction:column;gap:8px}
+.crar{display:flex;gap:6px;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}.crar::-webkit-scrollbar{display:none}.crar .chip{flex:none}
 .cpos{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}.cpos::-webkit-scrollbar{display:none}.cpos .chip{flex:none}
 .csort{display:flex;align-items:center;gap:10px}
 .csort select{flex:1;font:inherit;font-size:14px;font-weight:600;color:var(--text);background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:8px 10px}
@@ -1273,12 +1274,13 @@ body{--t1:#1A2040;--t2:#0A0D1C;background:radial-gradient(90% 52% at 50% 16%,var
  .alb{display:grid;grid-template-columns:290px minmax(0,1fr);gap:30px;align-items:start}
  .alb-side{display:flex;flex-direction:column;gap:14px;position:sticky;top:14px;max-height:calc(100vh - 120px);overflow:auto;padding-right:6px}
  .alb-main{display:block;min-width:0}
- .alb .wpick{display:none}
- .wlist{display:flex;flex-direction:column;gap:2px}
+ .alb .wpick{display:flex}
+ .wlist{display:none}/* v99 : sur PC, mondes dans le menu déroulant comme sur mobile */
  .wl{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;color:rgba(255,255,255,.75);font:700 13.5px var(--f-body);text-align:left}
  .wl span{display:flex;align-items:center;gap:8px}.wl small{font:600 11px var(--f-mono);opacity:.7}
  .wl:hover{background:rgba(255,255,255,.05);color:#fff}
  .wl[aria-current="true"]{background:rgba(255,255,255,.1);color:#fff}
+ .alb .cpos,.alb .crar{flex-wrap:wrap;overflow:visible}.alb .cfil,.alb .cfil-r,.alb .csearch,.alb .csort{min-width:0;max-width:100%;box-sizing:border-box}
  .alb .cfil{flex-direction:column;align-items:stretch}.alb .csearch{flex:none}.alb .cfil-r{flex-direction:column;align-items:stretch;flex:none}
  .alb .csort select{min-width:0}
  .alb .grid3,.alb .grid3.g2{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))!important}
@@ -1963,7 +1965,8 @@ function i18nApply(root){const L=S.lang||'fr';if(L==='fr'&&!I18D)return;const w=
 let I18Q=0;function i18nInit(){document.documentElement.lang=S.lang||'fr';new MutationObserver(()=>{if(I18Q||!S.lang||S.lang==='fr')return;I18Q=requestAnimationFrame(()=>{I18Q=0;i18nApply(document.body)})}).observe(document.body,{childList:true,subtree:true,characterData:true,attributes:true,attributeFilter:['aria-label','placeholder','title']})}
 function render(){
   recUpd();$('#coins').textContent=fmt(S.coins);drawMute();$('#who').innerHTML=whoHTML();
-  const dots={obj:claimables(),album:albumClaimables(),shop:initStep()>=0&&initDone(initStep())?1:0};
+  /* v99 : pastilles = quelque chose à récupérer (défis, paliers d'album, connexion du jour, booster gratuit, SBC réalisable) */
+  const dots={obj:claimables(),album:albumClaimables(),shop:(initStep()>=0&&initDone(initStep()))||canLogin()||freeState().stock>0?1:0,sbc:unl('sbc')&&S.tab!=='sbc'&&allSbc().some(x=>sbcGuess(x).s==='ok')?1:0};
   document.querySelectorAll('#tabs button').forEach(b=>{b.setAttribute('aria-current',b.dataset.v===S.tab?'page':'false');const nd={sbc:'sbc',tour:'tour'}[b.dataset.v];b.classList.toggle('locked',!!nd&&!unl(nd));const d=b.querySelector('.dot');if(d)d.remove();if(dots[b.dataset.v])b.insertAdjacentHTML('beforeend','<span class="dot"></span>')});
   if(S.tab!=='team')FP=false;
   applyTint();
@@ -2126,8 +2129,8 @@ const CSORT={def:['Par animé',(a,b)=>MONDES[a.m].n.localeCompare(MONDES[b.m].n,
  az:['Nom : A → Z',(a,b)=>a.nom.localeCompare(b.nom,'fr')||String(a.vl).localeCompare(String(b.vl),'fr')],za:['Nom : Z → A',(a,b)=>b.nom.localeCompare(a.nom,'fr')||String(b.vl).localeCompare(String(a.vl),'fr')]};
 const cHay=c=>c._h||(c._h=norm([c.nom,c.full,c.vl,c.v,MONDES[c.m]&&MONDES[c.m].n,c.cl,CLK[c.cl]&&CLK[c.cl][1],c.poste,POS[c.poste],c.r,c.scn,...(c.tags||[])].filter(Boolean).join(' | ')));
 function cMatch(c,q){return !q||q.split(' ').every(w=>cHay(c).includes(w))}
-function collList(src,f){const q=norm(CQ),p=S.apos||'all',so=CSORT[S.asort]?S.asort:'def',act=!!q||p!=='all';
-  let L=src.filter(c=>(f==='all'||c.m===f)&&(p==='all'||c.poste===p));
+function collList(src,f){const q=norm(CQ),p=S.apos||'all',rr=S.arar||'all',so=CSORT[S.asort]?S.asort:'def',act=!!q||p!=='all'||rr!=='all';
+  let L=src.filter(c=>(f==='all'||c.m===f)&&(p==='all'||c.poste===p)&&(rr==='all'||c.r===rr));
   const hid=act?L.filter(c=>!S.seen[c.id]&&cMatch(c,q)).length:0;
   L=L.filter(c=>!act||(S.seen[c.id]&&cMatch(c,q)));
   L.sort(CSORT[so][1]);if(so!=='def')L.sort((a,b)=>(!S.seen[a.id])-(!S.seen[b.id]));
@@ -2141,9 +2144,10 @@ function collResHTML(){const f=S.af||'all';const B=collList(BASE,f),U=collList(S
   return `${info}${B.L.length?`<div class="${S.agrid==='2'?'grid3 g2':'grid3'}">${B.L.map(cwHTML).join('')}</div>`:''}
   ${U.L.length?`<section class="sec"><h2 style="font-size:16px">Cartes UR et LR <span class="muted small">${SPECIAL.filter(c=>(f==='all'||c.m===f)&&S.seen[c.id]).length} / ${SPECIAL.filter(c=>f==='all'||c.m===f).length}</span></h2><div class="${S.agrid==='2'?'grid3 g2':'grid3'}">${U.L.map(cwHTML).join('')}</div></section>`:''}
   ${C.L.length?`<section class="sec"><h2 style="font-size:16px">Scènes iconiques <span class="muted small">${SCENES.filter(c=>(f==='all'||c.m===f)&&S.seen[c.id]).length} / ${SCENES.filter(c=>f==='all'||c.m===f).length}</span></h2><p class="small muted" style="margin:0 0 8px">Très rares, hors complétion de l'album. Même note et mêmes stats que la carte d'origine.</p><div class="${S.agrid==='2'?'grid3 g2':'grid3'}">${C.L.map(cwHTML).join('')}</div></section>`:''}`}
-function collFilHTML(){const p=S.apos||'all',so=CSORT[S.asort]?S.asort:'def';
+function collFilHTML(){const p=S.apos||'all',rr=S.arar||'all',so=CSORT[S.asort]?S.asort:'def';
   return `<div class="cfil"><label class="csearch"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5"/><path d="M13 13l4.5 4.5"/></svg><input id="collQ" type="search" placeholder="Nom, animé, tag, classe, poste…" value="${CQ.replace(/"/g,'&quot;')}" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="search" aria-label="Rechercher une carte"></label>
   <div class="cfil-r"><div class="chips cpos">${[['all','Tous'],['Tank','Tank'],['DPS','DPS'],['Distance','Distance'],['Soutien','Soutien']].map(([k,t])=>`<button class="chip" data-act="apos" data-v="${k}" aria-pressed="${p===k}">${t}</button>`).join('')}</div>
+  <div class="chips crar">${['all','N','R','SR','SSR','UR','LR'].map(k=>`<button class="chip" data-act="arar" data-v="${k}" aria-pressed="${rr===k}">${k==='all'?'Toutes raretés':k}</button>`).join('')}</div>
   <button class="csort" data-act="csort" aria-haspopup="dialog"><span class="eyebrow">Tri</span><b>${CSORT[so][0]}</b><span class="chev" aria-hidden="true">▾</span></button></div></div>`}
 function wlistHTML(){const f=S.af||'all',seen=seenBase();return `<nav class="wlist" aria-label="Mondes"><button class="wl" data-act="filter" data-v="all" aria-current="${f==='all'}"><span>Tous les mondes</span><small>${seen} / ${BASE.length}</small></button>${Object.keys(MONDES).sort((a,b)=>MONDES[a].n.localeCompare(MONDES[b].n,'fr')).map(k=>{const cs=collState(k);return `<button class="wl" data-act="filter" data-v="${k}" aria-current="${f===k}"><span><i class="wdot" style="background:var(--m-${k})"></i>${MONDES[k].n}</span><small>${cs.got} / ${cs.tot}${cs.done?' ✓':''}</small></button>`}).join('')}</nav>`}
 function vColl(){
@@ -3045,8 +3049,11 @@ const ACT={
   trSlot:v=>{const r=trState().run;if(!r||r.ph!=='draft')return;let i=+v;if(r.ids[i]){viewCard(r.ids[i]);return}if(r.pend!=null&&!r.ids[r.pend]&&r.optsBy[r.pend])i=r.pend;const p=FORMS[r.form].rows.flat()[i];r.pend=i;
     const fresh=!r.optsBy[i];if(fresh){r.optsBy[i]=draftOpts(p,r.ids.filter(Boolean));save()}CTX={tr:i,lock:true};
     $('#shTitle').textContent='Case '+POS[p];$('#shBack').hidden=true;
-    $('#shBody').innerHTML=`<p class="small muted" style="margin:0">Touche une carte pour la prendre, glisse-la sur le côté pour voir ses stats. Elles sont toutes de même rareté : regarde la chemistry. Choisis-en une pour continuer.</p><div class="deal ${fresh?'anim':''}">${r.optsBy[i].map((id,k)=>`<button class="cw" data-act="trPick" data-v="${id}" style="--k:${k}"><div data-swipe>${cardHTML(CARD[id],{back:true})}</div>${S.seen[id]?'':'<span class="hc-band">HORS COLLECTION</span>'}</button>`).join('')}</div>`;
+    $('#shBody').innerHTML=`<p class="small muted" style="margin:0">Touche une carte pour la prendre, glisse-la sur le côté pour voir ses stats. Elles sont toutes de même rareté : regarde la chemistry. Choisis-en une pour continuer.</p><div class="deal ${fresh?'anim':''}">${r.optsBy[i].map((id,k)=>`<button class="cw" data-act="trPick" data-v="${id}" style="--k:${k}"><div data-swipe>${cardHTML(CARD[id],{back:true})}</div>${S.seen[id]?'':'<span class="hc-band">HORS COLLECTION</span>'}</button>`).join('')}</div><button class="btn wide" data-act="trPeek">Voir mon équipe (${r.ids.filter(Boolean).length} / ${r.ids.length})</button>`;
     openSheet();if(fresh&&!S.mute)r.optsBy[i].forEach((_,k)=>setTimeout(()=>SFX.flip(),k*260+120))},
+  trPeek:()=>{const r=trState().run;if(!r||r.ph!=='draft'||!CTX||CTX.tr==null)return;const rows=FORMS[r.form].rows,t=evalTeam(rows,r.ids);
+    $('#shTitle').textContent='Mon équipe';$('#shBody').innerHTML=`<p class="small muted" style="margin:0">Voilà ton équipe pour l'instant. La case en cours est la case ${POS[rows.flat()[CTX.tr]]}. Touche une carte pour la voir.</p>${trTeamHead(t)}<div class="team-pitch">${pitchHTML(rows,t,'noop',1)}</div><button class="btn primary wide" data-act="trUnpeek">Retour aux 4 cartes</button>`;$('#sheet .sh-body').scrollTop=0},
+  trUnpeek:()=>{const r=trState().run;if(!r||r.ph!=='draft'||!CTX||CTX.tr==null)return;const i=CTX.tr;CTX=null;ACT.trSlot(String(i))},
   trPick:v=>{const r=trState().run;if(!r||r.ph!=='draft'||!CTX||CTX.tr==null)return;r.ids[CTX.tr]=v;r.pend=null;SFX.tap();closeSheet(true);save();render()},
   trRecap:()=>{const r=trState().run;if(!r||r.ids.some(x=>!x))return;r.ph='recap';SFX.reward();save();render();$('#main').scrollTop=0;setTimeout(countUp,60)},
   trBack:()=>{const r=trState().run;r.ph='draft';save();render()},
@@ -3095,6 +3102,7 @@ const ACT={
   sell1:v=>{if((S.owned[v]||0)<2||S.locked[v])return;S.owned[v]--;S.coins+=sellVal(v);ev('sell');SFX.coin();save();render();openCard(v)},
   csort:()=>{const so=CSORT[S.asort]?S.asort:'def';$('#shTitle').textContent='Trier les cartes';$('#shBack').textContent='Fermer';$('#shBody').innerHTML=`<div class="sortl">${Object.entries(CSORT).map(([k,[t]])=>`<button class="sorto" data-act="csortv" data-v="${k}" aria-pressed="${k===so}">${t}${k===so?'<span aria-hidden="true">✓</span>':''}</button>`).join('')}</div>`;openSheet()},
   csortv:v=>{S.asort=v;save();closeSheet();const b=$('.csort b');if(b)b.textContent=CSORT[v][0];const r=$('#collRes');if(r)r.innerHTML=collResHTML()},
+  arar:v=>{S.arar=v;save();document.querySelectorAll('.crar .chip').forEach(b=>b.setAttribute('aria-pressed',b.dataset.v===v));const r=$('#collRes');if(r)r.innerHTML=collResHTML()},
   apos:v=>{S.apos=v;save();document.querySelectorAll('.cpos .chip').forEach(b=>b.setAttribute('aria-pressed',b.dataset.v===v));const r=$('#collRes');if(r)r.innerHTML=collResHTML()},
   creset:()=>{CQ='';const i=$('#collQ');if(i)i.value='';const r=$('#collRes');if(r)r.innerHTML=collResHTML()},
   perfgo:()=>{closeSheet();perfStart()},
