@@ -1368,6 +1368,48 @@ body{--t1:#1A2040;--t2:#0A0D1C;background:radial-gradient(90% 52% at 50% 16%,var
 }
 /* v100 — PC : le jeu prend toute la largeur (comme les sites concurrents), plafonné à 1800 px */
 @media (min-width:1024px){.app{max-width:1800px}.home{max-width:none}.stack.pf,.bk{max-width:none!important}}
+
+
+/* ===== v104 — révélation SSR / UR / LR ===== */
+.stage>.rvx-word{left:var(--cx,50%)!important;top:var(--cy,40%)!important;right:auto;transform:translate(-50%,-52%) scale(.86);opacity:0;white-space:nowrap;line-height:.78!important;font-size:100px;letter-spacing:-.05em!important;
+  color:transparent;-webkit-text-stroke:2px color-mix(in srgb,var(--rcx) 70%,transparent);text-shadow:0 0 60px color-mix(in srgb,var(--rcx) 35%,transparent);transition:opacity .5s .25s,transform .9s .25s cubic-bezier(.2,.8,.2,1)}
+.stage>.rvx-word.on{opacity:1;transform:translate(-50%,-52%) scale(1)}
+.stage>.rvx-word.r-UR,.stage>.rvx-word.r-LR{background:linear-gradient(100deg,transparent 0 40%,color-mix(in srgb,var(--rcx) 40%,transparent) 48%,transparent 56%) 120% 0/240% 100% no-repeat;-webkit-background-clip:text;background-clip:text;animation:rvWordSh 3.2s 1s ease-in-out infinite}
+@keyframes rvWordSh{0%{background-position:120% 0}60%,100%{background-position:-60% 0}}
+.stage>.rvx-lines,.stage>.rvx-ring{left:var(--cx,50%)!important;top:var(--cy,40%)!important}
+.stage>.rvx-beam{position:absolute;z-index:0;pointer-events:none;left:var(--cx,50%);top:0;height:var(--cy,40%);width:calc(var(--cw,240px)*.95);transform:translateX(-50%);transform-origin:50% 100%;
+  background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--rcx) 30%,transparent) 22%,color-mix(in srgb,var(--rcx) 55%,#fff) 46%,#fff 50%,color-mix(in srgb,var(--rcx) 55%,#fff) 54%,color-mix(in srgb,var(--rcx) 30%,transparent) 78%,transparent);
+  -webkit-mask:linear-gradient(transparent,#000 35%,#000);mask:linear-gradient(transparent,#000 35%,#000);opacity:0;filter:blur(2px);animation:rvBeam 1.1s .05s cubic-bezier(.2,.8,.2,1) forwards,rvBeamF 2.6s 1.2s ease-in-out infinite}
+.stage>.rvx-beam::after{content:"";position:absolute;left:50%;bottom:calc(var(--ch,330px)*-.5 - 30px);width:calc(var(--cw,240px)*2.2);height:90px;transform:translateX(-50%);border-radius:50%;background:radial-gradient(closest-side,color-mix(in srgb,var(--rcx) 55%,transparent),transparent);filter:blur(6px)}
+@keyframes rvBeam{0%{opacity:0;transform:translateX(-50%) scaleX(.15)}35%{opacity:1;transform:translateX(-50%) scaleX(1.25)}100%{opacity:.55;transform:translateX(-50%) scaleX(1)}}
+@keyframes rvBeamF{0%,100%{opacity:.55}50%{opacity:.8}}
+.reveal-card.foil .rv-foil{position:absolute;inset:0;z-index:2;border-radius:6%;pointer-events:none;overflow:hidden;mix-blend-mode:color-dodge;opacity:.55}
+.reveal-card.foil .rv-foil::before{content:"";position:absolute;top:-20%;bottom:-20%;left:0;width:70%;transform:translateX(-140%) skewX(-16deg);
+  background:linear-gradient(90deg,transparent,rgba(217,70,124,.5) 20%,rgba(242,194,48,.55) 38%,rgba(127,214,194,.6) 55%,rgba(181,124,240,.55) 72%,transparent);animation:rvFoil 3.4s 1.1s cubic-bezier(.45,0,.2,1) infinite}
+.reveal-card.foil.rSSR .rv-foil{opacity:.35}
+@keyframes rvFoil{0%{transform:translateX(-140%) skewX(-16deg)}55%,100%{transform:translateX(240%) skewX(-16deg)}}
+.reveal-card .rv-seal{position:absolute;z-index:4;right:-14px;bottom:24%;width:64px;height:64px;border-radius:10px;background:#B8302A;color:#F6EEE0;display:grid;place-items:center;font:400 34px/1 "Dela Gothic One",sans-serif;font-style:normal;box-shadow:inset 0 0 0 3px rgba(246,238,224,.55),0 10px 24px rgba(0,0,0,.6);transform:rotate(-10deg) scale(2.4);opacity:0;animation:rvSeal .45s 1.3s cubic-bezier(.3,1.4,.5,1) forwards}
+@keyframes rvSeal{to{transform:rotate(-10deg) scale(1);opacity:1}}
+@media (prefers-reduced-motion:reduce){.stage>.rvx-beam,.reveal-card.foil .rv-foil::before,.stage>.rvx-word{animation:none}.reveal-card .rv-seal{animation:none;opacity:1;transform:rotate(-10deg)}}
+@media (min-width:1024px){.stage>.rvx-word{font-size:100px}}
+/* ===== v104 — page d'intro ===== */
+.intro{position:fixed;inset:0;z-index:180;display:grid;place-items:center;padding:16px;background:rgba(5,6,10,.82);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);animation:rsfade .3s both}
+.in-bx{width:min(100%,980px);max-height:calc(100dvh - 32px);overflow:auto;box-sizing:border-box;padding:22px 20px 18px;border-radius:20px;background:#0B0D14;border:1px solid rgba(243,238,228,.12);display:flex;flex-direction:column;gap:18px}
+.in-h{position:relative;display:flex;flex-direction:column;gap:6px;padding-right:44px}.in-h b{font:900 26px/1 var(--f-display);letter-spacing:-.02em}
+.in-x{position:absolute;right:-4px;top:-6px;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:none;color:var(--text);font:400 24px/1 var(--f-body)}
+.in-st{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.in-st li{position:relative;overflow:hidden;display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:14px;row-gap:4px;padding:14px 16px;border-radius:14px;background:rgba(243,238,228,.04);border:1px solid rgba(243,238,228,.08)}
+.in-n{grid-row:1/3;font:900 30px/1 var(--f-display);color:var(--accent);letter-spacing:-.03em}
+.in-k{position:absolute;right:10px;bottom:-14px;font:400 74px/1 "Dela Gothic One",var(--f-display);font-style:normal;color:rgba(243,238,228,.05);pointer-events:none}
+.in-st b{font:800 15px/1.2 var(--f-body)}.in-t{font:500 13px/1.45 var(--f-body);color:var(--muted)}
+.in-f{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.in-f .btn{min-width:160px}
+.in-ck{display:flex;align-items:center;gap:10px;min-height:44px;font:600 13px var(--f-body);color:var(--muted);cursor:pointer}.in-ck input{width:20px;height:20px;accent-color:var(--accent)}
+@media (min-width:1024px){
+ .in-bx{padding:34px 36px 28px;gap:26px}.in-h b{font-size:40px}
+ .in-st{grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+ .in-st li{grid-template-columns:1fr;padding:22px 22px 26px;min-height:230px;align-content:start;row-gap:10px}
+ .in-n{grid-row:auto;font-size:44px}.in-st b{font-size:18px}.in-t{font-size:14px}.in-k{font-size:120px;right:12px;bottom:-22px}
+}
 /* v102 — Accueil PC : vitrine agrandie, texte « Tes 3 cartes… » au-dessus de la vitrine (mobile inchangé) */
 @media (min-width:1024px){
  .home>.hm-eb{grid-column:1;grid-row:2;text-align:center;font-size:11.5px}
@@ -2053,6 +2095,12 @@ function whoHTML(){const p=S.prof||{},nm=p.name||'Joueur',c=avatarCard(),u=c?art
 /* ---------- Langues : FR (par défaut), EN, ES. Traducteur d'interface : remplace les textes affichés par leur équivalent.
    Les noms de cartes, de mondes et les textes de fiche restent d'origine ; on complète le dictionnaire par étapes. ---------- */
 const I18T=[
+['joué','played','jugado'],['joués','played','jugados'],['champion','title','título'],['champions','titles','títulos'],
+['Bienvenue dans ACG','Welcome to ACG','Bienvenido a ACG'],['Le jeu en 3 étapes','The game in 3 steps','El juego en 3 pasos'],
+['Ouvre des boosters','Open boosters','Abre boosters'],['Bronze, Argent ou Or : 5 cartes par booster. Plus une carte est forte, plus elle est rare.','Bronze, Silver or Gold: 5 cards per booster. The stronger a card, the rarer it is.','Bronce, Plata u Oro: 5 cartas por booster. Cuanto más fuerte es una carta, más rara es.'],
+['Complète ton album, forme ton équipe','Fill your album, build your team','Completa tu álbum, forma tu equipo'],['Des persos de 13 mondes. Aligne tes 7 meilleures cartes : Tanks, DPS, Distance et Soutien.','Characters from 13 worlds. Line up your 7 best cards: Tanks, DPS, Ranged and Support.','Personajes de 13 mundos. Alinea tus 7 mejores cartas: Tanques, DPS, Distancia y Apoyo.'],
+['Joue, gagne, recommence','Play, win, repeat','Juega, gana, repite'],['SBC, Tour Céleste, Tournoi draft et défis rapportent pièces et boosters. Et la boucle repart.','SBCs, the Celestial Tower, the draft Tournament and challenges give coins and boosters. And the loop starts again.','Los SBC, la Torre Celestial, el Torneo draft y los desafíos dan monedas y boosters. Y el ciclo vuelve a empezar.'],
+['Ne plus me la reproposer','Don\'t show this again','No volver a mostrar'],['C\'est parti','Let\'s go','¡Vamos!'],['Revoir la présentation','See the introduction again','Ver la presentación otra vez'],
 ['Accueil','Home','Inicio'],['Ouvrir','Open','Abrir'],['Équipe','Team','Equipo'],['Jouer','Play','Jugar'],['Défis','Challenges','Desafíos'],
 ['Booster gratuit','Free booster','Booster gratis'],['SBC du jour','Daily SBC','SBC del día'],['Tour Céleste','Celestial Tower','Torre Celestial'],['La Tour Céleste','The Celestial Tower','La Torre Celestial'],
 ['Ouvrir le booster gratuit','Open the free booster','Abrir el booster gratis'],['Aller à la boutique','Go to the shop','Ir a la tienda'],
@@ -2199,6 +2247,7 @@ function vProf(){
   <section class="sec"><div class="eyebrow">Réglages</div><div class="pf-box pf-set">
    <button class="pf-row" data-act="pfSound" role="switch" aria-checked="${!S.mute}"><span>Son</span><span class="pf-sw${S.mute?'':' on'}"></span></button>
    <div class="pf-row" role="group" aria-label="Langue"><span>Langue</span><span class="pf-lg">${['fr','en','es'].map(l=>`<button data-act="lang" data-v="${l}" aria-pressed="${(S.lang||'fr')===l}">${l.toUpperCase()}</button>`).join('')}</span></div>
+   <button class="pf-row" data-act="introShow">Revoir la présentation</button>
    <button class="pf-row" data-act="reset">Effacer la partie</button></div></section>
   </div></div>`}
 function profEdit(){const p=S.prof||{};CTX={prof:1,av:p.av||null};$('#shTitle').textContent='Nom et avatar';$('#shBack').textContent='Fermer';
@@ -2224,6 +2273,15 @@ function applyTint(){const b=document.body.style;if(S.tab==='home'){const T=home
 function homeSet(i){HV=i;const T=homeTrio(),n=T.length;if(!n)return;document.querySelectorAll('.tr3[data-i]').forEach(b=>{const k=+b.dataset.i,rel=(k-i+n)%n;b.style.cssText=trioStyle(T[k],rel,n);b.dataset.act=rel===0?'card':'hv';b.dataset.v=rel===0?T[k].id:k});
   const w=T[i];$('#hmN').textContent=w.nom;$('#hmS').textContent=homeLine(w);homeTint(w);if(!S.mute)SFX.tap()}
 function homeArts(){const T=homeTrio().map(c=>c.base||c.id),L=[];Object.keys(S.owned).filter(id=>S.owned[id]>0&&CARD[id]&&!CARD[id].scn).map(id=>CARD[id]).sort((a,b)=>RORD[b.r]-RORD[a.r]||b.note-a.note).forEach(c=>{const u=artOf(c);if(u&&!L.includes(u)&&!T.includes(c.base||c.id))L.push(u)});return L}
+/* v104 — page d'intro : la boucle du jeu en 3 étapes, montrée à chaque arrivée sur l'Accueil sauf si « Ne plus me la reproposer » est coché */
+let INTRO_SEEN=false;
+function introHTML(){const ST=[['01','開','Ouvre des boosters','Bronze, Argent ou Or : 5 cartes par booster. Plus une carte est forte, plus elle est rare.'],
+  ['02','集','Complète ton album, forme ton équipe','Des persos de 13 mondes. Aligne tes 7 meilleures cartes : Tanks, DPS, Distance et Soutien.'],
+  ['03','闘','Joue, gagne, recommence','SBC, Tour Céleste, Tournoi draft et défis rapportent pièces et boosters. Et la boucle repart.']];
+  return `<div class="intro" role="dialog" aria-modal="true" aria-label="Bienvenue dans ACG"><div class="in-bx">
+  <div class="in-h"><span class="eyebrow">Le jeu en 3 étapes</span><b>Bienvenue dans ACG</b><button class="in-x" data-act="introClose" aria-label="Fermer">×</button></div>
+  <ol class="in-st">${ST.map(x=>`<li><span class="in-n">${x[0]}</span><i class="in-k" aria-hidden="true">${x[1]}</i><b>${x[2]}</b><span class="in-t">${x[3]}</span></li>`).join('')}</ol>
+  <div class="in-f"><label class="in-ck"><input type="checkbox" id="introOff"><span>Ne plus me la reproposer</span></label><button class="btn primary" data-act="introClose">C'est parti</button></div></div></div>`}
 function vHome(){
   const T=homeTrio(),n=T.length,i=n?HV%n:0,w=T[i],ini=initStep()>=0?initHTML():'';
   const trio=n?T.map((c,k)=>{const rel=(k-i+n)%n,u=artOf(c,true);return `<button class="tr3" data-i="${k}" style="${trioStyle(c,rel,n)};--mc:var(--m-${c.m})" data-act="${rel===0?'card':'hv'}" data-v="${rel===0?c.id:k}" aria-label="${c.nom}"><span class="im"${u?` style="background-image:url(${u})${fillSt(u)}"`:''}>${u?'':`<b>${MONDES[c.m].k}</b>`}</span><span class="gl"></span><span class="nt">${c.note}</span><span class="rr">${c.r}</span></button>`}).join(''):'<div class="tr3 vide" style="transform:translateX(0);z-index:3">?</div>';
@@ -2240,7 +2298,8 @@ function vHome(){
     tlk('tour',['tour','#1F3A4A','#C9CDDC',!unl('tour')?'Niveau '+UNLOCK.tour:`Étage ${tw.fls[tw.t]} / ${TW_N}`,'Tour Céleste'],!unl('tour')),
     tlk('obj',['obj','#4A2A1A','#FF8F6B',nOb?`${nOb} à récupérer`:'À jour','Défis'])].join('');
   const cta=f.stock?`<button class="btn primary wide" data-act="freeopen">Ouvrir le booster gratuit</button>`:S.inv.length?`<button class="btn primary wide" data-act="homeinv">Ouvrir mes boosters · ${S.inv.length}</button>`:`<button class="btn primary wide" data-act="tab" data-v="shop">Aller à la boutique</button>`;
-  return `<div class="home">${ini}<span class="hm-eb">${n?'Tes '+(n>1?n+' cartes':'carte')+' les plus rares'+(n>1?' · touche pour changer':''):'Ta vitrine est vide'}</span>
+  const intro=!S.introOff&&!INTRO_SEEN?introHTML():'';
+  return `${intro}<div class="home">${ini}<span class="hm-eb">${n?'Tes '+(n>1?n+' cartes':'carte')+' les plus rares'+(n>1?' · touche pour changer':''):'Ta vitrine est vide'}</span>
     <div class="hm-trio${n?'':' vide'}">${trio}</div>
     <div class="hm-nm"><b id="hmN" class="${n?'':'s0'}">${n?w.nom:'Ouvre un booster'}</b><span id="hmS">${n?homeLine(w):'Tes plus belles cartes apparaîtront ici'}</span></div>
     <div class="hm-g">${lrBanner()}${tiles}</div><div class="hm-cta">${cta}</div></div>`}
@@ -2532,9 +2591,9 @@ function drawRV(){scnSndSync();if(!RV||RV.ph==='pack'||RV.ph==='tear'||RV.ph==='
   if(RV.ph==='flash'){if(c.scn){st.classList.add('fbk');st.innerHTML=`<div class="flash fb"><span class="fb-k">回想</span><b>SCÈNE ICONIQUE</b><i>${c.nom} · « ${c.scn} »</i></div><div class="rv-cap"></div>`;return}const rcol=getComputedStyle(st).getPropertyValue('--glow').trim()||'#fff';const cl=clueC(c);if(cl)st.style.setProperty('--glow',RCOL[c.r]);const rc2=cl?(c.r==='UR'?'#A63BFF':c.r==='LR'?'#FFFFFF':rcol):rcol;
     st.innerHTML=`<div class="tease t-${c.r}"><i class="rays" style="background-image:url(${raysURL(rc2)})"></i><div class="cback"><span>ACG</span></div><b class="rl">${c.r}</b></div><div class="rv-cap">${cl?'<div class="clues"></div><span class="hint clue-h">Touche pour le premier indice</span>':''}</div>`;return}
   const sp=c.r==='LR'?sparks(28):c.r==='UR'?sparks(20):c.r==='SSR'?sparks(14):c.r==='SR'?sparks(8):'';
-  const fx=RORD[c.r]>=3?`<i class="rvx-lines" style="--rcx:${RCOL[c.r]}"></i><b class="rvx-word" style="--rcx:${RCOL[c.r]}">${c.r}</b><i class="rvx-ring" style="--rcx:${RCOL[c.r]}"></i>`:'';st.classList.add('rvc-on');
-  st.innerHTML=`${fx}<div class="reveal-card pre">${sp}${cardHTML(c,{big:true})}<i class="fl"></i></div><div class="rv-cap">${x.isNew?'<span class="newtxt">NOUVELLE CARTE</span>':`<span class="newtxt" style="color:var(--muted)">DOUBLON · ×${S.owned[x.id]||1}</span>`}<b class="rvc-n">${c.nom}</b><span class="rvc-s">${c.vl} · ${MONDES[c.m].n}</span>${rateLine(x.key||RV.key,x.id)}<span class="hint">${RV.i<n-1?'Touche pour la suivante':'Touche pour voir le résumé'}</span></div>`;
-  const rc=st.querySelector('.reveal-card'),i0=RV.i;let fl=false;
+  const hi=RORD[c.r]>=3,fx=hi?`<i class="rvx-beam" style="--rcx:${RCOL[c.r]}"></i><i class="rvx-lines" style="--rcx:${RCOL[c.r]}"></i><b class="rvx-word r-${c.r}" style="--rcx:${RCOL[c.r]}" aria-hidden="true">${c.r}</b><i class="rvx-ring" style="--rcx:${RCOL[c.r]}"></i>`:'';st.classList.add('rvc-on');
+  st.innerHTML=`${fx}<div class="reveal-card pre${hi?' foil r'+c.r:''}">${sp}${cardHTML(c,{big:true})}${hi?'<i class="rv-foil" aria-hidden="true"></i>':''}${c.r==='LR'?'<i class="rv-seal" aria-hidden="true">究</i>':''}<i class="fl"></i></div><div class="rv-cap">${x.isNew?'<span class="newtxt">NOUVELLE CARTE</span>':`<span class="newtxt" style="color:var(--muted)">DOUBLON · ×${S.owned[x.id]||1}</span>`}<b class="rvc-n">${c.nom}</b><span class="rvc-s">${c.vl} · ${MONDES[c.m].n}</span>${rateLine(x.key||RV.key,x.id)}<span class="hint">${RV.i<n-1?'Touche pour la suivante':'Touche pour voir le résumé'}</span></div>`;
+  const rc=st.querySelector('.reveal-card'),i0=RV.i;let fl=false;if(hi)rvFit(st,rc);
   const flip=()=>{if(fl||!RV||RV.i!==i0||!rc.isConnected)return;fl=true;rc.classList.replace('pre','flipin');if(c.r==='SSR'||c.r==='UR'||c.r==='LR'){st.classList.add('shake','white')}else if(c.r==='SR'){st.classList.add('white')}};
   requestAnimationFrame(()=>requestAnimationFrame(flip));setTimeout(flip,500);
 }
@@ -2562,6 +2621,15 @@ function playClip(box,u,done){const o=preVid(u)||{},base=Object.keys(CLIP).find(
     if(o.blob)src.push({n:'données',get:()=>new Promise((res,rej)=>{const fr=new FileReader();fr.onload=()=>res(fr.result);fr.onerror=()=>rej(new Error('lecture'));fr.readAsDataURL(o.blob)})});
     next()});
   if(!S.mute&&!snd&&!aud){tone(98,0,2.9,'sine',.05,196);tone(196,.4,2.4,'triangle',.025,392)}}
+/* v104 — effets SSR/UR/LR centrés sur la carte : le mot géant, la colonne de lumière et les rayons suivent la position réelle de la carte (mobile et PC) ; le mot est ajusté pour tenir dans l'écran */
+function rvFit(st,rc){const place=()=>{if(!rc.isConnected)return;const S0=st.getBoundingClientRect(),cs=getComputedStyle(rc),w=rc.offsetWidth,h=rc.offsetHeight;
+    // position hors animation : centre de la boîte de la carte
+    let x=rc.offsetLeft+w/2,y=rc.offsetTop+h/2;let el=rc.offsetParent;while(el&&el!==st&&st.contains(el)){x+=el.offsetLeft;y+=el.offsetTop;el=el.offsetParent}
+    st.style.setProperty('--cx',x+'px');st.style.setProperty('--cy',y+'px');st.style.setProperty('--cw',w+'px');st.style.setProperty('--ch',h+'px');
+    const wd=st.querySelector('.rvx-word');if(!wd)return;wd.style.fontSize='100px';const mw=wd.scrollWidth||1,mh=wd.offsetHeight||1;
+    const room=2*Math.min(x,S0.width-x)-16,maxW=Math.min(room,S0.width*.94,w*1.85),maxH=Math.min(S0.height*.6,h*1.05);
+    wd.style.fontSize=Math.floor(100*Math.min(maxW/mw,maxH/mh))+'px';wd.classList.add('on')};
+  place();requestAnimationFrame(place)}
 function showCard(){const i=RV.i;if(RV.shown===i)return;
   const go=()=>{if(!RV||RV.i!==i||RV.shown===i)return;RV.shown=i;RV.ph='card';SFX.reveal(CARD[RV.cards[i].id].r);drawRV()};
   const p=preArt(artOf(CARD[RV.cards[i].id],true));if(!p)return go();const t=setTimeout(go,650);p.then(()=>{clearTimeout(t);go()})}
@@ -3233,6 +3301,8 @@ const ACT={
   twFight:()=>twFight(),
   twSkip:()=>{const r=twState().run;if(!r||matchesPlayed()<3)return;clearTimeout(TRT);TRT=null;r.step=timeline(r.m).length-1;r.fin=true;runFin(r);save();render()},
   twNext:()=>twNext(),
+  introClose:()=>{const ck=$('#introOff');INTRO_SEEN=true;if(ck&&ck.checked){S.introOff=true;save()}render()},
+  introShow:()=>{INTRO_SEEN=false;S.introOff=false;save();S.tab='home';render()},
   resHide:()=>{const r=(S.psub||'tw')==='tw'?twState().run:trState().run;if(r){r.hideRes=true;save();render()}},
   resGo:v=>{const tw=(S.psub||'tw')==='tw';if(tw)twNext(true);else ACT.trNext('s');if(v==='open'){const i=S.inv.length-1;if(i>=0)openPack(S.inv[i],i)}},
   twPay:()=>{const st=twState();if(st.tries>0||st.run)return;if(S.coins<TW_RETRY){toast('Il te faut '+fmt(TW_RETRY)+' pièces.');return}S.coins-=TW_RETRY;ev('spend',TW_RETRY);st.tries++;save();render();SFX.coin();toast('+1 essai dans la Tour.');if(CTX&&CTX.tw!=null)closeSheet()},
