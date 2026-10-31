@@ -2253,7 +2253,7 @@ function bkStyle(rel){const d=rel===1?1:rel===2?-1:0;return d===0?'transform:tra
 function cardRate(key,c){let p;try{p=P(key)}catch(e){return 0}if(!p||!p.slots||!p.slots.length)return 0;
   if(c.r==='LR')return key==='or'&&c.id===season().lr?LR_OR:0;
   if(c.scn)return scnRate(key,c.r);
-  const pool=(poolFor(p,c.r)||[]).length||1;return 1-p.slots.reduce((a,sl)=>a*(1-(sl[c.r]||0)/pool),1)}
+  const sh=shareOf(poolFor(p,c.r),c.id);return 1-p.slots.reduce((a,sl)=>a*(1-(sl[c.r]||0)*sh),1)}
 function bkRates(k){const p=PACKS[k],o=[];for(const r of ['R','SR','SSR','UR']){const pr=1-p.slots.reduce((a,sl)=>a*(1-(sl[r]||0)),1);if(pr<=0)continue;o.push([r,pr>=.999?'garantie':'≈ '+pct(pr)+' %'])}if(k==='or')o.push(['LR',pct(LR_OR)+' %']);return o}
 function bkInfo(k){const p=PACKS[k],T=SA_T[k],can=S.coins>=p.price,ch=bkRates(k).map(([r,v])=>`<span class="bi-c"><b style="color:${RCOLV[r]}">${r}</b> ${v}</span>`).join('');
   return `<div class="bi-a"><div class="bi-h"><b class="bi-n">${p.n}</b><i class="bi-k" style="color:${BKKJ[k]}">${T[1]}</i></div><p class="bi-d">${p.desc}</p>
@@ -2429,11 +2429,19 @@ function vObj(){
 /* ---------- boosters ---------- */
 function roll(d){let r=Math.random(),acc=0;for(const k of ['UR','SSR','SR','R','N']){if(d[k]){acc+=d[k];if(r<acc)return k}}return Object.keys(d)[0]}
 const pickR=a=>a[Math.floor(Math.random()*a.length)];
+/* v103 — taux par personnage : dans une même rareté, plus la note est haute, plus la carte est rare.
+   Écart entre la plus faible et la plus forte : ×4 en SR et SSR, ×3 en UR (N et R : uniforme). Le total de chaque rareté ne change pas. */
+const RW_K={SR:4,SSR:4,UR:3},RW_C=new Map();
+function rwOf(pool){const k=pool.join('|');let o=RW_C.get(k);if(o)return o;const cs=pool.map(id=>CARD[id]),r=cs[0]&&cs[0].r,K=RW_K[r]||1;
+  const ns=cs.map(c=>c.note),lo=Math.min(...ns),hi=Math.max(...ns),w=cs.map(c=>K===1||hi===lo?1:Math.pow(K,-(c.note-lo)/(hi-lo))),t=w.reduce((a,b)=>a+b,0);
+  o={w,t,ix:new Map(pool.map((id,i)=>[id,i]))};RW_C.set(k,o);return o}
+function pickW(pool){if(!pool||!pool.length)return undefined;const o=rwOf(pool);let x=Math.random()*o.t;for(let i=0;i<pool.length;i++){x-=o.w[i];if(x<0)return pool[i]}return pool[pool.length-1]}
+function shareOf(pool,id){if(!pool||!pool.length)return 0;const o=rwOf(pool),i=o.ix.get(id);return i==null?0:o.w[i]/o.t}
 function poolFor(p,r){if(!p.filter)return BYR[r];const ord=['N','R','SR','SSR','UR'],i=ord.indexOf(r);
   for(const k of [r,...ord.slice(0,i).reverse(),...ord.slice(i+1)]){const l=BYR[k].filter(id=>p.filter(CARD[id]));if(l.length)return l}return BYR[r]}
 function rollIds(key){const p=P(key);let rs=p.slots.map(roll);
   if(key==='or'){const top=()=>rs.some(x=>x==='SSR'||x==='UR');if(!top()&&S.pity>=PITY-1)rs[0]='SSR';S.pity=top()?0:S.pity+1}
-  const ids=rs.map(r=>pickR(poolFor(p,r))).sort((a,b)=>RORD[CARD[a].r]-RORD[CARD[b].r]||CARD[a].note-CARD[b].note);if(key==='or'&&CARD[season().lr]&&Math.random()<LR_OR){ids[ids.length-1]=season().lr;ev('lr')}const scn=rollScene(key);if(scn){ids.push(scn);ev('scene')}
+  const ids=rs.map(r=>pickW(poolFor(p,r))).sort((a,b)=>RORD[CARD[a].r]-RORD[CARD[b].r]||CARD[a].note-CARD[b].note);if(key==='or'&&CARD[season().lr]&&Math.random()<LR_OR){ids[ids.length-1]=season().lr;ev('lr')}const scn=rollScene(key);if(scn){ids.push(scn);ev('scene')}
   return ids}
 function packStats(ids,nw,p,key){ev('open');ev('open_'+(p.tgt?'tgt':key));if(nw)ev('new',nw);
   const nsr=ids.filter(id=>RORD[CARD[id].r]>=2).length,nssr=ids.filter(id=>RORD[CARD[id].r]>=3).length;if(nsr)ev('pull_SR',nsr);if(nssr)ev('pull_SSR',nssr)}
