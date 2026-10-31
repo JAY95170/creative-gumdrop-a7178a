@@ -1372,6 +1372,60 @@ body{--t1:#1A2040;--t2:#0A0D1C;background:radial-gradient(90% 52% at 50% 16%,var
 
 
 
+
+
+/* ===== v107 — Combat : animations (interface inchangée) ===== */
+.fighter.atk.f-a .swipe{animation:lungeA .42s cubic-bezier(.3,0,.2,1)}.fighter.atk.f-b .swipe{animation:lungeB .42s cubic-bezier(.3,0,.2,1)}
+@keyframes lungeA{0%,100%{transform:none}35%{transform:translateX(14%) rotate(3deg) scale(1.04)}}
+@keyframes lungeB{0%,100%{transform:none}35%{transform:translateX(-14%) rotate(-3deg) scale(1.04)}}
+.fighter.hit .swipe{animation:hitShake .5s .18s ease-out}
+.fighter.hit.crit .swipe{animation:hitShake .6s .18s ease-out,hitFlash .5s .18s}
+@keyframes hitShake{0%,100%{translate:0 0}20%{translate:-10px 4px}40%{translate:8px -3px}60%{translate:-4px 2px}80%{translate:2px -1px}}
+@keyframes hitFlash{0%{filter:brightness(2.4) saturate(.4)}100%{filter:none}}
+.ono{position:absolute;top:6%;z-index:6;pointer-events:none;font:400 30px/1 "Dela Gothic One",sans-serif;color:#F3EEE4;text-shadow:3px 3px 0 #B8302A,-1px -1px 0 #0A0809;white-space:nowrap;animation:onoPop .75s cubic-bezier(.2,.9,.3,1.3) both}
+.ono.ltr{left:58%}.ono.rtl{right:58%}.ono.big{font-size:42px;text-shadow:4px 4px 0 #B8302A,-2px -2px 0 #0A0809}
+@keyframes onoPop{0%{transform:scale(.4) rotate(-14deg);opacity:0}30%{transform:scale(1.15) rotate(-8deg);opacity:1}80%{transform:scale(1) rotate(-8deg);opacity:1}100%{transform:scale(1) rotate(-8deg);opacity:0}}
+.fnum{animation-timing-function:cubic-bezier(.2,.9,.3,1.3)}.fnum.crit{font-size:30px;text-shadow:0 0 18px color-mix(in srgb,var(--accent) 70%,transparent),0 2px 0 var(--bg)}
+.hp{height:10px;border:0;border-radius:0;background:rgba(243,238,228,.08);clip-path:polygon(0 20%,100% 0,98% 100%,1% 80%)}
+.f-b .hp{clip-path:polygon(0 0,100% 20%,99% 80%,2% 100%);display:flex;justify-content:flex-end}
+.f-a .hp i{background:linear-gradient(90deg,#7FD6A8,#c9f2dc)}.f-b .hp i{background:linear-gradient(90deg,#F07A5A,#ffb39e)}
+.fighter.hit .hp{animation:hpBlink .5s .2s}@keyframes hpBlink{50%{filter:brightness(1.8)}}
+.supc.on{animation:supPulse .9s ease-out}@keyframes supPulse{0%{transform:scale(1)}30%{transform:scale(1.12)}100%{transform:scale(1)}}
+@media (min-width:1024px){.ono{font-size:52px}.ono.big{font-size:72px}.fnum{font-size:30px}.fnum.crit{font-size:44px}.hp{height:14px}}
+@media (prefers-reduced-motion:reduce){.fighter .swipe,.ono,.supc.on{animation:none!important}}
+/* ===== v107 — Éveil PC (maquette) ===== */
+.aw{display:none}
+@media (min-width:1024px){
+ .aw{display:grid;grid-template-columns:320px minmax(0,1fr);gap:32px;min-height:720px;position:relative}
+ .aw-l{display:flex;flex-direction:column;gap:12px;min-width:0}
+ .aw-h{display:flex;flex-direction:column;gap:6px}.aw-h b{font:900 30px/1 var(--f-display)}.aw-st{display:flex;align-items:center;gap:8px;font:600 13px var(--f-mono);color:#7FD6C2}
+ .aw-f{display:flex;gap:6px}.aw-f button{padding:8px 12px;border-radius:99px;border:1px solid rgba(243,238,228,.2);background:none;color:var(--text);font:800 12px var(--f-body);cursor:pointer}.aw-f button[aria-pressed=true]{background:#F3EEE4;color:#0A0A10;border-color:#F3EEE4}
+ .aw-list{display:flex;flex-direction:column;gap:8px;max-height:560px;overflow:auto;padding-right:4px}
+ .aw-row{display:flex;align-items:center;gap:10px;min-height:58px;padding:0 12px;border-radius:12px;border:0;background:rgba(243,238,228,.03);color:var(--text);cursor:pointer;text-align:left}
+ .aw-row.on{background:rgba(127,214,194,.12);box-shadow:inset 0 0 0 1.5px #7FD6C2}.aw-row.off{opacity:.55}
+ .aw-rt{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px}.aw-rt b{font:800 14px/1.15 var(--f-body);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.aw-rt small{font:600 11px var(--f-mono);color:var(--muted)}
+ .aw-no{font:900 15px var(--f-display)}.aw-dot{width:8px;height:8px;border-radius:50%;background:#7FD6A8;flex:none}.aw-row.off .aw-dot{background:rgba(243,238,228,.2)}
+ .aw-src{margin:0}
+ .aw-s{position:relative;display:flex;flex-direction:column;align-items:center;gap:22px;padding:30px 0 20px;border-radius:22px;background:radial-gradient(45% 50% at 50% 38%,rgba(127,214,194,.16),transparent 70%);overflow:hidden}
+ .aw-ring,.aw-ring2{position:absolute;left:50%;top:230px;border-radius:50%;pointer-events:none}
+ .aw-ring{width:600px;height:600px;margin:-300px 0 0 -300px;border:1px dashed rgba(127,214,194,.3);animation:awSpin 30s linear infinite}.aw-ring2{width:440px;height:440px;margin:-220px 0 0 -220px;border:1px solid rgba(127,214,194,.18)}
+ @keyframes awSpin{to{transform:rotate(360deg)}}
+ .aw-cards{position:relative;z-index:1;display:flex;align-items:center;gap:34px}
+ .aw-base,.aw-up{padding:0;border:0;background:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:10px}
+ .aw-base .card{width:190px;opacity:.55;filter:saturate(.6)}.aw-up .card{width:230px;filter:drop-shadow(0 0 30px rgba(127,214,194,.6))}
+ .aw-up span{font:600 11px var(--f-mono);letter-spacing:.18em;color:#7FD6C2}
+ .aw-mid{display:flex;flex-direction:column;align-items:center;gap:18px}
+ .aw-gem{width:46px;height:56px;clip-path:polygon(50% 0,100% 30%,82% 100%,18% 100%,0 30%);background:conic-gradient(from 0deg at 50% 42%,#e9fffa 0 60deg,#7fe0cc 60deg 130deg,#2a9d88 130deg 210deg,#156f60 210deg 260deg,#a8f0e2 260deg 360deg);animation:awGem 3.2s ease-in-out infinite}
+ @keyframes awGem{0%,100%{transform:translateY(0);filter:drop-shadow(0 0 12px rgba(127,214,194,.6))}50%{transform:translateY(-8px);filter:drop-shadow(0 0 24px rgba(127,214,194,.95))}}
+ .aw-notes{position:relative;z-index:1;display:flex;align-items:flex-end;gap:40px}.aw-notes>div{display:flex;flex-direction:column;align-items:center;gap:6px}
+ .aw-notes i{font:600 10px var(--f-mono);font-style:normal;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}.aw-notes i.aw-tl{color:#7FD6C2}
+ .aw-notes b{font:900 60px/1 var(--f-display)}.aw-notes b.was{color:rgba(243,238,228,.5)}.aw-kj{font:400 38px/1 "Dela Gothic One",sans-serif!important;color:#7FD6C2;padding-bottom:10px}
+ .aw-need{position:relative;z-index:1;width:min(620px,100%);display:grid;grid-template-columns:1fr 1fr;gap:12px}
+ .aw-need>div{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px 16px;border-radius:14px;background:rgba(243,238,228,.05);font:700 14px/1.3 var(--f-body)}
+ .aw-need b{font:800 13px var(--f-mono);color:#F07A5A}.aw-need .ok b{color:#7FD6A8}
+ .aw-go{position:relative;z-index:1;width:min(620px,100%);height:62px;border:0;border-radius:16px;background:#7FD6C2;color:#05090B;font:900 18px var(--f-display);cursor:pointer}.aw-go:disabled{opacity:.4;cursor:not-allowed}
+ .aw-empty{display:flex;flex-direction:column;align-items:center;gap:10px;margin:auto;color:var(--muted)}.aw-empty span{font:400 90px/1 "Dela Gothic One",sans-serif;color:rgba(127,214,194,.4)}
+}
 /* ===== v106 — Tour PC : panneau de droite · Tournoi PC ===== */
 .tw-side{display:none}
 @media (min-width:1024px){
@@ -3124,10 +3178,11 @@ function matchHTML(run){
   else if(ev&&ev.k==='heal'){const h=(ev.w==='a'?m.fxA:m.fxB).who.filter(w=>w.k==='heal').map(w=>CARD[w.id].nom).join(' et ');cap=`${h} soigne ${F[ev.w].nom} : +${ev.v} PV.`;num={s:ev.w,h:`<span class="fnum heal">+${ev.v}</span>`};fx=`<div class="fx glow ${ev.w}"></div>`}
   else if(ev){const at=F[ev.w],cls=FXC[at.cl]||'punch',dir=ev.w==='a'?'ltr':'rtl',tg=ev.w==='a'?'b':'a';
     cap=ev.dodge?`<b>${F[tg].nom} esquive</b> l'attaque de ${at.nom} grâce à sa vitesse.`:ev.k==='spec'?`<b>Attaque spéciale</b> de ${at.nom} (POU ${at.s[5]}) : −${ev.dmg}.`:ev.k==='dbl'?`${at.nom} enchaîne un 2e coup (40 % des dégâts, une fois par duel) : −${ev.dmg}.`:`${at.nom} frappe${ev.crit?' : <b>coup critique</b>':''} : −${ev.dmg}.`;
-    fx=`<div class="fx ${cls} ${dir} ${ev.k==='spec'?'big':''}"></div>`;num={s:tg,h:ev.dodge?`<span class="fnum"><small>ESQUIVE</small>0</span>`:`<span class="fnum ${ev.crit?'crit':''} ${ev.k==='spec'?'spec':''}">${ev.crit?'<small>CRITIQUE</small>':''}${ev.k==='spec'?'<small>SPÉCIALE</small>':''}−${ev.dmg}</span>`}}
+    fx=`<div class="fx ${cls} ${dir} ${ev.k==='spec'?'big':''}"></div>`;if(!ev.dodge){const ON={punch:['バキッ','ドゴッ'],slash:['ザンッ','シュッ'],shot:['バンッ','ドンッ'],orb:['ゴゴゴ','ドォン']}[cls]||['ドンッ'];fx+=`<b class="ono ${dir}${ev.crit||ev.k==='spec'?' big':''}" aria-hidden="true">${ON[(ev.dmg||0)%ON.length]}</b>`}num={s:tg,h:ev.dodge?`<span class="fnum"><small>ESQUIVE</small>0</span>`:`<span class="fnum ${ev.crit?'crit':''} ${ev.k==='spec'?'spec':''}">${ev.crit?'<small>CRITIQUE</small>':''}${ev.k==='spec'?'<small>SPÉCIALE</small>':''}−${ev.dmg}</span>`}}
   else if(cur.e==='end'){const w=F[d.win];cap=d.ko?`<b>${w.nom} gagne par KO.</b>`:`<b>${w.nom} gagne aux PV restants</b> : ${d.pa} % contre ${d.pb} %.`}
   const hit=ev&&ev.k!=='heal'&&!ev.dodge?(ev.w==='a'?'b':'a'):'';
-  const side=(c,s,hp)=>`<div class="fighter ${hit===s?'hit':''} ${cur.e==='end'&&d.win!==s?'lost':''}"><div class="swipe" data-swipe>${cardHTML(c,{back:true})}${num&&num.s===s?num.h:''}</div><div class="hp"><i style="width:${hp}%;--h:${hp}"></i></div><span class="hpn">${hp} %</span></div>`;
+  const atkS=ev&&ev.k!=='heal'&&ev.k!=='cover'?ev.w:'';
+  const side=(c,s,hp)=>`<div class="fighter f-${s} ${hit===s?'hit':''} ${atkS===s?'atk':''} ${ev&&ev.crit&&hit===s?'crit':''} ${cur.e==='end'&&d.win!==s?'lost':''}"><div class="swipe" data-swipe>${cardHTML(c,{back:true})}${num&&num.s===s?num.h:''}</div><div class="hp"><i style="width:${hp}%;--h:${hp}"></i></div><span class="hpn">${hp} %</span></div>`;
   const sup=(fxs,s)=>fxs.who.map(w=>`<span class="supc ${ev&&ev.w===s&&((ev.k==='heal'&&w.k==='heal')||(ev.k==='cover'&&w.k==='cover')||(ev.k==='spec'&&w.k==='spec')||(ev.crit&&w.k==='crit'))?'on':''}">${CARD[w.id].nom} · ${supShort(w)}</span>`).join('')||'<span class="supc">aucun soutien</span>';
   return `<div class="stack"><section class="sec"><div class="sub-h"><div><div class="eyebrow">${run.lbl||TR_ROUNDS[run.round]} · duel ${cur.d+1} / ${m.duels.length}</div><h2>Match</h2></div><div class="mscore"><b>${sa}</b><span>–</span><b>${sb}</b></div></div>
   <div class="arena ${run.t!=null&&run.f===TW_N-1&&run.nextAct==='twNext'?TOWERS[run.t].boss.fx.k:''}" data-k="${st}">${side(A,'a',ha)}<div class="mid">${fx}<span class="vsx">VS</span></div>${side(B,'b',hb)}</div>
@@ -3181,11 +3236,30 @@ const AWK_COST={N:{c:8,s:1},R:{c:5,s:1},SR:{c:4,s:1},SSR:{c:2,s:2},UR:{c:2,s:3}}
 function awkCan(id){const c=CARD[id],k=AWK_COST[c.r];return !!k&&!(S.awkDone||{})[id]&&(S.owned[id]||0)>=k.c&&(S.stones||0)>=k.s}
 function daysToMonday(){const d=now();const k=(8-d.getDay())%7||7;return k}
 const STONE=(sz)=>`<span class="stone ${sz||''}" aria-hidden="true"><i>覚</i></span>`;
+/* v107 — Éveil PC selon la maquette : liste à gauche, autel au centre (carte → pierres → carte éveillée), note avant/après, conditions, bouton */
+function vAwkPC(all,list,f,st){const sel0=S.awkSel&&S.owned[S.awkSel]&&!S.awkDone[S.awkSel]?S.awkSel:(list[0]||all[0]||null);
+  const rows=list.map(id=>{const c=CARD[id],k=AWK_COST[c.r],ok=awkCan(id);return `<button class="aw-row${id===sel0?' on':''}${ok?'':' off'}" data-act="awkSel" data-v="${id}"><span class="aw-rt"><b>${c.nom} · ${c.vl}</b><small>${c.r} · ×${S.owned[id]} · ${k.c} ex. + ${k.s} pierre${k.s>1?'s':''}</small></span><b class="aw-no">${c.note}</b><i class="aw-dot"></i></button>`}).join('');
+  let stage;
+  if(!sel0)stage=`<div class="aw-empty"><span>覚</span><p>Aucune carte à éveiller pour l'instant.</p></div>`;
+  else{const c=CARD[sel0],a=CARD[sel0+'~e'],k=AWK_COST[c.r],n=S.owned[sel0],ok=awkCan(sel0);
+    stage=`<div class="aw-ring" aria-hidden="true"></div><div class="aw-ring2" aria-hidden="true"></div>
+    <div class="aw-cards"><button class="aw-base" data-act="vcard" data-v="${c.id}" aria-label="Voir ${c.nom}">${cardHTML(c)}</button>
+    <div class="aw-mid" aria-hidden="true">${[...Array(k.s)].map((_,i)=>`<i class="aw-gem" style="animation-delay:${-i*1.1}s"></i>`).join('')}<svg width="60" height="20" viewBox="0 0 60 20"><path d="M2 10h52M44 2l10 8-10 8" fill="none" stroke="#7FD6C2" stroke-width="2.4"/></svg></div>
+    <button class="aw-up" data-act="vcard" data-v="${a.id}" aria-label="Voir la carte éveillée">${cardHTML(a)}<span>ÉVEILLÉE</span></button></div>
+    <div class="aw-notes"><div><i>Note</i><b class="was">${c.note}</b></div><b class="aw-kj" aria-hidden="true">覚醒</b><div><i class="aw-tl">Après éveil</i><b>${a.note}</b></div></div>
+    <div class="aw-need"><div class="${n>=k.c?'ok':''}"><span>${k.c} exemplaires de ${c.nom}</span><b>${n} / ${k.c}</b></div><div class="${st>=k.s?'ok':''}"><span>${k.s} pierre${k.s>1?'s':''} d'éveil</span><b>${st} / ${k.s}</b></div></div>
+    <button class="aw-go" data-act="awkGo" data-v="${sel0}" ${ok?'':'disabled'}>Éveiller ${c.nom}</button>`}
+  return `<div class="aw"><aside class="aw-l" aria-label="Cartes à éveiller"><div class="aw-h"><span class="eyebrow" style="color:#7FD6C2">Album · Éveil</span><b>Éveil</b><span class="aw-st">${STONE('sm')} ${st} pierre${st>1?'s':''}</span></div>
+  <div class="aw-f"><button data-act="awkF" data-v="can" aria-pressed="${f==='can'}">Éveillables · ${all.filter(awkCan).length}</button><button data-act="awkF" data-v="all" aria-pressed="${f==='all'}">Toutes · ${all.length}</button></div>
+  <div class="aw-list">${rows||`<p class="small muted" style="margin:0">${f==='can'?'Aucune carte éveillable pour l\'instant. Regarde « Toutes ».':'Aucune carte.'}</p>`}</div>
+  <p class="small muted aw-src">Pierres : jour 7 de la connexion · défi du mois « Termine tous tes défis du jour, 20 jours ». L'éveil donne +5 de note, une aura et le sceau 覚醒 ; la carte garde sa rareté.</p></aside>
+  <section class="aw-s" aria-label="Autel d'éveil">${stage}</section></div>`}
 function vAwk(){
   S.awkDone=S.awkDone||{};const st=S.stones||0,sel=S.awkSel&&S.owned[S.awkSel]&&!S.awkDone[S.awkSel]?S.awkSel:null,f=S.awkF||'can';
   const all=Object.keys(S.owned).filter(id=>S.owned[id]>0&&!CARD[id].awk&&AWK_COST[CARD[id].r]&&!S.awkDone[id])
     .sort((x,y)=>awkCan(y)-awkCan(x)||RORD[CARD[y].r]-RORD[CARD[x].r]||CARD[y].note-CARD[x].note);
   const list=f==='can'?all.filter(awkCan):all;
+  if(isPC())return vAwkPC(all,list,f,st);
   let altar;
   if(sel){const c=CARD[sel],a=CARD[sel+'~e'],k=AWK_COST[c.r],n=S.owned[sel],ok=awkCan(sel);
     altar=`<div class="awk-altar"><button class="awk-slot on" data-act="vcard" data-v="${a.id}" aria-label="Voir la carte éveillée">${cardHTML(a)}</button>
