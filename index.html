@@ -1421,6 +1421,31 @@ body{--t1:#1A2040;--t2:#0A0D1C;background:radial-gradient(90% 52% at 50% 16%,var
  .sbp-t{display:flex;flex-direction:column;gap:6px;min-width:0}.sbp-t b{font:800 15px/1.2 var(--f-body)}.sbp-t small{font:600 11px/1.35 var(--f-mono);color:var(--muted)}.sbp-f{display:flex;gap:10px;align-items:center}.sbp-r{font:700 10px var(--f-mono);letter-spacing:.04em;color:var(--accent)}
  .sbp-v{display:flex;justify-content:center}
 }
+/* ===== v114 — attaques spéciales animées (Rasengan, Kamehameha) ===== */
+.spx{position:absolute;inset:0;z-index:8;pointer-events:none;overflow:hidden;--s:120px}.spx>i{position:absolute;display:block}
+.spx .sp-v{inset:0;background:radial-gradient(70% 70% at 50% 45%,rgba(2,6,24,0),rgba(2,6,24,.62));animation:spV 1.6s ease-in-out both}
+@keyframes spV{0%,100%{opacity:0}18%,78%{opacity:1}}
+.spx .sp-ch{left:var(--fx);top:var(--fy);width:calc(var(--s)*.9);height:calc(var(--s)*.9);margin:calc(var(--s)*-.45) 0 0 calc(var(--s)*-.45);border-radius:50%;border:2px solid rgba(160,215,255,.9);box-shadow:0 0 18px rgba(80,170,255,.8),inset 0 0 18px rgba(80,170,255,.6);animation:spCh .55s ease-in 2 both}
+@keyframes spCh{0%{scale:1.5;opacity:0}40%{opacity:1}100%{scale:.25;opacity:0}}
+.spx .sp-im{left:var(--tx);top:var(--ty);width:calc(var(--s)*.7);height:calc(var(--s)*.7);margin:calc(var(--s)*-.35) 0 0 calc(var(--s)*-.35);border-radius:50%;border:4px solid #bfe8ff;box-shadow:0 0 30px #5db8ff,inset 0 0 30px #5db8ff;animation:spIm .6s ease-out .86s both}
+@keyframes spIm{0%{scale:.2;opacity:1}100%{scale:3.2;opacity:0}}
+.spx .sp-fl{left:var(--tx);top:var(--ty);width:calc(var(--s)*1.1);height:calc(var(--s)*1.1);margin:calc(var(--s)*-.55) 0 0 calc(var(--s)*-.55);border-radius:50%;background:radial-gradient(circle,#fff 0,rgba(190,232,255,.85) 30%,rgba(60,140,255,0) 70%);animation:spFl .5s ease-out .86s both}
+@keyframes spFl{0%{scale:.3;opacity:0}25%{scale:1.1;opacity:1}100%{scale:1.8;opacity:0}}
+/* Rasengan : une sphère qui tourne se charge, traverse le terrain et explose */
+.spx .rg-b{left:var(--fx);top:var(--fy);width:calc(var(--s)*.46);height:calc(var(--s)*.46);margin:calc(var(--s)*-.23) 0 0 calc(var(--s)*-.23);border-radius:50%;background:radial-gradient(circle,#fff 0 16%,#c8ecff 32%,#52adff 60%,rgba(30,110,255,0) 72%);box-shadow:0 0 calc(var(--s)*.3) #5db8ff,0 0 calc(var(--s)*.7) rgba(60,140,255,.6);animation:rgB 1.5s cubic-bezier(.45,0,.35,1) both}
+.spx .rg-b::before{content:"";position:absolute;inset:4%;border-radius:50%;background:conic-gradient(transparent 0 10%,rgba(255,255,255,.95) 16%,transparent 28% 52%,rgba(255,255,255,.8) 60%,transparent 72%);animation:spSp .3s linear infinite}
+.spx .rg-b::after{content:"";position:absolute;inset:-14%;border-radius:50%;border:2px dashed rgba(190,232,255,.7);animation:spSp .6s linear infinite reverse}
+@keyframes spSp{to{rotate:360deg}}
+@keyframes rgB{0%{scale:0;opacity:0;translate:0 0}14%{scale:.7;opacity:1;translate:0 0}38%{scale:1;translate:0 0}60%{scale:1.05;translate:calc(var(--tx) - var(--fx)) calc(var(--ty) - var(--fy))}70%{scale:1.9;opacity:.95;translate:calc(var(--tx) - var(--fx)) calc(var(--ty) - var(--fy))}100%{scale:2.8;opacity:0;translate:calc(var(--tx) - var(--fx)) calc(var(--ty) - var(--fy))}}
+/* Kamehameha : une boule se charge, puis un rayon part vers la cible */
+.spx .km-o{left:var(--fx);top:var(--fy);width:calc(var(--s)*.5);height:calc(var(--s)*.5);margin:calc(var(--s)*-.25) 0 0 calc(var(--s)*-.25);border-radius:50%;background:radial-gradient(circle,#fff 0 22%,#aeeaff 42%,#2aa8ff 68%,rgba(20,120,255,0) 76%);box-shadow:0 0 calc(var(--s)*.35) #4fc3ff;animation:kmO 1.5s ease-in-out both}
+@keyframes kmO{0%{scale:0;opacity:0}30%{scale:.9;opacity:1}55%{scale:1.25}80%{scale:1.1;opacity:1}100%{scale:.4;opacity:0}}
+.spx .km-b{left:var(--fx);top:var(--fy);width:var(--len);height:calc(var(--s)*.42);margin-top:calc(var(--s)*-.21);transform-origin:0 50%;rotate:var(--ang);border-radius:999px;background:linear-gradient(180deg,rgba(40,150,255,0),rgba(70,185,255,.85) 22%,#fff 50%,rgba(70,185,255,.85) 78%,rgba(40,150,255,0));filter:drop-shadow(0 0 calc(var(--s)*.12) #38b6ff) drop-shadow(0 0 calc(var(--s)*.3) rgba(60,160,255,.7));animation:kmB 1.5s cubic-bezier(.3,.6,.3,1) both}
+@keyframes kmB{0%,32%{scale:0 .2;opacity:0}40%{scale:.12 1;opacity:1}62%{scale:1 1;opacity:1}82%{scale:1 1;opacity:1}100%{scale:1 .1;opacity:0}}
+.spx.sp-kame .sp-im{animation-delay:.62s;border-color:#d8f4ff}.spx.sp-kame .sp-fl{animation-delay:.62s}
+.arena:has(.spx) :is(.dn,.ono,.fighter.hit){animation-delay:.9s!important;animation-fill-mode:both!important}
+.arena:has(.spx.sp-kame) :is(.dn,.ono,.fighter.hit){animation-delay:.7s!important}
+@media (prefers-reduced-motion:reduce){.spx{display:none}}
 /* ===== v112 — Récompense du jour : calendrier ===== */
 .lgc{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
 .lgc>div{position:relative;height:150px;display:flex;flex-direction:column;align-items:center;padding:10px 4px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.03)}
@@ -2402,7 +2427,7 @@ function render(){
   if(S.tab!=='team')FP=false;
   applyTint();
   $('#main').innerHTML=({home:vHome,shop:vShop,album:vAlbum,team:vTeam,sbc:vSbc,tour:vPlay,obj:vObj,prof:vProf}[S.tab]||vShop)();
-  fitTeam();i18nApply(document.body);
+  fitTeam();spxPlace();i18nApply(document.body);
   if(S.tab==='home'&&canLogin()&&!LG_POP&&(S.introOff||INTRO_SEEN)){LG_POP=true;setTimeout(()=>{if(S.tab==='home'&&canLogin()&&$('#sheet').hidden&&$('#reveal').hidden)loginSheet()},500)}
 }
 function fitTeam(){const m=$('#main');if(!m||S.tab!=='team')return;const cs=getComputedStyle(m);document.documentElement.style.setProperty('--mh',(m.clientHeight-parseFloat(cs.paddingTop)-8)+'px');
@@ -3336,7 +3361,7 @@ function matchHTML(run){
   const d=m.duels[cur.d],A=CARD[d.a],B=CARD[d.b];
   const k=typeof cur.e==='number'?cur.e:(cur.e==='end'?d.log.length-1:-1);
   const last=k>=0?d.log[k]:null,ha=last?last.ha:100,hb=last?last.hb:100,ev=typeof cur.e==='number'?d.log[cur.e]:null;
-  const F={a:A,b:B};let cap='',fx='',num=null;
+  const F={a:A,b:B};let cap='',fx='',num=null,spx='';
   /* v109 : bloc central (chiffre + ce qui l'explique) */
   const dn=(kind,tag,val,ex,to)=>({s:to,h:`<div class="dn ${kind} to${to==='b'?'B':'A'}">${tag?`<span class="dn-tag">${tag}</span>`:''}<b>${val}</b>${ex?`<i class="dn-ex">${ex}</i>`:''}</div>`});
   const S_=d.sa&&d.sb?{a:d.sa,b:d.sb}:null;
@@ -3345,7 +3370,8 @@ function matchHTML(run){
   else if(ev&&ev.k==='heal'){const h=(ev.w==='a'?m.fxA:m.fxB).who.filter(w=>w.k==='heal').map(w=>CARD[w.id].nom).join(' et ');cap=`${h} soigne ${F[ev.w].nom} : +${ev.v} PV.`;num=dn('heal','SOIN','+'+ev.v,h,ev.w);fx=`<div class="fx glow ${ev.w}"></div>`}
   else if(ev){const at=F[ev.w],cls=FXC[at.cl]||'punch',dir=ev.w==='a'?'ltr':'rtl',tg=ev.w==='a'?'b':'a';
     cap=ev.dodge?`<b>${F[tg].nom} esquive</b> l'attaque de ${at.nom} grâce à sa vitesse.`:ev.k==='spec'?`<b>Attaque spéciale</b> de ${at.nom} (POU ${at.s[5]}) : −${ev.dmg}.`:ev.k==='dbl'?`${at.nom} enchaîne un 2e coup (40 % des dégâts, une fois par duel) : −${ev.dmg}.`:`${at.nom} frappe${ev.crit?' : <b>coup critique</b>':''} : −${ev.dmg}.`;
-    fx=`<div class="fx ${cls} ${dir} ${ev.k==='spec'?'big':''}"></div>`;if(!ev.dodge&&(ev.crit||ev.k==='spec')){const ON={punch:['バキッ','ドゴッ'],slash:['ザンッ','シュッ'],shot:['バンッ','ドンッ'],orb:['ゴゴゴ','ドォン']}[cls]||['ドンッ'];fx+=`<b class="ono ${dir} big ${ev.k==='spec'?'spec':'crit'}" aria-hidden="true">${ON[(ev.dmg||0)%ON.length]}</b>`}
+    const sg=ev.k==='spec'&&!ev.dodge?spSig(at):'';if(sg)spx=`<div class="spx sp-${sg}" data-w="${ev.w}"><i class="sp-v"></i><i class="sp-ch"></i>${sg==='rasengan'?'<i class="rg-b"></i>':'<i class="km-o"></i><i class="km-b"></i>'}<i class="sp-im"></i><i class="sp-fl"></i></div>`;
+    fx=sg?'':`<div class="fx ${cls} ${dir} ${ev.k==='spec'?'big':''}"></div>`;if(!ev.dodge&&(ev.crit||ev.k==='spec')){const ON={punch:['バキッ','ドゴッ'],slash:['ザンッ','シュッ'],shot:['バンッ','ドンッ'],orb:['ゴゴゴ','ドォン']}[cls]||['ドンッ'];fx+=`<b class="ono ${dir} big ${ev.k==='spec'?'spec':'crit'}" aria-hidden="true">${ON[(ev.dmg||0)%ON.length]}</b>`}
     const sa=S_&&S_[ev.w],sd=S_&&S_[tg];
     const ex=ev.dodge?(sa?`VIT ${sd[3]} contre ${sa[3]}`:''):!sa?'':ev.k==='spec'?`POU ${sa[5]} · DEF ${Math.round(sd[2]/2)} (÷2)`:ev.k==='dbl'?`2e coup · 40 % de ATT ${sa[1]}`:`ATT ${sa[1]} · DEF ${sd[2]}${ev.crit?' · ×'+ENG.CRIT:''}`;
     num=ev.dodge?dn('dodge','ESQUIVE','0',ex,tg):dn(ev.crit?'crit':ev.k==='spec'?'spec':ev.k==='dbl'?'dbl':'hit',ev.crit?'CRITIQUE':ev.k==='spec'?'SPÉCIALE':ev.k==='dbl'?'2E COUP':'',`−${ev.dmg}`,ex,tg)}
@@ -3358,16 +3384,21 @@ function matchHTML(run){
     const txt=on&&ev.k==='heal'?`Soigne ${F[s].nom} · +${ev.v} PV`:on&&ev.k==='cover'?`Tir de couverture · −${ev.v} PV`:SUPT[w.k](w);
     return `<div class="sup9 k-${w.k}${on?' on':''}"><span class="sa9"${u?` style="background-image:url(${u})"`:''}>${u?'':MONDES[sc.m].k}</span><span class="st9"><small>${s==='a'?'SOUTIEN · ':'<em>SOUTIEN </em>ADVERSE · '}${sc.nom}</small><b>${txt}</b></span></div>`}).join('')||`<div class="sup9 none"><span class="st9"><small>${s==='a'?'SOUTIEN':'SOUTIEN ADVERSE'}</small><b>Aucun</b></span></div>`;
   return `<div class="stack"><section class="sec"><div class="sub-h"><div><div class="eyebrow">${run.lbl||TR_ROUNDS[run.round]} · duel ${cur.d+1} / ${m.duels.length}</div><h2>Match</h2></div><div class="mscore"><b>${sa}</b><span>–</span><b>${sb}</b></div></div>
-  <div class="arena v9 ${run.t!=null&&run.f===TW_N-1&&run.nextAct==='twNext'?TOWERS[run.t].boss.fx.k:''}" data-k="${st}">${side(A,'a',ha)}<div class="mid">${fx}${num?num.h:''}<span class="vsx">対</span></div>${side(B,'b',hb)}<div class="sups"><div>${sup(m.fxA,'a')}</div><div class="r">${sup(m.fxB,'b')}</div></div></div>
+  <div class="arena v9 ${run.t!=null&&run.f===TW_N-1&&run.nextAct==='twNext'?TOWERS[run.t].boss.fx.k:''}" data-k="${st}">${side(A,'a',ha)}<div class="mid">${fx}${num?num.h:''}<span class="vsx">対</span></div>${side(B,'b',hb)}<div class="sups"><div>${sup(m.fxA,'a')}</div><div class="r">${sup(m.fxB,'b')}</div></div>${spx}</div>
   <p class="cap">${cap}</p>
   ${fin&&run.ms&&run.pi<run.ms.length-1?`<p class="mres ok">Phase ${run.pi+1} gagnée ${m.wa} – ${m.wb}</p><p class="small muted" style="margin:0;text-align:center">${TOWERS[run.t].boss.fx.pS||''}</p><button class="btn primary" data-act="twPhase">Phase ${run.pi+2} / ${run.tot}</button>`:fin?`<p class="mres ${m.win?'ok':'ko'}">${m.win?'Victoire':'Défaite'} ${m.wa} – ${m.wb}</p>${m.tie?'<p class="small muted" style="margin:0;text-align:center">Égalité de duels : départagé par les PV restants.</p>':''}<button class="btn primary" data-act="${run.nextAct||'trNext'}">Continuer</button>`:(matchesPlayed()>=3?`<button class="btn ghost" data-act="${run.skipAct||'trSkip'}">Passer le match</button>`:`<button class="btn ghost" disabled>Passer le match · se débloque après 3 matchs (${matchesPlayed()} / 3)</button>`)}</section>
   <section class="sec"><h2 style="font-size:15px">Duels</h2><div class="duels">${m.duels.map((x,i)=>{const a=CARD[x.a],b=CARD[x.b];if(i>=doneD)return `<div class="duel wait"><span>${POS[a.poste]}</span><i>···</i><span>${POS[b.poste]}</span></div>`;
     const ds=duelStat(x);return `<div class="duel ${x.win==='a'?'wa':'wb'}"><div class="dn"><b>${a.nom}</b><small>${POS[a.poste]}</small></div><div class="dsc"><b>${x.pa}%</b><span>–</span><b>${x.pb}%</b></div><div class="dn r"><b>${b.nom}</b><small>${x.ko?'KO':POS[b.poste]}</small></div>
       <div class="dbr"><i style="width:${x.pa}%"></i><i class="r" style="width:${x.pb}%"></i></div><div class="dtg"><span>${duelTag(ds.a)}</span><span>${duelTag(ds.b)}</span></div></div>`}).join('')}</div></section>${fin?bilanHTML(m):''}${fin&&(!run.ms||run.pi>=run.ms.length-1)&&!run.hideRes?resHTML(run):''}</div>`;
 }
+/* v114 — attaques spéciales animées (test : Rasengan de Naruto, Kamehameha de Goku) */
+function spSig(c){if(!c)return'';const hi=['SSR','UR','LR'].includes(c.r);return !hi?'':c.nom==='Naruto'?'rasengan':c.nom==='Goku'?'kame':''}
+function spxPlace(){const ar=document.querySelector('.arena.v9'),sp=ar&&ar.querySelector('.spx');if(!sp)return;const R=ar.getBoundingClientRect(),w=sp.dataset.w,pt=e=>{const r=e.getBoundingClientRect();return[r.left+r.width/2-R.left,r.top+r.height/2-R.top,r.width]},
+  A=ar.querySelector('.f-a .swipe'),B=ar.querySelector('.f-b .swipe');if(!A||!B)return;const f=pt(w==='a'?A:B),t=pt(w==='a'?B:A),dx=t[0]-f[0],dy=t[1]-f[1];
+  sp.style.cssText+=`;--fx:${f[0]}px;--fy:${f[1]}px;--tx:${t[0]}px;--ty:${t[1]}px;--len:${Math.hypot(dx,dy)}px;--ang:${Math.atan2(dy,dx)*180/Math.PI}deg;--s:${f[2]}px`}
 let MCTX=null;
 function trAnim(){clearTimeout(TRT);TRT=null;const ctx=MCTX||{get:()=>S.tr&&S.tr.run,sub:'tr'};const r=ctx.get();if(!r||r.ph!=='match'||r.fin||r===HOLDR||S.tab!=='tour'||(S.psub||'tw')!==ctx.sub)return;const T=timeline(r.m);
-  const cur=T[Math.min(r.step||0,T.length-1)];const dl=cur.e==='intro'?1500:cur.e==='end'?1300:900;
+  const cur=T[Math.min(r.step||0,T.length-1)];const e0=typeof cur.e==='number'?r.m.duels[cur.d].log[cur.e]:null,dl=cur.e==='intro'?1500:cur.e==='end'?1300:e0&&e0.k==='spec'&&!e0.dodge&&spSig(CARD[r.m.duels[cur.d][e0.w]])?1700:900;
   TRT=setTimeout(()=>{TRT=null;const r=ctx.get();if(!r||r.ph!=='match')return;r.step=(r.step||0)+1;if(r.step>=T.length){r.step=T.length-1;r.fin=true;runFin(r)}
     const c=T[r.step];if(!S.mute&&!r.fin){const d=r.m.duels[c.d];const e=typeof c.e==='number'?d.log[c.e]:null;if(e&&e.k==='heal')tone(660,0,.3,'sine',.08);else if(e)(e.crit||e.k==='spec'?SFX.rip:SFX.flip)();else if(c.e==='end')(d.win==='a'?SFX.coin:tone(200,0,.25,'triangle',.08))}
     save();if(S.tab==='tour')render();trAnim()},dl)}
