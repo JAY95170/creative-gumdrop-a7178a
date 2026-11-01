@@ -3040,7 +3040,10 @@ let armT;
 function arm(t,label,fn){if(t.dataset.armed){fn();return}t.dataset.armed='1';const old=t.textContent;t.textContent=label;clearTimeout(armT);armT=setTimeout(()=>{t.dataset.armed='';t.textContent=old},3000)}
 /* ---------- TOURNOI (draft) ---------- */
 const CHEMB=3,NOISE=5;
-const TR_RW=[{coins:50},{coins:150},{coins:400},{pack:'bronze',coins:300},{pack:'argent',coins:500}];
+/* v110 : 1er titre de la semaine = Booster Or, ensuite Booster Argent (S.trOrWk = semaine du dernier Or reçu) */
+function wkKey(d){d=d||now();const t=new Date(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate()));t.setUTCDate(t.getUTCDate()+4-(t.getUTCDay()||7));const y=t.getUTCFullYear();return y+'-S'+Math.ceil(((t-Date.UTC(y,0,1))/864e5+1)/7)}
+function trOrAvail(){return S.trOrWk!==wkKey()}
+const TR_RW=[{coins:50},{coins:150},{coins:400},{pack:'bronze',coins:300},{get pack(){return trOrAvail()?'or':'argent'},coins:500}];
 const TR_ROUNDS=['Huitième','Quart','Demie','Finale'];
 const DRAFT_R={N:.2,R:.35,SR:.3,SSR:.15};
 const BOT_R=[{N:.4,R:.4,SR:.15,SSR:.05},{N:.25,R:.4,SR:.25,SSR:.1},{N:.15,R:.35,SR:.35,SSR:.15},{N:0,R:.2,SR:.45,SSR:.35}];
@@ -3119,7 +3122,7 @@ function trHomePC(){const P5=[[6,72,'始','Départ','même 0 victoire'],[29,36,'
   return `<div class="trh"><div class="trh-t"><span class="eyebrow" style="color:#F07A5A">Mode draft · gratuit et illimité</span><b>Le Tournoi</b><p>Tu construis une équipe avec des cartes tirées dans tout le jeu, puis tu enchaînes 4 combats contre des adversaires de plus en plus forts.</p></div>
   <i class="trh-k" aria-hidden="true">闘</i>
   <div class="trh-path" role="list" aria-label="Le chemin du tournoi"><svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="M6 72 C 16 72, 19 36, 29 36 S 42 74, 52 74 S 65 40, 75 40 S 90 22, 95 22" fill="none" stroke="rgba(243,238,228,.12)" stroke-width="3.2" vector-effect="non-scaling-stroke" stroke-linecap="round"/><path class="trh-road" d="M6 72 C 16 72, 19 36, 29 36 S 42 74, 52 74 S 65 40, 75 40 S 90 22, 95 22" fill="none" stroke="#F07A5A" stroke-width="2" vector-effect="non-scaling-stroke" stroke-dasharray="10 6"/></svg>
-  ${P5.map(([x,y,k,l,o],i)=>{const w=TR_RW[i];return `<div class="trh-s${i===4?' top':''}" role="listitem" style="left:${x}%;top:${y}%"><span class="trh-seal">${k}</span><i>${l}</i><b>${w.pack?P(w.pack).n.replace('Booster ','')+' + '+fmt(w.coins):fmt(w.coins)+' pièces'}</b><small>${o}</small></div>`}).join('')}</div>
+  ${P5.map(([x,y,k,l,o],i)=>{const w=TR_RW[i];return `<div class="trh-s${i===4?' top':''}" role="listitem" style="left:${x}%;top:${y}%"><span class="trh-seal">${k}</span><i>${l}</i><b>${w.pack?P(w.pack).n.replace('Booster ','')+' + '+fmt(w.coins):fmt(w.coins)+' pièces'}</b><small>${o}${i===4?(trOrAvail()?' · 1er titre de la semaine':' · Or déjà reçu cette semaine'):''}</small></div>`}).join('')}</div>
   <div class="trh-f"><button class="btn primary trh-go" data-act="trStart">Lancer un tournoi</button><ul><li>Poste contre poste : l'équipe qui gagne le plus de duels l'emporte.</li><li>Les 4 cartes proposées par case sont de même rareté : la chemistry fait la différence.</li><li>Les cartes du draft ne sont pas gardées.</li></ul></div>
   <details class="sec trh-r"><summary>Comment se joue un match</summary><ul class="trrules">
     <li>Ton adversaire joue la même formation que toi. Tes Tanks, DPS et Distance affrontent les siens, poste contre poste. L'équipe qui gagne le plus de duels gagne. En cas d'égalité, on additionne les scores.</li>
@@ -3133,7 +3136,7 @@ function vTour(){
     return `<div class="stack"><section class="sec"><div><div class="eyebrow">Mode draft</div><h2>Tournoi</h2></div>
     <p class="small muted" style="margin:0">Choisis une formation, puis pour chaque case une carte parmi 4 tirées dans tout le jeu. Ensuite, 4 matchs à élimination directe contre des bots de plus en plus forts. Les cartes du draft ne sont pas gardées : tu gagnes la récompense du tour atteint.</p>
     <button class="btn primary" data-act="trStart">Lancer un tournoi · gratuit et illimité</button></section>
-    <section class="sec"><h2 style="font-size:16px">Récompenses</h2><div class="trw">${TR_RW.map((r,i)=>`<div class="${i===4?'top':''}"><span>${i===4?'Champion':i+' victoire'+(i>1?'s':'')}</span><b>${rwText(r)}</b></div>`).join('')}</div></section>
+    <section class="sec"><h2 style="font-size:16px">Récompenses</h2><div class="trw">${TR_RW.map((r,i)=>`<div class="${i===4?'top':''}"><span>${i===4?'Champion':i+' victoire'+(i>1?'s':'')}</span><b>${rwText(r)}</b></div>`).join('')}</div><p class="small muted" style="margin:6px 0 0">${trOrAvail()?'Ton 1er titre de la semaine donne un Booster Or. Les suivants, un Booster Argent.':'Booster Or déjà reçu cette semaine : les titres donnent un Booster Argent jusqu\'à lundi.'}</p></section>
     <section class="sec"><h2 style="font-size:16px">Comment se joue un match</h2><ul class="trrules">
     <li>Ton adversaire joue la même formation que toi. Tes Tanks, DPS et Distance affrontent les siens, poste contre poste. L'équipe qui gagne le plus de duels gagne. En cas d'égalité, on additionne les scores.</li>
     <li>Chaque duel dure 3 échanges. Qui commence : tirage au sort, le plus rapide a plus de chances (VIT² ÷ (VIT² + VIT adverse²)). Le premier peut placer un 2e coup à 40 % des dégâts, une seule fois par duel, s'il est plus rapide. VIT donne aussi une chance d'esquive. ATT contre DEF : les dégâts, ±30 % de hasard. TEC : critique (TEC ÷ 2,5 %, dégâts ×2) et perce une partie de la DEF. POU : l'attaque spéciale du 2e échange. PV : la vie. On gagne par KO ou aux PV restants.</li>
@@ -3517,7 +3520,7 @@ function twNext(silent){const st=twState(),r=st.run;if(!r)return;st.run=null;con
   else{save();render()}
   $('#main').scrollTop=0}
 
-function trEnd(wins,silent){const st=trState();{const d=rec().dr;d.p++;if(wins===4)d.c++;d.b=Math.max(d.b,wins)}const rw=TR_RW[wins];st.run=null;grant(rw);save();render();
+function trEnd(wins,silent){const st=trState();{const d=rec().dr;d.p++;if(wins===4)d.c++;d.b=Math.max(d.b,wins)}const rw=Object.assign({},TR_RW[wins]);st.run=null;if(wins===4&&rw.pack==='or')S.trOrWk=wkKey();grant(rw);save();render();
   if(!silent)showReward(wins===4?'Champion !':'Tournoi terminé',wins===4?'Tu remportes le tournoi':wins+' victoire'+(wins>1?'s':''),rw.pack?{pack:rw.pack}:null,rwText(rw)+(rw.pack?' ajouté à Mes boosters':''))}
 
 const ACT={
