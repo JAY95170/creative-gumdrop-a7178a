@@ -1393,6 +1393,20 @@ body{--t1:#1A2040;--t2:#0A0D1C;background:radial-gradient(90% 52% at 50% 16%,var
 .supc.on{animation:supPulse .9s ease-out}@keyframes supPulse{0%{transform:scale(1)}30%{transform:scale(1.12)}100%{transform:scale(1)}}
 @media (min-width:1024px){.ono{font-size:52px}.ono.big{font-size:72px}.fnum{font-size:42px}.fnum.spec{font-size:56px}.fnum.crit{font-size:60px}.hp{height:14px}}
 @media (prefers-reduced-motion:reduce){.fighter .swipe,.ono,.supc.on{animation:none!important}}
+/* ===== v112 — Récompense du jour : calendrier ===== */
+.lgc{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.lgc>div{position:relative;height:150px;display:flex;flex-direction:column;align-items:center;padding:10px 4px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.03)}
+.lgc .now{border:1.5px solid var(--accent);background:color-mix(in srgb,var(--accent) 9%,transparent)}
+.lgd{font:600 10px/1 var(--f-mono);letter-spacing:.12em}.lgv{flex:1;display:flex;align-items:center;justify-content:center}.lgc .got .lgv,.lgc .got .lgn{opacity:.45}
+.lgn{font:800 12px/1.2 var(--f-body)}.lgt{margin-top:4px;height:9px;font:600 9px/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}.lgc .now .lgt{color:var(--accent)}
+.lgx{position:absolute;right:6px;top:6px;width:24px;height:24px;border-radius:50%;background:#B8302A;color:#F6EEE0;display:grid;place-items:center;font:400 12px/1 "Dela Gothic One",sans-serif;font-style:normal;rotate:-8deg;box-shadow:inset 0 0 0 1.5px rgba(246,238,224,.5)}
+.lgc .w{grid-column:span 2;flex-direction:row;justify-content:center;gap:16px;border-color:color-mix(in srgb,var(--accent) 50%,transparent);background:linear-gradient(180deg,transparent,color-mix(in srgb,var(--accent) 9%,transparent))}
+.lgc .w .lgd{position:absolute;left:10px;top:10px}.lgc .w .lgv{flex:none}.lgw{display:flex;flex-direction:column;gap:6px}.lgw b{font:800 13px/1.2 var(--f-body)}.lgw em{font:600 9px/1 var(--f-mono);font-style:normal;letter-spacing:.06em;color:var(--accent)}.lgc .w .lgt{position:absolute;left:10px;bottom:10px;margin:0}
+.lgb{margin-top:12px;height:56px}
+.hm-lg{grid-column:1/-1;display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:14px;border:1px solid var(--line);background:rgba(255,255,255,.05);color:var(--text);text-align:left;cursor:pointer}
+.hm-lg.on{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 10%,transparent)}
+.lg-i{flex:none;width:36px;display:flex;justify-content:center}.lg-t{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px}.lg-t i{font:600 9px/1 var(--f-mono);font-style:normal;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}.lg-t b{font:800 13px/1.25 var(--f-body)}
+.lg-d{display:flex;gap:3px;flex:none}.lg-d u{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.2)}.lg-d u.g{background:#B8302A}.lg-d u.n{background:var(--accent)}
 /* ===== v111 — accueil Tournoi mobile ===== */
 .trm{display:flex;flex-direction:column;gap:18px;padding-bottom:84px}
 .trm-h .eyebrow{color:var(--accent)}.trm-h h1{margin:10px 0 0;font:900 40px/1 var(--f-display);letter-spacing:-.04em}.trm-h p{margin:12px 0 0;max-width:340px;font:600 14px/1.45 var(--f-body);color:var(--muted)}
@@ -2051,7 +2065,7 @@ let LASTNEW=null;
 function grantSum(list){const t={coins:0,stone:0,packs:[],ssr:0};list.forEach(rw=>{grant(rw);if(rw.coins)t.coins+=rw.coins;if(rw.stone)t.stone+=rw.stone;if(rw.pack)t.packs.push(rw.pack);if(rw.newSSR)t.ssr++});return t}
 function sumText(t){const a=[];if(t.coins)a.push('+'+fmt(t.coins)+' pièces');const pc={};t.packs.forEach(k=>pc[k]=(pc[k]||0)+1);Object.keys(pc).forEach(k=>a.push(pc[k]+' '+P(k).n));if(t.stone)a.push(t.stone+' Pierre'+(t.stone>1?'s':'')+' d\'éveil');if(t.ssr)a.push(t.ssr+' SSR');return a.join(' · ')}
 function showSum(n,t){save();render();showReward('Tout récupéré',n+' récompenses',t.packs.length?{pack:t.packs[t.packs.length-1]}:null,sumText(t)+(t.packs.length?' (boosters dans Mes boosters)':''))}
-function objAllN(){return (canLogin()?1:0)+allObj().filter(objReady).length}
+function objAllN(){return allObj().filter(objReady).length}
 function rwAllList(){const L=[];Object.keys(MONDES).forEach(m=>{const s=collState(m);if(s.done&&!s.claimed)L.push(['c',m])});MILE.forEach(([k,rw])=>{if(seenBase()>=k&&!S.mile[k]&&!rw.bonneteau&&!rw.card)L.push(['m',k])});return L}
 function grant(rw){if(rw.newSSR){const l=BASE.filter(c=>c.r==='SSR'&&!S.seen[c.id]);const c=l.length?pickR(l):pickR(BASE.filter(c=>c.r==='SSR'));S.owned[c.id]=(S.owned[c.id]||0)+1;S.seen[c.id]=1;LASTNEW=c.id;return}if(rw.stone)S.stones=(S.stones||0)+rw.stone;if(rw.pack)S.inv.push(rw.pack);if(rw.coins)S.coins+=rw.coins;if(rw.card){S.owned[rw.card]=(S.owned[rw.card]||0)+1;S.seen[rw.card]=1}}
 
@@ -2258,7 +2272,7 @@ function objReady(o){return objVal(o)>=objN(o)&&!per(o.p).claimed[o.id]}
 function collState(m){const cards=BASE.filter(c=>c.m===m);const got=cards.filter(c=>S.seen[c.id]).length;return{got,tot:cards.length,done:got===cards.length,claimed:!!S.coll[m]}}
 function seenBase(){return BASE.filter(c=>S.seen[c.id]).length}
 function claimables(){
-  let n=canLogin()?1:0;allObj().forEach(o=>{if(objReady(o))n++});return n;
+  let n=0;allObj().forEach(o=>{if(objReady(o))n++});return n;
 }
 function albumClaimables(){let n=0;Object.keys(MONDES).forEach(m=>{const s=collState(m);if(s.done&&!s.claimed)n++});MILE.forEach(([k])=>{if(seenBase()>=k&&!S.mile[k])n++});return n}
 function dupes(){return Object.keys(S.owned).filter(id=>S.owned[id]>1&&!S.locked[id])}
@@ -2272,6 +2286,7 @@ function whoHTML(){const p=S.prof||{},nm=p.name||'Joueur',c=avatarCard(),u=c?art
 /* ---------- Langues : FR (par défaut), EN, ES. Traducteur d'interface : remplace les textes affichés par leur équivalent.
    Les noms de cartes, de mondes et les textes de fiche restent d'origine ; on complète le dictionnaire par étapes. ---------- */
 const I18T=[
+['Aujourd\'hui','Today','Hoy'],['Reçue','Received','Recibida'],['Reçue · reviens demain','Received · come back tomorrow','Recibida · vuelve mañana'],['Booster Or','Gold Booster','Booster Oro'],['+ 1 PIERRE','+ 1 STONE','+ 1 PIEDRA'],['Bronze','Bronze','Bronce'],['Argent','Silver','Plata'],
 ['7 cartes.','7 cards.','7 cartas.'],['4 duels.','4 duels.','4 duelos.'],['Gratuit · illimité','Free · unlimited','Gratis · ilimitado'],['Tu construis une équipe de toutes pièces, puis tu montes l\'échelle contre des bots de plus en plus forts. Tes cartes ne sont pas gardées : tu gagnes la récompense du tour atteint.','You build a team from scratch, then climb the ladder against ever stronger bots. Your cards are not kept: you win the reward of the round you reach.','Construyes un equipo desde cero y subes la escalera contra bots cada vez más fuertes. Tus cartas no se guardan: ganas la recompensa de la ronda alcanzada.'],['Formation','Formation','Formación'],['Tank, DPS, Distance, Soutien','Tank, DPS, Ranged, Support','Tank, DPS, Distancia, Apoyo'],['Draft','Draft','Draft'],['1 carte parmi 4 par case','1 card out of 4 per slot','1 carta de 4 por casilla'],['Élimination directe','Knockout','Eliminación directa'],['Jusqu\'où tu montes','How far you climb','Hasta dónde subes'],['Pièces · boosters','Coins · boosters','Monedas · boosters'],['Comment se joue un duel','How a duel works','Cómo se juega un duelo'],['Lancer un tournoi','Start a tournament','Iniciar un torneo'],['1er titre de la semaine : Booster Or. Les suivants : Booster Argent.','1st title of the week: Gold Booster. Next ones: Silver Booster.','1.er título de la semana: Booster Oro. Los siguientes: Booster Plata.'],['Booster Or déjà reçu cette semaine : les titres donnent un Booster Argent jusqu\'à lundi.','Gold Booster already received this week: titles give a Silver Booster until Monday.','Booster Oro ya recibido esta semana: los títulos dan un Booster Plata hasta el lunes.'],
 ['joué','played','jugado'],['joués','played','jugados'],['champion','title','título'],['champions','titles','títulos'],
 ['Bienvenue dans ACG','Welcome to ACG','Bienvenido a ACG'],['Le jeu en 3 étapes','The game in 3 steps','El juego en 3 pasos'],
@@ -2353,12 +2368,13 @@ let I18Q=0;function i18nInit(){document.documentElement.lang=S.lang||'fr';new Mu
 function render(){
   recUpd();$('#coins').textContent=fmt(S.coins);drawMute();$('#who').innerHTML=whoHTML();
   /* v99 : pastilles = quelque chose à récupérer (défis, paliers d'album, connexion du jour, booster gratuit, SBC réalisable) */
-  const dots={obj:claimables(),album:albumClaimables(),shop:(initStep()>=0&&initDone(initStep()))||canLogin()||freeState().stock>0?1:0,sbc:unl('sbc')&&S.tab!=='sbc'&&allSbc().some(x=>sbcGuess(x).s==='ok')?1:0};
+  const dots={obj:claimables(),album:albumClaimables(),home:canLogin()?1:0,shop:(initStep()>=0&&initDone(initStep()))||freeState().stock>0?1:0,sbc:unl('sbc')&&S.tab!=='sbc'&&allSbc().some(x=>sbcGuess(x).s==='ok')?1:0};
   document.querySelectorAll('#tabs button').forEach(b=>{b.setAttribute('aria-current',b.dataset.v===S.tab?'page':'false');const nd={sbc:'sbc',tour:'tour'}[b.dataset.v];b.classList.toggle('locked',!!nd&&!unl(nd));const d=b.querySelector('.dot');if(d)d.remove();if(dots[b.dataset.v])b.insertAdjacentHTML('beforeend','<span class="dot"></span>')});
   if(S.tab!=='team')FP=false;
   applyTint();
   $('#main').innerHTML=({home:vHome,shop:vShop,album:vAlbum,team:vTeam,sbc:vSbc,tour:vPlay,obj:vObj,prof:vProf}[S.tab]||vShop)();
   fitTeam();i18nApply(document.body);
+  if(S.tab==='home'&&canLogin()&&!LG_POP&&(S.introOff||INTRO_SEEN)){LG_POP=true;setTimeout(()=>{if(S.tab==='home'&&canLogin()&&$('#sheet').hidden&&$('#reveal').hidden)loginSheet()},500)}
 }
 function fitTeam(){const m=$('#main');if(!m||S.tab!=='team')return;const cs=getComputedStyle(m);document.documentElement.style.setProperty('--mh',(m.clientHeight-parseFloat(cs.paddingTop)-8)+'px');
   const pt=document.querySelector('.tm .pitch');if(!pt)return;const rows=pt.querySelectorAll('.prow').length||4,maxN=Math.max(...[...pt.querySelectorAll('.prow')].map(r=>r.children.length),1);
@@ -2366,12 +2382,19 @@ function fitTeam(){const m=$('#main');if(!m||S.tab!=='team')return;const cs=getC
   const pc=innerWidth>=1024,H2=pt.clientHeight-parseFloat(ps.paddingTop)-parseFloat(ps.paddingBottom),W2=pt.clientWidth-parseFloat(ps.paddingLeft)-parseFloat(ps.paddingRight);
   const cw=pc?Math.max(64,Math.floor(Math.min((H2/maxN-16-34)*5/7,W2/rows-18,150))):Math.max(56,Math.floor(Math.min((H/rows-43)*5/7,W/maxN,999)));pt.closest('.tm').style.setProperty('--cw',cw+'px')}
 addEventListener('resize',fitTeam);
+/* v112 — Récompense du jour : calendrier (fenêtre + bandeau Accueil), plus dans Défis ni Ouvrir */
+function lgState(){const can=canLogin(),y=dk(new Date(now()-864e5)),next=can?((S.login.last===y)?(S.login.idx+1)%7:0):S.login.idx;return{can,next}}
+function lgFmt(c){return c>=1000?(c/1000)+' 000':String(c)}
+function lgVis(rw,i,W){return rw.pack?gfxSachet(rw.pack,W):gfxCoin(W+8,lgFmt(rw.coins),rw.coins>=1000?12:15)}
 function loginHTML(){
-  const can=canLogin();const next=can?((S.login.last===dk(new Date(now()-864e5)))?(S.login.idx+1)%7:0):S.login.idx;
-  return `<div class="daily"><div class="sub-h"><div><div class="eyebrow">Connexion</div><h2 style="font-size:19px">Récompense du jour</h2></div>${can?'':'<span class="tag-done">REÇUE</span>'}</div>
-  <div class="days">${LOGIN.map((rw,i)=>`<div class="${i===next?'now':(i<next||(!can&&i===next))?'got':''}"><span>J${i+1}</span>${rw.pack?pk(rw.pack):`<b>${rw.coins>=1000?(rw.coins/1000)+'k':rw.coins}</b>`}<em class="lgs">${rw.stone?'+ PIERRE':''}</em></div>`).join('')}</div>
-  ${can?`<button class="btn primary wide" data-act="login">Récupérer : ${rwText(LOGIN[next])}</button>`:'<p class="small muted" style="margin:0">Reviens demain. Si tu rates un jour, la série repart au jour 1.</p>'}</div>`;
-}
+  const {can,next}=lgState(),nxt2=LOGIN[(next+(can?0:1))%7];
+  const cells=LOGIN.map((rw,i)=>{const got=can?i<next:i<=next,now=can&&i===next,w=i===6,nm=rw.pack?P(rw.pack).n.replace('Booster ',''):lgFmt(rw.coins);
+    return `<div class="${got?'got':''}${now?' now':''}${w?' w':''}"><span class="lgd">J${i+1}</span><div class="lgv">${lgVis(rw,i,w?44:40)}</div>${w?`<div class="lgw"><b>Booster Or</b><em>+ 1 PIERRE</em></div>`:`<b class="lgn">${nm}</b>`}<span class="lgt">${now?'Aujourd\'hui':got?'Reçue':''}</span>${got?'<i class="lgx">済</i>':''}</div>`}).join('');
+  return `<div class="lgc">${cells}</div>${can?`<button class="btn primary wide lgb" data-act="login">Récupérer : ${rwText(LOGIN[next])}</button>`:`<p class="small muted" style="margin:0">Reviens demain : ${rwText(nxt2)}. Si tu rates un jour, la série repart au jour 1.</p>`}`}
+function lgNum(){const {can,next}=lgState();return can?next+1:next+1}
+function loginSheet(){$('#shTitle').textContent='Récompense du jour';$('#shTitle').dataset.k='login';$('#shBody').innerHTML=loginHTML();CTX=null;const b=$('#shBack');if(b)b.hidden=false;openSheet();i18nApply($('#sheet'))}
+function lgStrip(){const {can,next}=lgState(),idx=can?next:next,rw=LOGIN[idx];
+  return `<button class="hm-lg${can?' on':''}" data-act="loginOpen"><span class="lg-i">${lgVis(rw,idx,28)}</span><span class="lg-t"><i>Récompense du jour · J${idx+1} / 7</i><b>${can?rwText(rw):'Reçue · reviens demain'}</b></span><span class="lg-d">${LOGIN.map((r,k)=>`<u class="${(can?k<next:k<=next)?'g':''}${can&&k===next?' n':''}"></u>`).join('')}</span></button>`}
 
 /* ---------- Profil (v88) : carte joueur, vitrine, niveau, série, records, badges, réglages ---------- */
 function rec(){const r=S.rec=S.rec||{};r.tw=r.tw||[0,0,0];r.n=r.n||{};r.dr=r.dr||{p:0,c:0,b:0};return r}
@@ -2452,7 +2475,7 @@ function homeSet(i){HV=i;const T=homeTrio(),n=T.length;if(!n)return;document.que
   const w=T[i];$('#hmN').textContent=w.nom;$('#hmS').textContent=homeLine(w);homeTint(w);if(!S.mute)SFX.tap()}
 function homeArts(){const T=homeTrio().map(c=>c.base||c.id),L=[];Object.keys(S.owned).filter(id=>S.owned[id]>0&&CARD[id]&&!CARD[id].scn).map(id=>CARD[id]).sort((a,b)=>RORD[b.r]-RORD[a.r]||b.note-a.note).forEach(c=>{const u=artOf(c);if(u&&!L.includes(u)&&!T.includes(c.base||c.id))L.push(u)});return L}
 /* v104 — page d'intro : la boucle du jeu en 3 étapes, montrée à chaque arrivée sur l'Accueil sauf si « Ne plus me la reproposer » est coché */
-let INTRO_SEEN=false;
+let INTRO_SEEN=false,LG_POP=false;
 function introHTML(){const ST=[['01','開','Ouvre des boosters','Bronze, Argent ou Or : 5 cartes par booster. Plus une carte est forte, plus elle est rare.'],
   ['02','集','Complète ton album, forme ton équipe','Des persos de 13 mondes. Aligne tes 7 meilleures cartes : Tanks, DPS, Distance et Soutien.'],
   ['03','闘','Joue, gagne, recommence','SBC, Tour Céleste, Tournoi draft et défis rapportent pièces et boosters. Et la boucle repart.']];
@@ -2480,7 +2503,7 @@ function vHome(){
   return `${intro}<div class="home">${ini}<span class="hm-eb">${n?'Tes '+(n>1?n+' cartes':'carte')+' les plus rares'+(n>1?' · touche pour changer':''):'Ta vitrine est vide'}</span>
     <div class="hm-trio${n?'':' vide'}">${trio}</div>
     <div class="hm-nm"><b id="hmN" class="${n?'':'s0'}">${n?w.nom:'Ouvre un booster'}</b><span id="hmS">${n?homeLine(w):'Tes plus belles cartes apparaîtront ici'}</span></div>
-    <div class="hm-g">${lrBanner()}${tiles}</div><div class="hm-cta">${cta}</div></div>`}
+    <div class="hm-g">${lrBanner()}${tiles}${lgStrip()}</div><div class="hm-cta">${cta}</div></div>`}
 /* ---------- Ouvrir : boutique en carrousel (Bronze / Argent / Or), mes boosters, récompenses ---------- */
 let BSEL=null;const BK=['bronze','argent','or'],BKTINT={bronze:'#8A4E22',argent:'#5E6678',or:'#9C7412'};
 function bkSel(){if(!BK.includes(BSEL))BSEL=[...BK].reverse().find(k=>S.coins>=PACKS[k].price)||'bronze';return BSEL}
@@ -2513,11 +2536,10 @@ function vShop(){
     <p class="small muted" style="margin:0">Toujours au choix, jamais imposé. Une courte pub contre un petit bonus.</p>
     <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn" data-act="adfree" ${adsLeft&&f.stock<FREE_MAX?'':'disabled'}>Recharger le booster gratuit</button>
     <button class="btn" data-act="adbn" ${adsLeft&&!a.bn?'':'disabled'}>Bonneteau du jour (3 SR)${a.bn?' · fait':''}</button></div></section>`;
-  const sub=S.bsub||'shop',nInv=S.inv.length,lg=canLogin();
-  const seg=`<div class="seg"><button data-act="bsub" data-v="shop" aria-pressed="${sub==='shop'}">Boutique</button><button data-act="bsub" data-v="inv" aria-pressed="${sub==='inv'}">Mes boosters${nInv?` <span class="seg-n">${nInv}</span>`:''}</button><button data-act="bsub" data-v="rw" aria-pressed="${sub==='rw'}">Récompenses${lg?'<span class="dot"></span>':''}</button></div>`;
+  const sub=(S.bsub==='rw'?'shop':S.bsub)||'shop',nInv=S.inv.length;
+  const seg=`<div class="seg"><button data-act="bsub" data-v="shop" aria-pressed="${sub==='shop'}">Boutique</button><button data-act="bsub" data-v="inv" aria-pressed="${sub==='inv'}">Mes boosters${nInv?` <span class="seg-n">${nInv}</span>`:''}</button></div>`;
   const body={shop:()=>`<div class="shp"><div class="shp-l">${car}<div class="shp-i" id="bkInfo">${bkInfo(sel)}</div></div><div class="shp-r">${lrBanner()}</div><div class="shp-st">${stBar}</div><div class="shp-ad">${ads}</div></div>`,
-    inv:()=>inv,
-    rw:()=>`${loginHTML()}<button class="sbr" data-act="tab" data-v="obj"><span class="emb">◎</span><span class="sb-b"><b>Défis</b><small>Défis du jour et de la semaine : pièces et boosters à gagner.</small></span>${claimables()?`<span class="sp ok">${claimables()} à récupérer</span>`:'<span class="sp">Voir</span>'}</button>`}[sub]||(()=>'');
+    inv:()=>inv}[sub]||(()=>'');
   return `<div class="stack">${initHTML()}${seg}${body()}</div>`;
 }
 function adminHTML(){return `<p class="small muted" style="margin:0">Espace réservé aux tests. Il n'apparaît pas dans le parcours joueur.</p><button class="btn primary" data-act="perfgo">Mesurer la fluidité (45 s)</button>${PERF.last?`<div class="perfr">${PERF.last}</div>`:''}<div class="tools adm"><button class="btn" data-act="adm" data-a="coins">+5 000 pièces</button><button class="btn" data-act="adm" data-a="nextday">Passer au jour suivant</button><button class="btn" data-act="adm" data-a="admur">Booster UR (admin)</button><button class="btn" data-act="adm" data-a="admbase">Booster Cartes de base des scènes (admin)</button><button class="btn" data-act="adm" data-a="admscn">Booster Scènes iconiques (admin)</button><button class="btn" data-act="adm" data-a="admimg">Booster Illustrées (admin)</button><button class="btn" data-act="adm" data-a="admall">Débloquer toutes les cartes (admin)</button><button class="btn" data-act="adm" data-a="admStone">+1 Pierre (admin)</button><button class="btn" data-act="adm" data-a="nextweek">Semaine suivante</button><button class="btn" data-act="adm" data-a="admLvl">Tout débloquer (niveau 5)</button><button class="btn ghost" data-act="reset">Recommencer à zéro</button></div>`
@@ -2660,7 +2682,7 @@ function vObj(){
   const sec=p=>{const L=activeObj(p),open=(S.objOpen||{})[p]!==false,nd=L.filter(x=>per(p).claimed[x.id]).length;
     return `<section class="osec"><button class="osh" data-act="osec" data-v="${p}" aria-expanded="${open}"><span class="otitle">${PER[p]}</span><span class="oright"><span class="oinfo">${nd} / ${L.length} · ${p==='d'?'Demain':p==='w'?'Lundi':'Le 1er du mois'}</span><span class="chv"><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true" style="transition:transform .25s;transform:rotate(${open?180:0}deg)"><path d="M5 8l5 5 5-5"/></svg></span></span></button>${open?`<div class="ocards">${L.map(card).join('')}</div>`:''}</section>`};
   const na=objAllN();
-  return `<div class="stack">${loginHTML()}${sec('d')}${sec('w')}${sec('m')}${na>=2?`<div class="octa"><button class="btn primary wide" data-act="objAll">Tout récupérer · ${na} récompenses</button></div>`:''}</div>`;
+  return `<div class="stack">${sec('d')}${sec('w')}${sec('m')}${na>=2?`<div class="octa"><button class="btn primary wide" data-act="objAll">Tout récupérer · ${na} récompenses</button></div>`:''}</div>`;
 }
 
 /* ---------- boosters ---------- */
@@ -2850,7 +2872,7 @@ $('#rvSkip').addEventListener('click',()=>{if(!RV)return;const cur=RV.i>=0&&RV.c
 /* ---------- feuille (SBC, choix de carte) ---------- */
 let CTX=null;
 function openSheet(){$('#sheet').hidden=false}
-function closeSheet(force){if(CTX&&CTX.lock&&!force)return;$('#sheet').hidden=true;CTX=null;const b=$('#shBack');if(b)b.hidden=false}
+function closeSheet(force){if(CTX&&CTX.lock&&!force)return;$('#sheet').hidden=true;CTX=null;delete $('#shTitle').dataset.k;const b=$('#shBack');if(b)b.hidden=false}
 function rowHTML(c,act,v,extra){return `<button class="row" data-act="${act}" data-v="${v}"><div>${cardHTML(c,{mini:true})}</div><div class="t"><b>${c.nom} · ${c.vl}</b><span>${MONDES[c.m].n} · ${c.cl}</span></div><div class="n">${c.note}${extra||''}</div></button>`}
 function sbcAvail(id){const x=findSbc(CTX.sbc);return(S.owned[id]||0)-CTX.ids.filter(z=>z===id).length-(x&&x.keep1?1:0)}
 function renderSbc(){
@@ -3688,7 +3710,8 @@ const ACT={
   sclear:()=>{SEL={};render()},
   sellgo:(v,t)=>{const s2=sellSum();if(!s2.n)return;const go=()=>{Object.entries(SEL).forEach(([id,q])=>{if(q)S.owned[id]-=q;if(S.owned[id]<=0)delete S.owned[id]});S.coins+=s2.g;ev('sell',s2.n);SEL={};cleanTeam();SFX.coin();save();render();toast(`${s2.n} carte${s2.n>1?'s':''} vendue${s2.n>1?'s':''} : +${fmt(s2.g)} pièces.`+(s2.last?' Dernier exemplaire vendu : tu ne la possèdes plus, mais elle reste découverte dans ton album.':''))};
     if(s2.last||s2.rare)arm(t,`Confirmer${s2.rare?' · '+s2.rare+' SR/SSR':''}${s2.last?' · '+s2.last+' dernière(s)':''}`,go);else go()},
-  login:()=>{if(!canLogin())return;const y=dk(new Date(now()-864e5));S.login.idx=S.login.last===y?(S.login.idx+1)%7:0;S.login.last=dk();const rw=LOGIN[S.login.idx];grant(rw);addXp(XP_EV.login);SFX.coin();save();render();toast('Récompense du jour : '+rwText(rw)+'.')},
+  loginOpen:()=>loginSheet(),
+  login:()=>{if(!canLogin())return;const y=dk(new Date(now()-864e5));S.login.idx=S.login.last===y?(S.login.idx+1)%7:0;S.login.last=dk();const rw=LOGIN[S.login.idx];grant(rw);addXp(XP_EV.login);SFX.coin();save();render();const tk=$('#shTitle');if(!$('#sheet').hidden&&tk&&tk.dataset.k==='login'){$('#shBody').innerHTML=loginHTML();i18nApply($('#sheet'))}toast('Récompense du jour : '+rwText(rw)+'.')},
   objclaim:v=>{const o=allObj().find(x=>x.id===v);if(!o||!objReady(o))return;const pd=per(o.p);pd.claimed[o.id]=true;grant(o.rw);addXp(XP_EV.obj);
     if(o.p==='d'&&!pd.allDone&&activeObj('d').every(x=>pd.claimed[x.id])){pd.allDone=true;ev('daily_all');toast('Tous les défis du jour sont faits !')}else toast('Défi réussi : '+rwText(o.rw)+'.');SFX.coin();save();render()},
   collclaim:v=>{const s=collState(v);if(!s.done||s.claimed)return;S.coll[v]=true;grant(MONDE_RW);save();render();showReward('Monde complet',MONDES[v].n,MONDE_RW.pack?{pack:MONDE_RW.pack}:null,rwText(MONDE_RW)+' ajouté à Mes boosters')},
@@ -3738,7 +3761,6 @@ const ACT={
   again:()=>{const k=RV.key;$('#reveal').hidden=true;RV=null;sndAllStop();openPack(k,null)},
   rvClose:()=>{$('#reveal').hidden=true;RV=null;const q=$('#rvQ');if(q)q.remove();sndAllStop();render()},
   objAll:()=>{const L=[];let n=0;
-    if(canLogin()){const y=dk(new Date(now()-864e5));S.login.idx=S.login.last===y?(S.login.idx+1)%7:0;S.login.last=dk();L.push(LOGIN[S.login.idx]);addXp(XP_EV.login);n++}
     for(let pass=0;pass<3;pass++){allObj().filter(objReady).forEach(o=>{const pd=per(o.p);pd.claimed[o.id]=true;L.push(o.rw);addXp(XP_EV.obj);n++;if(o.p==='d'&&!pd.allDone&&activeObj('d').every(x=>pd.claimed[x.id])){pd.allDone=true;ev('daily_all')}})}
     if(!n)return;const t=grantSum(L);SFX.coin();showSum(n,t)},
   rwAll:()=>{const L=rwAllList();if(!L.length)return;const rws=L.map(([k,v])=>{if(k==='c'){S.coll[v]=true;return MONDE_RW}S.mile[v]=true;return MILE.find(x=>x[0]===v)[1]});const t=grantSum(rws);SFX.coin();showSum(L.length,t)},
