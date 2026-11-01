@@ -443,13 +443,13 @@ nav.tabs button[aria-current="page"] svg{color:var(--accent)}
 @keyframes wflash{from{opacity:.9}to{opacity:0}}
 .stage.shake{animation:shake .5s}
 @keyframes shake{10%,90%{transform:translate(-2px,1px)}20%,80%{transform:translate(4px,-2px)}30%,50%,70%{transform:translate(-6px,3px)}40%,60%{transform:translate(6px,-3px)}}
-.big-pack{position:relative;width:min(52vw,210px);animation:wiggle 1.6s ease-in-out infinite}
+.big-pack{position:relative;width:min(52vw,210px)}.big-pack .bp-w{position:relative;animation:wiggle 1.6s ease-in-out infinite}.big-pack.tearing .bp-w{animation-play-state:paused}
 .big-pack.tearing{animation:charge .55s ease-in forwards}
 @keyframes wiggle{0%,70%,100%{transform:rotate(0)}76%{transform:rotate(-3deg)}84%{transform:rotate(3deg)}92%{transform:rotate(-1.5deg)}}
 @keyframes charge{0%{transform:scale(1)}30%{transform:scale(1.04) rotate(-2deg)}60%{transform:scale(1.06) rotate(2deg)}100%{transform:scale(1.12);filter:brightness(1.6)}}
 @keyframes rip{to{transform:translate(70%,-160%) rotate(28deg);opacity:0}}
 /* v102 — déchirure : le haut réel du sachet se détache (plus de bande rectangulaire) */
-.big-pack .bp-m{position:relative}
+.big-pack .bp-m{position:relative}.stage>.gh{pointer-events:none!important;position:absolute!important;z-index:0}.stage>.big-pack.gh{margin:0}
 .big-pack .bp-t{position:absolute;inset:0;clip-path:inset(-20% -20% 91.4% -20%);pointer-events:none;z-index:3;transform-origin:50% 4%}
 .big-pack.tearing .bp-m{clip-path:inset(8.6% -20% -20% -20%)}
 .big-pack.tearing .bp-t{animation:ripTop .5s .1s ease-out forwards}
@@ -1383,15 +1383,15 @@ body{--t1:#1A2040;--t2:#0A0D1C;background:radial-gradient(90% 52% at 50% 16%,var
 @keyframes hitShake{0%,100%{translate:0 0}20%{translate:-10px 4px}40%{translate:8px -3px}60%{translate:-4px 2px}80%{translate:2px -1px}}
 @keyframes hitFlash{0%{filter:brightness(2.4) saturate(.4)}100%{filter:none}}
 .ono{position:absolute;top:6%;z-index:6;pointer-events:none;font:400 30px/1 "Dela Gothic One",sans-serif;color:#F3EEE4;text-shadow:3px 3px 0 #B8302A,-1px -1px 0 #0A0809;white-space:nowrap;animation:onoPop .75s cubic-bezier(.2,.9,.3,1.3) both}
-.ono.ltr{left:58%}.ono.rtl{right:58%}.ono.big{font-size:42px;text-shadow:4px 4px 0 #B8302A,-2px -2px 0 #0A0809}
+.ono.ltr{left:58%}.ono.rtl{right:58%}.ono.big{font-size:42px;text-shadow:4px 4px 0 #B8302A,-2px -2px 0 #0A0809}.ono.spec{color:#EAF4FF;text-shadow:4px 4px 0 #3A5BD9,-2px -2px 0 #0A0809,0 0 24px #6FA8FF}
 @keyframes onoPop{0%{transform:scale(.4) rotate(-14deg);opacity:0}30%{transform:scale(1.15) rotate(-8deg);opacity:1}80%{transform:scale(1) rotate(-8deg);opacity:1}100%{transform:scale(1) rotate(-8deg);opacity:0}}
-.fnum{animation-timing-function:cubic-bezier(.2,.9,.3,1.3)}.fnum.crit{font-size:30px;text-shadow:0 0 18px color-mix(in srgb,var(--accent) 70%,transparent),0 2px 0 var(--bg)}
+.fnum{animation-timing-function:cubic-bezier(.2,.9,.3,1.3);font-size:28px}.fnum.spec{font-size:34px;text-shadow:0 0 18px rgba(111,168,255,.7),0 2px 0 var(--bg)}.fnum small{font-size:12px}.fnum.crit{font-size:40px;text-shadow:0 0 18px color-mix(in srgb,var(--accent) 70%,transparent),0 2px 0 var(--bg)}
 .hp{height:10px;border:0;border-radius:0;background:rgba(243,238,228,.08);clip-path:polygon(0 20%,100% 0,98% 100%,1% 80%)}
 .f-b .hp{clip-path:polygon(0 0,100% 20%,99% 80%,2% 100%);display:flex;justify-content:flex-end}
 .f-a .hp i{background:linear-gradient(90deg,#7FD6A8,#c9f2dc)}.f-b .hp i{background:linear-gradient(90deg,#F07A5A,#ffb39e)}
 .fighter.hit .hp{animation:hpBlink .5s .2s}@keyframes hpBlink{50%{filter:brightness(1.8)}}
 .supc.on{animation:supPulse .9s ease-out}@keyframes supPulse{0%{transform:scale(1)}30%{transform:scale(1.12)}100%{transform:scale(1)}}
-@media (min-width:1024px){.ono{font-size:52px}.ono.big{font-size:72px}.fnum{font-size:30px}.fnum.crit{font-size:44px}.hp{height:14px}}
+@media (min-width:1024px){.ono{font-size:52px}.ono.big{font-size:72px}.fnum{font-size:42px}.fnum.spec{font-size:56px}.fnum.crit{font-size:60px}.hp{height:14px}}
 @media (prefers-reduced-motion:reduce){.fighter .swipe,.ono,.supc.on{animation:none!important}}
 /* ===== v107 — Éveil PC (maquette) ===== */
 .aw{display:none}
@@ -1584,7 +1584,7 @@ body{--t1:#1A2040;--t2:#0A0D1C;background:radial-gradient(90% 52% at 50% 16%,var
 .shp-r{order:-1}
 .shp-l{display:flex;flex-direction:column;gap:10px}
 .car3{position:relative;--bw:min(46vw,180px);--cx:calc(var(--bw)*.83);height:calc(var(--bw)*1.6 + 44px);perspective:1000px;margin:0 -16px}
-.car3-i{position:absolute;inset:0;transform-style:preserve-3d}
+.car3-i{position:absolute;inset:0;perspective:var(--ps,1000px)}.car3{touch-action:pan-y}
 .car3 .cp{position:absolute;left:50%;top:14px;width:var(--bw);margin-left:calc(var(--bw)/-2);padding:0;border:0;background:none;cursor:pointer;transition:transform .65s cubic-bezier(.2,.8,.2,1),filter .65s}
 .car3 .cp .pk{width:100%;transform:none;box-shadow:none}
 .car3 .cp.on .pk{animation:bob 4.6s ease-in-out infinite}
@@ -1624,7 +1624,7 @@ body{--t1:#1A2040;--t2:#0A0D1C;background:radial-gradient(90% 52% at 50% 16%,var
  .shp{display:grid;grid-template-columns:minmax(0,1fr) 340px;column-gap:40px;row-gap:16px;align-items:start}
  .shp-l{grid-column:1;grid-row:1}.shp-st{grid-column:1;grid-row:2}.shp-ad{grid-column:1;grid-row:3}
  .shp-r{grid-column:2;grid-row:1/4;order:0}.shp-r .lrb{height:640px;border-radius:20px}.shp-r .lrb-t b{font-size:54px}
- .car3{--bw:260px;--cx:330px;perspective:1600px;margin:0}
+ .car3{--bw:260px;--cx:330px;--ps:1600px;perspective:1600px;margin:0}
  .car3 .cn{display:grid;place-items:center;position:absolute;top:44%;width:48px;height:48px;border-radius:50%;border:1px solid rgba(243,238,228,.2);background:rgba(6,7,11,.6);color:var(--text);z-index:6;cursor:pointer}
  .car3 .cn.l{left:8px}.car3 .cn.r{right:8px}
  .dots{display:none}
@@ -2677,7 +2677,13 @@ function rvQueue(){let q=$('#rvQ');const on=RV&&RV.cards.length>1&&RV.i>=0&&RV.p
   if(!on){if(q)q.remove();return}
   if(!q){q=document.createElement('div');q.id='rvQ';q.setAttribute('aria-hidden','true');document.body.appendChild(q)}
   q.innerHTML=RV.cards.map((x,i)=>{const r=CARD[x.id].r,hi=RORD[r]>=3&&i>RV.i;return `<i class="q${r} ${i<RV.i?'done':i===RV.i?'cur':''}${hi?' hi':''}" style="--rc:var(--r-${r.toLowerCase()})"></i>`}).join('')}
-function drawRV(){scnSndSync();if(!RV||RV.ph==='pack'||RV.ph==='tear'||RV.ph==='sum'){const q=$('#rvQ');if(q)q.remove()}
+/* v108 : aucun effet ne s'arrête net : les effets de l'écran quitté sont clonés et s'estompent */
+const GH_SEL='.tear-rays,.rvx-beam,.rvx-lines,.rvx-word,.rvx-ring,.big-pack,.sparks';
+function drawRV(){const st=$('#stage');let gh=[];
+  try{if(st&&!matchMedia('(prefers-reduced-motion:reduce)').matches)gh=[...st.querySelectorAll(GH_SEL)].filter(e=>!e.parentElement.closest(GH_SEL)).map(e=>({orig:e,e:e.cloneNode(true),cls:e.className,o:getComputedStyle(e).opacity,ol:e.offsetLeft,ot:e.offsetTop,ow:e.offsetWidth,t:e.getAnimations({subtree:true}).map(a=>a.currentTime)}))}catch(_){gh=[]}
+  drawRV0();
+  try{const st2=$('#stage');if(!gh.length||!st2||st2.querySelector('.mx'))return;gh.filter(g=>!g.orig.isConnected).forEach(g=>{const c=g.e;c.classList.add('gh');c.setAttribute('aria-hidden','true');if(c.classList.contains('big-pack')){c.style.left=g.ol+'px';c.style.top=g.ot+'px';c.style.width=g.ow+'px'}st2.appendChild(c);const an=c.getAnimations({subtree:true});an.forEach((a,i)=>{if(g.t[i]!=null){try{a.currentTime=g.t[i]}catch(_){}}});c.animate([{opacity:+g.o||1},{opacity:0}],{duration:320,easing:'ease-out',fill:'forwards'}).onfinish=()=>c.remove()})}catch(_){}}
+function drawRV0(){scnSndSync();if(!RV||RV.ph==='pack'||RV.ph==='tear'||RV.ph==='sum'){const q=$('#rvQ');if(q)q.remove()}
   const st=$('#stage');const n=RV.cards.length;st.classList.remove('shake','white','is-sum','fbk','rvc-on');
   $('#rvSkip').hidden=RV.ph==='sum'||(RV.i>=0&&RV.cards[RV.i]&&prot(CARD[RV.cards[RV.i].id])&&RV.ph!=='card');
   if(RV.ph==='multi'){const N=RV.packs.length,top=r=>RORD[r];
@@ -2693,7 +2699,10 @@ function drawRV(){scnSndSync();if(!RV||RV.ph==='pack'||RV.ph==='tear'||RV.ph==='
     <div class="mx-bt"><button class="btn" data-act="mxOne">Une par une</button><button class="btn primary" data-act="mxAll">Tout révéler</button></div></div>`;return}
   if(RV.ph==='pack'||RV.ph==='tear'){const pp=P(RV.key);const best=RV.cards.reduce((a,x)=>Math.max(a,RORD[CARD[x.id].r]),0),br=Object.keys(RORD).find(k=>RORD[k]===best);st.style.setProperty('--glow',RV.ph==='tear'?RCOL[br]:pp.glow);$('#rvCount').textContent=pp.n.toUpperCase();
     const fly=RV.ph==='tear'?`<div class="fly" aria-hidden="true">${RV.cards.map((x,i)=>{const r=CARD[x.id].r;return `<i class="fc r${r}${RORD[r]>=3?' hi':''}" style="--i:${i};--o:${(i-(n-1)/2).toFixed(2)};--rc:var(--r-${r.toLowerCase()})"><b>ACG</b></i>`}).join('')}</div>`:'';
-    st.innerHTML=`<div class="big-pack ${RV.ph==='tear'?'tearing':''}" style="--pc:${P(RV.key).bg}"><div class="bp-m">${pk(RV.key)}</div><div class="bp-t" aria-hidden="true">${pk(RV.key)}</div>${fly}</div>${RV.ph==='tear'?`<i class="tear-rays" aria-hidden="true" style="background-image:url(${raysURL(br==='UR'?'#A63BFF':br==='LR'?'#FFFFFF':getComputedStyle(document.documentElement).getPropertyValue('--r-'+br.toLowerCase()).trim()||'#fff')})"></i>`:''}<div class="rv-cap"><span class="hint">${RV.ph==='tear'?'':'Touche pour ouvrir'}</span></div>`;return}
+    const rays=RV.ph==='tear'?`<i class="tear-rays" aria-hidden="true" style="background-image:url(${raysURL(br==='UR'?'#A63BFF':br==='LR'?'#FFFFFF':getComputedStyle(document.documentElement).getPropertyValue('--r-'+br.toLowerCase()).trim()||'#fff')})"></i>`:'';
+    /* v108 : la déchirure ne reconstruit plus le sachet (le reflet ne repart plus à zéro) */
+    {const bp=RV.ph==='tear'?st.querySelector('.big-pack:not(.tearing)'):null;if(bp){bp.classList.add('tearing');bp.insertAdjacentHTML('beforeend',fly);bp.insertAdjacentHTML('afterend',rays);const h=st.querySelector('.rv-cap .hint');if(h)h.textContent='';return}}
+    st.innerHTML=`<div class="big-pack ${RV.ph==='tear'?'tearing':''}" style="--pc:${P(RV.key).bg}"><div class="bp-w"><div class="bp-m">${pk(RV.key)}</div><div class="bp-t" aria-hidden="true">${pk(RV.key)}</div></div>${fly}</div>${rays}<div class="rv-cap"><span class="hint">${RV.ph==='tear'?'':'Touche pour ouvrir'}</span></div>`;return}
   if(RV.ph==='sum'){st.style.setProperty('--glow','var(--line)');$('#rvCount').textContent=`${n} CARTES`;
     st.classList.add('is-sum');st.innerHTML=`<p class="small muted sum-hint">Touche une carte pour voir ses stats et ses tags.</p><div class="sum">${RV.cards.map((x,i)=>`<button class="cw" data-act="cflip" style="--i:${i}">${cardHTML(CARD[x.id],{back:true,big:true})}${x.isNew?'<span class="badge new">NOUVELLE</span>':''}</button>`).join('')}</div>
     <div class="sum-btns">${S.inv.includes(RV.key)?`<button class="btn primary" data-act="nextinv">Ouvrir un des miens · ×${S.inv.filter(k=>k===RV.key).length}</button>`:P(RV.key).price&&S.coins>=P(RV.key).price?`<button class="btn primary" data-act="again">Racheter · ${fmt(P(RV.key).price)}</button>`:''}<button class="btn" data-act="rvClose">Continuer</button></div>${S.inv.length&&!S.inv.includes(RV.key)?`<p class="small muted" style="margin:0;text-align:center">Tu as encore ${S.inv.length} booster${S.inv.length>1?'s':''} dans Mes boosters.</p>`:''}`;return}
@@ -3178,7 +3187,7 @@ function matchHTML(run){
   else if(ev&&ev.k==='heal'){const h=(ev.w==='a'?m.fxA:m.fxB).who.filter(w=>w.k==='heal').map(w=>CARD[w.id].nom).join(' et ');cap=`${h} soigne ${F[ev.w].nom} : +${ev.v} PV.`;num={s:ev.w,h:`<span class="fnum heal">+${ev.v}</span>`};fx=`<div class="fx glow ${ev.w}"></div>`}
   else if(ev){const at=F[ev.w],cls=FXC[at.cl]||'punch',dir=ev.w==='a'?'ltr':'rtl',tg=ev.w==='a'?'b':'a';
     cap=ev.dodge?`<b>${F[tg].nom} esquive</b> l'attaque de ${at.nom} grâce à sa vitesse.`:ev.k==='spec'?`<b>Attaque spéciale</b> de ${at.nom} (POU ${at.s[5]}) : −${ev.dmg}.`:ev.k==='dbl'?`${at.nom} enchaîne un 2e coup (40 % des dégâts, une fois par duel) : −${ev.dmg}.`:`${at.nom} frappe${ev.crit?' : <b>coup critique</b>':''} : −${ev.dmg}.`;
-    fx=`<div class="fx ${cls} ${dir} ${ev.k==='spec'?'big':''}"></div>`;if(!ev.dodge){const ON={punch:['バキッ','ドゴッ'],slash:['ザンッ','シュッ'],shot:['バンッ','ドンッ'],orb:['ゴゴゴ','ドォン']}[cls]||['ドンッ'];fx+=`<b class="ono ${dir}${ev.crit||ev.k==='spec'?' big':''}" aria-hidden="true">${ON[(ev.dmg||0)%ON.length]}</b>`}num={s:tg,h:ev.dodge?`<span class="fnum"><small>ESQUIVE</small>0</span>`:`<span class="fnum ${ev.crit?'crit':''} ${ev.k==='spec'?'spec':''}">${ev.crit?'<small>CRITIQUE</small>':''}${ev.k==='spec'?'<small>SPÉCIALE</small>':''}−${ev.dmg}</span>`}}
+    fx=`<div class="fx ${cls} ${dir} ${ev.k==='spec'?'big':''}"></div>`;if(!ev.dodge&&(ev.crit||ev.k==='spec')){const ON={punch:['バキッ','ドゴッ'],slash:['ザンッ','シュッ'],shot:['バンッ','ドンッ'],orb:['ゴゴゴ','ドォン']}[cls]||['ドンッ'];fx+=`<b class="ono ${dir} big ${ev.k==='spec'?'spec':'crit'}" aria-hidden="true">${ON[(ev.dmg||0)%ON.length]}</b>`}num={s:tg,h:ev.dodge?`<span class="fnum"><small>ESQUIVE</small>0</span>`:`<span class="fnum ${ev.crit?'crit':''} ${ev.k==='spec'?'spec':''}">${ev.crit?'<small>CRITIQUE</small>':''}${ev.k==='spec'?'<small>SPÉCIALE</small>':''}−${ev.dmg}</span>`}}
   else if(cur.e==='end'){const w=F[d.win];cap=d.ko?`<b>${w.nom} gagne par KO.</b>`:`<b>${w.nom} gagne aux PV restants</b> : ${d.pa} % contre ${d.pb} %.`}
   const hit=ev&&ev.k!=='heal'&&!ev.dodge?(ev.w==='a'?'b':'a'):'';
   const atkS=ev&&ev.k!=='heal'&&ev.k!=='cover'?ev.w:'';
@@ -3199,6 +3208,11 @@ function trAnim(){clearTimeout(TRT);TRT=null;const ctx=MCTX||{get:()=>S.tr&&S.tr
   TRT=setTimeout(()=>{TRT=null;const r=ctx.get();if(!r||r.ph!=='match')return;r.step=(r.step||0)+1;if(r.step>=T.length){r.step=T.length-1;r.fin=true;runFin(r)}
     const c=T[r.step];if(!S.mute&&!r.fin){const d=r.m.duels[c.d];const e=typeof c.e==='number'?d.log[c.e]:null;if(e&&e.k==='heal')tone(660,0,.3,'sine',.08);else if(e)(e.crit||e.k==='spec'?SFX.rip:SFX.flip)();else if(c.e==='end')(d.win==='a'?SFX.coin:tone(200,0,.25,'triangle',.08))}
     save();if(S.tab==='tour')render();trAnim()},dl)}
+/* v108 : glisser le carrousel de boosters */
+(function(){let sx=0,sy=0,on=false;
+  document.addEventListener('pointerdown',e=>{on=!!e.target.closest('#car3');if(on){sx=e.clientX;sy=e.clientY}},{passive:true});
+  document.addEventListener('pointerup',e=>{if(!on)return;on=false;const dx=e.clientX-sx,dy=e.clientY-sy;if(Math.abs(dx)>40&&Math.abs(dx)>Math.abs(dy)*1.3){window.__swiped=Date.now();ACT.bkgo(dx<0?'1':'-1')}});
+})();
 /* glisser une carte sur le côté pour la retourner */
 (function(){let sx=0,sy=0,el=null,moved=false;
   document.addEventListener('pointerdown',e=>{const s=e.target.closest('[data-swipe]');el=s;moved=false;if(s){sx=e.clientX;sy=e.clientY}},{passive:true});
