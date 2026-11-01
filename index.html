@@ -1393,6 +1393,49 @@ body{--t1:#1A2040;--t2:#0A0D1C;background:radial-gradient(90% 52% at 50% 16%,var
 .supc.on{animation:supPulse .9s ease-out}@keyframes supPulse{0%{transform:scale(1)}30%{transform:scale(1.12)}100%{transform:scale(1)}}
 @media (min-width:1024px){.ono{font-size:52px}.ono.big{font-size:72px}.fnum{font-size:42px}.fnum.spec{font-size:56px}.fnum.crit{font-size:60px}.hp{height:14px}}
 @media (prefers-reduced-motion:reduce){.fighter .swipe,.ono,.supc.on{animation:none!important}}
+/* ===== v109 — Combat : scène orangée, soutiens en avant, chiffres expliqués ===== */
+.arena.v9{position:relative;display:grid;grid-template-columns:minmax(0,1fr) 44px minmax(0,1fr);grid-template-areas:"a m b" "sa . sb";gap:12px 0;padding:14px 8px 12px;border:0;border-radius:18px;overflow:hidden;
+ background:repeating-linear-gradient(-12deg,rgba(243,238,228,.035) 0 2px,transparent 2px 26px),radial-gradient(60% 66% at 50% 42%,rgba(240,122,90,.24),rgba(10,8,9,0) 74%),#0A0809}
+.arena.v9.gj{background:repeating-linear-gradient(-12deg,rgba(243,238,228,.03) 0 2px,transparent 2px 26px),radial-gradient(60% 66% at 50% 42%,rgba(179,38,58,.42),rgba(10,8,9,0) 76%),#0A0809}
+.arena.v9.dm{background:repeating-linear-gradient(-12deg,rgba(243,238,228,.03) 0 2px,transparent 2px 26px),radial-gradient(60% 66% at 50% 42%,rgba(110,60,200,.42),rgba(10,8,9,0) 76%),#0A0809}
+.arena.v9 .f-a{grid-area:a}.arena.v9 .f-b{grid-area:b}.arena.v9 .mid{grid-area:m;position:relative;z-index:6;overflow:visible}
+.arena.v9 .vsx{position:absolute;left:50%;bottom:4%;translate:-50% 0;font:400 28px/1 "Dela Gothic One",sans-serif;color:rgba(243,238,228,.14)}
+.hpl{display:flex;justify-content:space-between;align-items:baseline;gap:6px;margin-top:4px}.hpl b{font:900 13px/1 var(--f-display)}.hpl span{font:600 11px/1 var(--f-mono)}.f-b .hpl{flex-direction:row-reverse}
+.arena.v9 .ono{left:50%;right:auto;top:0;translate:-50% 0}
+.dn{position:absolute;left:50%;top:30%;z-index:7;display:flex;flex-direction:column;align-items:center;gap:6px;pointer-events:none;white-space:nowrap;--sh:0px;translate:calc(-50% + var(--sh)) -50%;animation:dnIn .5s cubic-bezier(.2,.9,.3,1.3) both}
+.dn.toA{--sh:-22px}.dn.toB{--sh:22px}
+@keyframes dnIn{0%{scale:.4;rotate:-10deg;opacity:0}60%{scale:1.12;rotate:-4deg;opacity:1}100%{scale:1;rotate:-4deg;opacity:1}}
+.dn b{font:900 44px/1 var(--f-display);letter-spacing:-.04em;color:#F3EEE4;text-shadow:0 3px 0 #0A0809,0 0 20px rgba(0,0,0,.85)}
+.dn.crit b{color:#F2C230;text-shadow:0 0 30px rgba(242,194,48,.6),0 3px 0 #0A0809}
+.dn.spec b{color:#9CC2FF;text-shadow:0 0 30px rgba(111,168,255,.75),0 3px 0 #0A0809}
+.dn.heal b{color:#7FD6A8}.dn.cover b{color:#F5967A}.dn.dodge b{color:rgba(243,238,228,.65)}
+.dn-tag{font:900 11px/1 var(--f-display);letter-spacing:.04em;padding:5px 9px;border-radius:6px;background:#F3EEE4;color:#0A0809;rotate:-6deg}
+.dn.crit .dn-tag{background:#F2C230}.dn.spec .dn-tag{background:#6FA8FF}.dn.heal .dn-tag{background:#7FD6A8}.dn.cover .dn-tag{background:#F07A5A}.dn.dodge .dn-tag{background:rgba(243,238,228,.75)}
+.dn-ex{font:600 10px/1.2 var(--f-mono);font-style:normal;color:#F3EEE4;background:rgba(10,8,9,.78);padding:4px 8px;border-radius:6px;border:1px solid rgba(243,238,228,.2)}
+.arena.v9 .sups{display:contents}
+.arena.v9 .sups>div{display:flex;flex-direction:column;gap:6px;align-items:stretch;align-self:start;min-width:0;flex-wrap:nowrap}
+.arena.v9 .sups>div:first-child{grid-area:sa}.arena.v9 .sups>.r{grid-area:sb;justify-content:flex-start}
+.sup9{--kc:rgba(243,238,228,.5);display:flex;align-items:center;gap:8px;padding:7px 9px 7px 7px;border-radius:12px;background:rgba(243,238,228,.04);border:1px solid rgba(243,238,228,.14);min-width:0;opacity:.8;transition:opacity .25s,background .25s,border-color .25s,box-shadow .25s}
+.sup9 .sa9{flex:none;width:34px;height:34px;border-radius:50%;background:#1a1d2a 50% 12%/cover no-repeat;box-shadow:0 0 0 2px var(--kc);display:grid;place-items:center;font:400 16px/1 "Dela Gothic One",sans-serif;color:var(--text)}
+.st9{display:flex;flex-direction:column;gap:3px;min-width:0}
+.st9 small{max-width:100%;font:600 9px/1.2 var(--f-mono);letter-spacing:.08em;color:var(--kc);text-transform:uppercase}
+.st9 small em{font-style:normal;display:none}.st9 b{font:800 12.5px/1.2 var(--f-body,Manrope,sans-serif);color:var(--text)}
+.sup9.k-heal{--kc:#7FD6A8}.sup9.k-cover{--kc:#F07A5A}.sup9.k-buff{--kc:#F2C230}.sup9.k-brk{--kc:#C79BFF}.sup9.k-crit{--kc:#FF6B5A}.sup9.k-spec{--kc:#6FA8FF}.sup9.none{opacity:.5}
+.sup9.on{opacity:1;background:color-mix(in srgb,var(--kc) 15%,transparent);border-color:var(--kc);box-shadow:0 0 24px color-mix(in srgb,var(--kc) 38%,transparent);animation:supPulse .9s ease-out}
+.arena.v9 .sups .r .sup9{flex-direction:row-reverse;text-align:right}.arena.v9 .sups .r .st9{align-items:flex-end}
+@media (min-width:1024px){
+ .arena.v9{max-width:1180px;grid-template-columns:minmax(0,270px) minmax(260px,1fr) minmax(0,270px);justify-content:center;padding:30px 60px 26px;gap:20px 0;min-height:560px}.arena.v9 .mid{container-type:inline-size}
+ .arena.v9 .fx.shot{left:-48%;width:196%}
+ .arena.v9 .fx.orb.ltr{left:-8%;animation-name:orbP}.arena.v9 .fx.orb.rtl{right:-8%;animation-name:orbPr}
+ .arena.v9 .fx.punch.ltr{left:92%}.arena.v9 .fx.punch.rtl{right:92%}.arena.v9 .fx.slash.ltr{left:80%}.arena.v9 .fx.slash.rtl{right:80%}
+ .arena.v9 .vsx{font-size:54px}
+ .hpl b{font-size:16px}.hpl span{font-size:13px}.arena.v9 .hp{height:16px}
+ .arena.v9 .ono{font-size:70px;top:2%}.arena.v9 .ono.big{font-size:96px}
+ .dn{top:48%;--sh:0px;gap:10px}.st9 small em{display:inline}.dn.toA{--sh:-34px}.dn.toB{--sh:34px}.dn b{font-size:84px}.dn-tag{font-size:14px;padding:6px 12px}.dn-ex{font-size:13px;padding:5px 11px}
+ .sup9{padding:10px 14px 10px 10px;gap:12px;border-radius:14px}.sup9 .sa9{width:54px;height:54px;font-size:22px}.st9{gap:5px}.st9 small{font-size:11px}.st9 b{font-size:16px}
+}
+@keyframes orbP{to{transform:translateX(100cqw) scale(1.4);opacity:.3}}@keyframes orbPr{to{transform:translateX(-100cqw) scale(1.4);opacity:.3}}
+@media (prefers-reduced-motion:reduce){.dn,.sup9.on{animation:none!important}}
 /* ===== v107 — Éveil PC (maquette) ===== */
 .aw{display:none}
 @media (min-width:1024px){
@@ -3051,7 +3094,7 @@ function duel(A,B,fa,fb){
     [['a',fa],['b',fb]].forEach(([w,fx])=>{if(fx.heal>0&&hp[w]>0&&hp[w]<max[w]){const v=Math.round(max[w]*fx.heal);hp[w]=Math.min(max[w],hp[w]+v);log.push({w,k:'heal',v,...P()})}});
   }
   const pa=hp.a/max.a,pb=hp.b/max.b;const win=pa===pb?(A.c.note>=B.c.note?'a':'b'):pa>pb?'a':'b';
-  return {a:A.c.id,b:B.c.id,first,pA:Math.round(pA*100),va:Math.round(A.s[3]),vb:Math.round(B.s[3]),dbl,log,pa:Math.round(pa*100),pb:Math.round(pb*100),ko:hp.a<=0||hp.b<=0,win};
+  return {a:A.c.id,b:B.c.id,first,pA:Math.round(pA*100),va:Math.round(A.s[3]),vb:Math.round(B.s[3]),sa:A.s.map(Math.round),sb:B.s.map(Math.round),dbl,log,pa:Math.round(pa*100),pb:Math.round(pb*100),ko:hp.a<=0||hp.b<=0,win};
 }
 function aura(t){return 0}
 function playMatch(a,b){
@@ -3182,21 +3225,29 @@ function matchHTML(run){
   const k=typeof cur.e==='number'?cur.e:(cur.e==='end'?d.log.length-1:-1);
   const last=k>=0?d.log[k]:null,ha=last?last.ha:100,hb=last?last.hb:100,ev=typeof cur.e==='number'?d.log[cur.e]:null;
   const F={a:A,b:B};let cap='',fx='',num=null;
+  /* v109 : bloc central (chiffre + ce qui l'explique) */
+  const dn=(kind,tag,val,ex,to)=>({s:to,h:`<div class="dn ${kind} to${to==='b'?'B':'A'}">${tag?`<span class="dn-tag">${tag}</span>`:''}<b>${val}</b>${ex?`<i class="dn-ex">${ex}</i>`:''}</div>`});
+  const S_=d.sa&&d.sb?{a:d.sa,b:d.sb}:null;
   if(cur.e==='intro'){const fst=F[d.first];cap=`<b>${POS[A.poste]} contre ${POS[B.poste]}</b> · VIT réelle ${d.va} contre ${d.vb} : ${A.nom} avait ${d.pA} % de chances de commencer. <b>${fst.nom} commence.</b>`}
-  else if(ev&&ev.k==='cover'){const who=(ev.w==='a'?m.fxA:m.fxB).who.filter(w=>w.k==='cover').map(w=>CARD[w.id].nom).join(' et ');const tg=ev.w==='a'?'b':'a';cap=`Tir de couverture de ${who} sur ${F[tg].nom} : −${ev.v} PV.`;num={s:tg,h:`<span class="fnum"><small>COUVERTURE</small>−${ev.v}</span>`};fx=`<div class="fx shot ${ev.w==='a'?'ltr':'rtl'}"></div>`}
-  else if(ev&&ev.k==='heal'){const h=(ev.w==='a'?m.fxA:m.fxB).who.filter(w=>w.k==='heal').map(w=>CARD[w.id].nom).join(' et ');cap=`${h} soigne ${F[ev.w].nom} : +${ev.v} PV.`;num={s:ev.w,h:`<span class="fnum heal">+${ev.v}</span>`};fx=`<div class="fx glow ${ev.w}"></div>`}
+  else if(ev&&ev.k==='cover'){const who=(ev.w==='a'?m.fxA:m.fxB).who.filter(w=>w.k==='cover').map(w=>CARD[w.id].nom).join(' et ');const tg=ev.w==='a'?'b':'a';cap=`Tir de couverture de ${who} sur ${F[tg].nom} : −${ev.v} PV.`;num=dn('cover','COUVERTURE','−'+ev.v,who,tg);fx=`<div class="fx shot ${ev.w==='a'?'ltr':'rtl'}"></div>`}
+  else if(ev&&ev.k==='heal'){const h=(ev.w==='a'?m.fxA:m.fxB).who.filter(w=>w.k==='heal').map(w=>CARD[w.id].nom).join(' et ');cap=`${h} soigne ${F[ev.w].nom} : +${ev.v} PV.`;num=dn('heal','SOIN','+'+ev.v,h,ev.w);fx=`<div class="fx glow ${ev.w}"></div>`}
   else if(ev){const at=F[ev.w],cls=FXC[at.cl]||'punch',dir=ev.w==='a'?'ltr':'rtl',tg=ev.w==='a'?'b':'a';
     cap=ev.dodge?`<b>${F[tg].nom} esquive</b> l'attaque de ${at.nom} grâce à sa vitesse.`:ev.k==='spec'?`<b>Attaque spéciale</b> de ${at.nom} (POU ${at.s[5]}) : −${ev.dmg}.`:ev.k==='dbl'?`${at.nom} enchaîne un 2e coup (40 % des dégâts, une fois par duel) : −${ev.dmg}.`:`${at.nom} frappe${ev.crit?' : <b>coup critique</b>':''} : −${ev.dmg}.`;
-    fx=`<div class="fx ${cls} ${dir} ${ev.k==='spec'?'big':''}"></div>`;if(!ev.dodge&&(ev.crit||ev.k==='spec')){const ON={punch:['バキッ','ドゴッ'],slash:['ザンッ','シュッ'],shot:['バンッ','ドンッ'],orb:['ゴゴゴ','ドォン']}[cls]||['ドンッ'];fx+=`<b class="ono ${dir} big ${ev.k==='spec'?'spec':'crit'}" aria-hidden="true">${ON[(ev.dmg||0)%ON.length]}</b>`}num={s:tg,h:ev.dodge?`<span class="fnum"><small>ESQUIVE</small>0</span>`:`<span class="fnum ${ev.crit?'crit':''} ${ev.k==='spec'?'spec':''}">${ev.crit?'<small>CRITIQUE</small>':''}${ev.k==='spec'?'<small>SPÉCIALE</small>':''}−${ev.dmg}</span>`}}
+    fx=`<div class="fx ${cls} ${dir} ${ev.k==='spec'?'big':''}"></div>`;if(!ev.dodge&&(ev.crit||ev.k==='spec')){const ON={punch:['バキッ','ドゴッ'],slash:['ザンッ','シュッ'],shot:['バンッ','ドンッ'],orb:['ゴゴゴ','ドォン']}[cls]||['ドンッ'];fx+=`<b class="ono ${dir} big ${ev.k==='spec'?'spec':'crit'}" aria-hidden="true">${ON[(ev.dmg||0)%ON.length]}</b>`}
+    const sa=S_&&S_[ev.w],sd=S_&&S_[tg];
+    const ex=ev.dodge?(sa?`VIT ${sd[3]} contre ${sa[3]}`:''):!sa?'':ev.k==='spec'?`POU ${sa[5]} · DEF ${Math.round(sd[2]/2)} (÷2)`:ev.k==='dbl'?`2e coup · 40 % de ATT ${sa[1]}`:`ATT ${sa[1]} · DEF ${sd[2]}${ev.crit?' · ×'+ENG.CRIT:''}`;
+    num=ev.dodge?dn('dodge','ESQUIVE','0',ex,tg):dn(ev.crit?'crit':ev.k==='spec'?'spec':ev.k==='dbl'?'dbl':'hit',ev.crit?'CRITIQUE':ev.k==='spec'?'SPÉCIALE':ev.k==='dbl'?'2E COUP':'',`−${ev.dmg}`,ex,tg)}
   else if(cur.e==='end'){const w=F[d.win];cap=d.ko?`<b>${w.nom} gagne par KO.</b>`:`<b>${w.nom} gagne aux PV restants</b> : ${d.pa} % contre ${d.pb} %.`}
   const hit=ev&&ev.k!=='heal'&&!ev.dodge?(ev.w==='a'?'b':'a'):'';
   const atkS=ev&&ev.k!=='heal'&&ev.k!=='cover'?ev.w:'';
-  const side=(c,s,hp)=>`<div class="fighter f-${s} ${hit===s?'hit':''} ${atkS===s?'atk':''} ${ev&&ev.crit&&hit===s?'crit':''} ${cur.e==='end'&&d.win!==s?'lost':''}"><div class="swipe" data-swipe>${cardHTML(c,{back:true})}${num&&num.s===s?num.h:''}</div><div class="hp"><i style="width:${hp}%;--h:${hp}"></i></div><span class="hpn">${hp} %</span></div>`;
-  const sup=(fxs,s)=>fxs.who.map(w=>`<span class="supc ${ev&&ev.w===s&&((ev.k==='heal'&&w.k==='heal')||(ev.k==='cover'&&w.k==='cover')||(ev.k==='spec'&&w.k==='spec')||(ev.crit&&w.k==='crit'))?'on':''}">${CARD[w.id].nom} · ${supShort(w)}</span>`).join('')||'<span class="supc">aucun soutien</span>';
+  const side=(c,s,hp)=>`<div class="fighter f-${s} ${hit===s?'hit':''} ${atkS===s?'atk':''} ${ev&&ev.crit&&hit===s?'crit':''} ${cur.e==='end'&&d.win!==s?'lost':''}"><div class="swipe" data-swipe>${cardHTML(c,{back:true})}</div><div class="hpl"><b>${c.nom}</b><span>${hp} %</span></div><div class="hp"><i style="width:${hp}%;--h:${hp}"></i></div></div>`;
+  const SUPT={heal:w=>`Soin · ${w.v} % des PV par échange`,buff:w=>`+${w.v} % ATT et DEF`,brk:w=>`−${w.v} % DEF adverse`,crit:w=>`+${w.v} pts de critique`,spec:w=>`Spéciales +${w.v} %`,cover:w=>`Couverture · ${w.v} % PV adverses`};
+  const sup=(fxs,s)=>fxs.who.map(w=>{const sc=CARD[w.id],u=artOf(sc,true),on=ev&&ev.w===s&&((ev.k==='heal'&&w.k==='heal')||(ev.k==='cover'&&w.k==='cover')||(ev.k==='spec'&&w.k==='spec')||(ev.crit&&w.k==='crit'));
+    const txt=on&&ev.k==='heal'?`Soigne ${F[s].nom} · +${ev.v} PV`:on&&ev.k==='cover'?`Tir de couverture · −${ev.v} PV`:SUPT[w.k](w);
+    return `<div class="sup9 k-${w.k}${on?' on':''}"><span class="sa9"${u?` style="background-image:url(${u})"`:''}>${u?'':MONDES[sc.m].k}</span><span class="st9"><small>${s==='a'?'SOUTIEN · ':'<em>SOUTIEN </em>ADVERSE · '}${sc.nom}</small><b>${txt}</b></span></div>`}).join('')||`<div class="sup9 none"><span class="st9"><small>${s==='a'?'SOUTIEN':'SOUTIEN ADVERSE'}</small><b>Aucun</b></span></div>`;
   return `<div class="stack"><section class="sec"><div class="sub-h"><div><div class="eyebrow">${run.lbl||TR_ROUNDS[run.round]} · duel ${cur.d+1} / ${m.duels.length}</div><h2>Match</h2></div><div class="mscore"><b>${sa}</b><span>–</span><b>${sb}</b></div></div>
-  <div class="arena ${run.t!=null&&run.f===TW_N-1&&run.nextAct==='twNext'?TOWERS[run.t].boss.fx.k:''}" data-k="${st}">${side(A,'a',ha)}<div class="mid">${fx}<span class="vsx">VS</span></div>${side(B,'b',hb)}</div>
+  <div class="arena v9 ${run.t!=null&&run.f===TW_N-1&&run.nextAct==='twNext'?TOWERS[run.t].boss.fx.k:''}" data-k="${st}">${side(A,'a',ha)}<div class="mid">${fx}${num?num.h:''}<span class="vsx">対</span></div>${side(B,'b',hb)}<div class="sups"><div>${sup(m.fxA,'a')}</div><div class="r">${sup(m.fxB,'b')}</div></div></div>
   <p class="cap">${cap}</p>
-  <div class="sups"><div>${sup(m.fxA,'a')}</div><div class="r">${sup(m.fxB,'b')}</div></div>
   ${fin&&run.ms&&run.pi<run.ms.length-1?`<p class="mres ok">Phase ${run.pi+1} gagnée ${m.wa} – ${m.wb}</p><p class="small muted" style="margin:0;text-align:center">${TOWERS[run.t].boss.fx.pS||''}</p><button class="btn primary" data-act="twPhase">Phase ${run.pi+2} / ${run.tot}</button>`:fin?`<p class="mres ${m.win?'ok':'ko'}">${m.win?'Victoire':'Défaite'} ${m.wa} – ${m.wb}</p>${m.tie?'<p class="small muted" style="margin:0;text-align:center">Égalité de duels : départagé par les PV restants.</p>':''}<button class="btn primary" data-act="${run.nextAct||'trNext'}">Continuer</button>`:(matchesPlayed()>=3?`<button class="btn ghost" data-act="${run.skipAct||'trSkip'}">Passer le match</button>`:`<button class="btn ghost" disabled>Passer le match · se débloque après 3 matchs (${matchesPlayed()} / 3)</button>`)}</section>
   <section class="sec"><h2 style="font-size:15px">Duels</h2><div class="duels">${m.duels.map((x,i)=>{const a=CARD[x.a],b=CARD[x.b];if(i>=doneD)return `<div class="duel wait"><span>${POS[a.poste]}</span><i>···</i><span>${POS[b.poste]}</span></div>`;
     const ds=duelStat(x);return `<div class="duel ${x.win==='a'?'wa':'wb'}"><div class="dn"><b>${a.nom}</b><small>${POS[a.poste]}</small></div><div class="dsc"><b>${x.pa}%</b><span>–</span><b>${x.pb}%</b></div><div class="dn r"><b>${b.nom}</b><small>${x.ko?'KO':POS[b.poste]}</small></div>
