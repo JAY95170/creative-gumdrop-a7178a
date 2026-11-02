@@ -1421,7 +1421,7 @@ body{--t1:#1A2040;--t2:#0A0D1C;background:radial-gradient(90% 52% at 50% 16%,var
  .sbp-t{display:flex;flex-direction:column;gap:6px;min-width:0}.sbp-t b{font:800 15px/1.2 var(--f-body)}.sbp-t small{font:600 11px/1.35 var(--f-mono);color:var(--muted)}.sbp-f{display:flex;gap:10px;align-items:center}.sbp-r{font:700 10px var(--f-mono);letter-spacing:.04em;color:var(--accent)}
  .sbp-v{display:flex;justify-content:center}
 }
-/* ===== v117 — attaques spéciales animées : rendu procédural WebGL (canvas .spgl) + voile et nom de l'attaque ===== */
+/* ===== v118 — attaques spéciales animées : rendu procédural WebGL (canvas .spgl) + voile et nom de l'attaque ===== */
 .spx{position:absolute;inset:0;z-index:8;pointer-events:none;overflow:hidden;--s:120px;--c1:#bfe8ff;--c2:#5db8ff;--c3:#10306a;--du:1.6s}
 .spx.sp-dom{--du:2.2s}
 .spx>i,.spx>b{position:absolute;display:block}
@@ -1430,7 +1430,7 @@ body{--t1:#1A2040;--t2:#0A0D1C;background:radial-gradient(90% 52% at 50% 16%,var
 .spx .sp-nm{left:50%;top:10px;white-space:nowrap;font:900 14px/1 var(--f-display);letter-spacing:-.01em;color:#fff;text-shadow:0 2px 0 var(--c3),0 0 14px var(--c2);padding:7px 18px;background:linear-gradient(90deg,transparent,rgba(0,0,0,.62) 18% 82%,transparent);animation:spNm var(--du) ease-out .1s both}
 @keyframes spNm{0%{opacity:0;translate:-50% -8px}12%{opacity:1;translate:-50% 0}72%{opacity:1;translate:-50% 0}100%{opacity:0;translate:-50% 0}}
 .arena:has(.spx) :is(.dn,.ono,.fighter.hit){animation-delay:.9s!important;animation-fill-mode:both!important}
-.arena:has(.spx.sp-beam) :is(.dn,.ono,.fighter.hit){animation-delay:.7s!important}
+.arena:has(.spx:is(.sp-beam,.sp-sniper)) :is(.dn,.ono,.fighter.hit){animation-delay:.7s!important}
 .arena:has(.spx.sp-dom) :is(.dn,.ono,.fighter.hit){animation-delay:1.3s!important}
 @media (prefers-reduced-motion:reduce){.spx{display:none}}
 /* ===== v112 — Récompense du jour : calendrier ===== */
@@ -3387,14 +3387,14 @@ const SPM={
 'op-sanji-nouveau-monde':['barrage','7','Ifrit Jambe','#e8f7ff','#4fb6ff','#14307a'],
 'op-kaido-forme-humaine':['strike','bolt','Raimei Hakke','#fff6c8','#ffd23a','#2a1a00'],
 'op-big-whole-cake-island':['strike','bolt','Foudre de Zeus','#fff0ff','#c07aff','#2a0a4a'],
-'op-shanks-marineford':['dom','aura','Haki des Rois','#ffd0d0','#e0202a','#0a0004'],
+'op-shanks-marineford':['dom','haki','Haki des Rois','#ff3a3a','#c00010','#000000'],
 'op-monkey-gear-5-contre-kaido':['dom','aura','Gear 5 · Éveil de Nika','#ffffff','#fff2b8','#5a5aff'],
 'op-roronoa-roi-des-enfers-contre-king':['slash','tri','Sanzen Sekai · Haki des Rois','#f0d8ff','#a64bff','#240a44'],
 'na-naruto-shippuden-mode-ermite':['orb','shuri','Fûton : Rasenshuriken','#ffffff','#aee4ff','#1f4fc0'],
 'na-itachi-akatsuki':['strike','fire','Amaterasu','#ff5a3a','#14040a','#000000'],
 'na-pain-chef-de-l-akatsuki':['shock','push','Shinra Tensei','#ffffff','#cfd6e6','#2a3040'],
 'na-naruto-mode-kurama-la-grande-guerre':['orb','','Bijū Rasengan','#fff3c0','#ffa21f','#7a2a00'],
-'db-son-arc-buu':['beam','','Kamehameha SSJ3','#fff7b0','#ffd92e','#7a4a00'],
+'db-son-arc-buu':['dragon','','Poing du Dragon','#fff7b0','#ffc21a','#5a3000'],
 'db-son-super-saiyan-divin':['shock','','Poing Divin','#ffe0e0','#ff3a2e','#4a0000'],
 'db-son-cell-games':['beam','','Kamehameha Père-Fils','#f0e4ff','#8fa8ff','#2a1a8a'],
 'db-cell-forme-parfaite':['beam','','Kamehameha de Cell','#f4ffd0','#8fe85a','#1a5a1a'],
@@ -3414,15 +3414,15 @@ const SPM={
 'hxh-isaac-fourmis-chimeres':['barrage','6','Bodhisattva','#fff6c8','#ffc93a','#5a3a00'],
 'hxh-isaac-cent-mille-mains-contre-meruem':['barrage','9','Cent mille mains · 99e main','#fff6c8','#ffc93a','#4a2a00'],
 'ds-yoriichi-souffle-du-soleil':['slash','tri','Souffle du Soleil','#fff0c0','#ff4a1a','#3a0600'],
-'ds-muzan-chateau-de-l-infini':['strike','tent','Lanières de chair','#ffb0b0','#c01830','#1a0208'],
-'tg-vash-le-typhon-humain':['barrage','4','Revolver','#ffffff','#ffe08a','#5a3a00'],
-'tg-millions-antagoniste':['strike','tent','Angel Blades','#ffffff','#ffc6ea','#a0306e'],
+'ds-muzan-chateau-de-l-infini':['strike','blood','Pics de sang','#ff8a8a','#b0001a','#2a0006'],
+'tg-vash-le-typhon-humain':['sniper','','Tir de précision','#ffffff','#ffd060','#4a3000'],
+'tg-millions-antagoniste':['strike','arms','Bras mécaniques','#f4f6fa','#ff9fd8','#3a3f4c'],
 'tg-vash-angel-arm':['beam','','Angel Arm','#ffffff','#ffd5ea','#ff3a98'],
 'hs-alucard-organisation-hellsing':['barrage','7','Casull & Jackal','#ffffff','#ffcf5a','#7a1a00'],
 'hs-alucard-niveau-zero':['dom','aura','Libération Niveau Zéro','#ffb0b8','#b0001a','#080002'],
 'db-son-ultra-instinct':['dom','aura','Ultra Instinct','#ffffff','#d8e8ff','#5a6aa0']};
 /* v117 — rendu procédural (WebGL) des attaques spéciales : bruit, flammes, foudre, impacts ; plus de formes CSS */
-const SPEN={beam:0,orb:1,slash:2,shock:3,barrage:4,dom:5,strike:6},SPVR={orb:{'':0,shuri:1,pu:2,big:3},slash:{moon:0,moonbig:1,line:2,tri:3,multi:4,wide:5,thrust:6},shock:{'':0,big:1,push:2},dom:{coffin:0,bubbles:1,void:2,aura:3},strike:{bolt:0,fire:1,tent:2}},SPTH={beam:.62,orb:.9,slash:.86,shock:.86,barrage:.62,dom:1.26,strike:.85};
+const SPEN={beam:0,orb:1,slash:2,shock:3,barrage:4,dom:5,strike:6,dragon:7,sniper:8},SPVR={orb:{'':0,shuri:1,pu:2,big:3},slash:{moon:0,moonbig:1,line:2,tri:3,multi:4,wide:5,thrust:6},shock:{'':0,big:1,push:2},dom:{coffin:0,bubbles:1,void:2,aura:3,haki:4},strike:{bolt:0,fire:1,tent:2,arms:3,blood:4}},SPTH={beam:.62,orb:.9,slash:.86,shock:.86,barrage:.62,dom:1.26,strike:.85,dragon:.95,sniper:.64};
 const SP_FS=`#ifdef GL_FRAGMENT_PRECISION_HIGH
 precision highp float;
 #else
@@ -3430,12 +3430,14 @@ precision mediump float;
 #endif
 uniform vec2 R,A,B;uniform float K,T,TH,S,SEED,NB;uniform vec3 C1,C2,C3;uniform int EN,VR;
 const float PI=3.14159265;
-vec2 P;vec4 O;
+vec2 P;vec4 O;float SLN=0.;
 float hs(float n){return fract(sin(n*127.1+SEED*17.3)*43758.5453);}
 float h2(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7))+SEED)*43758.5453);}
 float vn(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(h2(i),h2(i+vec2(1.,0.)),f.x),mix(h2(i+vec2(0.,1.)),h2(i+vec2(1.,1.)),f.x),f.y);}
 float fbm(vec2 p){float a=.5,s=0.;for(int i=0;i<5;i++){s+=a*vn(p);p=p*2.02+vec2(5.2,1.3);a*=.5;}return s;}
 float rp(float a,float b,float t){return clamp((t-a)/(b-a),0.,1.);}
+vec2 qb(vec2 a,vec2 b,vec2 c,float t){return mix(mix(a,b,t),mix(b,c,t),t);}
+float sdSeg(vec2 p,vec2 a,vec2 b,out float h){vec2 pa=p-a,ba=b-a;h=clamp(dot(pa,ba)/dot(ba,ba),0.,1.);return length(pa-ba*h);}
 vec2 rot(vec2 p,float a){float c=cos(a),s=sin(a);return vec2(c*p.x-s*p.y,s*p.x+c*p.y);}
 void over(vec3 c,float a){a=clamp(a,0.,1.);O.rgb=c*a+O.rgb*(1.-a);O.a=a+O.a*(1.-a);}
 void glow(vec3 c,float a){a=max(a,0.);O.rgb+=c*a;O.a=clamp(O.a+a*.55,0.,1.);}
@@ -3460,7 +3462,7 @@ void impact(vec2 c,float t0,float sc){
  float er=Sc*(.3+it*2.4);float edge=exp(-pow((l-er)/(Sc*.1),2.))*(.35+fbm(vec2(ang*4.,it*3.)+3.));glow(C1,edge*exp(-it*3.5)*.9);
  float ca=(ang+PI)/(2.*PI)*52.;float cell=floor(ca);float hr=hs(cell+1.);float aw=abs(fract(ca)-.5);
  float ln=smoothstep(.1,.0,aw)*step(.4,hr);float rr=smoothstep(Sc*.22,Sc*.4,l)*smoothstep(Sc*(1.2+hr),Sc*(.7+hr),l);
- glow(vec3(1.),ln*rr*exp(-it*5.)*1.3);
+ glow(vec3(1.),ln*rr*exp(-it*5.)*1.3*SLN);
  for(int i=0;i<10;i++){float fi=float(i);float a=hs(fi*3.7)*2.*PI;float sp=Sc*(.7+hs(fi*5.1)*2.);vec2 pp=c+vec2(cos(a),sin(a)+.25)*sp*it*(1.-it*.3);vec2 d=P-pp;float sz=Sc*.03;
   glow(mix(C1,vec3(1.),.5),exp(-dot(d,d)/(sz*sz))*exp(-it*2.2));}
  if(it<.06)glow(vec3(1.),(1.-it/.06)*.14);}
@@ -3468,6 +3470,117 @@ void cut(vec2 c,float ang,float len,float w,float t0){
  float it=T-t0;if(it<0.||it>.7)return;vec2 dd=vec2(cos(ang),sin(ang));vec2 r=P-c;float u=dot(r,dd)/len+.5;float v=dot(r,vec2(-dd.y,dd.x));
  if(u<0.||u>1.||u>rp(0.,.09,it))return;float tap=sin(u*PI);float jag=(fbm(vec2(u*6.,t0*7.))-.5)*w*.9;float ww=w*tap*(1.-rp(.12,.6,it));float dv=abs(v-jag);
  glow(C2,exp(-dv/(w*2.2))*tap*(1.-rp(.1,.7,it))*.8);over(vec3(1.),smoothstep(ww*.5,0.,dv));glow(C1,smoothstep(ww,0.,dv)*.7);}
+void rasen(vec2 c,float r,float amt){
+ if(r<1.||amt<=0.)return;vec2 q=(P-c)/r;float l=length(q);if(l>2.4)return;float a=atan(q.y,q.x);
+ float shell=smoothstep(1.05,.9,l);float sw=fbm(rot(q,T*25.)*2.5);
+ float sp1=pow(.5+.5*sin(a*3.+l*9.-T*38.),8.)*smoothstep(1.,.15,l);
+ float sp2=pow(.5+.5*sin(a*5.-l*6.-T*30.),10.)*smoothstep(1.1,.6,l);
+ glow(C2,exp(-max(l-.9,0.)*2.5)*.6*amt);over(mix(C3,C2,.6+.4*sw),shell*.5*amt);
+ glow(vec3(1.),(sp1*1.2+sp2*.8)*amt);glow(C1,smoothstep(.5,0.,l)*.9*amt);
+ float ws=pow(.5+.5*sin(a*2.-l*3.-T*22.),14.)*smoothstep(1.8,1.05,l)*smoothstep(.95,1.1,l);glow(C1,ws*.8*amt);}
+void dragon(){
+ vec2 D=B-A;float L=length(D);vec2 dir=D/L,per=vec2(-dir.y,dir.x);
+ float ch=rp(.05,.4,T)*(1.-rp(.9,1.2,T));float fa=fbm(vec2((P.x-A.x)/S*2.,(P.y-A.y)/S*1.5+T*3.));
+ glow(C2,ch*exp(-length(P-A)/(S*.55))*(.4+fa)*.7);
+ float hp=rp(.28,.95,T);hp=hp*hp*(3.-2.*hp);float vis=1.-rp(1.05,1.3,T);
+ if(hp>0.&&vis>0.){
+  float best=1e5,bs=0.,bw=1.;vec2 prev=vec2(0.);vec2 head=vec2(0.);
+  for(int i=0;i<28;i++){float fi=float(i)/27.;float u=hp-.6*fi;float uu=clamp(u,0.,1.);
+   vec2 pt=A+D*uu+per*sin(uu*10.-T*7.)*S*.45*sin(uu*PI)+vec2(0.,-S*.6*sin(uu*PI));
+   if(i==0)head=pt;
+   if(i>0&&u>-.02){float h;float d=sdSeg(P,prev,pt,h);float w=S*(.28-.21*fi);if(d-w<best-bw){best=d;bw=w;bs=fi;}}
+   prev=pt;}
+  float v=best/bw;float a=smoothstep(1.05,.92,v);
+  float scl=smoothstep(.25,.5,abs(fract(bs*40.+v*.6)-.5));
+  vec3 col=ramp3(.35+.45*(1.-v*v)+.15*scl);
+  glow(C2,exp(-max(best-bw,0.)/(S*.1))*.7*vis);float dor=fbm(vec2(bs*30.-T*8.,v*2.))*smoothstep(1.9,1.,v)*step(.95,v);glow(C1,dor*1.2*vis);over(col,a*vis);
+  vec2 hr=P-head;float hd=length(vec2(dot(hr,dir),dot(hr,per)*1.3));float hm=smoothstep(S*.36,S*.3,hd+(fbm(hr/S*6.+T*4.)-.5)*S*.12);
+  over(ramp3(.55+.3*(1.-hd/(S*.27))),hm*vis);
+  vec2 ey=head+dir*S*.08-per*S*.07+vec2(0.,-S*.04);glow(vec3(1.,.95,.8),exp(-length(P-ey)/(S*.018))*1.5*vis);
+  float mane=smoothstep(S*.5,S*.2,hd)*fbm(hr/S*5.-dir*T*6.);glow(C1,mane*.6*vis);
+  for(int j=0;j<2;j++){float sg=float(j)*2.-1.;vec2 h0=head-dir*S*.12+per*sg*S*.1;vec2 h1=head-dir*S*.45+per*sg*S*.3+vec2(0.,-S*.2);float h;float d=sdSeg(P,h0,h1,h);over(C1,smoothstep(S*.03*(1.-h)+1.,S*.03*(1.-h)-1.,d)*vis);}}
+ impact(B,TH,1.3);}
+void sniper(){
+ vec2 D=B-A;float L=length(D);vec2 dir=D/L,per=vec2(-dir.y,dir.x),rel=P-A;float d=dot(rel,dir),q=dot(rel,per);
+ float ls=rp(.1,.25,T)*(1.-rp(.58,.62,T));
+ if(d>S*.2&&d<L)glow(vec3(1.,.12,.08),exp(-abs(q)/1.1)*ls*.8*(.75+.25*sin(T*70.)));
+ float bd=length(P-B);glow(vec3(1.,.15,.1),(exp(-bd/3.5)*1.6+exp(-bd/(S*.06))*.25)*ls);
+ float mt=T-.6;
+ if(mt>0.&&mt<.3){float fd=d,fq=q;float fm=exp(-mt*16.);
+  float cone=exp(-pow(fd/(S*.5),2.)-pow(fq/(S*.05+max(fd,0.)*.18),2.))*step(-S*.05,fd);
+  float side=exp(-pow(fd/(S*.12),2.)-pow(abs(fq)/(S*.32),2.));
+  glow(vec3(1.,.9,.6),(cone*2.+side*.8)*fm);glow(C2,exp(-length(rel)/(S*.25))*fm);}
+ float tr=T-.6;if(tr>0.&&tr<.6){float head=min(tr/.05,1.)*L;float age=tr-d/L*.05;
+  float tl=step(S*.2,d)*step(d,head)*exp(-max(age,0.)*7.);glow(vec3(1.,.97,.85),exp(-abs(q)/1.)*tl*1.6);glow(C2,exp(-abs(q)/(S*.02))*tl*.5);
+  float sm=fbm(vec2(d*.01-tr*.6,q*.03))*step(S*.2,d)*step(d,head)*exp(-abs(q)/(S*.06+tr*S*.2));over(vec3(.55,.52,.5),sm*.35*(1.-rp(.15,.6,tr)));}
+ if(mt>0.){float pf=fbm((P-A)/S*3.-vec2(mt,mt*.6));float pr=S*(.15+mt*.9);float puff=smoothstep(pr,pr*.3,length(P-A-dir*S*.25)+(pf-.5)*pr)*exp(-mt*3.);over(vec3(.6,.58,.55),puff*.5);}
+ impact(B,TH,.6);}
+void coffin(){
+ vec2 r=P-B;float hw=S*.6,H=S*1.85,base=S*.9;float rise=rp(.08,.75,T);rise=1.-pow(1.-rise,3.);float top=base-H*rise;
+ float fade=1.-rp(1.3,1.5,T);float on=step(.01,rise)*fade;
+ float box=smoothstep(hw,hw-2.,abs(r.x))*step(top,r.y)*step(r.y,base)*on;
+ vec3 body=vec3(.02,.012,.035)+C2*.12*fbm(r/S*4.+vec2(0.,T*.5));over(body,box*mix(.4,.97,rp(.7,1.,T)));
+ float side=exp(-abs(abs(r.x)-hw)/(S*.02))*step(top,r.y)*step(r.y,base);float tp=exp(-abs(r.y-top)/(S*.02))*step(abs(r.x),hw);
+ glow(C1,(side+tp*1.6)*on);
+ float ox=max(abs(r.x)-hw,0.),oy=max(max(top-r.y,r.y-base),0.);float od=length(vec2(ox,oy));
+ glow(C2,exp(-od/(S*.16))*(.5+fbm(vec2(r.x*.04,r.y*.04-T*2.))*1.1)*.8*on*smoothstep(0.,S*.03,od));
+ float ab=top-r.y;if(ab>0.&&abs(r.x)<hw*1.15){float rg=pow(1.-abs(fbm(vec2(r.x*.05,ab*.012-T*3.))*2.-1.),14.);glow(C1,rg*exp(-ab/(S*.4))*on*1.6);}
+ glow(C1,pow(1.-abs(fbm(vec2(r.x*.03+T*3.,r.y*.03))*2.-1.),16.)*box*.25*rp(.4,.8,T));
+ glow(C1,pow(1.-abs(fbm(r/S*3.5+4.)*2.-1.),14.)*rp(.95,1.2,T)*box*2.4);
+ impact(B,TH,1.);}
+void fire(){
+ vec2 e=A+vec2(0.,-S*.42);float gt=T-.15;
+ if(gt>0.&&gt<.45){vec2 r=P-e;float k=sin(gt/.45*PI);glow(vec3(1.,.08,.08),(exp(-length(r)/(S*.025))*1.6+exp(-abs(r.y)/2.)*exp(-abs(r.x)/(S*.45))*.9+exp(-abs(r.x)/2.)*exp(-abs(r.y)/(S*.2))*.5)*k);}
+ vec2 r=(P-B)/S;float on=step(.52,T)*(1.-rp(1.55,1.75,T));float up=max(-r.y,0.);
+ vec2 fq=vec2(r.x*1.6,r.y*.7+.22);float bs=length(fq);
+ float fl=fbm(vec2(r.x*5.,r.y*2.2+T*5.5));float f2=fbm(vec2(r.x*9.,r.y*4.+T*8.)+3.);
+ float m=smoothstep(1.,.25,bs+(fl-.5)*1.3+(f2-.5)*.45-up*.25)*on;
+ over(mix(C2,C3,fl),smoothstep(.18,.5,m)*.97);glow(C1,pow(4.*m*(1.-m),4.)*(.4+fl)*.95);
+ float emb=h2(floor(vec2(P.x/8.,(P.y+T*90.)/8.)));glow(C1,step(.985,emb)*smoothstep(.0,.3,m)*.9);
+ glow(C1,exp(-length(P-B)/(S*.6))*exp(-max(T-.52,0.)*6.)*step(.52,T)*.5);}
+void blood(){
+ float gy=B.y+S*.8;vec2 pr=P-vec2(B.x,gy);float pg=rp(.5,.72,T)*(1.-rp(1.4,1.7,T));float pn=fbm(pr/S*4.);
+ float pool=smoothstep(1.,.85,length(vec2(pr.x/(S*.8),pr.y/(S*.14)))+(pn-.5)*.5)*pg;over(mix(C3,C2,.3+.3*pn),pool*.92);
+ for(int i=0;i<7;i++){float fi=float(i);float x0=B.x+(fi-3.)*S*.16+(hs(fi)-.5)*S*.06;float ang=(fi-3.)*.17+(hs(fi+2.)-.5)*.2;
+  float t0=.7+hs(fi+5.)*.12;float g=rp(t0,t0+.06,T)*(1.-rp(1.3,1.5,T));if(g<=0.)continue;
+  vec2 b0=vec2(x0,gy);vec2 tip=b0+vec2(sin(ang),-cos(ang))*S*(1.1+hs(fi+7.)*.7)*g;float h;float dd=sdSeg(P,b0,tip,h);float w=S*.075*(1.-h)+.5;
+  vec2 dv=normalize(tip-b0);float sd=dot(P-b0,vec2(-dv.y,dv.x))/w;
+  vec3 col=mix(C3,C2,.45+.45*sd)+vec3(1.,.75,.75)*smoothstep(.45,.8,sd)*.55;
+  over(col,smoothstep(w+1.,w-1.,dd));glow(C2,exp(-dd/(S*.05))*.25*g);}
+ for(int i=0;i<16;i++){float fi=float(i);float t0=.76+hs(fi*2.3)*.14;float it=T-t0;if(it<0.||it>.9)continue;
+  float an=-PI*.5+(hs(fi*4.1)-.5)*2.4;float sp=S*(1.2+hs(fi*6.7)*1.8);
+  vec2 pp=vec2(B.x+(hs(fi)-.5)*S*.7,gy-S*.4)+vec2(cos(an),sin(an))*sp*it+vec2(0.,S*2.4*it*it);
+  vec2 vel=vec2(cos(an),sin(an))*sp+vec2(0.,S*4.8*it);vec2 vd=normalize(vel);vec2 dq=P-pp;
+  float rr=S*(.022+hs(fi*9.)*.03);float el=length(vec2(dot(dq,vd)/1.8,dot(dq,vec2(-vd.y,vd.x))));
+  over(mix(C2,C3,.35),smoothstep(rr,rr*.6,el)*(1.-rp(.6,.9,it)));}
+ glow(C2,exp(-length(P-B)/(S*.5))*exp(-max(T-.78,0.)*5.)*step(.76,T)*.7);}
+void arms(){
+ for(int k=0;k<3;k++){float fk=float(k);float t0=.26+fk*.07;float ex=rp(t0,t0+.45,T);ex=1.-pow(1.-ex,3.);ex*=1.-rp(1.25,1.5,T);if(ex<=0.)continue;
+  vec2 a0=A+vec2(S*.2,(fk-1.)*S*.35);vec2 en=B+vec2((hs(fk)-.5)*S*.3,(fk-1.)*S*.38);vec2 D=en-a0;vec2 pe=normalize(vec2(-D.y,D.x));
+  vec2 ct=(a0+en)*.5+pe*(fk-1.)*S*.9+vec2(0.,-S*.55*(1.-abs(fk-1.)));
+  float best=1e5,bs=0.;vec2 prev=a0;
+  for(int i=1;i<=16;i++){float u=float(i)/16.*ex;vec2 pt=qb(a0,ct,en,u);float h;float d=sdSeg(P,prev,pt,h);if(d<best){best=d;bs=(float(i-1)+h)/16.;}prev=pt;}
+  float w=S*.1*(1.-.4*bs)*smoothstep(1.,.82,bs);float v=best/max(w,.5);
+  float sg=fract(bs*ex*7.);float jt=1.-smoothstep(.0,.07,min(sg,1.-sg));
+  float hl=smoothstep(.25,0.,abs(v-.35));vec3 col=mix(C3,C1,.15+.55*(1.-v*v))+vec3(1.)*hl*.4;col*=1.-jt*.7;
+  glow(C2,exp(-max(best-w,0.)/(S*.05))*.3*ex);over(col,smoothstep(w+1.,w-1.,best));
+  glow(C2,exp(-length(P-qb(a0,ct,en,ex))/(S*.05))*.9*ex);}
+ impact(B,.86,.8);}
+void haki(){
+ float on=rp(0.,.3,T)*(1.-rp(1.9,2.2,T));over(vec3(0.),on*.45);
+ vec2 r=P-A;float l=length(r);float a=atan(r.y,r.x);
+ float fl=fbm(vec2(r.x/S*2.5,r.y/S*1.5+T*3.));float au=smoothstep(1.15,.2,length(vec2(r.x/S*1.1,(r.y/S+.2)*.7))+(fl-.5)*.9)*on;
+ over(mix(C3,C2,fl*.8),au*.6);glow(C1,au*pow(fl,3.)*.9);
+ for(int j=0;j<3;j++){float wt=T-(.3+float(j)*.4);if(wt<0.)continue;float rr=wt*S*7.;
+  float nz=(fbm(vec2(a*4.,wt*3.+float(j)))-.5)*S*.6;over(vec3(0.),exp(-pow((l-rr+nz)/(S*.25),2.))*exp(-wt*1.8)*.5);glow(C2,pow(1.-abs(fbm(vec2(a*6.,l*.01-wt))*2.-1.),10.)*exp(-pow((l-rr+nz)/(S*.3),2.))*exp(-wt*1.8)*.8);}
+ float fr=floor(T*16.);float lv=rp(.3,.4,T)*(1.-rp(1.6,1.9,T));
+ for(int k=0;k<10;k++){float fk=float(k);if(hs(fk*1.3+fr*2.1)<.4)continue;float ak=hs(fk*3.3+floor(fr/4.)*1.7)*2.*PI;
+  float ja=(fbm(vec2(l*.008,fk*7.+fr*.37))-.5)*.9;float da=mod(a-ak-ja+PI,2.*PI)-PI;float dist=abs(da)*l;
+  float rm=smoothstep(S*.3,S*.6,l)*smoothstep(S*6.,S*2.5,l)*lv;float wc=2.+S*.012;
+  glow(C1,exp(-dist/(S*.035))*rm*1.1);over(vec3(0.),smoothstep(wc,wc*.4,dist)*rm);}
+ vec2 rb=P-B;float cr=pow(1.-abs(fbm(vec2(rb.x*.03+fr*.3,rb.y*.03))*2.-1.),12.)*exp(-length(rb)/(S*.6))*rp(.9,1.2,T)*(1.-rp(1.6,1.9,T));
+ over(vec3(0.),cr*.9);glow(C1,cr*.8);
+ impact(B,TH,1.2);}
 void beam(){
  vec2 D=B-A;float L=length(D);vec2 dir=D/L,per=vec2(-dir.y,dir.x),rel=P-A;float d=dot(rel,dir),q=dot(rel,per);
  float cr=rp(.05,.5,T)*(1.-rp(1.35,1.55,T));ball(A,S*.3*cr*(1.+.07*sin(T*40.)),6.,1.,C3,C2,C1);
@@ -3479,12 +3592,11 @@ void beam(){
   over(ramp3(.4+.6*core+.2*str),body*cut2*.95);glow(vec3(1.),core*cut2*.9);glow(C2,halo*cut2*.5);}
  impact(B,TH,1.1);}
 void orb(){
- vec2 D=B-A;float cr=rp(.05,.45,T);float tv=rp(.5,.85,T);tv=tv*tv*(3.-2.*tv);vec2 c=A+D*tv;float vis=1.-rp(.84,.9,T);
+ vec2 D=B-A;float cr=rp(.05,.45,T);float tv=rp(.55,.88,T);tv=tv*tv*(3.-2.*tv);vec2 c=A+D*tv;float vis=1.-rp(.84,.9,T);
  float r=S*.26*cr;float k=(VR==3)?1.5:1.;
  if(VR==2){float sep=S*.5*(1.-rp(.15,.5,T));vec2 o=vec2(cos(T*9.),sin(T*9.))*sep;
   if(T<.52){ball(c+o,r*.6,5.,1.,vec3(.05,.1,.4),vec3(.2,.5,1.),vec3(.8,.9,1.));ball(c-o,r*.6,5.,1.,vec3(.4,.02,.05),vec3(1.,.2,.25),vec3(1.,.85,.8));}}
- if(!(VR==2&&T<.52)){ball(c,r*k*(1.+.1*sin(T*30.)),(VR==1)?20.:7.,vis,C3,C2,C1);
-  if(VR==1){vec2 rl=P-c;float a=atan(rl.y,rl.x)-T*22.;float l=length(rl);float bl=pow(abs(cos(2.*a)),9.)*smoothstep(r*2.3,r*1.0,l)*smoothstep(r*.3,r*.8,l);glow(C1,bl*vis*1.2);}}
+ if(VR<=1)rasen(c,r*1.3,vis);else if(!(VR==2&&T<.52)){ball(c,r*k*(1.+.1*sin(T*30.)),7.,vis,C3,C2,C1);}if(VR==1){{vec2 rl=P-c;float a=atan(rl.y,rl.x)-T*22.;float l=length(rl);float bl=pow(abs(cos(2.*a)),9.)*smoothstep(r*2.3,r*1.0,l)*smoothstep(r*.3,r*.8,l);glow(C1,bl*vis*1.2);}}
  if(tv>0.&&tv<1.){vec2 sd=P-A;float dl=length(D);float u=clamp(dot(sd,D)/(dl*dl),0.,tv);vec2 cp=A+D*u;float dist=length(P-cp);glow(C2,exp(-dist/(S*.08))*(1.-u/max(tv,.01))*.5*vis);}
  impact(B,TH,(VR==3)?2.:1.2);}
 void moon(float Rr,float inner,float k){
@@ -3544,15 +3656,6 @@ void bubbles(){
   vec2 rr2=rot(r,(mod(fi,2.)<1.)?.45:-.45);float e=length(vec2(rr2.x/1.2,rr2.y/.3));float front=step(0.,rr2.y+.0);
   glow(vec3(1.),exp(-pow((e-1.)/.07,2.))*.8*gr*(.5+.5*front));}
  impact(B,TH,.8);}
-void coffin(){
- float rise=rp(.1,.7,T);rise=1.-pow(1.-rise,3.);vec2 r=P-B;float hw=S*.48,hh=S*.95;float ry=r.y-(1.-rise)*S*2.2;
- float fade=1.-rp(1.3,1.5,T);float inx=smoothstep(hw,hw-2.,abs(r.x));float iny=smoothstep(hh,hh-2.,abs(ry));float slab=inx*iny*step(.01,rise)*fade;
- float dx=max(abs(r.x)-hw,0.),dy=max(abs(ry)-hh,0.);float dist=length(vec2(dx,dy));float jag=.5+fbm(vec2(r.x*.04,ry*.04-T*2.))*1.1;
- glow(C2,exp(-dist/(S*.17))*jag*.9*rise*fade);glow(C1,exp(-dist/(S*.035))*.9*rise*fade);
- float arc=pow(1.-abs(fbm(vec2(r.x*.03+T*3.,ry*.03))*2.-1.),10.)*exp(-dist/(S*.25))*rise*fade;glow(C1,arc*1.6);
- vec3 body=vec3(.02,.015,.03)+C2*.1*fbm(r/S*4.);over(body,slab);
- float cr=pow(1.-abs(fbm(r/S*3.5+4.)*2.-1.),14.)*rp(.75,1.0,T)*slab;glow(C1,cr*2.2);
- impact(B,TH,1.);}
 void voidd(){
  glow(vec3(1.),exp(-pow((T-.15)/.12,2.))*.95);float vis=rp(.1,.5,T)*(1.-rp(1.8,2.2,T));
  vec2 g=P/55.;vec2 id=floor(g);float h=h2(id);vec2 f=fract(g)-vec2(.2+.6*h2(id+3.),.2+.6*h2(id+7.));
@@ -3575,11 +3678,6 @@ void bolts(){
    float lim=smoothstep(B.y+S*.4,B.y+S*.1,P.y)*step(P.y,B.y+S*.4)*(1.-fj*.2*step(P.y,B.y-S*.6));
    float fl=step(.28,hs(floor(T*40.)+fi*2.+fj));glow(C1,exp(-pow(dx/w,2.))*lim*fl*(1.6-.8*fj));glow(C2,exp(-dx/(S*.13))*.6*lim*fl*(1.-.5*fj));}}
  impact(B,.7,.95);}
-void fire(){
- vec2 r=(P-B)/S;float grow=rp(.6,1.0,T)*(1.-rp(1.55,1.75,T));vec2 q=vec2(r.x*1.5,(r.y+.1)*.9);float base=length(q);
- float fl=fbm(vec2(r.x*4.,r.y*3.+T*4.));float m=smoothstep(1.0,.2,base*(1.15-.4*grow)+(fl-.5)*1.1)*grow;
- over(mix(C2,C3,fl),smoothstep(.2,.55,m)*.96);glow(C1,pow(4.*m*(1.-m),4.)*(.4+fl)*.8);
- float emb=h2(floor(vec2(P.x/9.,(P.y+T*70.)/9.)));glow(C1,step(.985,emb)*m*.9);}
 void tent(){
  for(int i=0;i<5;i++){float fi=float(i);float x0=B.x+(fi-2.)*S*.15;float ground=B.y+S*.72;float it=T-(.62+hs(fi)*.15);if(it<0.)continue;
   float gr=rp(0.,.28,it)*(1.-rp(.55,.9,it));float H=S*1.35*gr*(.8+.4*hs(fi+4.));float h=ground-P.y;if(h<0.||h>H)continue;float u=h/H;
@@ -3588,9 +3686,11 @@ void tent(){
  impact(B,.8,.8);}
 void main(){
  P=vec2(gl_FragCoord.x,R.y-gl_FragCoord.y)/K;O=vec4(0.);
+ SLN=(EN==3||EN==7||(EN==5&&VR==3))?1.:(EN==0||EN==1)?.5:0.;
  if(EN==0)beam();else if(EN==1)orb();else if(EN==2)slash();else if(EN==3)shock();else if(EN==4)barrage();
- else if(EN==5){if(VR==0)coffin();else if(VR==1)bubbles();else if(VR==2)voidd();else aura();}
- else{if(VR==0)bolts();else if(VR==1)fire();else tent();}
+ else if(EN==5){if(VR==0)coffin();else if(VR==1)bubbles();else if(VR==2)voidd();else if(VR==4)haki();else aura();}
+ else if(EN==7)dragon();else if(EN==8)sniper();
+ else{if(VR==0)bolts();else if(VR==1)fire();else if(VR==3)arms();else if(VR==4)blood();else tent();}
  gl_FragColor=O;}
 `;
 let SPGL=null,SPRAF=0;
