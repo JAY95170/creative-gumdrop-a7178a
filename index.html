@@ -1973,13 +1973,13 @@ const artOf=(c,big,nosc)=>{const b=c.base||c.id,e=c.id.replace(/~e$/,''),sc=(!no
 const IMGC=new Map();
 function preArt(u){if(!u)return null;let p=IMGC.get(u);if(!p){const im=new Image();im.src=u;p=(im.decode?im.decode():Promise.resolve()).catch(()=>{}).then(()=>im);p.im=im;IMGC.set(u,p);if(IMGC.size>40)IMGC.delete(IMGC.keys().next().value)}return p}
 function warmArt(){/* vignettes d'abord (album, booster), puis les clips de scène, puis les grandes images en tâche de fond ; en pause pendant l'ouverture d'un booster pour ne pas retarder le tirage */const L=[...ART].map(k=>'images/s/'+k+'.webp'+avOf(k)).concat([...ART].map(k=>'images/'+k+'.webp'+avOf(k)));const NS=ART.size;let i=0,clips=false;const keep=[];const nx=()=>{if(i>=L.length)return;if(RV){setTimeout(nx,600);return}if(i>=NS&&!clips){clips=true;Object.values(CLIP).forEach(u=>preVid(u));Object.values(CLIP_AUD).forEach(u=>preSnd(u))}const im=new Image();im.decoding='async';im.onload=im.onerror=()=>{im.onload=im.onerror=null;setTimeout(nx,i<NS?0:80)};im.src=L[i++];keep.push(1)};for(let j=0;j<4;j++)nx();window.__warm=keep}
-const SCN_K=.1,SCN_PACKS=['or','ecl'];/* scènes : 1/10 de la chance de leur rareté dans le booster (Or, Éclatant) */
+const SCN_RATE={or:.005,ecl:.03},SCN_PACKS=['or','ecl'];/* v129 : scènes iconiques = taux propre, indépendant de la rareté de la carte de base : 0,5 % par Booster Or (≈ 1 sur 200), 3 % par Éclatant, UNE scène au plus par booster */
 const SCENES=SCN_DEF.filter(([b])=>CARD[b]).map(([b,t])=>{const c={...CARD[b],id:b+'~s',scn:t,base:b};CARD[c.id]=c;const a=CARD[b+'~e'];if(a){const e={...a,id:b+'~s~e',scn:t,base:b};CARD[e.id]=e;AWK.push(e)}return c});
 /* tourbillon (spirale d'Archimède) : on est aspiré dans le passé avant la scène */
 const SWIRL_SVG=(()=>{let d='';for(let t=0;t<=16*Math.PI;t+=.1){const r=t*6.4;d+=(d?'L':'M')+(200+r*Math.cos(t)).toFixed(1)+' '+(200+r*Math.sin(t)).toFixed(1)}
   return `<svg viewBox="0 0 400 400" aria-hidden="true"><path d="${d}" fill="none" stroke="#5a4320" stroke-width="14" opacity=".45" transform="rotate(180 200 200)"/><path d="${d}" fill="none" stroke="#E3C27A" stroke-width="4" stroke-linecap="round"/></svg>`})();
-function scnRate(key,r){if(!SCN_PACKS.includes(key))return 0;return SCN_K*PACKS[key].slots.reduce((a,sl)=>a+(sl[r]||0),0)}
-function rollScene(key){for(const r of ['LR','UR','SSR','SR','R','N']){const L=SCENES.filter(c=>c.r===r&&S.owned[c.base]>0);/* une scène ne tombe que si tu as déjà sa carte de base */if(!L.length||Math.random()>=scnRate(key,r))continue;const nw=L.filter(c=>!S.seen[c.id]);return pickR(nw.length?nw:L).id}return null}
+function scnRate(key){return SCN_PACKS.includes(key)?(SCN_RATE[key]||0):0}
+function rollScene(key){const L=SCENES.filter(c=>S.owned[c.base]>0);/* une scène ne tombe que si tu as déjà sa carte de base */if(!L.length||Math.random()>=scnRate(key))return null;const nw=L.filter(c=>!S.seen[c.id]);return pickR(nw.length?nw:L).id}
 
 const URS=CARDS.filter(c=>c.r==='UR');const SPECIAL=CARDS.filter(c=>c.r==='UR'||c.r==='LR');const LRS=CARDS.filter(c=>c.r==='LR');
 const BYR={N:[],R:[],SR:[],SSR:[],UR:[],LR:[]};CARDS.forEach(c=>BYR[c.r].push(c.id));
@@ -2548,7 +2548,7 @@ function bkStyle(rel){const d=rel===1?1:rel===2?-1:0;return d===0?'transform:tra
 /* chance d'une carte précise dans un booster (≈ une fois sur N) */
 function cardRate(key,c){let p;try{p=P(key)}catch(e){return 0}if(!p||!p.slots||!p.slots.length)return 0;
   if(c.r==='LR')return key==='or'&&c.id===season().lr?LR_OR:0;
-  if(c.scn)return scnRate(key,c.r);
+  if(c.scn)return scnRate(key)/SCENES.length;
   const sh=shareOf(poolFor(p,c.r),c.id);return 1-p.slots.reduce((a,sl)=>a*(1-(sl[c.r]||0)*sh),1)}
 function bkRates(k){const p=PACKS[k],o=[];for(const r of ['R','SR','SSR','UR']){const pr=1-p.slots.reduce((a,sl)=>a*(1-(sl[r]||0)),1);if(pr<=0)continue;o.push([r,pr>=.999?'garantie':'≈ '+pct(pr)+' %'])}if(k==='or')o.push(['LR',pct(LR_OR)+' %']);return o}
 function bkInfo(k){const p=PACKS[k],T=SA_T[k],can=S.coins>=p.price,ch=bkRates(k).map(([r,v])=>`<span class="bi-c"><b style="color:${RCOLV[r]}">${r}</b> ${v}</span>`).join('');
