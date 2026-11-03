@@ -673,7 +673,7 @@ nav.tabs button svg{width:19px;height:19px}
 .seg{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:4px;padding:3px;border-radius:10px;background:var(--surface);border:1px solid var(--line)}
 .seg button{position:relative;padding:7px 4px;border-radius:7px;font-size:12px;font-weight:700;color:var(--muted)}
 .seg button[aria-pressed="true"]{background:var(--surface-2);color:var(--text)}
-.seg button .dot{position:absolute;top:5px;right:8px;width:7px;height:7px;border-radius:50%;background:var(--bad)}
+.seg button.seg-lk{opacity:.55}.seg button.seg-lk svg{width:11px;height:11px;flex:none;margin-right:4px;vertical-align:-1px}.seg button .dot{position:absolute;top:5px;right:8px;width:7px;height:7px;border-radius:50%;background:var(--bad)}
 /* vente */
 .srow{display:grid;grid-template-columns:45px 1fr auto;gap:10px;align-items:center;padding:6px 9px;border-radius:10px;background:var(--surface);border:1px solid var(--line)}
 .srow.on{border-color:var(--accent)}
@@ -1945,7 +1945,7 @@ const CARDS=RAW.map(([id,m,nom,v,cl,poste,r,t,tags,full])=>{const c={id,m,nom,v,
 const CARD=Object.fromEntries(CARDS.map(c=>[c.id,c]));
 const BASE=CARDS.filter(c=>c.r!=='UR'&&c.r!=='LR');
 /* ---------- ÉVEIL ----------
-   Une carte s'éveille une seule fois. Coût : la carte + 1 doublon + 1 Pierre d'éveil. Elle garde sa rareté (marquée « éveillée »),
+   Une carte s'éveille une seule fois. Coût : voir AWK_COST (exemplaires carte comprise + pierres). Elle garde sa rareté (marquée « éveillée »),
    gagne +5 de note (plafonnée juste au-dessus de sa tranche) et garde son profil. Chaque semaine, 3 cartes seulement sont éveillables. */
 const AWK_CAP={N:58,R:67,SR:75,SSR:92,UR:98};
 const AWK=CARDS.filter(c=>c.r!=='LR').map(c=>{const a={...c,id:c.id+'~e',awk:true,base:c.id,t:Math.min(AWK_CAP[c.r],c.t+5)};delete a.flag;a.s=URS_FIX[c.id]?awkFix(URS_FIX[c.id],a):genStats(a);a.note=Math.round(a.s.reduce((x,v,i)=>x+v*W[a.poste][i],0)/100);return a});
@@ -2323,7 +2323,7 @@ function whoHTML(){const p=S.prof||{},nm=p.name||'Joueur',c=avatarCard(),u=c?art
 const I18T=[
 ['Rapide','Quick','Rápido'],['Formation','Formation','Formación'],['Choisir les cartes','Pick the cards','Elegir las cartas'],['Composer l\'équipe','Build the team','Componer el equipo'],['Récompense','Reward','Recompensa'],['+ revente des cartes données','+ resale of the cards given','+ reventa de las cartas entregadas'],
 ['Aujourd\'hui','Today','Hoy'],['Reçue','Received','Recibida'],['Reçue · reviens demain','Received · come back tomorrow','Recibida · vuelve mañana'],['Booster Or','Gold Booster','Booster Oro'],['+ 1 PIERRE','+ 1 STONE','+ 1 PIEDRA'],['Bronze','Bronze','Bronce'],['Argent','Silver','Plata'],
-['7 cartes.','7 cards.','7 cartas.'],['4 duels.','4 duels.','4 duelos.'],['Gratuit · illimité','Free · unlimited','Gratis · ilimitado'],['Tu construis une équipe de toutes pièces, puis tu montes l\'échelle contre des bots de plus en plus forts. Tes cartes ne sont pas gardées : tu gagnes la récompense du tour atteint.','You build a team from scratch, then climb the ladder against ever stronger bots. Your cards are not kept: you win the reward of the round you reach.','Construyes un equipo desde cero y subes la escalera contra bots cada vez más fuertes. Tus cartas no se guardan: ganas la recompensa de la ronda alcanzada.'],['Formation','Formation','Formación'],['Tank, DPS, Distance, Soutien','Tank, DPS, Ranged, Support','Tank, DPS, Distancia, Apoyo'],['Draft','Draft','Draft'],['1 carte parmi 4 par case','1 card out of 4 per slot','1 carta de 4 por casilla'],['Élimination directe','Knockout','Eliminación directa'],['Jusqu\'où tu montes','How far you climb','Hasta dónde subes'],['Pièces · boosters','Coins · boosters','Monedas · boosters'],['Comment se joue un duel','How a duel works','Cómo se juega un duelo'],['Lancer un tournoi','Start a tournament','Iniciar un torneo'],['1er titre de la semaine : Booster Or. Les suivants : Booster Argent.','1st title of the week: Gold Booster. Next ones: Silver Booster.','1.er título de la semana: Booster Oro. Los siguientes: Booster Plata.'],['Booster Or déjà reçu cette semaine : les titres donnent un Booster Argent jusqu\'à lundi.','Gold Booster already received this week: titles give a Silver Booster until Monday.','Booster Oro ya recibido esta semana: los títulos dan un Booster Plata hasta el lunes.'],
+['7 cartes.','7 cards.','7 cartas.'],['4 duels.','4 duels.','4 duelos.'],['Gratuit · illimité','Free · unlimited','Gratis · ilimitado'],['Tu construis une équipe de toutes pièces, puis tu montes l\'échelle contre des bots de plus en plus forts. Tes cartes ne sont pas gardées : tu gagnes la récompense du tour atteint.','You build a team from scratch, then climb the ladder against ever stronger bots. Your cards are not kept: you win the reward of the round you reach.','Construyes un equipo desde cero y subes la escalera contra bots cada vez más fuertes. Tus cartas no se guardan: ganas la recompensa de la ronda alcanzada.'],['Formation','Formation','Formación'],['Tank, DPS, Distance, Soutien','Tank, DPS, Ranged, Support','Tank, DPS, Distancia, Apoyo'],['Draft','Draft','Draft'],['1 carte parmi 4 par case','1 card out of 4 per slot','1 carta de 4 por casilla'],['Élimination directe','Knockout','Eliminación directa'],['Jusqu\'où tu montes','How far you climb','Hasta dónde subes'],['Pièces · boosters','Coins · boosters','Monedas · boosters'],['Comment se joue un duel','How a duel works','Cómo se juega un duelo'],['Lancer un tournoi','Start a tournament','Iniciar un torneo'],['Histoire','Story','Historia'],['Mode histoire : en cours de création, prochaine mise à jour.','Story mode: in the works, coming in the next update.','Modo historia: en desarrollo, próxima actualización.'],['1er titre de la semaine : Booster Or + 1 Pierre d\'éveil. Les suivants : Booster Argent.','1st title of the week: Gold Booster + 1 Awakening Stone. Next ones: Silver Booster.','1.er título de la semana: Booster Oro + 1 Piedra de despertar. Los siguientes: Booster Plata.'],['Booster Or déjà reçu cette semaine : les titres donnent un Booster Argent jusqu\'à lundi.','Gold Booster already received this week: titles give a Silver Booster until Monday.','Booster Oro ya recibido esta semana: los títulos dan un Booster Plata hasta el lunes.'],
 ['joué','played','jugado'],['joués','played','jugados'],['champion','title','título'],['champions','titles','títulos'],
 ['Bienvenue dans ACG','Welcome to ACG','Bienvenido a ACG'],['Le jeu en 3 étapes','The game in 3 steps','El juego en 3 pasos'],
 ['Ouvre des boosters','Open boosters','Abre boosters'],['Bronze, Argent ou Or : 5 cartes par booster. Plus une carte est forte, plus elle est rare.','Bronze, Silver or Gold: 5 cards per booster. The stronger a card, the rarer it is.','Bronce, Plata u Oro: 5 cartas por booster. Cuanto más fuerte es una carta, más rara es.'],
@@ -3230,13 +3230,13 @@ const TR_RULES=`<ul class="trrules">
     <li>Les Soutiens ne se battent pas. Leur effet dépend de leur classe et de leur POU : Healer soigne, Support donne ATT et DEF, Bagarreur Brise-garde (baisse la DEF adverse), Épéiste augmente les critiques, Mage renforce les attaques spéciales, Tireur fait des tirs de couverture. À POU égale, tous les effets se valent.</li></ul>`;
 function trHomeMob(){const rw=TR_RW,hs=[34,58,84,112,148],lab=['0 V','1 V','2 V','3 V','Champion'];
   const vis=[gfxCoin(30),gfxCoin(30),gfxCoin(30),gfxSachet('bronze',26),gfxSachet(rw[4].pack,30,true)];
-  const txt=['50','150','400','Bronze<br>+ 300','1er titre : Or<br>+ 500'];txt[4]=(trOrAvail()?'Or':'Argent')+'<br>+ 500';
+  const txt=['50','150','400','Bronze<br>+ 300','1er titre : Or<br>+ 500'];txt[4]=(trOrAvail()?'Or + 1 pierre':'Argent')+'<br>+ 500';
   return `<div class="trm"><div class="trm-h"><span class="eyebrow">Gratuit · illimité</span><h1>7 cartes.<br>4 duels.</h1><p>Tu construis une équipe de toutes pièces, puis tu montes l'échelle contre des bots de plus en plus forts. Tes cartes ne sont pas gardées : tu gagnes la récompense du tour atteint.</p></div>
   <ol class="trm-s"><li><b>1</b><i>Formation</i><small>Tank, DPS, Distance, Soutien</small></li><li><b>2</b><i>Draft</i><small>1 carte parmi 4 par case</small></li><li><b>3</b><i>4 duels</i><small>Élimination directe</small></li></ol>
   <section class="trm-l"><div class="trm-lh"><h2>Jusqu'où tu montes</h2><span>Pièces · boosters</span></div>
   <div class="trm-bars">${hs.map((h,i)=>`<div class="${i===4?'top':''}"><div class="trm-v">${vis[i]}</div><div class="trm-b" style="height:${h}px"></div></div>`).join('')}</div>
   <div class="trm-lab">${lab.map((l,i)=>`<div class="${i===4?'top':''}"><span>${l}</span><b>${txt[i]}</b></div>`).join('')}</div>
-  <p class="trm-n">${trOrAvail()?'1er titre de la semaine : Booster Or. Les suivants : Booster Argent.':'Booster Or déjà reçu cette semaine : les titres donnent un Booster Argent jusqu\'à lundi.'}</p></section>
+  <p class="trm-n">${trOrAvail()?'1er titre de la semaine : Booster Or + 1 Pierre d\'éveil. Les suivants : Booster Argent.':'Booster Or déjà reçu cette semaine : les titres donnent un Booster Argent jusqu\'à lundi.'}</p></section>
   <details class="trm-r"><summary>Comment se joue un duel</summary>${TR_RULES}</details>
   <div class="trm-go"><button class="btn primary" data-act="trStart">Lancer un tournoi</button></div></div>`}
 /* v106 — Tournoi PC : le chemin des 4 combats avec la récompense de chaque palier (pas de classement) */
@@ -3857,7 +3857,7 @@ function countUp(){document.querySelectorAll('[data-count]').forEach((el,k)=>{co
 
 function sellVal(id){const c=CARD[id];return SELL[c.r]*(c.awk?2:1)}
 /* coût d'éveil : plus la carte est commune, plus il faut d'exemplaires (carte comprise) ; plus elle est rare, plus il faut de pierres */
-const AWK_COST={N:{c:8,s:1},R:{c:5,s:1},SR:{c:4,s:1},SSR:{c:2,s:2},UR:{c:2,s:3}};
+const AWK_COST={N:{c:8,s:1},R:{c:5,s:1},SR:{c:4,s:2},SSR:{c:2,s:3},UR:{c:2,s:4}};/* v130 : pierres SR 2, SSR 3, UR 4 (décision de Harlem 3/11 ; UR 4 = proposition à valider) ; exemplaires inchangés */
 function awkCan(id){const c=CARD[id],k=AWK_COST[c.r];return !!k&&!(S.awkDone||{})[id]&&(S.owned[id]||0)>=k.c&&(S.stones||0)>=k.s}
 function daysToMonday(){const d=now();const k=(8-d.getDay())%7||7;return k}
 const STONE=(sz)=>`<span class="stone ${sz||''}" aria-hidden="true"><i>覚</i></span>`;
@@ -3977,7 +3977,7 @@ function twWeakText(w){return w.k==='cl'?'les '+w.v+'s':'les cartes '+MONDES[w.v
 
 function twWeakCount(fl,ids){return ids.filter(Boolean).filter(id=>twBoost(fl.weak)(CARD[id])>1&&CARD[id].poste!=='Soutien').length}
 function vPlay(){const sub=unl('draft')?(S.psub||'tw'):'tw';
-  const seg=`<div class="seg"><button data-act="psub" data-v="tw" aria-pressed="${sub==='tw'}">La Tour Céleste</button><button data-act="psub" data-v="tr" aria-pressed="${sub==='tr'}">Tournoi draft${unl('draft')?'':' · niv. '+UNLOCK.draft}</button></div>`;
+  const seg=`<div class="seg"><button data-act="psub" data-v="tw" aria-pressed="${sub==='tw'}">La Tour Céleste</button><button data-act="psub" data-v="tr" aria-pressed="${sub==='tr'}">Tournoi draft${unl('draft')?'':' · niv. '+UNLOCK.draft}</button><button data-act="histoire" class="seg-lk" aria-disabled="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3" y="7" width="10" height="7" rx="1.5"/><path d="M5.2 7V5a2.8 2.8 0 0 1 5.6 0v2"/></svg>Histoire</button></div>`;
   const run=sub==='tw'?twState().run:trState().run;
   if(run&&run.ph==='match'){MCTX={get:sub==='tw'?()=>S.tw&&S.tw.run:()=>S.tr&&S.tr.run,sub};setTimeout(()=>{if(!TRT)trAnim()},0)}
   return `<div class="stack">${run&&run.ph==='match'?'':seg}${sub==='tw'?vTower():vTour()}</div>`}
@@ -4077,7 +4077,7 @@ function twNext(silent){const st=twState(),r=st.run;if(!r)return;st.run=null;con
   else{save();render()}
   $('#main').scrollTop=0}
 
-function trEnd(wins,silent){const st=trState();{const d=rec().dr;d.p++;if(wins===4)d.c++;d.b=Math.max(d.b,wins)}const rw=Object.assign({},TR_RW[wins]);st.run=null;if(wins===4&&rw.pack==='or')S.trOrWk=wkKey();grant(rw);save();render();
+function trEnd(wins,silent){const st=trState();{const d=rec().dr;d.p++;if(wins===4)d.c++;d.b=Math.max(d.b,wins)}const rw=Object.assign({},TR_RW[wins]);st.run=null;if(wins===4&&rw.pack==='or'){S.trOrWk=wkKey();rw.stone=1}grant(rw);/* v130 : le 1er titre de la semaine donne aussi 1 Pierre d'éveil */save();render();
   if(!silent)showReward(wins===4?'Champion !':'Tournoi terminé',wins===4?'Tu remportes le tournoi':wins+' victoire'+(wins>1?'s':''),rw.pack?{pack:rw.pack}:null,rwText(rw)+(rw.pack?' ajouté à Mes boosters':''))}
 
 const ACT={
@@ -4096,6 +4096,7 @@ const ACT={
   initClaim:()=>{const i=initStep();if(i<0||!initDone(i))return;S.init['ok'+i]=1;const x=INIT[i];grant(x.rw);addXp(30);if(i===INIT.length-1)S.init.done=true;SFX.coin();save();render();
     showReward(i===INIT.length-1?'Initiation terminée':'Initiation · '+(i+1)+' / '+INIT.length,i===INIT.length-1?'Ton booster de bienvenue':x.t,x.rw.pack?{pack:x.rw.pack}:null,rwText(x.rw)+(x.rw.pack?' ajouté à Mes boosters':''))},
   noop:()=>{},
+  histoire:()=>toast('Mode histoire : en cours de création, prochaine mise à jour.'),/* v130 : mode verrouillé, annoncé */
   goTower:()=>{if(!unl('tour')){toast('La Tour Céleste : débloquée au niveau '+UNLOCK.tour+'.');return}S.tab='tour';S.psub='tw';save();render();$('#main').scrollTop=0},
   psub:v=>{if(v==='tr'&&!unl('draft')){toast('Tournoi draft : débloqué au niveau '+UNLOCK.draft+'.');return}S.psub=v;clearTimeout(TRT);TRT=null;save();render();$('#main').scrollTop=0},
   twFl:v=>twSheet(+v),
