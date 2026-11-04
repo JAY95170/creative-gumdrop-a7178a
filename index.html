@@ -483,6 +483,7 @@ nav.tabs button[aria-current="page"] svg{color:var(--accent)}
 .wrow[aria-current=true]{background:color-mix(in srgb,var(--accent) 9%,transparent);border-radius:10px}
 .wrow[aria-current=true] .wn{color:var(--accent)}
 @keyframes wsIn{from{opacity:0}}@keyframes wsUp{from{transform:translateY(40px)}}
+.rv-dark{position:fixed;inset:0;z-index:60;pointer-events:none;transition:opacity .6s ease}
 .clipbox{position:fixed;inset:0;z-index:6;background:#000;display:flex;align-items:center;justify-content:center;animation:clipIn .35s ease-out}
 .clipbox.clip-out{pointer-events:none;animation:clipOut .45s ease .12s forwards}@keyframes clipOut{from{opacity:1}to{opacity:0}}.clipbox.replay{z-index:60}
 .clipbox video{width:100%;height:100%;object-fit:contain;pointer-events:none}
@@ -2843,7 +2844,7 @@ function drawRV0(){scnSndSync();if(!RV||RV.ph==='pack'||RV.ph==='tear'||RV.ph===
     setTimeout(()=>{if(!ok())return;const mb=st.querySelector('.mg-base');if(mb)mb.innerHTML=cardHTML(b,{big:true});const f=st.querySelector('.mg-fl');if(f)f.classList.add('on');st.classList.add('shake')},2100);
     setTimeout(()=>{if(!ok())return;st.classList.remove('shake');RV.mdone=true;const hh=$('#mgHint');if(hh)hh.textContent=RV.i<RV.cards.length-1?'Touche pour la suivante':'Touche pour voir le résumé'},3000);return}
   if(RV.ph==='swirl'){st.innerHTML=`<div class="swirl">${SWIRL_SVG}</div>`;return}
-  if(RV.ph==='clip'){st.innerHTML=`<div class="clipbox"><b class="clip-cap">${c.scn?'SCÈNE ICONIQUE · '+c.nom+' « '+c.scn+' »':c.nom+' · '+c.vl}</b></div>`;playClip(st.querySelector('.clipbox'),clipOf(c),()=>{if(RV&&RV.ph==='clip'){const bx=st.querySelector('.clipbox');if(bx){document.body.appendChild(bx);void bx.offsetWidth;bx.classList.add('clip-out');setTimeout(()=>bx.remove(),700)}showCard()}});return}
+  if(RV.ph==='clip'){st.innerHTML=`<div class="clipbox"><b class="clip-cap">${c.scn?'SCÈNE ICONIQUE · '+c.nom+' « '+c.scn+' »':''}</b></div>`;playClip(st.querySelector('.clipbox'),clipOf(c),()=>{if(RV&&RV.ph==='clip'){const bx=st.querySelector('.clipbox');if(bx){document.body.appendChild(bx);void bx.offsetWidth;bx.classList.add('clip-out');setTimeout(()=>bx.remove(),700)}showCard()}});return}
   if(RV.ph==='flash'){if(c.scn){st.classList.add('fbk');st.innerHTML=`<div class="flash fb"><span class="fb-k">回想</span><b>SCÈNE ICONIQUE</b><i>${c.nom} · « ${c.scn} »</i></div><div class="rv-cap"></div>`;return}const rcol=getComputedStyle(st).getPropertyValue('--glow').trim()||'#fff';const cl=clueC(c);if(cl)st.style.setProperty('--glow',RCOL[c.r]);const rc2=cl?(c.r==='UR'?'#A63BFF':c.r==='LR'?'#FFFFFF':rcol):rcol;
     st.innerHTML=`<div class="tease t-${c.r}"><i class="rays" style="background-image:url(${raysURL(rc2)})"></i><div class="cback"><span>ACG</span></div><b class="rl">${c.r}</b></div><div class="rv-cap">${cl?'<div class="clues"></div><span class="hint clue-h">Touche pour le premier indice</span>':''}</div>`;return}
   const sp=c.r==='LR'?sparks(28):c.r==='UR'?sparks(20):c.r==='SSR'?sparks(14):c.r==='SR'?sparks(8):'';
@@ -2854,6 +2855,15 @@ function drawRV0(){scnSndSync();if(!RV||RV.ph==='pack'||RV.ph==='tear'||RV.ph===
   requestAnimationFrame(()=>requestAnimationFrame(flip));setTimeout(flip,500);
 }
 /* lecture du clip : plusieurs sources essayées tour à tour (copie locale, stockage média, lien direct, données) ; sinon flashback texte + raison */
+/* v146 : entrée sur mesure d'une UR/LR qui a un clip (≠ scène iconique, pas de tourbillon) : au 1er toucher les ténèbres recouvrent l'écran depuis les bords, puis le clip, puis la carte */
+function rvDark(){const i=RV.i,host=$('#reveal')||document.body;RV.ph='dark';const v=document.createElement('div');v.className='rv-dark';v.setAttribute('aria-hidden','true');host.appendChild(v);
+  if(!S.mute){tone(55,0,1.7,'sine',.09,28);tone(82,.15,1.5,'triangle',.04,41)}
+  const D=1600,t0=performance.now();
+  const go=()=>{if(!RV||RV.i!==i||RV.ph!=='dark'){v.remove();return}v.style.background='#000';RV.ph='clip';drawRV();setTimeout(()=>{v.style.opacity='0'},150);setTimeout(()=>v.remove(),800)};
+  const step=now=>{if(!RV||RV.i!==i||RV.ph!=='dark'){v.remove();return}const k=Math.min(1,(now-t0)/D),e=k*k*(3-2*k),r=82-106*e;
+    v.style.background=`radial-gradient(ellipse at 50% 46%,rgba(0,0,0,0) ${r}%,rgba(0,0,0,.98) ${r+24}%)`;
+    if(k<1)requestAnimationFrame(step);else go()};
+  requestAnimationFrame(step)}
 function playClip(box,u,done){const o=preVid(u)||{},base=Object.keys(CLIP).find(k=>CLIP[k]===u||CLIPM[k]===u);
   const v=document.createElement('video');v.muted=true;v.defaultMuted=true;v.playsInline=true;v.setAttribute('playsinline','');v.setAttribute('muted','');v.setAttribute('webkit-playsinline','');v.preload='auto';box.prepend(v);
   const why=[];let fin=false,t=0,att=0,src=[];
@@ -2892,13 +2902,13 @@ function showCard(){const i=RV.i;if(RV.shown===i)return;
 function nextCard(){
   RV.i++;const r=CARD[RV.cards[RV.i].id].r;
   if(r==='N'){SFX.flip();showCard();return}
-  if(CARD[RV.cards[RV.i].id].scn||clipOf(CARD[RV.cards[RV.i].id])){RV.ph='swirl';if(!S.mute){tone(260,0,1.7,'sine',.07,45);tone(130,.2,1.5,'sawtooth',.03,40)}drawRV();rvT=setTimeout(()=>{if(RV&&RV.ph==='swirl'){if(clipOf(CARD[RV.cards[RV.i].id])){RV.ph='clip';drawRV();return}RV.ph='flash';drawRV();rvT=setTimeout(()=>{if(RV&&RV.ph==='flash')showCard()},2200)}},1700);return}
+  if(CARD[RV.cards[RV.i].id].scn){RV.ph='swirl';if(!S.mute){tone(260,0,1.7,'sine',.07,45);tone(130,.2,1.5,'sawtooth',.03,40)}drawRV();rvT=setTimeout(()=>{if(RV&&RV.ph==='swirl'){if(clipOf(CARD[RV.cards[RV.i].id])){RV.ph='clip';drawRV();return}RV.ph='flash';drawRV();rvT=setTimeout(()=>{if(RV&&RV.ph==='flash')showCard()},2200)}},1700);return}
   if(clueC(CARD[RV.cards[RV.i].id])){RV.ph='flash';RV.clue=0;RV.ct=Date.now();SFX.charge(r);drawRV();return}
   RV.ph='flash';SFX.charge(r);drawRV();rvT=setTimeout(()=>{if(RV&&RV.ph==='flash')showCard()},r==='LR'?2300:r==='UR'?1900:r==='SSR'?1350:r==='SR'?850:450);
 }
 function stepRV(){
-  if(RV.ph==='multi')return;
-  if(RV.ph==='flash'&&clueC(CARD[RV.cards[RV.i].id])){if(Date.now()-RV.ct<(RV.clue===0?900:550))return;if(RV.clue<2){RV.clue++;RV.ct=Date.now();rvClue();return}showCard();return}
+  if(RV.ph==='multi'||RV.ph==='dark')return;
+  if(RV.ph==='flash'&&clueC(CARD[RV.cards[RV.i].id])){if(Date.now()-RV.ct<(RV.clue===0?900:550))return;if(RV.clue===0&&clipOf(CARD[RV.cards[RV.i].id])){rvDark();return}if(RV.clue<2){RV.clue++;RV.ct=Date.now();rvClue();return}showCard();return}
   if((RV.ph==='flash'||RV.ph==='swirl'||RV.ph==='clip')&&prot(CARD[RV.cards[RV.i].id]))return;
   if(RV.ph==='merge'){if(!RV.mdone)return;RV.mdone=false;RV.ph='card';if(RV.skip){goNextNew();return}if(RV.i>=RV.cards.length-1){RV.ph='sum';SFX.tap();drawRV()}else nextCard();return}
   clearTimeout(rvT);
