@@ -1806,6 +1806,54 @@ body{--t1:#1A2040;--t2:#0A0D1C;background:radial-gradient(90% 52% at 50% 16%,var
  .rvr{padding:20px 24px;gap:22px;margin-top:8px}.rvr-l span{font-size:11px}.rvr-l b{font-size:72px}.rvr-l b i{font-size:38px}.rvr-r span{font-size:16px}.rvr-r small{font-size:13px}
  .stage>.rvx-word{font-size:480px;left:-30px;top:280px}.stage>.rvx-lines{left:34%;top:50%}.stage>.rvx-ring{left:34%;top:50%;width:520px;height:520px;margin:-260px 0 0 -260px}
 }
+/* ---------- v157 · Mode histoire ---------- */
+.st-sky{--sx:0;position:relative;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x proximity;scrollbar-width:none;padding:44px 0 8px;border:1px solid var(--line);border-radius:14px;background-color:var(--surface);background-image:radial-gradient(1px 1px at 20px 30px,rgba(255,255,255,.55),transparent),radial-gradient(1px 1px at 96px 84px,rgba(255,255,255,.4),transparent),radial-gradient(1.5px 1.5px at 164px 18px,rgba(255,255,255,.6),transparent),radial-gradient(1px 1px at 52px 104px,rgba(255,255,255,.35),transparent);background-size:210px 124px;background-position-x:calc(var(--sx,0)*-.25px);cursor:grab}
+.st-sky::-webkit-scrollbar{display:none}.st-sky.drag{cursor:grabbing;scroll-snap-type:none}
+.st-track{display:flex;gap:6px;width:max-content;min-width:100%;padding:0 max(14px,calc(50% - 85px))}
+.st-pl{flex:none;width:150px;display:flex;flex-direction:column;align-items:center;gap:3px;padding:0 0 8px;scroll-snap-align:center;opacity:.78;transition:opacity .2s,transform .2s;user-select:none;-webkit-user-select:none}
+.st-pl.on{opacity:1}.st-pl.on b{color:var(--accent)}
+.st-wrap{position:relative;width:128px;height:128px;transform:translateX(calc(var(--mx,0)*var(--d,0)*-5px - var(--mx,0)*9px));transition:transform .15s}
+.st-img{width:100%;height:100%;object-fit:contain;transform:rotate(calc(var(--sx,0)*.05deg));-webkit-user-drag:none;pointer-events:none}
+.st-pl.on .st-img{filter:drop-shadow(0 0 14px rgba(242,194,48,.25))}
+.st-pl.lk .st-img{filter:grayscale(.9) brightness(.5)}
+.st-head{position:absolute;top:-26px;left:50%;width:56px;height:56px;margin-left:-28px;border-radius:50%;border:2px solid var(--accent);background:var(--surface-2) center 14%/cover;z-index:2;display:grid;place-items:center;font:700 22px var(--f-display);color:var(--accent)}
+.st-lock{position:absolute;inset:14%;display:grid;place-items:center;border-radius:50%;background:rgba(5,6,10,.55);color:#fff;z-index:3}.st-lock svg{width:26px;height:26px}
+.mv .st-lock{inset:auto 4px 4px auto;width:36px;height:36px;border-radius:50%;background:var(--surface-2);border:1px solid var(--line)}.mv .st-lock svg{width:18px;height:18px}
+.st-mv{width:100%;height:100%;border-radius:50%;border:1px dashed var(--line);background:var(--surface-2);display:grid;place-items:center;font:700 46px var(--f-display);color:var(--muted)}
+.st-pl b{font:700 12px var(--f-display);letter-spacing:.02em}.st-pl small{font:11px var(--f-mono);color:var(--muted)}
+.st-world{display:grid;gap:14px;margin-top:18px}.st-world header h2{margin:2px 0 4px;font:700 20px var(--f-display)}
+.st-acts{display:grid;gap:12px}
+.st-act{position:relative;display:flex;flex-direction:column;gap:10px;padding:14px;border:1px solid var(--line);border-radius:14px;background:linear-gradient(rgba(5,6,10,.8),rgba(5,6,10,.93)),var(--decor) center/cover}
+.st-act.lk{filter:saturate(.35);opacity:.7}.st-act h3{margin:0;font:700 15px var(--f-display)}
+.st-ah{display:flex;justify-content:space-between;align-items:center}.st-stt{font:11px var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}.st-act.done .st-stt{color:var(--good)}
+.st-bossrow{display:flex;gap:12px;align-items:center}.st-bc{width:84px;flex:none}
+.st-bi{display:flex;flex-direction:column;gap:3px;font-size:12px;color:var(--muted)}.st-bi b{color:var(--text);font-size:14px}
+.st-obj,.st-objl{list-style:none;margin:0;padding:0;display:flex;gap:6px;flex-wrap:wrap}
+.st-obj li,.st-objl li{display:flex;align-items:center;gap:5px;padding:3px 8px;border:1px solid var(--line);border-radius:999px;font:10.5px var(--f-mono);color:var(--muted)}
+.st-obj li.on,.st-objl li.on{color:var(--good);border-color:var(--good)}
+.st-side{display:flex;flex-direction:column;gap:10px;padding:14px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+.st-sq{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}.st-sqc{width:100%}.st-sqc.e{aspect-ratio:5/7;border:1px dashed var(--line);border-radius:4px;display:grid;place-items:center;color:var(--muted)}
+.st-warn{margin:0;color:var(--bad)}
+.st-fight{position:relative;display:flex;flex-direction:column;gap:12px;padding:12px;border-radius:14px;border:1px solid var(--line);min-height:calc(100dvh - 150px);background:linear-gradient(rgba(5,6,10,.68),rgba(5,6,10,.9)),var(--decor) center/cover}
+.st-bar{display:flex;flex-wrap:wrap;align-items:center;gap:8px}.st-bar .eyebrow{flex:1;min-width:90px}.st-bar .btn{padding:7px 11px;font-size:12px}.st-tg.on{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.st-arena{display:flex;flex-direction:column;align-items:center;gap:10px}
+.st-boss{position:relative;width:min(44vw,180px);text-align:center}.st-boss b{display:block;margin-top:6px;font:700 13px var(--f-display)}.st-bhp{margin-top:8px;display:flex;flex-direction:column;gap:4px}
+.st-hp{height:7px;border-radius:4px;background:rgba(255,255,255,.14);overflow:hidden}.st-hp i{display:block;width:100%;height:100%;background:var(--good);transition:width .25s}.st-hp.big{height:10px}.st-hp.big i{background:var(--bad)}
+.st-vs{font:700 12px var(--f-mono);letter-spacing:.3em;color:var(--muted)}
+.st-team{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;width:100%;max-width:700px}
+.st-pc{position:relative;text-align:center;min-width:0}.st-pc.ko{opacity:.35;filter:grayscale(1)}.st-fc{width:100%;margin-bottom:4px}.st-n{display:block;margin-top:3px;font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--muted)}
+.st-boss.hit,.st-pc.hit{animation:st-sh .26s}@keyframes st-sh{25%{transform:translateX(-5px)}60%{transform:translateX(5px)}100%{transform:none}}
+.st-fl{position:absolute;left:50%;top:22%;transform:translateX(-50%);font:800 14px var(--f-mono);color:#fff;text-shadow:0 1px 3px #000;pointer-events:none;animation:st-up .7s forwards;z-index:5}.st-fl.cr{color:var(--accent)}
+@keyframes st-up{to{transform:translate(-50%,-28px);opacity:0}}
+.st-log{margin:0;min-height:2.6em;text-align:center;font-size:13px;color:var(--text)}
+.st-res{display:flex;flex-direction:column;align-items:center;gap:8px;padding:16px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}.st-res[hidden]{display:none}
+.st-res b{font:700 20px var(--f-display)}.st-res b.win{color:var(--good)}.st-res b.lose{color:var(--bad)}.st-res p{margin:0}.st-objl{justify-content:center}.st-resb{display:flex;gap:8px}
+@media(min-width:1024px){
+ .st-pl{width:200px}.st-wrap{width:168px;height:168px}.st-head{width:68px;height:68px;margin-left:-34px;top:-30px}
+ .st-world{grid-template-columns:minmax(0,1fr) 300px;align-items:start}.st-world header{grid-column:1/-1}.st-acts{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .st-bc{width:96px}.st-boss{width:150px}.st-team{max-width:760px}.st-track{padding:0 14px;justify-content:safe center}.st-fight{min-height:0}
+}
+@media(prefers-reduced-motion:reduce){.st-boss.hit,.st-pc.hit,.st-fl{animation:none}.st-wrap,.st-img{transition:none}}
 </style>
 
 <div class="app">
@@ -4068,11 +4116,132 @@ function twBoost(weak){return c=>(weak.k==='cl'?c.cl===weak.v:c.m===weak.v)?1+TW
 function twWeakText(w){return w.k==='cl'?'les '+w.v+'s':'les cartes '+MONDES[w.v].n}
 
 function twWeakCount(fl,ids){return ids.filter(Boolean).filter(id=>twBoost(fl.weak)(CARD[id])>1&&CARD[id].poste!=='Soutien').length}
-function vPlay(){const sub=unl('draft')?(S.psub||'tw'):'tw';
-  const seg=`<div class="seg"><button data-act="psub" data-v="tw" aria-pressed="${sub==='tw'}">La Tour Céleste</button><button data-act="psub" data-v="tr" aria-pressed="${sub==='tr'}">Tournoi draft${unl('draft')?'':' · niv. '+UNLOCK.draft}</button><button data-act="histoire" class="seg-lk" aria-disabled="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3" y="7" width="10" height="7" rx="1.5"/><path d="M5.2 7V5a2.8 2.8 0 0 1 5.6 0v2"/></svg>Histoire</button></div>`;
-  const run=sub==='tw'?twState().run:trState().run;
+/* ---------- v157 · MODE HISTOIRE (V1) : monde → 3 actes → 1 boss. Équipe de 7 contre 1 carte, en boucle ----------
+   Le boss frappe une fois tous les N coups de l'équipe (N par acte) ; cible : Tank → DPS → Distance (les Soutiens ne sont jamais visés).
+   Trois objectifs par acte : gagner · finir avec ≥ 50 % des PV d'équipe · finir sans aucun KO. Récompenses provisoires (équilibrage à la fin). */
+const ST_ROLES=['Tank','DPS','Distance'];
+const ST_OBJ=['Victoire','≥ 50 % de PV','Sans KO'];
+const STORY=[
+ {k:'db',n:'Dragon Ball',sub:'Saga de Namek',kj:'龍',hero:'db-son-arc-buu',pl:'images/story/planet-db.webp',acts:[
+  {t:'Les sbires de Freezer',b:'db-dodoria-arc-namek',bg:'images/story/bg-db.webp',pv:10.25,at:1.8,df:1,n:3,rw:300},
+  {t:'Le bras droit',b:'db-zarbon-arc-namek',bg:'images/story/bg-db.webp',pv:8.3,at:2.2,df:1,n:3,rw:400},
+  {t:'Le commando Ginyu',b:'db-ginyu-arc-namek',bg:'images/story/bg-db.webp',pv:6.35,at:2.6,df:1,n:2,rw:600,rage:1.2}]},
+ {k:'na',n:'Naruto',sub:'Du Pays des Vagues à l\'Akatsuki',kj:'忍',hero:'na-naruto-shippuden-mode-ermite',pl:'images/story/planet-na.webp',acts:[
+  {t:'Le démon de Kirigakure',b:'na-zabuza-pays-des-vagues',bg:'images/story/bg-na-1.webp',pv:6.84,at:3.0,df:1,n:2,rw:500},
+  {t:'L\'Examen Chûnin',b:'na-orochimaru-examen-chunin',bg:'images/story/bg-na-1.webp',pv:5.21,at:3.2,df:1,n:2,rw:650},
+  {t:'L\'ombre de l\'Akatsuki',b:'na-kisame-akatsuki',bg:'images/story/bg-na-2.webp',pv:5.12,at:3.4,df:1,n:2,rw:900,rage:1.2}]},
+ {k:'op',n:'One Piece',sub:'D\'East Blue à Dressrosa',kj:'海',hero:'op-monkey-arc-wano',pl:'images/story/planet-op.webp',acts:[
+  {t:'Arlong Park',b:'op-arlong-arlong-park',bg:'images/story/bg-op.webp',pv:12.79,at:3.6,df:1,n:2,rw:800},
+  {t:'Le désert d\'Alabasta',b:'op-crocodile-alabasta',bg:'images/story/bg-op.webp',pv:13.43,at:3.8,df:1,n:2,rw:1000},
+  {t:'Le joug de Dressrosa',b:'op-doflamingo-dressrosa',bg:'images/story/bg-op.webp',pv:9.12,at:4.0,df:1,n:2,rw:1400,rage:1.2}]}
+];
+let ST_RUN=null,ST_T=null,ST_SX=0;
+function stState(){if(!S.st)S.st={d:{},o:{},sel:'db',spd:1,auto:false};const q=S.st;q.d=q.d||{};q.o=q.o||{};if(q.spd!==2)q.spd=1;return q}
+function stDone(k,i){const d=stState().d[k];return !!(d&&d[i])}
+function stCount(w){return w.acts.filter((a,i)=>stDone(w.k,i)).length}
+function stWorldOpen(wi){return wi===0||stCount(STORY[wi-1])===STORY[wi-1].acts.length}
+function stActOpen(wi,ai){return stWorldOpen(wi)&&(ai===0||stDone(STORY[wi].k,ai-1))}
+function stObjOf(w,ai){return stState().o[w.k+ai]||[0,0,0]}
+/* stats du boss : celles de la carte (un Soutien reçoit un profil équilibré), puis multiplicateurs de l'acte */
+function stBoss(a){const c=CARD[a.b];let s=c.s.slice();if(c.poste==='Soutien'){const T=c.note;s=[T*.95,T*1.05,T*.9,T,T*.8,T]}
+  s[0]*=a.pv;s[1]*=a.at;s[2]*=(a.df||1);return {c,s}}
+/* combat complet, calculé d'un coup ; le journal sert au replay */
+function stSim(a,ids,form){
+  const t=evalTeam(FORMS[form||'lance'].rows,ids),fx=teamFx(t);
+  const P=fighters(t,fx,{brk:0}).sort((u,v)=>PORD.indexOf(u.c.poste)-PORD.indexOf(v.c.poste));
+  const B=stBoss(a);B.s[2]*=(1-fx.brk);
+  const mx=P.map(x=>x.s[0]*ENG.HPX),hp=mx.slice(),mxB=B.s[0]*ENG.HPX;let hb=mxB;
+  const FXB={spec:0,crit:0},cnt=P.map(()=>0),rp={Tank:0,DPS:0,Distance:0},log=[];
+  let hits=0,bn=0,tp=0,rage=false,rounds=0;
+  const pct=()=>({b:Math.round(hb/mxB*100),p:hp.map((h,i)=>Math.round(h/mx[i]*100))});
+  const pick=()=>{for(let g=0;g<3;g++){const role=ST_ROLES[(tp+g)%3];const L=[];P.forEach((x,i)=>{if(x.c.poste===role&&hp[i]>0)L.push(i)});if(L.length){tp=(tp+g+1)%3;return L[rp[role]++%L.length]}}return -1};
+  outer:for(rounds=1;rounds<=40;rounds++){
+    for(let i=0;i<P.length;i++){if(hp[i]<=0)continue;
+      const kind=(cnt[i]++%3===2)?'spec':'hit',h=hitDmg(P[i],B,kind,fx);hb=Math.max(0,hb-h.dmg);hits++;
+      log.push({k:'p',i,kind,dmg:h.dmg,crit:h.crit,dodge:h.dodge,...pct()});
+      if(hb<=0)break outer;
+      if(!rage&&a.rage&&hb<=mxB*.5){rage=true;B.s[1]*=a.rage;log.push({k:'rage',...pct()})}
+      if(hits%a.n===0){const j=pick();if(j<0)break outer;const bk=(++bn%3===0)?'spec':'hit',h2=hitDmg(B,P[j],bk,FXB);hp[j]=Math.max(0,hp[j]-h2.dmg);
+        log.push({k:'b',j,kind:bk,dmg:h2.dmg,crit:h2.crit,dodge:h2.dodge,...pct()});if(!hp.some(x=>x>0))break outer}
+    }
+    if(fx.cover>0&&hb>0){const v=Math.max(1,Math.round(mxB*fx.cover));hb=Math.max(1,hb-v);log.push({k:'cover',v,...pct()})}
+    if(fx.heal>0){let any=false;hp.forEach((h,i)=>{if(h>0&&h<mx[i]){hp[i]=Math.min(mx[i],h+Math.round(mx[i]*fx.heal));any=true}});if(any)log.push({k:'heal',...pct()})}
+  }
+  const win=hb<=0,ko=hp.filter(x=>x<=0).length,tpc=hp.reduce((u,v)=>u+v,0)/mx.reduce((u,v)=>u+v,0);
+  return {win,ko,tp:tpc,rounds,log,obj:[win,win&&tpc>=.5,win&&ko===0],ids:P.map(x=>x.c.id),mx,mxB,bid:a.b}
+}
+function stFight(wi,ai){
+  const w=STORY[wi],a=w&&w.acts[ai];if(!w||!a||!stActOpen(wi,ai))return;
+  if(S.team.filter(Boolean).length<7){toast('Ton équipe doit avoir 7 cartes.');return}
+  const q=stState(),r=stSim(a,S.team,S.form),first=!stDone(w.k,ai),ok=(q.o[w.k+ai]||[0,0,0]).slice();let gain=0,newO=0;
+  if(r.win){if(first){gain+=a.rw;(q.d[w.k]=q.d[w.k]||[0,0,0])[ai]=1;addXp(25)}else gain+=10;
+    r.obj.forEach((v,i)=>{if(v&&!ok[i]){ok[i]=1;gain+=100;newO++}});q.o[w.k+ai]=ok;S.coins+=gain}
+  clearTimeout(ST_T);ST_RUN={wi,ai,r,step:0,fin:false,gain,first,newO};q.sel=w.k;SFX.tap();save();render();$('#main').scrollTop=0}
+function stDelay(e){const k=stState().spd===2?.5:1;return Math.round((!e||e.k==='p'?270:620)*k)}
+function stPaint(){const R=ST_RUN;if(!R)return;const L=R.r.log,e=R.step>0?L[R.step-1]:null,b=e?e.b:100,pp=e?e.p:R.r.ids.map(()=>100);
+  const bf=document.getElementById('stbf');if(bf)bf.style.width=b+'%';const bt=document.getElementById('stbt');if(bt)bt.textContent=Math.round(R.r.mxB*b/100)+' / '+Math.round(R.r.mxB);
+  pp.forEach((v,i)=>{const f=document.getElementById('stpf'+i),c=document.getElementById('stpc'+i);if(f)f.style.width=v+'%';if(c)c.classList.toggle('ko',v<=0)});
+  const lg=document.getElementById('stlog');
+  if(lg){if(!e)lg.textContent='Le combat commence.';else{const nm=id=>CARD[id].nom;let tx='';
+    if(e.k==='p')tx=nm(R.r.ids[e.i])+(e.dodge?' : esquivé.':' frappe'+(e.kind==='spec'?' (attaque spéciale)':'')+' : −'+e.dmg+(e.crit?' · critique':''));
+    else if(e.k==='b')tx=nm(R.r.bid)+(e.dodge?' rate '+nm(R.r.ids[e.j])+'.':' touche '+nm(R.r.ids[e.j])+' : −'+e.dmg+(e.kind==='spec'?' (spécial)':''));
+    else if(e.k==='rage')tx=nm(R.r.bid)+' passe en rage.';else if(e.k==='cover')tx='Un Soutien couvre l\'équipe : −'+e.v+' au boss.';else tx='Les Soutiens soignent l\'équipe.';lg.textContent=tx}}
+  if(e&&(e.k==='p'||e.k==='b')){const id=e.k==='p'?'stbc':'stpc'+e.j,el=document.getElementById(id);
+    if(el){el.classList.remove('hit');void el.offsetWidth;el.classList.add('hit');const f=document.createElement('i');f.className='st-fl'+(e.crit?' cr':'');f.textContent=e.dodge?'esquive':'−'+e.dmg;el.appendChild(f);setTimeout(()=>f.remove(),700)}}}
+function stStep(){const R=ST_RUN;if(!R||S.tab!=='tour'||S.psub!=='st'||R.fin)return;
+  if(R.step>=R.r.log.length){stEnd();return}R.step++;stPaint();ST_T=setTimeout(stStep,stDelay(R.r.log[R.step-1]))}
+function stEnd(){const R=ST_RUN;if(!R)return;R.fin=true;R.step=R.r.log.length;clearTimeout(ST_T);stPaint();const o=document.getElementById('stres');if(o){o.hidden=false;o.scrollIntoView({block:'nearest',behavior:'smooth'})}
+  if(R.r.win)SFX.coin();if(!R.r.win&&stState().auto){ST_T=setTimeout(()=>{if(ST_RUN===R&&S.tab==='tour'&&S.psub==='st')stFight(R.wi,R.ai)},1500)}}
+function stResume(){const R=ST_RUN;if(!R)return;stPaint();const o=document.getElementById('stres');if(o)o.hidden=!R.fin;if(!R.fin){clearTimeout(ST_T);ST_T=setTimeout(stStep,stDelay(null))}}
+function stCardsRow(ids,cls){return ids.map((id,i)=>`<div class="${cls}" id="stpc${i}"><div class="st-fc">${cardHTML(CARD[id],{mini:true})}</div><div class="st-hp"><i id="stpf${i}"></i></div><span class="st-n">${CARD[id].nom}</span></div>`).join('')}
+function stFightHTML(){const R=ST_RUN,w=STORY[R.wi],a=w.acts[R.ai],c=CARD[a.b],r=R.r,q=stState();
+  const objs=r.obj.map((v,i)=>`<li class="${v?'on':''}"><span>${v?'✓':'·'}</span>${ST_OBJ[i]}</li>`).join('');
+  return `<section class="st-fight" style="--decor:url(${a.bg})">
+  <div class="st-bar"><button class="btn" data-act="stBack">← Quitter</button><span class="eyebrow">${w.n} · acte ${R.ai+1}</span>
+   <button class="btn st-tg${q.spd===2?' on':''}" data-act="stSpd">×2</button><button class="btn st-tg${q.auto?' on':''}" data-act="stAuto">Replay auto</button><button class="btn" data-act="stSkip">Passer</button></div>
+  <div class="st-arena"><div class="st-boss" id="stbc"><div class="st-bcard">${cardHTML(c,{note:c.note})}</div>
+    <div class="st-bhp"><div class="st-hp big"><i id="stbf"></i></div><span id="stbt" class="eyebrow"></span></div></div>
+   <div class="st-vs">VS</div>
+   <div class="st-team">${stCardsRow(r.ids,'st-pc')}</div></div>
+  <p id="stlog" class="st-log"></p>
+  <div id="stres" class="st-res" hidden><b class="${r.win?'win':'lose'}">${r.win?'Victoire':'Défaite'}</b>
+   <ul class="st-objl">${objs}</ul>
+   <p class="small muted">${r.win?(R.gain>0?'+ '+R.gain+' pièces'+(R.first?' · acte terminé':''):''):'Le boss résiste. Change ton équipe ou réessaie.'}</p>
+   <div class="st-resb"><button class="btn primary" data-act="stBack">Continuer</button><button class="btn" data-act="stRetry">Rejouer</button></div></div>
+ </section>`}
+function stActHTML(wi,ai){const w=STORY[wi],a=w.acts[ai],c=CARD[a.b],done=stDone(w.k,ai),open=stActOpen(wi,ai),ok=stObjOf(w,ai),B=stBoss(a);
+  const hp=Math.round(B.s[0]*ENG.HPX),at=Math.round(B.s[1]);
+  return `<article class="st-act${done?' done':''}${open?'':' lk'}" style="--decor:url(${a.bg})">
+   <div class="st-ah"><span class="eyebrow">Acte ${ai+1}</span><span class="st-stt">${done?'Terminé':open?'À faire':'Verrouillé'}</span></div>
+   <h3>${a.t}</h3>
+   <div class="st-bossrow"><div class="st-bc">${cardHTML(c,{note:c.note})}</div>
+    <div class="st-bi"><b>${c.nom}</b><span>♥ ${hp} · ⚔ ${at}</span><span>Frappe tous les ${a.n} coups</span>${a.rage?'<span>Rage à 50 % de PV</span>':''}</div></div>
+   <ul class="st-obj">${ST_OBJ.map((o,i)=>`<li class="${ok[i]?'on':''}"><span>${ok[i]?'✓':'·'}</span>${o}</li>`).join('')}</ul>
+   ${open?`<button class="btn primary wide" data-act="stGo" data-v="${wi},${ai}">${done?'Rejouer':'Combattre'}</button>`:`<button class="btn wide" data-act="stGo" data-v="${wi},${ai}" aria-disabled="true">${LOCK} Verrouillé</button>`}
+   <small class="muted">Récompense : ${a.rw} pièces · provisoire</small></article>`}
+function stPlanetHTML(w,wi,sel){const open=stWorldOpen(wi),n=stCount(w),art=artOf(CARD[w.hero]);
+  return `<button class="st-pl${w.k===sel?' on':''}${open?'':' lk'}" data-act="stWorld" data-v="${w.k}" style="--d:${wi}"><span class="st-wrap"><img class="st-img" src="${w.pl}" alt="" draggable="false">${art?`<span class="st-head" style="background-image:url(${art})"></span>`:`<span class="st-head k">${w.kj}</span>`}${open?'':`<i class="st-lock">${LOCK}</i>`}</span><b>${w.n}</b><small>${open?n+' / '+w.acts.length+' actes':'Verrouillé'}</small></button>`}
+function vStory(){if(ST_RUN&&!ST_RUN.gone){setTimeout(stResume,0);return stFightHTML()}
+  const q=stState();let wi=STORY.findIndex(w=>w.k===q.sel);if(wi<0||!stWorldOpen(wi)){wi=STORY.findIndex((w,i)=>stWorldOpen(i)&&stCount(w)<w.acts.length);if(wi<0)wi=0}
+  const w=STORY[wi],full=S.team.filter(Boolean).length>=7;setTimeout(stInit,0);
+  const sq=S.team.map(id=>id&&CARD[id]?`<div class="st-sqc">${cardHTML(CARD[id],{mini:true})}</div>`:`<div class="st-sqc e">+</div>`).join('');
+  return `<section class="st-sky" id="stsky"><div class="st-stars" aria-hidden="true"></div><div class="st-track">${STORY.map((x,i)=>stPlanetHTML(x,i,w.k)).join('')}
+    <button class="st-pl lk mv" data-act="stMulti"><span class="st-wrap"><span class="st-mv">多</span><i class="st-lock">${LOCK}</i></span><b>Multivers</b><small>Prochaine mise à jour</small></button></div></section>
+   <section class="st-world"><header><span class="eyebrow">Histoire · ${w.n}</span><h2>${w.sub}</h2><p class="small muted">${stCount(w)} / ${w.acts.length} actes terminés · le boss vise ton Tank, puis tes DPS, puis tes Distances</p></header>
+    <div class="st-acts">${w.acts.map((a,i)=>stActHTML(wi,i)).join('')}</div>
+    <aside class="st-side"><span class="eyebrow">Ton équipe</span><div class="st-sq">${sq}</div>${full?'':'<p class="small st-warn">Il manque des cartes : l\'équipe doit en avoir 7.</p>'}<button class="btn wide" data-act="tab" data-v="team">Modifier l'équipe</button></aside></section>`}
+function stInit(){const sky=document.getElementById('stsky');if(!sky)return;sky.scrollLeft=ST_SX;
+  const paint=()=>{ST_SX=sky.scrollLeft;sky.style.setProperty('--sx',ST_SX)};sky.addEventListener('scroll',paint,{passive:true});paint();
+  let dn=false,x0=0,s0=0,mv=0;
+  sky.addEventListener('pointerdown',e=>{if(e.pointerType!=='mouse')return;dn=true;x0=e.clientX;s0=sky.scrollLeft;mv=0;sky.classList.add('drag')});
+  sky.addEventListener('pointermove',e=>{const r=sky.getBoundingClientRect();sky.style.setProperty('--mx',((e.clientX-r.left)/r.width-.5).toFixed(3));if(dn){const d=e.clientX-x0;mv=Math.max(mv,Math.abs(d));sky.scrollLeft=s0-d}});
+  const up=()=>{dn=false;sky.classList.remove('drag')};sky.addEventListener('pointerup',up);sky.addEventListener('pointerleave',up);
+  sky.addEventListener('click',e=>{if(mv>6){e.stopPropagation();e.preventDefault();mv=0}},true)}
+function vPlay(){const ps=S.psub||(Object.keys(stState().d).length?'tw':'st'),sub=ps==='st'?'st':unl('draft')?ps:'tw';
+  const seg=`<div class="seg"><button data-act="psub" data-v="tw" aria-pressed="${sub==='tw'}">La Tour Céleste</button><button data-act="psub" data-v="tr" aria-pressed="${sub==='tr'}">Tournoi draft${unl('draft')?'':' · niv. '+UNLOCK.draft}</button><button data-act="psub" data-v="st" aria-pressed="${sub==='st'}">Histoire</button></div>`;
+  const run=sub==='st'?null:sub==='tw'?twState().run:trState().run;
   if(run&&run.ph==='match'){MCTX={get:sub==='tw'?()=>S.tw&&S.tw.run:()=>S.tr&&S.tr.run,sub};setTimeout(()=>{if(!TRT)trAnim()},0)}
-  return `<div class="stack">${run&&run.ph==='match'?'':seg}${sub==='tw'?vTower():vTour()}</div>`}
+  return `<div class="stack">${(sub==='st'&&ST_RUN)||(run&&run.ph==='match')?'':seg}${sub==='st'?vStory():sub==='tw'?vTower():vTour()}</div>`}
 /* v96 — Tour Céleste redessinée : toits à avant-toits relevés, façade en bois laqué, ciel à la lune en trame, nuages et montagnes */
 const TW_ROOF=`<svg class="rf" viewBox="0 0 200 24" preserveAspectRatio="none" aria-hidden="true"><path class="rf-t" d="M0 24 C8 22 14 15 22 9 L30 4 H170 L178 9 C186 15 192 22 200 24 L188 21 H12 Z"/><path class="rf-l" d="M30 4 H170" /><path class="rf-e" d="M0 24 C8 22 14 15 22 9 L30 4 M200 24 C192 22 186 15 178 9 L170 4"/><g class="rf-s">${Array.from({length:19},(_,i)=>`<path d="M${36+i*7} 6 V19"/>`).join('')}</g></svg>`;
 const TW_SKY=`<svg class="tw-scn" viewBox="0 0 400 900" preserveAspectRatio="xMidYMin slice" aria-hidden="true"><g class="cl"><path d="M-20 160 C40 150 70 132 120 140 C150 126 190 128 210 146 C250 140 270 152 300 150"/><path d="M180 300 C220 290 250 276 300 284 C330 272 370 276 420 292"/><path d="M-30 470 C20 462 60 446 110 456 C140 444 170 446 190 462"/><path d="M230 640 C270 630 300 618 340 626 C370 616 400 620 430 634"/></g><g class="cl2"><path d="M10 176 C60 168 100 160 140 166"/><path d="M220 316 C260 310 300 304 340 312"/><path d="M0 486 C40 480 80 474 120 480"/></g></svg>`;
@@ -4188,7 +4357,14 @@ const ACT={
   initClaim:()=>{const i=initStep();if(i<0||!initDone(i))return;S.init['ok'+i]=1;const x=INIT[i];grant(x.rw);addXp(30);if(i===INIT.length-1)S.init.done=true;SFX.coin();save();render();
     showReward(i===INIT.length-1?'Initiation terminée':'Initiation · '+(i+1)+' / '+INIT.length,i===INIT.length-1?'Ton booster de bienvenue':x.t,x.rw.pack?{pack:x.rw.pack}:null,rwText(x.rw)+(x.rw.pack?' ajouté à Mes boosters':''))},
   noop:()=>{},
-  histoire:()=>toast('Mode histoire : en cours de création, prochaine mise à jour.'),/* v130 : mode verrouillé, annoncé */
+  stWorld:v=>{const wi=STORY.findIndex(w=>w.k===v);if(wi<0)return;if(!stWorldOpen(wi)){toast('Termine d\'abord '+STORY[wi-1].n+'.');return}stState().sel=v;save();render()},
+  stMulti:()=>toast('Le Multivers, où attendent les plus grands méchants : après les trois premiers mondes. Prochaine mise à jour.'),
+  stGo:v=>{const [wi,ai]=String(v).split(',').map(Number);if(!stActOpen(wi,ai)){toast(stWorldOpen(wi)?'Termine d\'abord l\'acte '+ai+'.':'Monde verrouillé.');return}stFight(wi,ai)},
+  stBack:()=>{clearTimeout(ST_T);ST_RUN=null;render();$('#main').scrollTop=0},
+  stRetry:()=>{const R=ST_RUN;if(R)stFight(R.wi,R.ai)},
+  stSpd:()=>{const q=stState();q.spd=q.spd===2?1:2;save();const b=document.querySelector('.st-tg[data-act=stSpd]');if(b)b.classList.toggle('on',q.spd===2)},
+  stAuto:()=>{const q=stState();q.auto=!q.auto;save();const b=document.querySelector('.st-tg[data-act=stAuto]');if(b)b.classList.toggle('on',q.auto)},
+  stSkip:()=>{if(ST_RUN&&!ST_RUN.fin)stEnd()},
   goTower:()=>{if(!unl('tour')){toast('La Tour Céleste : débloquée au niveau '+UNLOCK.tour+'.');return}S.tab='tour';S.psub='tw';save();render();$('#main').scrollTop=0},
   psub:v=>{if(v==='tr'&&!unl('draft')){toast('Tournoi draft : débloqué au niveau '+UNLOCK.draft+'.');return}S.psub=v;clearTimeout(TRT);TRT=null;save();render();$('#main').scrollTop=0},
   twFl:v=>twSheet(+v),
