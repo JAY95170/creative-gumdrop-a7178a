@@ -2871,7 +2871,7 @@ function drawRV0(){scnSndSync();if(!RV||RV.ph==='pack'||RV.ph==='tear'||RV.ph===
 /* lecture du clip : plusieurs sources essayées tour à tour (copie locale, stockage média, lien direct, données) ; sinon flashback texte + raison */
 /* v146/v149 : entrée sur mesure d'une UR/LR qui a un clip (≠ scène iconique, pas de tourbillon) : effet propre au perso, puis clip, puis carte */
 let EYEH=null;const fxBgClear=()=>{document.querySelectorAll('.fx-bg').forEach(e=>e.remove())};
-const FXD={dark:1700,aura:1500,stop:1900,eyes:3300,cut:450,silver:1300,eyeStay:1500,dim:900,gears:1500,white:650,flip:1720,absorb:2400,crow:300};
+const FXD={dark:1700,aura:1500,stop:1900,eyes:3300,cut:450,silver:1300,eyeStay:1500,dim:900,gears:1500,white:650,flip:1300,absorb:1900,crow:300};
 function rvFx(kind,done){const host=$('#reveal')||document.body,v=document.createElement('div');v.className='rv-dark fx-'+kind;v.setAttribute('aria-hidden','true');host.appendChild(v);
   const D=FXD[kind]||1500,rm=matchMedia('(prefers-reduced-motion:reduce)').matches,A=(el,kf,o)=>{try{return el.animate(kf,Object.assign({fill:'forwards'},o))}catch(_){return null}};
   const m=!S.mute;let fin=false;const end=(bg)=>{if(fin)return;fin=true;if(done)done(v,bg)};
@@ -2898,23 +2898,16 @@ function rvFx(kind,done){const host=$('#reveal')||document.body,v=document.creat
   else if(kind==='white'){v.style.background='#fff';v.style.opacity='0';if(m){tone(180,0,.6,'sine',.06,900);tone(48,.3,.8,'sine',.1,30)}A(v,[{opacity:0},{opacity:1}],{duration:D,easing:'ease-in'});setTimeout(()=>end('#fff'),D)}
   else if(kind==='crow'){const u=UFX[(CARD[RV.cards[RV.i].id].base)||RV.cards[RV.i].id]||{};if(u.snd&&m)sndPlay(u.snd,{vol:1});if(m)tone(46,0,.9,'sine',.12,32);v.remove()}
   else if(kind==='flip'){v.style.background='transparent';const st=$('#stage'),tz=st&&st.querySelector('.tease'),u=UFX[(CARD[RV.cards[RV.i].id].base)||RV.cards[RV.i].id]||{},RT=1300;
-    let cx=innerWidth/2,cy=innerHeight/2;if(tz){const r=tz.getBoundingClientRect();cx=r.left+r.width/2;cy=r.top+r.height/2}
-    if(m)tone(70,0,.7,'sine',.07,45);
-    /* la carte tourne en accélérant (aucune décélération) puis s'arrête NET sur sa dernière position */
+    /* la carte tourne en accélérant puis s'arrête NET ; la voix part 0,5 s avant l'arrêt ; au même instant le clip se lance */
     if(tz)A(tz,[{transform:'perspective(900px) rotateY(0deg) scale(1)'},{transform:'perspective(900px) rotateY(-72deg) scale(.97)'}],{duration:RT,easing:'cubic-bezier(.45,0,.9,.7)'});
-    setTimeout(()=>{if(u.snd&&m)sndPlay(u.snd,{vol:1})},RT-420);
-    setTimeout(()=>{ /* arrêt du temps : micro-secousse, onde négative qui part de la carte */
-      if(m){tone(2600,0,.035,'square',.07);tone(55,0,.5,'sine',.25,28)}
-      if(st)A(st,[{transform:'translate(0,0)'},{transform:'translate(-7px,3px)'},{transform:'translate(6px,-3px)'},{transform:'translate(-3px,2px)'},{transform:'translate(0,0)'}],{duration:150,easing:'steps(5,end)'});
-      const f='invert(1) hue-rotate(180deg) contrast(1.5)';v.style.backdropFilter=v.style.webkitBackdropFilter=f;v.style.clipPath=`circle(0px at ${cx}px ${cy}px)`;
-      A(v,[{clipPath:`circle(0px at ${cx}px ${cy}px)`},{clipPath:`circle(${Math.hypot(innerWidth,innerHeight)}px at ${cx}px ${cy}px)`}],{duration:rm?1:380,easing:'cubic-bezier(.2,.7,.3,1)'})},RT);
-    setTimeout(()=>end('transparent'),RT+420)}
-  else if(kind==='absorb'){const st=$('#stage'),tz=st&&st.querySelector('.tease'),cap=st&&st.querySelector('.rv-cap'),W=innerWidth,H=innerHeight,px=.6*W,py=.565*H;
-    if(RV.clue<2){RV.clue=2;rvClue()}v.style.zIndex=0;v.style.background='#000';
-    const im=document.createElement('img');im.className='fx-eyeimg';im.src='images/fx/makima-oeil.jpg';im.alt='';im.style.cssText='opacity:0;transform-origin:60% 56.5%';v.appendChild(im);
-    if(m){tone(44,0,1.4,'sine',.35,26);tone(180,.5,2,'sine',.05,2400);tone(90,.5,2,'sawtooth',.02,700)}
-    A(im,[{opacity:0,transform:'scale(1.3)',offset:0},{opacity:1,transform:'scale(1)',offset:.08},{opacity:1,transform:'scale(1.08)',offset:.35},{opacity:1,transform:'scale(1.9)'}],{duration:D,easing:'cubic-bezier(.4,0,.8,.5)'});
-        setTimeout(()=>end('#000'),D)}
+    setTimeout(()=>{if(u.snd&&m)sndPlay(u.snd,{vol:1})},RT-500);
+    setTimeout(()=>end('transparent'),RT)}
+  else if(kind==='absorb'){if(RV.clue<2){RV.clue=2;rvClue()}
+    /* image de l'œil posée d'un coup (aucun mouvement, aucune transition) derrière la carte, puis le clip */
+    v.style.zIndex=0;v.style.background='#000';v.style.transition='none';
+    const im=document.createElement('img');im.className='fx-eyeimg';im.src='images/fx/makima-oeil.jpg';im.alt='';v.appendChild(im);
+    if(m){tone(44,0,1.4,'sine',.4,26);tone(70,0,.6,'sawtooth',.06,35)}
+    setTimeout(()=>end('#000'),D)}
   else if(kind==='stop'){const inv=el=>{el.style.backdropFilter=el.style.webkitBackdropFilter='invert(1) grayscale(1) contrast(1.3)'};
     if(m){tone(1900,0,.05,'square',.05);tone(1900,.5,.05,'square',.05);tone(60,.9,.5,'sine',.16,30)}
     inv(v);setTimeout(()=>{v.style.backdropFilter=v.style.webkitBackdropFilter='';v.style.background='transparent'},110);
