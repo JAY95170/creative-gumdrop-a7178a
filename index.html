@@ -488,6 +488,7 @@ nav.tabs button[aria-current="page"] svg{color:var(--accent)}
 .fx-gear{position:absolute;left:50%;top:46%;width:min(88vw,460px);height:min(88vw,460px);margin:calc(min(88vw,460px)/-2) 0 0 calc(min(88vw,460px)/-2);background:url(images/fx/dio-engrenages.png) center/contain no-repeat;-webkit-mask-image:radial-gradient(ellipse 72% 72%,#000 62%,transparent 100%);mask-image:radial-gradient(ellipse 72% 72%,#000 62%,transparent 100%)}
 .rv-hit{animation:rvhit .55s cubic-bezier(.2,.9,.3,1)}@keyframes rvhit{0%{transform:scale(1.1) translate(0,0)}15%{transform:scale(1.06) translate(-9px,5px)}30%{transform:scale(1.03) translate(8px,-6px)}45%{transform:scale(1.01) translate(-5px,3px)}65%{transform:scale(1) translate(3px,-2px)}100%{transform:scale(1) translate(0,0)}}
 .rv-dust{position:absolute;top:-8px;z-index:65;border-radius:50%;background:rgba(235,225,205,.8);pointer-events:none;animation:rvdust 1.7s ease-in forwards}@keyframes rvdust{to{transform:translate(var(--dx),105vh);opacity:0}}
+.fx-eyeimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:60% 56.5%}
 .fx-bg{transition:opacity 1s}#reveal #stage{position:relative;z-index:1}
 .fx-stop{transition:background .3s}
 .clipbox{position:fixed;inset:0;z-index:6;background:#000;display:flex;align-items:center;justify-content:center;animation:clipIn .35s ease-out}
@@ -1969,9 +1970,9 @@ const CLIP_UR={},CLIPM={};
 /* v149 : 5 UR/LR avec entrée sur mesure. k = n° du toucher qui lance le clip (0 = 1er toucher), in = effet d'entrée, fx = effets aux touchers d'indice, q = indices sans bip */
 const UFX={
  'jjk-satoru-extension-du-territoire-a-shi':{k:0,in:'dark'},
- 'db-son-ultra-instinct':{k:2,in:'dim',out:'white',q:1},
- 'jo-dio-stardust-crusaders':{k:1,in:'gears'},
- 'csm-makima-arc-makima':{k:2,in:'cut',fx:{1:'eyeStay'},snd:'sounds/csm-makima-corbeau.mp3'},
+ 'db-son-ultra-instinct':{k:0,in:'white',out:'white',q:1},
+ 'jo-dio-stardust-crusaders':{k:2,in:'flip'},
+ 'csm-makima-arc-makima':{k:1,in:'absorb',fx:{1:'crow'},snd:'sounds/csm-makima-corbeau.mp3'},
  'hs-alucard-niveau-zero':{k:0,in:'eyes',snd:'sounds/hs-alucard-yeux-fx.mp3'}};
 Object.keys(UFX).forEach(b=>{CLIP_UR[b]=1;CLIP[b]='clips/'+b+'.mp4';CLIPM[b]='clips/'+b+'-m.mp4';CLIP_SND[b]=1});
 const clipOf=c=>{if(!c)return null;if(c.scn)return CLIP[c.base]||null;const b=c.base||c.id;if(!CLIP_UR[b])return null;return (innerHeight>innerWidth&&CLIPM[b])||CLIP[b]||null};
@@ -2870,7 +2871,7 @@ function drawRV0(){scnSndSync();if(!RV||RV.ph==='pack'||RV.ph==='tear'||RV.ph===
 /* lecture du clip : plusieurs sources essayées tour à tour (copie locale, stockage média, lien direct, données) ; sinon flashback texte + raison */
 /* v146/v149 : entrée sur mesure d'une UR/LR qui a un clip (≠ scène iconique, pas de tourbillon) : effet propre au perso, puis clip, puis carte */
 let EYEH=null;const fxBgClear=()=>{document.querySelectorAll('.fx-bg').forEach(e=>e.remove())};
-const FXD={dark:1700,aura:1500,stop:1900,eyes:3300,cut:450,silver:1300,eyeStay:1500,dim:900,gears:1500};
+const FXD={dark:1700,aura:1500,stop:1900,eyes:3300,cut:450,silver:1300,eyeStay:1500,dim:900,gears:1500,white:650,flip:1500,absorb:2900,crow:300};
 function rvFx(kind,done){const host=$('#reveal')||document.body,v=document.createElement('div');v.className='rv-dark fx-'+kind;v.setAttribute('aria-hidden','true');host.appendChild(v);
   const D=FXD[kind]||1500,rm=matchMedia('(prefers-reduced-motion:reduce)').matches,A=(el,kf,o)=>{try{return el.animate(kf,Object.assign({fill:'forwards'},o))}catch(_){return null}};
   const m=!S.mute;let fin=false;const end=(bg)=>{if(fin)return;fin=true;if(done)done(v,bg)};
@@ -2893,6 +2894,23 @@ function rvFx(kind,done){const host=$('#reveal')||document.body,v=document.creat
     if(m){[0,.34,.68].forEach(t=>tone(1700,t,.05,'square',.06));tone(60,.9,.5,'sine',.2,30)}
     A(v,[{opacity:0},{opacity:1,offset:.12},{opacity:1}],{duration:D});
     A(im,[{transform:'scale(1.5) rotate(-5deg)',opacity:0},{transform:'scale(1) rotate(0)',opacity:1,offset:.35},{transform:'scale(1.12) rotate(2deg)',opacity:1}],{duration:D,easing:'ease-out'});
+    setTimeout(()=>end('#000'),D)}
+  else if(kind==='white'){v.style.background='#fff';v.style.opacity='0';if(m){tone(180,0,.6,'sine',.06,900);tone(48,.3,.8,'sine',.1,30)}A(v,[{opacity:0},{opacity:1}],{duration:D,easing:'ease-in'});setTimeout(()=>end('#fff'),D)}
+  else if(kind==='crow'){const u=UFX[(CARD[RV.cards[RV.i].id].base)||RV.cards[RV.i].id]||{};if(u.snd&&m)sndPlay(u.snd,{vol:1});if(m)tone(46,0,.9,'sine',.12,32);v.remove()}
+  else if(kind==='flip'){v.style.background='transparent';const st=$('#stage'),tz=st&&st.querySelector('.tease');
+    if(m)tone(70,0,.7,'sine',.07,45);
+    if(tz)A(tz,[{transform:'perspective(900px) rotateY(0deg) scale(1)'},{transform:'perspective(900px) rotateY(-66deg) scale(.97)'}],{duration:D-380,easing:'cubic-bezier(.25,.6,.35,1)'});
+    setTimeout(()=>{if(st)st.style.filter='grayscale(1) contrast(1.2)';if(m)tone(2400,0,.04,'square',.05)},D-380);
+    setTimeout(()=>{v.style.backdropFilter=v.style.webkitBackdropFilter='invert(1)'},D-90);
+    setTimeout(()=>end('transparent'),D)}
+  else if(kind==='absorb'){const st=$('#stage'),tz=st&&st.querySelector('.tease'),cap=st&&st.querySelector('.rv-cap'),W=innerWidth,H=innerHeight,px=.6*W,py=.565*H;
+    if(RV.clue<2){RV.clue=2;rvClue()}v.style.zIndex=0;v.style.background='#000';
+    const im=document.createElement('img');im.className='fx-eyeimg';im.src='images/fx/makima-oeil.jpg';im.alt='';im.style.cssText='opacity:0;transform-origin:60% 56.5%';v.appendChild(im);
+    if(m){tone(44,0,1.4,'sine',.35,26);tone(180,.5,2,'sine',.05,2400);tone(90,.5,2,'sawtooth',.02,700)}
+    A(im,[{opacity:0,transform:'scale(1.3)',offset:0},{opacity:1,transform:'scale(1)',offset:.08},{opacity:1,transform:'scale(1.12)',offset:.3},{opacity:1,transform:'scale(3.4)'}],{duration:D,easing:'cubic-bezier(.4,0,.8,.5)'});
+    if(cap)A(cap,[{opacity:1},{opacity:0}],{duration:600,delay:300});
+    if(tz){const r=tz.getBoundingClientRect(),dx=px-(r.left+r.width/2),dy=py-(r.top+r.height/2);
+      A(tz,[{transform:'translate(0,0) scale(1) rotate(0deg)',opacity:1},{transform:`translate(${dx}px,${dy}px) scale(.03) rotate(900deg)`,opacity:.6}],{duration:D-1000,delay:500,easing:'cubic-bezier(.55,0,.9,.45)'})}
     setTimeout(()=>end('#000'),D)}
   else if(kind==='stop'){const inv=el=>{el.style.backdropFilter=el.style.webkitBackdropFilter='invert(1) grayscale(1) contrast(1.3)'};
     if(m){tone(1900,0,.05,'square',.05);tone(1900,.5,.05,'square',.05);tone(60,.9,.5,'sine',.16,30)}
@@ -2921,7 +2939,7 @@ function rvWhite(bx){const host=$('#reveal')||document.body,w=document.createEle
     try{w.animate([{opacity:1},{opacity:1,offset:.25},{opacity:0}],{duration:420,fill:'forwards'}).onfinish=()=>w.remove()}catch(_){w.remove()}setTimeout(()=>w.remove(),900)};
   setTimeout(poll,100)}
 function rvEntry(kind){const i=RV.i;RV.ph='dark';
-  rvFx(kind,(v,bg)=>{if(!RV||RV.i!==i||RV.ph!=='dark'){v.remove();return}try{v.getAnimations().forEach(a=>a.cancel())}catch(_){}v.style.background=bg||'#000';v.style.opacity='1';v.style.transform='none';v.style.backdropFilter=v.style.webkitBackdropFilter='';v.querySelectorAll('.fx-eye').forEach(e=>e.remove());fxBgClear();sndStop(EYEH,.4);EYEH=null;RV.ph='clip';drawRV();setTimeout(()=>{v.style.opacity='0'},150);setTimeout(()=>v.remove(),800)})}
+  rvFx(kind,(v,bg)=>{if(!RV||RV.i!==i||RV.ph!=='dark'){v.remove();return}try{v.getAnimations().forEach(a=>a.cancel())}catch(_){}{const st0=$('#stage');if(st0)st0.style.filter=''}v.style.zIndex=60;v.querySelectorAll('.fx-eyeimg').forEach(e=>e.remove());v.style.background=bg||'#000';v.style.opacity='1';v.style.transform='none';v.style.backdropFilter=v.style.webkitBackdropFilter='';v.querySelectorAll('.fx-eye').forEach(e=>e.remove());fxBgClear();sndStop(EYEH,.4);EYEH=null;RV.ph='clip';drawRV();setTimeout(()=>{v.style.opacity='0'},150);setTimeout(()=>v.remove(),800)})}
 const rvDark=()=>rvEntry('dark');
 function playClip(box,u,done){const o=preVid(u)||{},base=Object.keys(CLIP).find(k=>CLIP[k]===u||CLIPM[k]===u);
   const v=document.createElement('video');v.muted=true;v.defaultMuted=true;v.playsInline=true;v.setAttribute('playsinline','');v.setAttribute('muted','');v.setAttribute('webkit-playsinline','');v.preload='auto';box.prepend(v);
