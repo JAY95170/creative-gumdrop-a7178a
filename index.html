@@ -484,6 +484,8 @@ nav.tabs button[aria-current="page"] svg{color:var(--accent)}
 .wrow[aria-current=true] .wn{color:var(--accent)}
 @keyframes wsIn{from{opacity:0}}@keyframes wsUp{from{transform:translateY(40px)}}
 .rv-dark{position:fixed;inset:0;z-index:60;pointer-events:none;transition:opacity .6s ease}
+.fx-eyes-l{position:absolute;inset:-8%;background:url(images/fx/alucard-yeux.jpg) center/cover no-repeat;mix-blend-mode:lighten;will-change:transform,opacity}
+.fx-stop{transition:background .3s}
 .clipbox{position:fixed;inset:0;z-index:6;background:#000;display:flex;align-items:center;justify-content:center;animation:clipIn .35s ease-out}
 .clipbox.clip-out{pointer-events:none;animation:clipOut .45s ease .12s forwards}@keyframes clipOut{from{opacity:1}to{opacity:0}}.clipbox.replay{z-index:60}
 .clipbox video{width:100%;height:100%;object-fit:contain;pointer-events:none}
@@ -1959,8 +1961,15 @@ const ART=new Set(['aot-annie-titan-feminin-stohess','aot-armin-bataille-de-tros
 const CLIP={'db-son-cell-games':'clips/db-son-cell-games.mp4','db-vegeta-majin-vegeta-le-sacrifice':'clips/db-vegeta-majin-vegeta-le-sacrifice.mp4','kd-ei-bataille-de-sai':'clips/kd-ei-bataille-de-sai.mp4','mha-all-united-states-of-smash':'clips/mha-all-united-states-of-smash.mp4?v=54'};
 const CLIP_SND={'mha-all-united-states-of-smash':1};const CLIP_AUD={'db-son-cell-games':'sounds/db-son-cell-games-clip.mp3','db-vegeta-majin-vegeta-le-sacrifice':'sounds/db-vegeta-majin-vegeta-le-sacrifice-clip.mp3','kd-ei-bataille-de-sai':'sounds/kd-ei-bataille-de-sai-clip.mp3','mha-all-united-states-of-smash':'sounds/mha-all-united-states-of-smash-clip.mp3'};/* son du clip joué à part (Web Audio), vidéo muette : pas de blocage de lecture du son sur mobile */const SCN_SND={'db-son-cell-games':'sounds/db-son-cell-games.wav','db-vegeta-majin-vegeta-le-sacrifice':'sounds/db-vegeta-majin-vegeta-le-sacrifice.wav','kd-ei-bataille-de-sai':'sounds/kd-ei-bataille-de-sai.wav','mha-all-united-states-of-smash':'sounds/mha-all-united-states-of-smash.wav'};/* son en boucle tant que la carte de scène est affichée *//* clips qui ont leur son (coupé si le jeu est en muet) */
 /* v145 : clip sur mesure à l'ouverture d'une UR/LR (sans scène iconique) ; la version -m (verticale) sert en portrait, le son est celui du clip */
-const CLIP_UR={'jjk-satoru-extension-du-territoire-a-shi':1};const CLIPM={'jjk-satoru-extension-du-territoire-a-shi':'clips/jjk-satoru-extension-du-territoire-a-shi-m.mp4'};
-CLIP['jjk-satoru-extension-du-territoire-a-shi']='clips/jjk-satoru-extension-du-territoire-a-shi.mp4';CLIP_SND['jjk-satoru-extension-du-territoire-a-shi']=1;
+const CLIP_UR={},CLIPM={};
+/* v149 : 5 UR/LR avec entrée sur mesure. k = n° du toucher qui lance le clip (0 = 1er toucher), in = effet d'entrée, fx = effets aux touchers d'indice, q = indices sans bip */
+const UFX={
+ 'jjk-satoru-extension-du-territoire-a-shi':{k:0,in:'dark'},
+ 'db-son-ultra-instinct':{k:2,in:'aura',fx:{2:'silver'},q:1},
+ 'jo-dio-stardust-crusaders':{k:1,in:'stop'},
+ 'csm-makima-arc-makima':{k:2,in:'cut',fx:{2:'eye'}},
+ 'hs-alucard-niveau-zero':{k:0,in:'eyes'}};
+Object.keys(UFX).forEach(b=>{CLIP_UR[b]=1;CLIP[b]='clips/'+b+'.mp4';CLIPM[b]='clips/'+b+'-m.mp4';CLIP_SND[b]=1});
 const clipOf=c=>{if(!c)return null;if(c.scn)return CLIP[c.base]||null;const b=c.base||c.id;if(!CLIP_UR[b])return null;return (innerHeight>innerWidth&&CLIPM[b])||CLIP[b]||null};
 const CLIP_ASSET={'db-son-cell-games':'/_blob/2a2c8bf7a9931a043b5df7504edf7fb7','db-vegeta-majin-vegeta-le-sacrifice':'/_blob/e15585bfe9f5a7259aaf6773cc2f97c5','kd-ei-bataille-de-sai':'/_blob/4cd282538b49b656cd65eb39bf7e8b2f','mha-all-united-states-of-smash':'/_blob/5db86912dde165c92c4be4b37cc239b1'};/* même clip dans le stockage média de l'artifact (secours) */
 const VIDC=new Map();function preVid(u){if(!u)return null;let o=VIDC.get(u);if(o)return o;o={};o.p=fetch(u).then(r=>{if(!r.ok)throw new Error('http '+r.status);return r.blob()}).then(b=>{o.blob=b.type==='video/mp4'?b:new Blob([b],{type:'video/mp4'})}).catch(e=>{o.ferr=e.message});VIDC.set(u,o);return o}
@@ -2798,7 +2807,7 @@ function startReveal(key,cards,opt){cards.forEach(x=>{const c=CARD[x.id];preArt(
 const RAYC={};function raysURL(col){if(RAYC[col])return RAYC[col];try{const z=360,cv=document.createElement('canvas');cv.width=cv.height=z;const g=cv.getContext('2d');g.translate(z/2,z/2);g.fillStyle=col;g.globalAlpha=.55;const n=22,w=Math.PI*2/n;for(let i=0;i<n;i++){g.beginPath();g.moveTo(0,0);g.arc(0,0,z/2,i*w,i*w+w*.31);g.closePath();g.fill()}g.globalAlpha=1;g.globalCompositeOperation='destination-in';const rg=g.createRadialGradient(0,0,0,0,0,z/2);rg.addColorStop(0,'#000');rg.addColorStop(.16,'#000');rg.addColorStop(.6,'rgba(0,0,0,0)');g.fillStyle=rg;g.fillRect(-z/2,-z/2,z,z);RAYC[col]=cv.toDataURL()}catch(e){RAYC[col]=''}return RAYC[col]}
 function sparks(n){return `<div class="sparks">${Array.from({length:n},(_,i)=>`<i class="spark" style="--a:${Math.round(i*360/n+Math.random()*12)}deg;--d:${110+Math.round(Math.random()*90)}px;animation-delay:${Math.round(Math.random()*120)}ms"></i>`).join('')}</div>`}
 function rvClue(){const c=CARD[RV.cards[RV.i].id],st=$('#stage');let el=st.querySelector('.clues');if(!el)return;const m=MONDES[c.m];
-  if(!S.mute)tone(RV.clue===1?392:523,0,.35,'triangle',.11),tone(RV.clue===1?587:784,.08,.4,'triangle',.08);
+  if(!S.mute&&!(UFX[c.base||c.id]||{}).q)tone(RV.clue===1?392:523,0,.35,'triangle',.11),tone(RV.clue===1?587:784,.08,.4,'triangle',.08);
   if(RV.clue===1)el.insertAdjacentHTML('beforeend',`<div class="clue" style="--mc:var(--m-${c.m})"><span class="eyebrow">Monde</span><b>${m.n}</b><i>${m.k}</i></div>`);
   if(RV.clue===2)el.insertAdjacentHTML('beforeend',`<div class="clue"><span class="eyebrow">Classe</span><b>${c.cl} · ${c.poste}</b><i>${CLK[c.cl][0]}</i></div>`);
   const h=st.querySelector('.clue-h');if(h)h.textContent=RV.clue<2?'Touche pour l\'indice suivant':'Touche pour révéler la carte';
@@ -2855,15 +2864,37 @@ function drawRV0(){scnSndSync();if(!RV||RV.ph==='pack'||RV.ph==='tear'||RV.ph===
   requestAnimationFrame(()=>requestAnimationFrame(flip));setTimeout(flip,500);
 }
 /* lecture du clip : plusieurs sources essayées tour à tour (copie locale, stockage média, lien direct, données) ; sinon flashback texte + raison */
-/* v146 : entrée sur mesure d'une UR/LR qui a un clip (≠ scène iconique, pas de tourbillon) : au 1er toucher les ténèbres recouvrent l'écran depuis les bords, puis le clip, puis la carte */
-function rvDark(){const i=RV.i,host=$('#reveal')||document.body;RV.ph='dark';const v=document.createElement('div');v.className='rv-dark';v.setAttribute('aria-hidden','true');host.appendChild(v);
-  if(!S.mute){tone(55,0,1.7,'sine',.09,28);tone(82,.15,1.5,'triangle',.04,41)}
-  const D=1600,t0=performance.now();
-  const go=()=>{if(!RV||RV.i!==i||RV.ph!=='dark'){v.remove();return}v.style.background='#000';RV.ph='clip';drawRV();setTimeout(()=>{v.style.opacity='0'},150);setTimeout(()=>v.remove(),800)};
-  const step=now=>{if(!RV||RV.i!==i||RV.ph!=='dark'){v.remove();return}const k=Math.min(1,(now-t0)/D),e=k*k*(3-2*k),r=82-106*e;
-    v.style.background=`radial-gradient(ellipse at 50% 46%,rgba(0,0,0,0) ${r}%,rgba(0,0,0,.98) ${r+24}%)`;
-    if(k<1)requestAnimationFrame(step);else go()};
-  requestAnimationFrame(step)}
+/* v146/v149 : entrée sur mesure d'une UR/LR qui a un clip (≠ scène iconique, pas de tourbillon) : effet propre au perso, puis clip, puis carte */
+const FXD={dark:1700,aura:1500,stop:1900,eyes:1900,cut:450,silver:1300,eye:1250};
+function rvFx(kind,done){const host=$('#reveal')||document.body,v=document.createElement('div');v.className='rv-dark fx-'+kind;v.setAttribute('aria-hidden','true');host.appendChild(v);
+  const D=FXD[kind]||1500,rm=matchMedia('(prefers-reduced-motion:reduce)').matches,A=(el,kf,o)=>{try{return el.animate(kf,Object.assign({fill:'forwards'},o))}catch(_){return null}};
+  const m=!S.mute;let fin=false;const end=(bg)=>{if(fin)return;fin=true;if(done)done(v,bg)};
+  const kill=()=>{if(v.isConnected)v.remove()};
+  if(kind==='dark'){if(m){tone(55,0,1.7,'sine',.09,28);tone(82,.15,1.5,'triangle',.04,41)}
+    const t0=performance.now(),i0=RV&&RV.i;const step=now=>{if(!v.isConnected)return;const k=Math.min(1,(now-t0)/D),e=k*k*(3-2*k),r=82-106*e;v.style.background=`radial-gradient(ellipse at 50% 46%,rgba(0,0,0,0) ${r}%,rgba(0,0,0,.98) ${r+24}%)`;if(k<1)requestAnimationFrame(step);else end('#000')};requestAnimationFrame(step)}
+  else if(kind==='cut'){v.style.background='#000';v.style.opacity='0';if(m)tone(70,0,.5,'sine',.08,40);A(v,[{opacity:0},{opacity:1}],{duration:D,easing:'ease-in'});setTimeout(()=>end('#000'),D)}
+  else if(kind==='eyes'){v.style.background='#000';if(m){tone(52,0,.5,'sine',.12,38);[.55,1.0,1.4].forEach(t=>tone(48,t,.4,'sine',.1,34));tone(1100,.2,1.4,'sine',.02,700)}
+    const N=7,rnd=(a,b)=>a+Math.random()*(b-a);
+    for(let i=0;i<N;i++){const l=document.createElement('i');l.className='fx-eyes-l';const sc=rnd(.6,1.25),rt=rnd(-16,16),tx=rnd(-14,14),ty=rnd(-14,14);l.style.cssText=`transform:translate(${tx}%,${ty}%) rotate(${rt}deg) scale(${sc});opacity:0`;v.appendChild(l);
+      A(l,[{opacity:0,transform:`translate(${tx}%,${ty}%) rotate(${rt}deg) scale(${sc*.6})`},{opacity:1,transform:`translate(${tx}%,${ty}%) rotate(${rt}deg) scale(${sc})`}],{duration:rm?1:260,delay:rm?0:80+i*190,easing:'cubic-bezier(.2,1.4,.4,1)'})}
+    setTimeout(()=>end('#000'),D)}
+  else if(kind==='stop'){const inv=el=>{el.style.backdropFilter=el.style.webkitBackdropFilter='invert(1) grayscale(1) contrast(1.3)'};
+    if(m){tone(1900,0,.05,'square',.05);tone(1900,.5,.05,'square',.05);tone(60,.9,.5,'sine',.16,30)}
+    inv(v);setTimeout(()=>{v.style.backdropFilter=v.style.webkitBackdropFilter='';v.style.background='transparent'},110);
+    setTimeout(()=>inv(v),280);setTimeout(()=>{v.style.backdropFilter=v.style.webkitBackdropFilter='grayscale(1) contrast(1.15) brightness(.85)';v.style.background='rgba(40,70,120,.28)'},400);
+    setTimeout(()=>{v.style.transition='opacity .35s';v.style.background='#000';v.style.backdropFilter=v.style.webkitBackdropFilter='';},D-350);setTimeout(()=>end('#000'),D)}
+  else if(kind==='aura'){v.style.background='radial-gradient(ellipse 90% 70% at 50% 110%,rgba(235,245,255,.95),rgba(120,165,255,.45) 40%,rgba(0,0,0,0) 72%)';v.style.opacity='0';
+    if(m){tone(70,0,1.4,'sine',.1,140);tone(440,.2,1.2,'triangle',.03,880)}
+    A(v,[{opacity:0,transform:'translateY(45%) scale(.7)',easing:'ease-out'},{opacity:.85,transform:'translateY(5%) scale(1.1)',offset:.55,easing:'ease-in'},{opacity:1,transform:'translateY(-8%) scale(1.5)'}],{duration:D});
+    setTimeout(()=>{v.style.background='#dfeaff';},D-120);setTimeout(()=>end('#dfeaff'),D)}
+  else if(kind==='silver'){v.style.backdropFilter=v.style.webkitBackdropFilter='saturate(0) brightness(1.18)';v.style.background='rgba(200,222,255,.2)';if(m)tone(988,0,1,'sine',.04,1320);
+    A(v,[{opacity:0},{opacity:1,offset:.18},{opacity:1,offset:.45},{opacity:0}],{duration:D});setTimeout(kill,D+50)}
+  else if(kind==='eye'){v.style.background='#000 url(images/fx/makima-oeil.jpg) 58% 58%/cover no-repeat';if(m){tone(60,0,.35,'sine',.16,30);tone(1500,.02,.25,'sawtooth',.03,300)}
+    A(v,[{opacity:0,transform:'scale(.8)'},{opacity:1,transform:'scale(1.12)',offset:.1},{opacity:1,transform:'scale(1.02)',offset:.5},{opacity:0,transform:'scale(1)'}],{duration:D,easing:'ease-out'});setTimeout(kill,D+50)}
+  else end('#000')}
+function rvEntry(kind){const i=RV.i;RV.ph='dark';
+  rvFx(kind,(v,bg)=>{if(!RV||RV.i!==i||RV.ph!=='dark'){v.remove();return}try{v.getAnimations().forEach(a=>a.cancel())}catch(_){}v.style.background=bg||'#000';v.style.opacity='1';v.style.transform='none';v.style.backdropFilter=v.style.webkitBackdropFilter='';v.querySelectorAll('.fx-eyes-l').forEach(e=>e.remove());RV.ph='clip';drawRV();setTimeout(()=>{v.style.opacity='0'},150);setTimeout(()=>v.remove(),800)})}
+const rvDark=()=>rvEntry('dark');
 function playClip(box,u,done){const o=preVid(u)||{},base=Object.keys(CLIP).find(k=>CLIP[k]===u||CLIPM[k]===u);
   const v=document.createElement('video');v.muted=true;v.defaultMuted=true;v.playsInline=true;v.setAttribute('playsinline','');v.setAttribute('muted','');v.setAttribute('webkit-playsinline','');v.preload='auto';box.prepend(v);
   const why=[];let fin=false,t=0,att=0,src=[];
@@ -2908,7 +2939,7 @@ function nextCard(){
 }
 function stepRV(){
   if(RV.ph==='multi'||RV.ph==='dark')return;
-  if(RV.ph==='flash'&&clueC(CARD[RV.cards[RV.i].id])){if(Date.now()-RV.ct<(RV.clue===0?900:550))return;if(RV.clue===0&&clipOf(CARD[RV.cards[RV.i].id])){rvDark();return}if(RV.clue<2){RV.clue++;RV.ct=Date.now();rvClue();return}showCard();return}
+  if(RV.ph==='flash'&&clueC(CARD[RV.cards[RV.i].id])){const cc=CARD[RV.cards[RV.i].id],u=UFX[cc.base||cc.id];if(Date.now()-RV.ct<(RV.clue===0?900:550))return;if(u&&clipOf(cc)&&RV.clue===u.k){rvEntry(u.in);return}if(RV.clue<2){RV.clue++;RV.ct=Date.now();rvClue();const f=u&&u.fx&&u.fx[RV.clue];if(f){rvFx(f);RV.ct=Date.now()+Math.max(0,(FXD[f]||0)-550)}return}showCard();return}
   if((RV.ph==='flash'||RV.ph==='swirl'||RV.ph==='clip')&&prot(CARD[RV.cards[RV.i].id]))return;
   if(RV.ph==='merge'){if(!RV.mdone)return;RV.mdone=false;RV.ph='card';if(RV.skip){goNextNew();return}if(RV.i>=RV.cards.length-1){RV.ph='sum';SFX.tap();drawRV()}else nextCard();return}
   clearTimeout(rvT);
