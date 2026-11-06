@@ -26,6 +26,7 @@ Les cartes et les écrans doivent avoir de l'**aura** et une **qualité irrépro
 - Cartes : `RAW` (une ligne JSON), `MONDES`, `CARDS`/`CARD`, `genStats`, `URS_FIX`, `VL`, `PRO`, `SPM`, `ART`, `AV` (version du cache des images), `UFX` (entrées UR/LR).
 - Combat : `ENG`, `hitDmg`, `fighters`, `evalTeam`, `teamFx`, `FORMS`, `SUPK` ; mode Tour : `vTower`, `matchHTML` ; mode Histoire : `STORY`, `stSim`, `stFight`, `vStory`, `vSpace`.
 - Écrans : `vPlay`, `vTeam`, `vAlbum`…, CSS en tête de fichier (`:root` = tokens).
+- Son : `SFX`, `tone`, `noise`, `ac()` (sons synthétisés), `sndPlay`/`sndStop` (fichiers `sounds/`), `S.mute`, `drawMute`.
 - Boosters / boutique : `PACKS`, `PITY_UR`, `poolFor`, `pickW`.
 
 ## Skills du projet (`.claude/skills/`)
@@ -36,6 +37,7 @@ Les cartes et les écrans doivent avoir de l'**aura** et une **qualité irrépro
 | `images-cartes` | images de cartes : choix, cadrage sous le bandeau, format, intégration |
 | `design-acg` | tout écran ou visuel : charte du jeu |
 | `test-jeu` | tester le jeu (Playwright mobile + PC), simuler les combats |
+| `son-acg` | sons, musique, bruitages, volume, petits détails d'interface sonores |
 | `frontend-design`, `webapp-testing`, `handoff`, `find-skills` | skills publics (voir `.claude/skills/SOURCES.md`) |
 
 N'en ajoute pas à la légère : un skill = un besoin qui revient. Pour en chercher un : `find-skills`.
