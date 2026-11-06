@@ -1807,14 +1807,12 @@ body{--t1:#1A2040;--t2:#0A0D1C;background:radial-gradient(90% 52% at 50% 16%,var
  .stage>.rvx-word{font-size:480px;left:-30px;top:280px}.stage>.rvx-lines{left:34%;top:50%}.stage>.rvx-ring{left:34%;top:50%;width:520px;height:520px;margin:-260px 0 0 -260px}
 }
 /* ---------- v157 · Mode histoire ---------- */
-.st-sky{--sx:0;position:relative;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x proximity;scrollbar-width:none;padding:44px 0 8px;border:1px solid var(--line);border-radius:14px;background-color:var(--surface);background-image:radial-gradient(1px 1px at 20px 30px,rgba(255,255,255,.55),transparent),radial-gradient(1px 1px at 96px 84px,rgba(255,255,255,.4),transparent),radial-gradient(1.5px 1.5px at 164px 18px,rgba(255,255,255,.6),transparent),radial-gradient(1px 1px at 52px 104px,rgba(255,255,255,.35),transparent);background-size:210px 124px;background-position-x:calc(var(--sx,0)*-.25px);cursor:grab}
-.st-sky::-webkit-scrollbar{display:none}.st-sky.drag{cursor:grabbing;scroll-snap-type:none}
-.st-track{display:flex;align-items:flex-end;gap:6px;width:max-content;min-width:100%;padding:0 max(14px,calc(50% - 85px))}
-.st-pl{flex:none;width:150px;display:flex;flex-direction:column;align-items:center;gap:3px;padding:0 0 8px;scroll-snap-align:center;opacity:.78;transition:opacity .2s,transform .2s;user-select:none;-webkit-user-select:none}
-.st-pl.on{opacity:1}.st-pl.on b{color:var(--accent)}
-.st-pl{position:relative}.st-wrap{position:relative;width:100px;height:100px;transition:width .25s,height .25s;transform:translateX(calc(var(--mx,0)*var(--d,0)*-5px - var(--mx,0)*9px));transition:transform .15s}
+.st-sky{--sx:0;position:relative;display:flex;align-items:center;gap:14px;padding:36px 14px 14px;border:1px solid var(--line);border-radius:14px;background-color:var(--surface);background-image:radial-gradient(1px 1px at 20px 30px,rgba(255,255,255,.55),transparent),radial-gradient(1px 1px at 96px 84px,rgba(255,255,255,.4),transparent),radial-gradient(1.5px 1.5px at 164px 18px,rgba(255,255,255,.6),transparent),radial-gradient(1px 1px at 52px 104px,rgba(255,255,255,.35),transparent);background-size:210px 124px}
+.st-pl{flex:none;display:flex;flex-direction:column;align-items:center;gap:3px;position:relative;user-select:none;-webkit-user-select:none}
+.st-pl.on b{color:var(--accent)}
+.st-wrap{position:relative;width:100px;height:100px;transition:width .25s,height .25s;transform:translateX(calc(var(--mx,0)*var(--d,0)*-5px - var(--mx,0)*9px));transition:transform .15s}
 .st-img{width:100%;height:100%;object-fit:contain;transform:rotate(calc(var(--sx,0)*.05deg));-webkit-user-drag:none;pointer-events:none}
-.st-pl.on .st-wrap{width:140px;height:140px}.st-pl.on .st-img,.st-pl.on .st-cv{filter:drop-shadow(0 0 14px rgba(242,194,48,.25))}
+.st-pl.on .st-wrap{width:112px;height:112px}.st-pl.on .st-img,.st-pl.on .st-cv{filter:drop-shadow(0 0 14px rgba(242,194,48,.25))}
 .st-img{transition:opacity .15s}.st-cv{position:absolute;inset:0;width:100%;height:100%;opacity:0;transition:opacity .15s;pointer-events:none}
 .st-pl.rdy .st-cv{opacity:1}.st-pl.rdy .st-img{opacity:0}
 .st-pl.lk .st-img,.st-pl.lk .st-cv{filter:grayscale(.75) brightness(.62)}
@@ -1824,6 +1822,11 @@ body{--t1:#1A2040;--t2:#0A0D1C;background:radial-gradient(90% 52% at 50% 16%,var
 
 .st-mv{width:100%;height:100%;border-radius:50%;border:1px dashed var(--line);background:var(--surface-2);display:grid;place-items:center;font:700 46px var(--f-display);color:var(--muted)}
 .st-pl b{font:700 12px var(--f-display);letter-spacing:.02em}.st-pl small{font:11px var(--f-mono);color:var(--muted)}
+.st-nav{display:flex;flex-direction:column;gap:8px;flex:1;min-width:0}.st-nav .btn{width:100%;justify-content:center;font-size:12px;padding:8px 10px}.st-nav2{display:flex;gap:8px}.st-nav2 .btn{flex:1;min-width:0}.st-nav .btn:disabled{opacity:.35;pointer-events:none}
+.st-main.arr{animation:st-arr .8s ease-out}@keyframes st-arr{from{filter:blur(6px);transform:scale(1.04)}}
+#stlid{position:fixed;inset:0;z-index:60;pointer-events:none}#stlid i{position:absolute;left:-5%;right:-5%;height:52%;background:#020308;transition:transform var(--ld,500ms) cubic-bezier(.6,0,.3,1)}
+#stlid i.t{top:0;transform:translateY(-102%);border-radius:0 0 50% 50%/0 0 22% 22%;box-shadow:0 10px 40px 20px #020308}#stlid i.b{bottom:0;transform:translateY(102%);border-radius:50% 50% 0 0/22% 22% 0 0;box-shadow:0 -10px 40px 20px #020308}
+#stlid.on{pointer-events:auto}#stlid.on i{transform:none}
 .st-world{display:grid;gap:14px;margin-top:18px}.st-world header h2{margin:2px 0 4px;font:700 20px var(--f-display)}
 .st-acts{display:grid;gap:12px}
 .st-act{position:relative;display:flex;flex-direction:column;gap:10px;padding:14px;border:1px solid var(--line);border-radius:14px;background:linear-gradient(rgba(5,6,10,.8),rgba(5,6,10,.93)),var(--decor) center/cover}
@@ -1863,16 +1866,39 @@ body{--t1:#1A2040;--t2:#0A0D1C;background:radial-gradient(90% 52% at 50% 16%,var
 @media(max-width:480px){.st-bar .eyebrow{display:none}.st-bar{justify-content:space-between}.st-fight{padding:10px}}
 @media(min-width:1024px){
  .st-main{display:grid;grid-template-columns:210px minmax(0,1fr);gap:18px;align-items:start}
- .st-sky{position:sticky;top:8px;overflow:visible;scroll-snap-type:none;padding:44px 0 12px;cursor:default}
- .st-track{flex-direction:column;align-items:center;gap:46px;width:auto;min-width:0;padding:0}
- .st-pl{width:100%;padding:0}.st-pl+.st-pl::before{content:"";position:absolute;left:50%;top:-42px;height:20px;border-left:2px dashed var(--line)}
- .st-wrap{width:84px;height:84px}.st-pl.on .st-wrap{width:128px;height:128px}.st-head{width:44px;height:44px;margin-left:-22px;top:-22px;font-size:18px}
+ .st-sky{position:sticky;top:8px;flex-direction:column;padding:48px 14px 16px;align-items:stretch}.st-pl.on{align-self:center}.st-pl.on .st-wrap{width:150px;height:150px}.st-nav{flex:none}
+ .st-head{width:48px;height:48px;margin-left:-24px;top:-24px;font-size:18px}
  .st-world{margin-top:0;grid-template-columns:minmax(0,1fr);align-items:start}.st-acts{grid-template-columns:repeat(3,minmax(0,1fr))}
  .st-side{flex-direction:row;align-items:center;flex-wrap:wrap}.st-sq{flex:1;min-width:300px;max-width:520px}.st-side .btn{width:auto}
  .st-bc{width:96px}.st-fight{min-height:0}
  .st-arena{--cw:80px;--bw:150px;--ax:-14px;--ay:0px;--bx:14px;--by:0px;display:grid;grid-template-columns:240px minmax(0,1fr);gap:36px;align-items:center;max-width:860px;margin:0 auto}
  .st-boss{justify-self:center}
 }
+/* v159 · scène spatiale */
+.sp-scene{--sk:1;--sd:0ms;position:relative;height:min(calc(100dvh - 250px),640px);min-height:440px;overflow:hidden;border-radius:14px;border:1px solid var(--line);background:#04050d;perspective:900px;perspective-origin:50% 50%;isolation:isolate;transition:opacity .35s}
+.sp-scene.sp-out{opacity:0}.sp-bg{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.sp-neb,.sp-st{position:absolute;inset:-12%;transition:transform var(--sd) cubic-bezier(.65,0,.35,1)}
+.sp-neb{background:radial-gradient(40% 35% at 25% 30%,rgba(90,60,160,.30),transparent 70%),radial-gradient(45% 40% at 78% 72%,rgba(30,90,150,.26),transparent 70%),radial-gradient(30% 25% at 62% 14%,rgba(160,70,110,.18),transparent 70%);transform:scale(var(--sk))}
+.sp-st{inset:-40%}
+.sp-st.s1{background-image:radial-gradient(1px 1px at 20px 30px,#fff,transparent),radial-gradient(1px 1px at 130px 90px,rgba(255,255,255,.8),transparent),radial-gradient(1.2px 1.2px at 80px 150px,#fff,transparent);background-size:170px 170px;transform:scale(var(--sk))}
+.sp-st.s2{background-image:radial-gradient(1.4px 1.4px at 40px 60px,#fff,transparent),radial-gradient(1px 1px at 180px 200px,rgba(255,235,200,.9),transparent),radial-gradient(1px 1px at 110px 20px,rgba(200,220,255,.8),transparent);background-size:260px 260px;transform:scale(calc(1 + (var(--sk) - 1)*1.5))}
+.sp-st.s3{background-image:radial-gradient(1.8px 1.8px at 90px 120px,#fff,transparent),radial-gradient(1.5px 1.5px at 250px 40px,rgba(255,225,190,.95),transparent);background-size:340px 340px;transform:scale(calc(1 + (var(--sk) - 1)*2.4))}
+.sp-path{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;transition:opacity .4s}.sp-path path{fill:none;stroke:rgba(255,255,255,.16);stroke-width:1.5;stroke-dasharray:3 7}
+.sp-world{position:absolute;inset:0;transform-style:preserve-3d}
+.sp-sun{position:absolute;left:50%;top:50%;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,#fff7dc 0 6%,rgba(255,205,120,.75) 13%,rgba(255,150,60,.2) 42%,transparent 68%)}
+.sp-p{position:absolute;left:50%;top:50%;width:var(--sz);height:var(--sz);display:block;padding:0;border:0;background:none;cursor:pointer;color:var(--text);transform-style:preserve-3d;-webkit-tap-highlight-color:transparent}
+.sp-orb{position:absolute;inset:0;display:block;border-radius:50%;box-shadow:0 0 50px 4px rgba(140,200,230,.16);transition:box-shadow .25s}
+.sp-orb img,.sp-orb canvas{position:absolute;inset:0;width:100%;height:100%;-webkit-user-drag:none;pointer-events:none}.sp-orb canvas{opacity:0;transition:opacity .25s}.sp-p.rdy canvas{opacity:1}.sp-p.rdy img{opacity:0}
+.sp-p:hover .sp-orb,.sp-p:focus-visible .sp-orb{box-shadow:0 0 60px 10px rgba(242,194,48,.3)}
+.sp-p.lk .sp-orb{filter:grayscale(.7) brightness(.62)}
+.sp-vx{position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,#2a1a55,#07071a,#4a2a7a,#07071a,#2a1a55);animation:sp-vx 16s linear infinite;-webkit-mask:radial-gradient(circle,#000 62%,transparent 71%);mask:radial-gradient(circle,#000 62%,transparent 71%)}@keyframes sp-vx{to{transform:rotate(360deg)}}
+.sp-lb{position:absolute;left:50%;top:100%;margin-top:8px;display:flex;flex-direction:column;align-items:center;gap:2px;white-space:nowrap;transform:translateX(-50%) scale(var(--is,1));transform-origin:50% 0;transition:opacity .3s;pointer-events:none}
+.sp-lb b{font:700 15px var(--f-display)}.sp-lb small{font:11px var(--f-mono);color:var(--muted)}.sp-p:hover .sp-lb b{color:var(--accent)}
+.sp-hd{position:absolute;left:50%;top:2%;width:46px;height:46px;border-radius:50%;border:2px solid var(--accent);background:var(--surface-2) center 14%/cover;display:grid;place-items:center;font:700 19px var(--f-display);color:var(--accent);transform:translate(-50%,-55%) scale(var(--is,1));transition:opacity .3s;pointer-events:none}
+.sp-hd.q{border-color:var(--line);color:var(--muted)}
+.sp-scene.sp-fly .sp-lb,.sp-scene.sp-fly .sp-hd,.sp-scene.sp-fly .sp-path,.sp-scene.sp-fly .sp-hint{opacity:0}
+.sp-hint{position:absolute;left:0;right:0;top:12px;text-align:center;margin:0;font:11px var(--f-mono);letter-spacing:.08em;color:var(--muted);pointer-events:none;transition:opacity .3s}
+@media(prefers-reduced-motion:reduce){.sp-vx{animation:none}}
 @media(prefers-reduced-motion:reduce){.st-boss.hit,.st-pc.hit,.st-pc.atk,.st-boss.atk,.st-sp.on,.st-fl{animation:none}.st-wrap,.st-img{transition:none}}
 </style>
 
@@ -4253,18 +4279,6 @@ function stActHTML(wi,ai){const w=STORY[wi],a=w.acts[ai],c=CARD[a.b],done=stDone
    <ul class="st-obj">${ST_OBJ.map((o,i)=>`<li class="${ok[i]?'on':''}"><span>${ok[i]?'✓':'·'}</span>${o}</li>`).join('')}</ul>
    ${open?`<button class="btn primary wide" data-act="stGo" data-v="${wi},${ai}">${done?'Rejouer':'Combattre'}</button>`:`<button class="btn wide" data-act="stGo" data-v="${wi},${ai}" aria-disabled="true">${LOCK} Verrouillé</button>`}
    <small class="muted">Récompense : ${a.rw} pièces · provisoire</small></article>`}
-/* planète : image à plat au repos, sphère 3D (canvas) qui tourne au survol / au toucher */
-function stPlanetHTML(w,wi,sel){const open=stWorldOpen(wi),n=stCount(w),bs=CARD[w.acts[stNext(w)].b],art=open?artOf(bs):null;
-  return `<button class="st-pl${w.k===sel?' on':''}${open?'':' lk'}" data-act="stWorld" data-v="${w.k}" data-pl="${w.pl}" style="--d:${wi}"><span class="st-wrap"><img class="st-img" src="${w.pl}" alt="" draggable="false"><canvas class="st-cv" width="256" height="256" aria-hidden="true"></canvas>${open?(art?`<span class="st-head" title="${bs.nom}" style="background-image:url(${art})"></span>`:`<span class="st-head k">${w.kj}</span>`):`<span class="st-head k q">?</span>`}${open?'':`<i class="st-lock">${LOCK}</i>`}</span><b>${w.n}</b><small>${open?n+' / '+w.acts.length+' actes':'Verrouillé'}</small></button>`}
-function vStory(){if(ST_RUN&&!ST_RUN.gone){setTimeout(stResume,0);return stFightHTML()}
-  const q=stState();let wi=STORY.findIndex(w=>w.k===q.sel);if(wi<0||!stWorldOpen(wi)){wi=STORY.findIndex((w,i)=>stWorldOpen(i)&&stCount(w)<w.acts.length);if(wi<0)wi=0}
-  const w=STORY[wi],full=S.team.filter(Boolean).length>=7;setTimeout(stInit,0);
-  const sq=S.team.map(id=>id&&CARD[id]?`<div class="st-sqc">${cardHTML(CARD[id],{mini:true})}</div>`:`<div class="st-sqc e">+</div>`).join('');
-  return `<div class="st-main"><section class="st-sky" id="stsky"><div class="st-stars" aria-hidden="true"></div><div class="st-track">${STORY.map((x,i)=>stPlanetHTML(x,i,w.k)).join('')}
-    <button class="st-pl lk mv" data-act="stMulti"><span class="st-wrap"><span class="st-mv">多</span><i class="st-lock">${LOCK}</i></span><b>Multivers</b><small>Prochaine mise à jour</small></button></div></section>
-   <section class="st-world"><header><span class="eyebrow">Histoire · ${w.n}</span><h2>${w.sub}</h2><p class="small muted">${stCount(w)} / ${w.acts.length} actes terminés · le boss vise ton Tank, puis tes DPS, puis tes Distances</p></header>
-    <div class="st-acts">${w.acts.map((a,i)=>stActHTML(wi,i)).join('')}</div>
-    <aside class="st-side"><span class="eyebrow">Ton équipe</span><div class="st-sq">${sq}</div>${full?'':'<p class="small st-warn">Il manque des cartes : l\'équipe doit en avoir 7.</p>'}<button class="btn wide" data-act="tab" data-v="team">Modifier l'équipe</button></aside></section></div>`}
 /* sphère : on lit le disque de l'illustration (hémisphère de face) et on le « déroule » ; l'arrière est le miroir de l'avant */
 const ST_TEX={},ST_SPN=256,ST_SPH=(()=>{const N=ST_SPN,ph=[],ct=[],sn=[],sh=[],al=[],ix=[];for(let y=0;y<N;y++)for(let x=0;x<N;x++){const nx=(x+.5-N/2)/(N/2),ny=(y+.5-N/2)/(N/2),r2=nx*nx+ny*ny;if(r2>1.02)continue;const r=Math.sqrt(r2),nz=Math.sqrt(Math.max(0,1-r2));ix.push(y*N+x);al.push(Math.min(1,Math.max(0,(1-r)*N/2)));ph.push(Math.atan2(nx,nz));ct.push(Math.sqrt(Math.max(0,1-ny*ny)));sn.push(ny);sh.push(.64+.5*Math.max(0,-.45*nx-.5*ny+.74*nz))}
   return {ix:Int32Array.from(ix),ph:Float32Array.from(ph),ct:Float32Array.from(ct),sn:Float32Array.from(sn),sh:Float32Array.from(sh),al:Float32Array.from(al)}})();
@@ -4289,18 +4303,77 @@ function stSpin(btn,mode){const cv=btn.querySelector('.st-cv');if(!cv||matchMedi
       if(s.tex)stDrawSph(s.cv,s.tex,s.mode==='off'?0:s.rot);
       if(s.mode==='off')ST_SP.delete(b)});
     if(ST_SP.size)ST_RAF=requestAnimationFrame(loop);else ST_RAF=0};ST_RAF=requestAnimationFrame(loop)}}
-let ST_SPINK=null;
-function stInit(){const sky=document.getElementById('stsky');if(!sky)return;sky.scrollLeft=ST_SX;
-  const paint=()=>{ST_SX=sky.scrollLeft;sky.style.setProperty('--sx',ST_SX)};sky.addEventListener('scroll',paint,{passive:true});paint();
-  let dn=false,x0=0,s0=0,mv=0;
-  sky.addEventListener('pointerdown',e=>{if(e.pointerType!=='mouse')return;dn=true;x0=e.clientX;s0=sky.scrollLeft;mv=0;sky.classList.add('drag')});
-  sky.addEventListener('pointermove',e=>{const r=sky.getBoundingClientRect();sky.style.setProperty('--mx',((e.clientX-r.left)/r.width-.5).toFixed(3));if(dn){const d=e.clientX-x0;mv=Math.max(mv,Math.abs(d));sky.scrollLeft=s0-d}});
-  const up=()=>{dn=false;sky.classList.remove('drag')};sky.addEventListener('pointerup',up);sky.addEventListener('pointerleave',up);
-  sky.addEventListener('click',e=>{if(mv>6){e.stopPropagation();e.preventDefault();mv=0}},true);
+/* v159 · scène spatiale : système solaire en 3D CSS (caméra = translate3d), clic = on fonce dans la planète, changer de planète = on voyage jusqu'à elle */
+let ST_MODE='space',ST_FLY=0,ST_SPR=0;
+const SP_P=900,SP_Z=[0,-300,-620,-900];
+function spGeo(W,H){const land=W>H*1.1,D=Math.min(220,land?H*.4:W*.46),F=land?[[-.30,.11],[-.02,-.13],[.26,.12],[.40,-.25]]:[[-.22,.20],[.18,-.03],[-.14,-.22],[.22,-.36]];
+  return {D,pl:F.map((f,i)=>{const z=SP_Z[i],s=SP_P/(SP_P-z);return {x:f[0]*W/s,y:f[1]*H/s,z,s,px:f[0]*W,py:f[1]*H}})}}
+function spCam(g,i,kind){if(kind==='ov')return 'translate3d(0,0,0)';const p=g.pl[i];return `translate3d(${-p.x}px,${-p.y}px,${-p.z+(kind==='in'?760:250)}px)`}
+function spStarK(kind){return kind==='in'?2.6:kind==='fo'?1.25:1}
+function spPlanetHTML(w,wi){const open=stWorldOpen(wi),n=stCount(w),bs=CARD[w.acts[stNext(w)].b],art=open?artOf(bs):null;
+  return `<button class="sp-p${open?'':' lk'}" data-act="spEnter" data-v="${w.k}" data-i="${wi}" data-k="${w.k}" data-pl="${w.pl}" aria-label="${w.n}${open?'':' · verrouillé'}"><span class="sp-orb"><img src="${w.pl}" alt="" draggable="false"><canvas width="256" height="256" aria-hidden="true"></canvas></span>
+   <span class="sp-hd${open&&art?'':' q'}" ${open&&art?`style="background-image:url(${art})"`:''}>${open?(art?'':w.kj):'?'}</span><span class="sp-lb"><b>${w.n}</b><small>${open?n+' / '+w.acts.length+' actes':'Verrouillé'}</small></span></button>`}
+function vSpace(){setTimeout(spInit,0);
+  return `<section class="sp-scene" id="spscene" aria-label="Système solaire des mondes"><div class="sp-bg"><div class="sp-neb"></div><div class="sp-st s1"></div><div class="sp-st s2"></div><div class="sp-st s3"></div></div>
+   <svg class="sp-path" id="sppath" aria-hidden="true"></svg>
+   <div class="sp-world" id="spworld"><div class="sp-sun" id="spsun" aria-hidden="true"></div>${STORY.map((w,i)=>spPlanetHTML(w,i)).join('')}
+    <button class="sp-p lk mv" data-act="stMulti" data-i="3" data-pl="" aria-label="Multivers · verrouillé"><span class="sp-orb"><span class="sp-vx"></span></span><span class="sp-hd q">多</span><span class="sp-lb"><b>Multivers</b><small>Prochaine mise à jour</small></span></button></div>
+   <p class="sp-hint" id="sphint">Touche une planète pour y entrer</p></section>`}
+function spGeoNow(sc){const g=spGeo(sc.clientWidth,sc.clientHeight);sc._g=g;return g}
+function spPlace(sc){const g=spGeoNow(sc),D=g.D;sc.style.setProperty('--D',D+'px');
+  sc.querySelectorAll('.sp-p').forEach(el=>{const i=+el.dataset.i,p=g.pl[i];el.style.transform=`translate3d(${p.x}px,${p.y}px,${p.z}px) translate(-50%,-50%)`;el.style.setProperty('--is',(1/p.s).toFixed(3));el.style.setProperty('--sz',(D*(i===3?.8:1))+'px')});
+  const sun=sc.querySelector('#spsun');if(sun){let s=SP_P/(SP_P+1500),px=.3*sc.clientWidth,py=-.36*sc.clientHeight;if(sc.clientWidth<sc.clientHeight*1.1){px=-.3*sc.clientWidth;py=-.42*sc.clientHeight}sun.style.transform=`translate3d(${px/s}px,${py/s}px,-1500px) translate(-50%,-50%)`}
+  const P=g.pl,W=sc.clientWidth,H=sc.clientHeight,pts=P.map(p=>[W/2+p.px,H/2+p.py]);let d='M'+pts[0].join(' ');for(let k=1;k<pts.length;k++){const a=pts[k-1],b=pts[k];d+=` Q${(a[0]+b[0])/2+(k%2?40:-40)} ${(a[1]+b[1])/2-30} ${b[0]} ${b[1]}`}
+  const sv=sc.querySelector('#sppath');sv.setAttribute('viewBox','0 0 '+W+' '+H);sv.innerHTML=`<path d="${d}"/>`}
+function spCamSet(sc,i,kind,ms,ease){const w=sc.querySelector('#spworld'),g=sc._g;w.style.transition=ms?`transform ${ms}ms ${ease||'cubic-bezier(.65,0,.35,1)'}`:'none';w.style.transform=spCam(g,i,kind);
+  sc.style.setProperty('--sk',spStarK(kind));sc.style.setProperty('--sd',ms+'ms');if(!ms)void w.offsetWidth}
+function spRun(sc,steps,done){let t=0;const quick=matchMedia('(prefers-reduced-motion:reduce)').matches;ST_FLY=1;sc.classList.add('sp-fly');
+  steps.forEach(st=>{setTimeout(()=>{spCamSet(sc,st.i,st.kind,quick?0:st.ms,st.ease);if(st.fade)setTimeout(()=>stLid(1,quick?0:Math.round(st.ms*.5)),quick?0:st.ms*.5)},t);t+=quick?0:st.ms});
+  setTimeout(()=>{ST_FLY=0;done()},t+(quick?30:60))}
+function spInit(){const sc=document.getElementById('spscene');if(!sc)return;spPlace(sc);
+  const fr=ST_FROM;ST_FROM=null;
+  if(fr){/* arrivée depuis une planète : la caméra est déjà collée dessus */
+    spCamSet(sc,fr.i,'in',0);
+    if(fr.to==null)spRun(sc,[{i:0,kind:'ov',ms:1200}],()=>{sc.classList.remove('sp-fly')});
+    else{const j=fr.to,k=STORY[j].k;spRun(sc,[{i:j,kind:'fo',ms:1700},{i:j,kind:'in',ms:850,ease:'cubic-bezier(.5,0,.9,.5)',fade:1}],()=>spArrive(k))}}
+  else spCamSet(sc,0,'ov',0);
+  sc.querySelectorAll('.sp-p').forEach(b=>{const src=b.dataset.pl;if(!src)return;stTex(src).then(t=>{if(t&&b.isConnected){const cv=b.querySelector('canvas');stDrawSph(cv,t,b.dataset.i*1.7);b.classList.add('rdy');b._t=t}})});
+  const p=sc.querySelectorAll('.sp-p[data-pl]'),R={};let last=performance.now(),fr0=0;
+  const loop=now=>{if(!sc.isConnected)return;const dt=Math.min(.05,(now-last)/1e3);last=now;fr0++;let nPl=0;
+    p.forEach((b,k)=>{if(!b._t)return;const i=+b.dataset.i,hv=b.matches(':hover')&&!ST_FLY;R[i]=(R[i]||i*1.7)+dt*(hv?1.5:.2);nPl++;if(hv||fr0%p.length===k)stDrawSph(b.querySelector('canvas'),b._t,R[i])});
+    ST_SPR=requestAnimationFrame(loop)};cancelAnimationFrame(ST_SPR);ST_SPR=requestAnimationFrame(loop);
+  addEventListener('resize',spResize);}
+let ST_FROM=null;
+function spResize(){const sc=document.getElementById('spscene');if(!sc){removeEventListener('resize',spResize);return}if(!ST_FLY){spPlace(sc);spCamSet(sc,0,'ov',0)}}
+function spArrive(k){if(!document.getElementById('spscene')){stLid(0,0);return}ST_MODE='planet';ST_ARR=1;stState().sel=k;save();render();$('#main').scrollTop=0;setTimeout(()=>stLid(0,520),260)}
+/* v159 · « l'écran ferme les yeux » pour entrer dans la planète, puis les rouvre sur l'interface */
+function stLid(close,ms){let o=document.getElementById('stlid');if(!o){o=document.createElement('div');o.id='stlid';o.setAttribute('aria-hidden','true');o.innerHTML='<i class="t"></i><i class="b"></i>';document.body.appendChild(o)}
+  o.style.setProperty('--ld',ms+'ms');o.classList.toggle('on',!!close)}
+let ST_ARR=0;
+function spEnter(k){const wi=STORY.findIndex(w=>w.k===k);if(wi<0||ST_FLY)return;if(!stWorldOpen(wi)){toast('Termine d\'abord '+STORY[wi-1].n+'.');return}
+  const sc=document.getElementById('spscene');if(!sc)return;SFX.tap();document.getElementById('sphint').style.opacity=0;
+  spRun(sc,[{i:wi,kind:'fo',ms:900},{i:wi,kind:'in',ms:900,ease:'cubic-bezier(.5,0,.9,.5)',fade:1}],()=>spArrive(k))}
+function spOut(){if(ST_FLY)return;const q=stState(),wi=Math.max(0,STORY.findIndex(w=>w.k===q.sel));ST_FROM={i:wi,to:null};ST_MODE='space';render();$('#main').scrollTop=0}
+function spTo(dir){if(ST_FLY)return;const q=stState(),wi=Math.max(0,STORY.findIndex(w=>w.k===q.sel)),j=wi+(dir==='prev'?-1:1);if(j<0||j>=STORY.length)return;
+  if(!stWorldOpen(j)){toast('Termine d\'abord '+STORY[j-1].n+'.');return}ST_FROM={i:wi,to:j};ST_MODE='space';render();$('#main').scrollTop=0}
+/* planète de l'interface : sphère qui tourne au survol */
+function stPlanetHTML(w,wi){const n=stCount(w),bs=CARD[w.acts[stNext(w)].b],art=artOf(bs);
+  return `<div class="st-pl on" data-pl="${w.pl}"><span class="st-wrap"><img class="st-img" src="${w.pl}" alt="" draggable="false"><canvas class="st-cv" width="256" height="256" aria-hidden="true"></canvas>${art?`<span class="st-head" title="${bs.nom}" style="background-image:url(${art})"></span>`:`<span class="st-head k">${w.kj}</span>`}</span><b>${w.n}</b><small>${n} / ${w.acts.length} actes</small></div>`}
+function vStory(){if(ST_RUN&&!ST_RUN.gone){setTimeout(stResume,0);return stFightHTML()}
+  if(ST_MODE==='space')return vSpace();
+  const q=stState();let wi=STORY.findIndex(w=>w.k===q.sel);if(wi<0||!stWorldOpen(wi)){wi=STORY.findIndex((w,i)=>stWorldOpen(i)&&stCount(w)<w.acts.length);if(wi<0)wi=0}
+  const w=STORY[wi],full=S.team.filter(Boolean).length>=7;setTimeout(stInit,0);const arr=ST_ARR;ST_ARR=0;
+  const sq=S.team.map(id=>id&&CARD[id]?`<div class="st-sqc">${cardHTML(CARD[id],{mini:true})}</div>`:`<div class="st-sqc e">+</div>`).join('');
+  return `<div class="st-main${arr?' arr':''}"><section class="st-sky" id="stsky">${stPlanetHTML(w,wi)}
+    <div class="st-nav"><button class="btn" data-act="spOut">← Système solaire</button><div class="st-nav2"><button class="btn" data-act="spTo" data-v="prev"${wi===0?' disabled':''}>◀ Précédente</button><button class="btn" data-act="spTo" data-v="next"${wi===STORY.length-1?' disabled':''}>Suivante ▶</button></div></div></section>
+   <section class="st-world"><header><span class="eyebrow">Histoire · ${w.n}</span><h2>${w.sub}</h2><p class="small muted">${stCount(w)} / ${w.acts.length} actes terminés · le boss vise ton Tank, puis tes DPS, puis tes Distances</p></header>
+    <div class="st-acts">${w.acts.map((a,i)=>stActHTML(wi,i)).join('')}</div>
+    <aside class="st-side"><span class="eyebrow">Ton équipe</span><div class="st-sq">${sq}</div>${full?'':'<p class="small st-warn">Il manque des cartes : l\'équipe doit en avoir 7.</p>'}<button class="btn wide" data-act="tab" data-v="team">Modifier l'équipe</button></aside></section></div>`}
+function stInit(){const sky=document.getElementById('stsky');if(!sky)return;
   sky.querySelectorAll('.st-pl[data-pl]').forEach(b=>{stTex(b.dataset.pl).then(t=>{if(t&&b.isConnected){stDrawSph(b.querySelector('.st-cv'),t,0);b.classList.add('rdy')}});
     b.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse')stSpin(b,'hover')});
-    b.addEventListener('pointerleave',e=>{if(e.pointerType==='mouse'){const s=ST_SP.get(b);if(s&&s.mode==='hover')s.mode='settle'}})});
-  if(ST_SPINK){const b=sky.querySelector('.st-pl[data-v="'+ST_SPINK+'"]');ST_SPINK=null;if(b&&!b.matches(':hover'))stSpin(b,'once')}}
+    b.addEventListener('pointerleave',e=>{if(e.pointerType==='mouse'){const s=ST_SP.get(b);if(s&&s.mode==='hover')s.mode='settle'}});
+    b.addEventListener('click',()=>stSpin(b,'once'))})}
 function vPlay(){const ps=S.psub||(Object.keys(stState().d).length?'tw':'st'),sub=ps==='st'?'st':unl('draft')?ps:'tw';
   const seg=`<div class="seg"><button data-act="psub" data-v="tw" aria-pressed="${sub==='tw'}">La Tour Céleste</button><button data-act="psub" data-v="tr" aria-pressed="${sub==='tr'}">Tournoi draft${unl('draft')?'':' · niv. '+UNLOCK.draft}</button><button data-act="psub" data-v="st" aria-pressed="${sub==='st'}">Histoire</button></div>`;
   const run=sub==='st'?null:sub==='tw'?twState().run:trState().run;
@@ -4421,16 +4494,17 @@ const ACT={
   initClaim:()=>{const i=initStep();if(i<0||!initDone(i))return;S.init['ok'+i]=1;const x=INIT[i];grant(x.rw);addXp(30);if(i===INIT.length-1)S.init.done=true;SFX.coin();save();render();
     showReward(i===INIT.length-1?'Initiation terminée':'Initiation · '+(i+1)+' / '+INIT.length,i===INIT.length-1?'Ton booster de bienvenue':x.t,x.rw.pack?{pack:x.rw.pack}:null,rwText(x.rw)+(x.rw.pack?' ajouté à Mes boosters':''))},
   noop:()=>{},
-  stWorld:v=>{const wi=STORY.findIndex(w=>w.k===v);if(wi<0)return;if(!stWorldOpen(wi)){toast('Termine d\'abord '+STORY[wi-1].n+'.');return}stState().sel=v;ST_SPINK=v;save();render()},
+  stWorld:v=>{const wi=STORY.findIndex(w=>w.k===v);if(wi<0)return;if(!stWorldOpen(wi)){toast('Termine d\'abord '+STORY[wi-1].n+'.');return}stState().sel=v;save();render()},
   stMulti:()=>toast('Le Multivers, où attendent les plus grands méchants : après les trois premiers mondes. Prochaine mise à jour.'),
   stGo:v=>{const [wi,ai]=String(v).split(',').map(Number);if(!stActOpen(wi,ai)){toast(stWorldOpen(wi)?'Termine d\'abord l\'acte '+ai+'.':'Monde verrouillé.');return}stFight(wi,ai)},
+  spEnter:v=>spEnter(v),spOut:()=>spOut(),spTo:v=>spTo(v),
   stBack:()=>{clearTimeout(ST_T);ST_RUN=null;render();$('#main').scrollTop=0},
   stRetry:()=>{const R=ST_RUN;if(R)stFight(R.wi,R.ai)},
   stSpd:()=>{const q=stState();q.spd=q.spd===2?1:2;save();const b=document.querySelector('.st-tg[data-act=stSpd]');if(b)b.classList.toggle('on',q.spd===2)},
   stAuto:()=>{const q=stState();q.auto=!q.auto;save();const b=document.querySelector('.st-tg[data-act=stAuto]');if(b)b.classList.toggle('on',q.auto)},
   stSkip:()=>{if(ST_RUN&&!ST_RUN.fin)stEnd()},
   goTower:()=>{if(!unl('tour')){toast('La Tour Céleste : débloquée au niveau '+UNLOCK.tour+'.');return}S.tab='tour';S.psub='tw';save();render();$('#main').scrollTop=0},
-  psub:v=>{if(v==='tr'&&!unl('draft')){toast('Tournoi draft : débloqué au niveau '+UNLOCK.draft+'.');return}S.psub=v;clearTimeout(TRT);TRT=null;save();render();$('#main').scrollTop=0},
+  psub:v=>{if(v==='tr'&&!unl('draft')){toast('Tournoi draft : débloqué au niveau '+UNLOCK.draft+'.');return}if(v==='st'&&!ST_FLY)ST_MODE='space';S.psub=v;clearTimeout(TRT);TRT=null;save();render();$('#main').scrollTop=0},
   twFl:v=>twSheet(+v),
   twTeam:()=>{closeSheet();ACT.tab('team')},
   twRestart:()=>{const st=twState();if(st.run||st.fls[st.t]<TW_N)return;st.fls[st.t]=0;st.last=null;save();render();toast('Tour '+TOWERS[st.t].n+' recommencée.')},
