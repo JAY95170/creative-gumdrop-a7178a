@@ -2,7 +2,7 @@
 
 ## Référence : les UR/LR déjà dans le jeu (jugées réussies)
 - L'image porte l'âme du perso : sombre = image sombre et puissante (Meruem, Sung Jinwoo, Saitama, Alucard, Madara) ; feu = flammes (Naruto, Escanor) ; divin/cosmique = lumière, or, violet (Whis, Beerus, Seiya).
-- Une couleur dominante, fort contraste, aucun fond vide.
+- Une couleur dominante, fort contraste, aucun fond vide (de préférence un fond travaillé (décor, ambiance), pas seulement le perso détouré sur un aplat d'une seule couleur).
 - Une silhouette ou un geste mémorable : silhouette contre la lune (Luffy), gros plan regard (Gojo), main iconique (Alucard), pose de puissance vue d'en bas (Goku, Escanor), assis en majesté (Beerus, Madara).
 - Effets d'énergie et graphisme assumé : encre manga N&B (Shinra), aplats forts (Makima), psychédélique (DIO).
 
@@ -13,7 +13,7 @@
 4. Couleur et ambiance (palette forte, énergie, fumée, flammes)
 5. Regard et expression
 6. Finition main (traits nets, aplats propres, détails cohérents, résolution)
-À éviter : portrait centré, yeux au milieu, tête serrée, fond vide.
+À éviter : portrait centré, yeux au milieu, tête serrée, fond vide ou aplat uni.
 
 ## Signaux « trop IA » (1 fort ou 2 faibles = rejet)
 - Mains (doigts en trop ou fusionnés, creux en V), yeux dépareillés, pupilles tremblotantes.
