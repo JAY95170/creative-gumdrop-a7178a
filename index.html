@@ -1000,7 +1000,7 @@ body{--t1:#1A2040;--t2:#0A0D1C;background:radial-gradient(90% 52% at 50% 16%,var
 .hm-nm span{font:600 9.5px var(--f-mono);letter-spacing:.12em;text-transform:uppercase;opacity:.8}
 .hm-g{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
 .htl{position:relative;display:block;box-sizing:border-box;overflow:hidden;height:78px;border-radius:14px;border:1px solid rgba(255,255,255,.16);background:#11151F;color:#fff;text-align:left;padding:0}
-.htl .ib{position:absolute;inset:0}.htl .ib svg{position:absolute;right:2px;top:0;width:36%;height:100%}.htl .tx b{font-size:15px}.htl .sh{background:linear-gradient(90deg,rgba(7,9,15,.55) 0%,rgba(7,9,15,0) 60%)!important}
+.htl .ib{position:absolute;inset:0}.htl .ib.hbg{background-color:#11151F;background-size:cover;background-position:72% 40%;background-repeat:no-repeat}.htl .ib svg{position:absolute;right:2px;top:0;width:36%;height:100%}.htl .tx b{font-size:15px}.htl .sh{background:linear-gradient(90deg,rgba(7,9,15,.55) 0%,rgba(7,9,15,0) 60%)!important}
 .htl .sh{position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,9,15,.1) 20%,rgba(7,9,15,.92) 96%)}
 .htl .tx{position:absolute;left:11px;right:11px;bottom:8px;display:flex;flex-direction:column;gap:2px}
 .htl .tx b{font:900 16px/1 var(--f-display)}
@@ -2545,7 +2545,8 @@ function vHome(){
     sbc:c=>{const P=[[132,14],[112,32],[152,32],[104,52],[128,52],[152,52],[128,70]];return `<g stroke="${c}" stroke-width="1.2" fill="none" opacity=".8"><path d="M132 14L112 32M132 14L152 32M112 32L104 52M112 32L128 52M152 32L128 52M152 32L152 52M128 52L128 70"/></g>`+P.map(p=>`<circle cx="${p[0]}" cy="${p[1]}" r="5.5" fill="#0D1018" stroke="${c}" stroke-width="1.6"/>`).join('')},
     tour:c=>`<circle cx="148" cy="16" r="7" fill="${c}" fill-opacity=".85"/><g fill="${c}" fill-opacity=".16" stroke="${c}" stroke-width="1.4" stroke-linejoin="round"><path d="M126 8l-12 7h24z"/><path d="M121 19h10v8h-10z"/><path d="M126 26l-17 8h34z"/><path d="M118 34h16v9h-16z"/><path d="M126 43l-23 9h46z"/><path d="M113 52h26v14h-26z"/><path d="M126 66l-30 9h60z"/></g>`,
     obj:c=>`<g fill="none" stroke="${c}" stroke-width="1.6"><circle cx="128" cy="40" r="30" opacity=".35"/><circle cx="128" cy="40" r="20" opacity=".6"/><circle cx="128" cy="40" r="10"/></g><path d="M128 40L150 18M150 18l-9 1.5M150 18l-1.5 9" stroke="${c}" stroke-width="1.8" fill="none" stroke-linecap="round"/>`};
-  const tlk=(k,th,lk)=>`<button class="htl${lk?' lk':''}" data-act="tab" data-v="${th[0]}"><span class="ib" style="background:linear-gradient(120deg,${th[1]},#0D1018 78%)"><svg viewBox="92 0 68 78" preserveAspectRatio="xMaxYMid meet" aria-hidden="true">${HI[k](th[2])}</svg></span><span class="sh"></span><span class="tx"><i style="color:${th[2]}">${th[3]}</i><b>${th[4]}</b></span></button>`;
+  const HB={shop:'booster',sbc:'sbc',tour:'tour',obj:'defis'};
+  const tlk=(k,th,lk)=>`<button class="htl${lk?' lk':''}" data-act="tab" data-v="${th[0]}">${HB[k]?`<span class="ib hbg" style="background-image:url(images/home/home-${HB[k]}.webp${AV})"></span>`:`<span class="ib" style="background:linear-gradient(120deg,${th[1]},#0D1018 78%)"><svg viewBox="92 0 68 78" preserveAspectRatio="xMaxYMid meet" aria-hidden="true">${HI[k](th[2])}</svg></span>`}<span class="sh"></span><span class="tx"><i style="color:${th[2]}">${th[3]}</i><b>${th[4]}</b></span></button>`;
   const f=freeState(),nSbc=unl('sbc')?allSbc().filter(x=>sbcGuess(x).s==='ok').length:0,tw=twState(),nOb=claimables();
   const tiles=[
     tlk('shop',['shop','#5A4A12','#7CE0A3',f.stock?`Prêt · ${f.stock} / ${FREE_MAX}`:`Dans ${fmtDur(freeLeft())}`,'Booster gratuit']),
