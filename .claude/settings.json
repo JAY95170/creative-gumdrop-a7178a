@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(python .claude/skills/test-jeu/scripts/*)",
+      "Bash(python3 .claude/skills/test-jeu/scripts/*)"
+    ],
+    "ask": ["Bash(git push:*)"],
+    "deny": ["Bash(git push --force:*)", "Bash(git push -f:*)"]
+  }
+}

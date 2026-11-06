@@ -1,0 +1,9 @@
+# Dépôt public : jamais de documents de travail
+docs-prive/
+sauvegardes/
+JOURNAL.md
+CLAUDE.local.md
+.claude/settings.local.json
+__pycache__/
+*.pyc
+.DS_Store
