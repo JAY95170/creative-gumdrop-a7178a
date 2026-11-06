@@ -1983,7 +1983,7 @@ let CLIPDIAG='';
 const prot=c=>!!c&&(!!c.scn||c.r==='UR'||c.r==='LR');
 const clueC=c=>!!c&&!c.scn&&RORD[c.r]>=3;
 const RCOL={N:'var(--r-n)',R:'var(--r-r)',SR:'var(--r-sr)',SSR:'var(--r-ssr)',UR:'#A63BFF',LR:'#FFFFFF'};
-const AV='?v=87';const AVO={'mha-all-united-states-of-smash':'?v=67','mha-all-united-states-of-smash~s':'?v=69b','db-son-cell-games':'?v=65','db-son-cell-games~s':'?v=65'};const avOf=k=>AVO[k]||AV;/* version des images (cache) */
+const AV='?v=88';const AVO={'mha-all-united-states-of-smash':'?v=67','mha-all-united-states-of-smash~s':'?v=69b','db-son-cell-games':'?v=65','db-son-cell-games~s':'?v=65'};const avOf=k=>AVO[k]||AV;/* version des images (cache) */
 const APOS={'bc-asta-examen-d-entree':'center 0%','jjk-kento-arc-shibuya':'center 0%','db-goten-arc-buu':'center 0%','kd-hou-ken-bataille-de-bayou':'center 0%','hxh-biscuit-greed-island':'center 0%','csm-beam-arc-assassins':'center 0%','na-temari-examen-chunin':'center 0%','db-c-16-arc-cell':'center 0%','mha-shoji-lycee-yuei':'center 0%','bl-ichigo-remplacant':'center 0%'};
 /* si tu possèdes la scène iconique, la carte de base (et son éveil) prend l'image de la scène */
 const artOf=(c,big,nosc)=>{const b=c.base||c.id,e=c.id.replace(/~e$/,''),sc=(!nosc&&!c.scn&&typeof S!=='undefined'&&S.owned&&S.owned[e+'~s']>0&&ART.has(e+'~s'))?e+'~s':null,k=sc||(ART.has(c.id)?c.id:ART.has(e)?e:ART.has(b)?b:null);return k?(big?'images/':'images/s/')+k+'.webp'+avOf(k):null};
