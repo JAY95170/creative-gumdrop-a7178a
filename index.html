@@ -1878,26 +1878,33 @@ body{--t1:#1A2040;--t2:#0A0D1C;background:radial-gradient(90% 52% at 50% 16%,var
 .sp-scene{--sk:1;--sd:0ms;position:relative;height:min(calc(100dvh - 250px),640px);min-height:440px;overflow:hidden;border-radius:14px;border:1px solid var(--line);background:#04050d;perspective:900px;perspective-origin:50% 50%;isolation:isolate;transition:opacity .35s}
 .sp-scene.sp-out{opacity:0}.sp-bg{position:absolute;inset:0;overflow:hidden;pointer-events:none}
 .sp-neb,.sp-st{position:absolute;inset:-12%;transition:transform var(--sd) cubic-bezier(.65,0,.35,1)}
-.sp-neb{background:radial-gradient(40% 35% at 25% 30%,rgba(90,60,160,.30),transparent 70%),radial-gradient(45% 40% at 78% 72%,rgba(30,90,150,.26),transparent 70%),radial-gradient(30% 25% at 62% 14%,rgba(160,70,110,.18),transparent 70%);transform:scale(var(--sk))}
+.sp-neb{background:radial-gradient(40% 35% at 25% 30%,rgba(90,60,160,.30),transparent 70%),radial-gradient(45% 40% at 78% 72%,rgba(30,90,150,.26),transparent 70%),radial-gradient(30% 25% at 62% 14%,rgba(160,70,110,.18),transparent 70%);transform:translate(calc(var(--px,0px)*.03),calc(var(--py,0px)*.03)) scale(var(--sk))}
 .sp-st{inset:-40%}
-.sp-st.s1{background-image:radial-gradient(1px 1px at 20px 30px,#fff,transparent),radial-gradient(1px 1px at 130px 90px,rgba(255,255,255,.8),transparent),radial-gradient(1.2px 1.2px at 80px 150px,#fff,transparent);background-size:170px 170px;transform:scale(var(--sk))}
-.sp-st.s2{background-image:radial-gradient(1.4px 1.4px at 40px 60px,#fff,transparent),radial-gradient(1px 1px at 180px 200px,rgba(255,235,200,.9),transparent),radial-gradient(1px 1px at 110px 20px,rgba(200,220,255,.8),transparent);background-size:260px 260px;transform:scale(calc(1 + (var(--sk) - 1)*1.5))}
-.sp-st.s3{background-image:radial-gradient(1.8px 1.8px at 90px 120px,#fff,transparent),radial-gradient(1.5px 1.5px at 250px 40px,rgba(255,225,190,.95),transparent);background-size:340px 340px;transform:scale(calc(1 + (var(--sk) - 1)*2.4))}
+.sp-st.s1{background-image:radial-gradient(1px 1px at 20px 30px,#fff,transparent),radial-gradient(1px 1px at 130px 90px,rgba(255,255,255,.8),transparent),radial-gradient(1.2px 1.2px at 80px 150px,#fff,transparent);background-size:170px 170px;transform:translate(calc(var(--px,0px)*.06),calc(var(--py,0px)*.06)) scale(var(--sk))}
+.sp-st.s2{background-image:radial-gradient(1.4px 1.4px at 40px 60px,#fff,transparent),radial-gradient(1px 1px at 180px 200px,rgba(255,235,200,.9),transparent),radial-gradient(1px 1px at 110px 20px,rgba(200,220,255,.8),transparent);background-size:260px 260px;transform:translate(calc(var(--px,0px)*.12),calc(var(--py,0px)*.12)) scale(calc(1 + (var(--sk) - 1)*1.5))}
+.sp-st.s3{background-image:radial-gradient(1.8px 1.8px at 90px 120px,#fff,transparent),radial-gradient(1.5px 1.5px at 250px 40px,rgba(255,225,190,.95),transparent);background-size:340px 340px;transform:translate(calc(var(--px,0px)*.2),calc(var(--py,0px)*.2)) scale(calc(1 + (var(--sk) - 1)*2.4))}
 .sp-path{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;transition:opacity .4s}.sp-path path{fill:none;stroke:rgba(255,255,255,.16);stroke-width:1.5;stroke-dasharray:3 7}
 .sp-world{position:absolute;inset:0;transform-style:preserve-3d}
-.sp-sun{position:absolute;left:50%;top:50%;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,#fff7dc 0 6%,rgba(255,205,120,.75) 13%,rgba(255,150,60,.2) 42%,transparent 68%)}
+.sp-sun{position:absolute;left:50%;top:50%;width:380px;height:380px;border-radius:50%;background:url(images/story/soleil.webp) center/70% no-repeat,radial-gradient(circle,rgba(255,205,120,.6) 18%,rgba(255,150,60,.2) 46%,transparent 70%)}
 .sp-p{position:absolute;left:50%;top:50%;width:var(--sz);height:var(--sz);display:block;padding:0;border:0;background:none;cursor:pointer;color:var(--text);transform-style:preserve-3d;-webkit-tap-highlight-color:transparent}
 .sp-orb{position:absolute;inset:0;display:block;border-radius:50%;box-shadow:0 0 50px 4px rgba(140,200,230,.16);transition:box-shadow .25s}
 .sp-orb img,.sp-orb canvas{position:absolute;inset:0;width:100%;height:100%;-webkit-user-drag:none;pointer-events:none}.sp-orb canvas{opacity:0;transition:opacity .25s}.sp-p.rdy canvas{opacity:1}.sp-p.rdy img{opacity:0}
 .sp-p:hover .sp-orb,.sp-p:focus-visible .sp-orb{box-shadow:0 0 60px 10px rgba(242,194,48,.3)}
 .sp-p.lk .sp-orb{filter:grayscale(.7) brightness(.62)}
 .sp-vx{position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,#2a1a55,#07071a,#4a2a7a,#07071a,#2a1a55);animation:sp-vx 16s linear infinite;-webkit-mask:radial-gradient(circle,#000 62%,transparent 71%);mask:radial-gradient(circle,#000 62%,transparent 71%)}@keyframes sp-vx{to{transform:rotate(360deg)}}
-.sp-lb{position:absolute;left:50%;top:100%;margin-top:8px;display:flex;flex-direction:column;align-items:center;gap:2px;white-space:nowrap;transform:translateX(-50%) scale(var(--is,1));transform-origin:50% 0;transition:opacity .3s;pointer-events:none}
+.sp-lb{position:absolute;left:50%;top:100%;margin-top:8px;display:flex;flex-direction:column;align-items:center;gap:2px;white-space:nowrap;transform:translateX(-50%) scale(var(--ls,var(--is,1)));transform-origin:50% 0;transition:opacity .3s;pointer-events:none}
 .sp-lb b{font:700 15px var(--f-display)}.sp-lb small{font:11px var(--f-mono);color:var(--muted)}.sp-p:hover .sp-lb b{color:var(--accent)}
-.sp-hd{position:absolute;left:50%;top:2%;width:46px;height:46px;border-radius:50%;border:2px solid var(--accent);background:var(--surface-2) center 14%/cover;display:grid;place-items:center;font:700 19px var(--f-display);color:var(--accent);transform:translate(-50%,-55%) scale(var(--is,1));transition:opacity .3s;pointer-events:none}
+.sp-hd{position:absolute;left:50%;top:2%;width:46px;height:46px;border-radius:50%;border:2px solid var(--accent);background:var(--surface-2) center 14%/cover;display:grid;place-items:center;font:700 19px var(--f-display);color:var(--accent);transform:translate(-50%,-55%) scale(var(--hs,var(--is,1)));transition:opacity .3s;pointer-events:none}
 .sp-hd.q{border-color:var(--line);color:var(--muted)}
 .sp-scene.sp-fly .sp-lb,.sp-scene.sp-fly .sp-hd,.sp-scene.sp-fly .sp-path,.sp-scene.sp-fly .sp-hint{opacity:0}
-.sp-hint{position:absolute;left:0;right:0;top:12px;text-align:center;margin:0;font:11px var(--f-mono);letter-spacing:.08em;color:var(--muted);pointer-events:none;transition:opacity .3s}
+.sp-hint{position:absolute;left:0;right:0;top:12px;text-align:center;margin:0;font:11px var(--f-mono);letter-spacing:.08em;color:var(--muted);text-shadow:0 1px 4px #000,0 0 2px #000;pointer-events:none;transition:opacity .3s}
+.sp-scene{min-height:min(440px,calc(100dvh - 190px));touch-action:none;cursor:grab;-webkit-user-select:none;user-select:none}.sp-scene.sp-drag,.sp-scene.sp-drag .sp-p{cursor:grabbing}
+.sp-p:not(.mv) .sp-orb{background:radial-gradient(circle at 35% 30%,#2a3350,#0a0d18 70%)}.st-pl:not(.rdy) .st-wrap{border-radius:50%;background:radial-gradient(circle at 35% 30%,#2a3350,#0a0d18 70%)}
+.sp-ctl{position:absolute;right:10px;bottom:10px;z-index:5;display:flex;flex-direction:column;gap:6px;transition:opacity .3s}
+.sp-ctl button{width:44px;height:44px;padding:0;display:grid;place-items:center;border-radius:50%;border:1px solid var(--line);background:rgba(10,12,22,.72);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);color:var(--text);font:600 22px/1 var(--f-display);cursor:pointer;-webkit-tap-highlight-color:transparent;transition:border-color .2s,color .2s,opacity .2s}
+.sp-ctl button:hover:not(:disabled),.sp-ctl button:focus-visible{border-color:var(--accent);color:var(--accent)}.sp-ctl button:disabled{opacity:.35;cursor:default}.sp-ctl svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+.sp-scene.sp-fly .sp-ctl{opacity:0;pointer-events:none}.sp-lb small{transition:opacity .2s}.sp-far .sp-lb small{opacity:0}
+@media(max-height:500px){.sp-hint{display:none}.sp-ctl{right:auto;bottom:auto;left:10px;top:10px;flex-direction:row;gap:4px}.sp-ctl button{width:36px;height:36px;font-size:18px}}
 @media(prefers-reduced-motion:reduce){.sp-vx{animation:none}}
 @media(prefers-reduced-motion:reduce){.st-boss.hit,.st-pc.hit,.st-pc.atk,.st-boss.atk,.st-sp.on,.st-fl{animation:none}.st-wrap,.st-img{transition:none}}
 </style>
@@ -4169,15 +4176,15 @@ function twWeakCount(fl,ids){return ids.filter(Boolean).filter(id=>twBoost(fl.we
 const ST_ROLES=['Tank','DPS','Distance'];
 const ST_OBJ=['Victoire','≥ 50 % de PV','Sans KO'];
 const STORY=[
- {k:'db',n:'Dragon Ball',sub:'Saga de Namek',kj:'龍',hero:'db-son-arc-buu',pl:'images/story/planet-db.webp',acts:[
+ {k:'db',n:'Dragon Ball',sub:'Saga de Namek',kj:'龍',hero:'db-son-arc-buu',pl:'images/story/sphere-db.webp',acts:[
   {t:'Les sbires de Freezer',b:'db-dodoria-arc-namek',bg:'images/story/bg-db.webp',pv:10.25,at:1.8,df:1,n:3,rw:300},
   {t:'Le bras droit',b:'db-zarbon-arc-namek',bg:'images/story/bg-db.webp',pv:8.3,at:2.2,df:1,n:3,rw:400},
   {t:'Le commando Ginyu',b:'db-ginyu-arc-namek',bg:'images/story/bg-db.webp',pv:6.35,at:2.6,df:1,n:2,rw:600,rage:1.2}]},
- {k:'na',n:'Naruto',sub:'Du Pays des Vagues à l\'Akatsuki',kj:'忍',hero:'na-naruto-shippuden-mode-ermite',pl:'images/story/planet-na.webp',acts:[
+ {k:'na',n:'Naruto',sub:'Du Pays des Vagues à l\'Akatsuki',kj:'忍',hero:'na-naruto-shippuden-mode-ermite',pl:'images/story/sphere-na.webp',acts:[
   {t:'Le démon de Kirigakure',b:'na-zabuza-pays-des-vagues',bg:'images/story/bg-na-1.webp',pv:6.84,at:3.0,df:1,n:2,rw:500},
   {t:'L\'Examen Chûnin',b:'na-orochimaru-examen-chunin',bg:'images/story/bg-na-1.webp',pv:5.21,at:3.2,df:1,n:2,rw:650},
   {t:'L\'ombre de l\'Akatsuki',b:'na-kisame-akatsuki',bg:'images/story/bg-na-2.webp',pv:5.12,at:3.4,df:1,n:2,rw:900,rage:1.2}]},
- {k:'op',n:'One Piece',sub:'D\'East Blue à Dressrosa',kj:'海',hero:'op-monkey-arc-wano',pl:'images/story/planet-op.webp',acts:[
+ {k:'op',n:'One Piece',sub:'D\'East Blue à Dressrosa',kj:'海',hero:'op-monkey-arc-wano',pl:'images/story/sphere-op.webp',acts:[
   {t:'Arlong Park',b:'op-arlong-arlong-park',bg:'images/story/bg-op.webp',pv:12.79,at:3.6,df:1,n:2,rw:800},
   {t:'Le désert d\'Alabasta',b:'op-crocodile-alabasta',bg:'images/story/bg-op.webp',pv:13.43,at:3.8,df:1,n:2,rw:1000},
   {t:'Le joug de Dressrosa',b:'op-doflamingo-dressrosa',bg:'images/story/bg-op.webp',pv:9.12,at:4.0,df:1,n:2,rw:1400,rage:1.2}]}
@@ -4280,16 +4287,15 @@ function stActHTML(wi,ai){const w=STORY[wi],a=w.acts[ai],c=CARD[a.b],done=stDone
    ${open?`<button class="btn primary wide" data-act="stGo" data-v="${wi},${ai}">${done?'Rejouer':'Combattre'}</button>`:`<button class="btn wide" data-act="stGo" data-v="${wi},${ai}" aria-disabled="true">${LOCK} Verrouillé</button>`}
    <small class="muted">Récompense : ${a.rw} pièces · provisoire</small></article>`}
 /* sphère : on lit le disque de l'illustration (hémisphère de face) et on le « déroule » ; l'arrière est le miroir de l'avant */
-const ST_TEX={},ST_SPN=256,ST_SPH=(()=>{const N=ST_SPN,ph=[],ct=[],sn=[],sh=[],al=[],ix=[];for(let y=0;y<N;y++)for(let x=0;x<N;x++){const nx=(x+.5-N/2)/(N/2),ny=(y+.5-N/2)/(N/2),r2=nx*nx+ny*ny;if(r2>1.02)continue;const r=Math.sqrt(r2),nz=Math.sqrt(Math.max(0,1-r2));ix.push(y*N+x);al.push(Math.min(1,Math.max(0,(1-r)*N/2)));ph.push(Math.atan2(nx,nz));ct.push(Math.sqrt(Math.max(0,1-ny*ny)));sn.push(ny);sh.push(.64+.5*Math.max(0,-.45*nx-.5*ny+.74*nz))}
-  return {ix:Int32Array.from(ix),ph:Float32Array.from(ph),ct:Float32Array.from(ct),sn:Float32Array.from(sn),sh:Float32Array.from(sh),al:Float32Array.from(al)}})();
-function stTex(src){return ST_TEX[src]||(ST_TEX[src]=new Promise(res=>{const im=new Image();im.onload=()=>{try{const W=im.naturalWidth,H=im.naturalHeight,c=document.createElement('canvas');c.width=W;c.height=H;const x=c.getContext('2d');x.drawImage(im,0,0);const d=x.getImageData(0,0,W,H).data;let x0=W,x1=0,y0=H,y1=0;
-    for(let y=0;y<H;y+=2)for(let xx=0;xx<W;xx+=2)if(d[(y*W+xx)*4+3]>128){if(xx<x0)x0=xx;if(xx>x1)x1=xx;if(y<y0)y0=y;if(y>y1)y1=y}
-    const T=360,t=document.createElement('canvas');t.width=T;t.height=T;const tx=t.getContext('2d');tx.imageSmoothingQuality='high';tx.drawImage(im,x0,y0,x1-x0+1,y1-y0+1,0,0,T,T);res({d:tx.getImageData(0,0,T,T).data,T})}catch(_){res(null)}};im.onerror=()=>res(null);im.src=src}))}
-function stDrawSph(cv,tex,rot){const N=ST_SPN,cx=cv.getContext('2d'),im=cv._im||(cv._im=cx.createImageData(N,N)),o=im.data,{ix,ph,ct,sn,sh,al}=ST_SPH,T=tex.T,d=tex.d,TP=Math.PI*2,HP=Math.PI/2;o.fill(0);
-  for(let k=0;k<ix.length;k++){let p=ph[k]+rot;p-=Math.floor((p+Math.PI)/TP)*TP;if(p>HP)p=Math.PI-p;else if(p<-HP)p=-Math.PI-p;
-    const u=Math.min(T-1,Math.max(0,Math.round((Math.sin(p)*ct[k]*.86+1)*.5*(T-1)))),v=Math.min(T-1,Math.max(0,Math.round((sn[k]*.86+1)*.5*(T-1)))),s=(v*T+u)*4,j=ix[k]*4,m=sh[k];
-    o[j]=d[s]*m;o[j+1]=d[s+1]*m;o[j+2]=d[s+2]*m;o[j+3]=d[s+3]*al[k]}
-  cx.putImageData(im,0,0);cx.globalCompositeOperation='source-atop';const g=cx.createRadialGradient(N/2,N/2,N*.36,N/2,N/2,N/2);g.addColorStop(0,'rgba(200,235,225,0)');g.addColorStop(1,'rgba(200,235,225,.38)');cx.fillStyle=g;cx.fillRect(0,0,N,N);cx.globalCompositeOperation='source-over'}
+const ST_TEX={},ST_SPN=512,ST_SPH=(()=>{const N=ST_SPN,ph=[],ct=[],la=[],sh=[],al=[],ix=[];for(let y=0;y<N;y++)for(let x=0;x<N;x++){const nx=(x+.5-N/2)/(N/2),ny=(y+.5-N/2)/(N/2),r2=nx*nx+ny*ny;if(r2>1.02)continue;const r=Math.sqrt(r2),nz=Math.sqrt(Math.max(0,1-r2));ix.push(y*N+x);al.push(Math.min(1,Math.max(0,(1-r)*N/2)));ph.push(Math.atan2(nx,nz));ct.push(Math.sqrt(Math.max(0,1-ny*ny)));la.push(Math.asin(ny)/Math.PI+.5);sh.push(.64+.5*Math.max(0,-.45*nx-.5*ny+.74*nz))}
+  return {ix:Int32Array.from(ix),ph:Float32Array.from(ph),ct:Float32Array.from(ct),la:Float32Array.from(la),sh:Float32Array.from(sh),al:Float32Array.from(al)}})();
+function stTex(src){return ST_TEX[src]||(ST_TEX[src]=new Promise(res=>{const im=new Image();im.onload=()=>{try{const W=2048,H=1024,c=document.createElement('canvas');c.width=W;c.height=H;const x=c.getContext('2d');x.imageSmoothingQuality='high';x.drawImage(im,0,0,W,H);res({d:x.getImageData(0,0,W,H).data,W,H})}catch(_){res(null)}};im.onerror=()=>res(null);im.src=src}))}
+/* patron équirectangulaire 360° : longitude = ph + rotation (raccord gauche/droite), latitude = asin(y) */
+function stDrawSph(cv,tex,rot){const N=ST_SPN,cx=cv.getContext('2d'),im=cv._im||(cv._im=cx.createImageData(N,N)),o=im.data,{ix,ph,sh,al,la}=ST_SPH,{d,W,H}=tex,TP=Math.PI*2;o.fill(0);
+  for(let k=0;k<ix.length;k++){let u=(ph[k]+rot)/TP+.5;u=(u-Math.floor(u))*W;const v=la[k]*(H-1),x0=Math.floor(u),fx=u-x0,x1=(x0+1)%W,y0=Math.floor(v),fy=v-y0,y1=Math.min(H-1,y0+1),
+    a=(y0*W+x0)*4,b=(y0*W+x1)*4,c=(y1*W+x0)*4,e=(y1*W+x1)*4,w0=(1-fx)*(1-fy),w1=fx*(1-fy),w2=(1-fx)*fy,w3=fx*fy,j=ix[k]*4,m=sh[k];
+    o[j]=(d[a]*w0+d[b]*w1+d[c]*w2+d[e]*w3)*m;o[j+1]=(d[a+1]*w0+d[b+1]*w1+d[c+1]*w2+d[e+1]*w3)*m;o[j+2]=(d[a+2]*w0+d[b+2]*w1+d[c+2]*w2+d[e+2]*w3)*m;o[j+3]=255*al[k]}
+  cx.putImageData(im,0,0);cx.globalCompositeOperation='source-atop';const g=cx.createRadialGradient(N/2,N/2,N*.36,N/2,N/2,N/2);g.addColorStop(0,'rgba(200,235,225,0)');g.addColorStop(1,'rgba(200,235,225,.2)');cx.fillStyle=g;cx.fillRect(0,0,N,N);cx.globalCompositeOperation='source-over'}
 let ST_SP=new Map(),ST_RAF=0;
 function stSpin(btn,mode){const cv=btn.querySelector('.st-cv');if(!cv||matchMedia('(prefers-reduced-motion:reduce)').matches)return;
   let s=ST_SP.get(btn);if(!s){s={btn,cv,rot:0,vel:0,mode,t0:0,tex:null};ST_SP.set(btn,s);stTex(btn.dataset.pl).then(t=>{if(!t){s.bad=true;return}s.tex=t})}
@@ -4305,42 +4311,69 @@ function stSpin(btn,mode){const cv=btn.querySelector('.st-cv');if(!cv||matchMedi
     if(ST_SP.size)ST_RAF=requestAnimationFrame(loop);else ST_RAF=0};ST_RAF=requestAnimationFrame(loop)}}
 /* v159 · scène spatiale : système solaire en 3D CSS (caméra = translate3d), clic = on fonce dans la planète, changer de planète = on voyage jusqu'à elle */
 let ST_MODE='space',ST_FLY=0,ST_SPR=0;
-const SP_P=900,SP_Z=[0,-300,-620,-900];
+const SP_P=900,SP_Z=[0,-300,-620,-900],SP_ZMIN=-900,SP_ZMAX=450,SP_REF=-300;let SP_V={x:0,y:0,z:0},SP_TW=0;/* SP_V : vue choisie par le joueur (déplacement + zoom), gardée pendant la session */
 function spGeo(W,H){const land=W>H*1.1,D=Math.min(220,land?H*.4:W*.46),F=land?[[-.30,.11],[-.02,-.13],[.26,.12],[.40,-.25]]:[[-.22,.20],[.18,-.03],[-.14,-.22],[.22,-.36]];
   return {D,pl:F.map((f,i)=>{const z=SP_Z[i],s=SP_P/(SP_P-z);return {x:f[0]*W/s,y:f[1]*H/s,z,s,px:f[0]*W,py:f[1]*H}})}}
-function spCam(g,i,kind){if(kind==='ov')return 'translate3d(0,0,0)';const p=g.pl[i];return `translate3d(${-p.x}px,${-p.y}px,${-p.z+(kind==='in'?760:250)}px)`}
-function spStarK(kind){return kind==='in'?2.6:kind==='fo'?1.25:1}
+function spCam(g,i,kind){if(kind==='ov')return `translate3d(${SP_V.x}px,${SP_V.y}px,${SP_V.z}px)`;const p=g.pl[i];return `translate3d(${-p.x}px,${-p.y}px,${-p.z+(kind==='in'?760:250)}px)`}
+function spStarK(kind){if(kind==='ov')return SP_V.z>=0?1+SP_V.z/1500:.9+.1*(1+SP_V.z/900);return kind==='in'?2.6:kind==='fo'?1.25:1}
 function spPlanetHTML(w,wi){const open=stWorldOpen(wi),n=stCount(w),bs=CARD[w.acts[stNext(w)].b],art=open?artOf(bs):null;
-  return `<button class="sp-p${open?'':' lk'}" data-act="spEnter" data-v="${w.k}" data-i="${wi}" data-k="${w.k}" data-pl="${w.pl}" aria-label="${w.n}${open?'':' · verrouillé'}"><span class="sp-orb"><img src="${w.pl}" alt="" draggable="false"><canvas width="256" height="256" aria-hidden="true"></canvas></span>
+  return `<button class="sp-p${open?'':' lk'}" data-act="spEnter" data-v="${w.k}" data-i="${wi}" data-k="${w.k}" data-pl="${w.pl}" aria-label="${w.n}${open?'':' · verrouillé'}"><span class="sp-orb"><canvas width="${ST_SPN}" height="${ST_SPN}" aria-hidden="true"></canvas></span>
    <span class="sp-hd${open&&art?'':' q'}" ${open&&art?`style="background-image:url(${art})"`:''}>${open?(art?'':w.kj):'?'}</span><span class="sp-lb"><b>${w.n}</b><small>${open?n+' / '+w.acts.length+' actes':'Verrouillé'}</small></span></button>`}
 function vSpace(){setTimeout(spInit,0);
   return `<section class="sp-scene" id="spscene" aria-label="Système solaire des mondes"><div class="sp-bg"><div class="sp-neb"></div><div class="sp-st s1"></div><div class="sp-st s2"></div><div class="sp-st s3"></div></div>
    <svg class="sp-path" id="sppath" aria-hidden="true"></svg>
    <div class="sp-world" id="spworld"><div class="sp-sun" id="spsun" aria-hidden="true"></div>${STORY.map((w,i)=>spPlanetHTML(w,i)).join('')}
     <button class="sp-p lk mv" data-act="stMulti" data-i="3" data-pl="" aria-label="Multivers · verrouillé"><span class="sp-orb"><span class="sp-vx"></span></span><span class="sp-hd q">多</span><span class="sp-lb"><b>Multivers</b><small>Prochaine mise à jour</small></span></button></div>
-   <p class="sp-hint" id="sphint">Touche une planète pour y entrer</p></section>`}
+   <div class="sp-ctl" role="group" aria-label="Zoom"><button data-act="spZoom" data-v="in" aria-label="Zoomer">+</button><button data-act="spZoom" data-v="out" aria-label="Dézoomer">−</button><button data-act="spZoom" data-v="home" aria-label="Recentrer"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="6"/><path d="M12 2v5M12 17v5M2 12h5M17 12h5"/></svg></button></div>
+   <p class="sp-hint" id="sphint">${matchMedia('(pointer:coarse)').matches?'Glisse · pince · touche une planète':'Glisse · molette · clique sur une planète'}</p></section>`}
 function spGeoNow(sc){const g=spGeo(sc.clientWidth,sc.clientHeight);sc._g=g;return g}
 function spPlace(sc){const g=spGeoNow(sc),D=g.D;sc.style.setProperty('--D',D+'px');
-  sc.querySelectorAll('.sp-p').forEach(el=>{const i=+el.dataset.i,p=g.pl[i];el.style.transform=`translate3d(${p.x}px,${p.y}px,${p.z}px) translate(-50%,-50%)`;el.style.setProperty('--is',(1/p.s).toFixed(3));el.style.setProperty('--sz',(D*(i===3?.8:1))+'px')});
-  const sun=sc.querySelector('#spsun');if(sun){let s=SP_P/(SP_P+1500),px=.3*sc.clientWidth,py=-.36*sc.clientHeight;if(sc.clientWidth<sc.clientHeight*1.1){px=-.3*sc.clientWidth;py=-.42*sc.clientHeight}sun.style.transform=`translate3d(${px/s}px,${py/s}px,-1500px) translate(-50%,-50%)`}
-  const P=g.pl,W=sc.clientWidth,H=sc.clientHeight,pts=P.map(p=>[W/2+p.px,H/2+p.py]);let d='M'+pts[0].join(' ');for(let k=1;k<pts.length;k++){const a=pts[k-1],b=pts[k];d+=` Q${(a[0]+b[0])/2+(k%2?40:-40)} ${(a[1]+b[1])/2-30} ${b[0]} ${b[1]}`}
-  const sv=sc.querySelector('#sppath');sv.setAttribute('viewBox','0 0 '+W+' '+H);sv.innerHTML=`<path d="${d}"/>`}
+  sc.querySelectorAll('.sp-p').forEach(el=>{const i=+el.dataset.i,p=g.pl[i];el.style.transform=`translate3d(${p.x}px,${p.y}px,${p.z}px) translate(-50%,-50%)`;el.style.setProperty('--sz',(D*(i===3?.8:1))+'px')});
+  const sun=sc.querySelector('#spsun');if(sun){let s=SP_P/(SP_P+1500),px=.3*sc.clientWidth,py=-.36*sc.clientHeight;if(sc.clientWidth<sc.clientHeight*1.1){px=-.3*sc.clientWidth;py=-.385*sc.clientHeight}sun.style.transform=`translate3d(${px/s}px,${py/s}px,-1500px) translate(-50%,-50%)`}
+  spClamp(sc);spHud(sc)}
+/* textes, têtes et pointillés suivent la vue du joueur (ils gardent une taille lisible à l'écran) */
+function spHud(sc){const g=sc._g;if(!g)return;const W=sc.clientWidth,H=sc.clientHeight,pts=[];
+  sc.querySelectorAll('.sp-p').forEach(el=>{const i=+el.dataset.i,p=g.pl[i],k=SP_P/(SP_P-(p.z+SP_V.z));pts[i]=[W/2+(p.x+SP_V.x)*k,H/2+(p.y+SP_V.y)*k];el.style.setProperty('--is',(1/k).toFixed(3));el.style.setProperty('--hs',(Math.max(.55,Math.min(1,k/p.s))/k).toFixed(3));el.style.setProperty('--ls',(Math.max(.75,Math.min(1,k/p.s))/k).toFixed(3))});sc.classList.toggle('sp-far',SP_V.z<-450);
+  let d='M'+pts[0].join(' ');for(let k=1;k<pts.length;k++){const a=pts[k-1],b=pts[k];d+=` Q${(a[0]+b[0])/2+(k%2?40:-40)} ${(a[1]+b[1])/2-30} ${b[0]} ${b[1]}`}
+  const sv=sc.querySelector('#sppath');sv.setAttribute('viewBox','0 0 '+W+' '+H);sv.innerHTML=`<path d="${d}"/>`;
+  const bt=v=>sc.querySelector(`.sp-ctl [data-v="${v}"]`);bt('in').disabled=SP_V.z>=SP_ZMAX;bt('out').disabled=SP_V.z<=SP_ZMIN;bt('home').disabled=!SP_V.x&&!SP_V.y&&!SP_V.z}
+function spClamp(sc){const W=sc.clientWidth*.8,H=sc.clientHeight*.8,c=(v,a,b)=>Math.max(a,Math.min(b,v));SP_V.z=c(SP_V.z,SP_ZMIN,SP_ZMAX);SP_V.x=c(SP_V.x,-W,W);SP_V.y=c(SP_V.y,-H,H)}
+function spView(sc){spClamp(sc);spCamSet(sc,0,'ov',0);spHud(sc)}
+const spRefK=z=>SP_P/(SP_P-(SP_REF+z));
+/* zoom : le point sous le doigt ou la souris (ux,uy, depuis le centre) reste en place */
+function spZoomAt(ux,uy,z){const nz=Math.max(SP_ZMIN,Math.min(SP_ZMAX,z)),a=spRefK(SP_V.z),b=spRefK(nz);SP_V.x+=ux/b-ux/a;SP_V.y+=uy/b-uy/a;SP_V.z=nz}
+function spZoom(v){const sc=document.getElementById('spscene');if(!sc||ST_FLY)return;SFX.tap();const to=v==='home'?{x:0,y:0,z:0}:{x:SP_V.x,y:SP_V.y,z:Math.max(SP_ZMIN,Math.min(SP_ZMAX,SP_V.z+(v==='in'?225:-225)))},from={...SP_V},id=++SP_TW,t0=performance.now(),ms=matchMedia('(prefers-reduced-motion:reduce)').matches?0:260;
+  const step=now=>{if(id!==SP_TW||!sc.isConnected)return;const q=ms?Math.max(0,Math.min(1,(now-t0)/ms)):1,e=q*(2-q);SP_V={x:from.x+(to.x-from.x)*e,y:from.y+(to.y-from.y)*e,z:from.z+(to.z-from.z)*e};spView(sc);if(q<1)requestAnimationFrame(step)};requestAnimationFrame(step)}
+/* gestes : glisser = se déplacer, pincer ou molette = zoomer ; un toucher sans glisser reste un clic sur la planète */
+function spGest(sc){if(sc._gest)return;sc._gest=1;const pts=new Map();let moved=false,d0=0,mx0=0,my0=0;
+  const two=()=>{const[a,b]=[...pts.values()];return {d:Math.hypot(a.x-b.x,a.y-b.y),mx:(a.x+b.x)/2,my:(a.y+b.y)/2}};
+  const hide=()=>{const h=document.getElementById('sphint');if(h)h.style.opacity=0};
+  sc.addEventListener('pointerdown',e=>{if(ST_FLY||e.target.closest('.sp-ctl')||(e.pointerType==='mouse'&&e.button))return;SP_TW++;if(!pts.size)moved=false;pts.set(e.pointerId,{x:e.clientX,y:e.clientY,sx:e.clientX,sy:e.clientY});
+    if(pts.size===2){const t=two();d0=t.d;mx0=t.mx;my0=t.my;moved=true;hide()}});
+  sc.addEventListener('pointermove',e=>{const p=pts.get(e.pointerId);if(!p||ST_FLY)return;
+    if(pts.size===1){if(!moved&&Math.hypot(e.clientX-p.sx,e.clientY-p.sy)<(e.pointerType==='mouse'?6:10))return;
+      if(!moved){moved=true;p.x=e.clientX;p.y=e.clientY;sc.classList.add('sp-drag');hide();try{sc.setPointerCapture(e.pointerId)}catch(_){}return}
+      const k=spRefK(SP_V.z);SP_V.x+=(e.clientX-p.x)/k;SP_V.y+=(e.clientY-p.y)/k;p.x=e.clientX;p.y=e.clientY;spView(sc);return}
+    p.x=e.clientX;p.y=e.clientY;if(pts.size!==2)return;const t=two();if(d0>0&&t.d>0){const r=sc.getBoundingClientRect(),k=spRefK(SP_V.z);SP_V.x+=(t.mx-mx0)/k;SP_V.y+=(t.my-my0)/k;spZoomAt(t.mx-r.left-r.width/2,t.my-r.top-r.height/2,SP_P-SP_P/(k*t.d/d0)-SP_REF);spView(sc)}d0=t.d;mx0=t.mx;my0=t.my});
+  const end=e=>{if(!pts.delete(e.pointerId))return;d0=0;if(pts.size===1)pts.clear();if(!pts.size){sc.classList.remove('sp-drag');if(moved)window.__swiped=Date.now()}};
+  sc.addEventListener('pointerup',end);sc.addEventListener('pointercancel',end);
+  sc.addEventListener('wheel',e=>{if(ST_FLY)return;const dy=e.deltaY*(e.deltaMode===1?33:1),z=Math.max(SP_ZMIN,Math.min(SP_ZMAX,SP_V.z-dy*(e.ctrlKey?4:.9)));if(z===SP_V.z)return;e.preventDefault();SP_TW++;hide();const r=sc.getBoundingClientRect();spZoomAt(e.clientX-r.left-r.width/2,e.clientY-r.top-r.height/2,z);spView(sc)},{passive:false})}
 function spCamSet(sc,i,kind,ms,ease){const w=sc.querySelector('#spworld'),g=sc._g;w.style.transition=ms?`transform ${ms}ms ${ease||'cubic-bezier(.65,0,.35,1)'}`:'none';w.style.transform=spCam(g,i,kind);
-  sc.style.setProperty('--sk',spStarK(kind));sc.style.setProperty('--sd',ms+'ms');if(!ms)void w.offsetWidth}
+  sc.style.setProperty('--sk',spStarK(kind));sc.style.setProperty('--sd',ms+'ms');sc.style.setProperty('--px',(kind==='ov'?SP_V.x:0)+'px');sc.style.setProperty('--py',(kind==='ov'?SP_V.y:0)+'px');if(!ms)void w.offsetWidth}
 function spRun(sc,steps,done){let t=0;const quick=matchMedia('(prefers-reduced-motion:reduce)').matches;ST_FLY=1;sc.classList.add('sp-fly');
   steps.forEach(st=>{setTimeout(()=>{spCamSet(sc,st.i,st.kind,quick?0:st.ms,st.ease);if(st.fade)setTimeout(()=>stLid(1,quick?0:Math.round(st.ms*.5)),quick?0:st.ms*.5)},t);t+=quick?0:st.ms});
   setTimeout(()=>{ST_FLY=0;done()},t+(quick?30:60))}
-function spInit(){const sc=document.getElementById('spscene');if(!sc)return;spPlace(sc);
+function spInit(){const sc=document.getElementById('spscene');if(!sc)return;spPlace(sc);spGest(sc);
   const fr=ST_FROM;ST_FROM=null;
   if(fr){/* arrivée depuis une planète : la caméra est déjà collée dessus */
     spCamSet(sc,fr.i,'in',0);
     if(fr.to==null)spRun(sc,[{i:0,kind:'ov',ms:1200}],()=>{sc.classList.remove('sp-fly')});
     else{const j=fr.to,k=STORY[j].k;spRun(sc,[{i:j,kind:'fo',ms:1700},{i:j,kind:'in',ms:850,ease:'cubic-bezier(.5,0,.9,.5)',fade:1}],()=>spArrive(k))}}
   else spCamSet(sc,0,'ov',0);
-  sc.querySelectorAll('.sp-p').forEach(b=>{const src=b.dataset.pl;if(!src)return;stTex(src).then(t=>{if(t&&b.isConnected){const cv=b.querySelector('canvas');stDrawSph(cv,t,b.dataset.i*1.7);b.classList.add('rdy');b._t=t}})});
+  sc.querySelectorAll('.sp-p').forEach(b=>{const src=b.dataset.pl;if(!src)return;stTex(src).then(t=>{if(t&&b.isConnected){const cv=b.querySelector('canvas');stDrawSph(cv,t,0);b.classList.add('rdy');b._t=t}})});
   const p=sc.querySelectorAll('.sp-p[data-pl]'),R={};let last=performance.now(),fr0=0;
   const loop=now=>{if(!sc.isConnected)return;const dt=Math.min(.05,(now-last)/1e3);last=now;fr0++;let nPl=0;
-    p.forEach((b,k)=>{if(!b._t)return;const i=+b.dataset.i,hv=b.matches(':hover')&&!ST_FLY;R[i]=(R[i]||i*1.7)+dt*(hv?1.5:.2);nPl++;if(hv||fr0%p.length===k)stDrawSph(b.querySelector('canvas'),b._t,R[i])});
+    p.forEach((b,k)=>{if(!b._t)return;const i=+b.dataset.i,hv=b.matches(':hover')&&!ST_FLY;R[i]=(R[i]||0)+dt*(hv?1.5:.2);nPl++;if(hv||fr0%p.length===k)stDrawSph(b.querySelector('canvas'),b._t,R[i])});
     ST_SPR=requestAnimationFrame(loop)};cancelAnimationFrame(ST_SPR);ST_SPR=requestAnimationFrame(loop);
   addEventListener('resize',spResize);}
 let ST_FROM=null;
@@ -4358,7 +4391,7 @@ function spTo(dir){if(ST_FLY)return;const q=stState(),wi=Math.max(0,STORY.findIn
   if(!stWorldOpen(j)){toast('Termine d\'abord '+STORY[j-1].n+'.');return}ST_FROM={i:wi,to:j};ST_MODE='space';render();$('#main').scrollTop=0}
 /* planète de l'interface : sphère qui tourne au survol */
 function stPlanetHTML(w,wi){const n=stCount(w),bs=CARD[w.acts[stNext(w)].b],art=artOf(bs);
-  return `<div class="st-pl on" data-pl="${w.pl}"><span class="st-wrap"><img class="st-img" src="${w.pl}" alt="" draggable="false"><canvas class="st-cv" width="256" height="256" aria-hidden="true"></canvas>${art?`<span class="st-head" title="${bs.nom}" style="background-image:url(${art})"></span>`:`<span class="st-head k">${w.kj}</span>`}</span><b>${w.n}</b><small>${n} / ${w.acts.length} actes</small></div>`}
+  return `<div class="st-pl on" data-pl="${w.pl}"><span class="st-wrap"><canvas class="st-cv" width="${ST_SPN}" height="${ST_SPN}" aria-hidden="true"></canvas>${art?`<span class="st-head" title="${bs.nom}" style="background-image:url(${art})"></span>`:`<span class="st-head k">${w.kj}</span>`}</span><b>${w.n}</b><small>${n} / ${w.acts.length} actes</small></div>`}
 function vStory(){if(ST_RUN&&!ST_RUN.gone){setTimeout(stResume,0);return stFightHTML()}
   if(ST_MODE==='space')return vSpace();
   const q=stState();let wi=STORY.findIndex(w=>w.k===q.sel);if(wi<0||!stWorldOpen(wi)){wi=STORY.findIndex((w,i)=>stWorldOpen(i)&&stCount(w)<w.acts.length);if(wi<0)wi=0}
@@ -4497,7 +4530,7 @@ const ACT={
   stWorld:v=>{const wi=STORY.findIndex(w=>w.k===v);if(wi<0)return;if(!stWorldOpen(wi)){toast('Termine d\'abord '+STORY[wi-1].n+'.');return}stState().sel=v;save();render()},
   stMulti:()=>toast('Le Multivers, où attendent les plus grands méchants : après les trois premiers mondes. Prochaine mise à jour.'),
   stGo:v=>{const [wi,ai]=String(v).split(',').map(Number);if(!stActOpen(wi,ai)){toast(stWorldOpen(wi)?'Termine d\'abord l\'acte '+ai+'.':'Monde verrouillé.');return}stFight(wi,ai)},
-  spEnter:v=>spEnter(v),spOut:()=>spOut(),spTo:v=>spTo(v),
+  spEnter:v=>spEnter(v),spOut:()=>spOut(),spZoom:v=>spZoom(v),spTo:v=>spTo(v),
   stBack:()=>{clearTimeout(ST_T);ST_RUN=null;render();$('#main').scrollTop=0},
   stRetry:()=>{const R=ST_RUN;if(R)stFight(R.wi,R.ai)},
   stSpd:()=>{const q=stState();q.spd=q.spd===2?1:2;save();const b=document.querySelector('.st-tg[data-act=stSpd]');if(b)b.classList.toggle('on',q.spd===2)},
