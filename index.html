@@ -65,7 +65,7 @@ img{-webkit-user-drag:none;-webkit-touch-callout:none}
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=IBM+Plex+Mono:wght@500;600&family=Zen+Kaku+Gothic+New:wght@400;700;900&family=Unbounded:wght@500;700;900&family=Manrope:wght@500;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Anton&family=Dela+Gothic+One&family=IBM+Plex+Mono:wght@500;600&family=Zen+Kaku+Gothic+New:wght@400;700;900&family=Unbounded:wght@500;700;900&family=Manrope:wght@500;700;800&display=swap">
 <style>
 /* Layout : écran de jeu vertical, une colonne de 460px max ; cartes façon trading card japonaise, art en trame de manga + kanji du monde */
 :root{
@@ -1920,16 +1920,110 @@ body.cos-bg::before{content:"";position:fixed;inset:0;z-index:-1;background:line
 .st-bi .tr{color:var(--accent);font-weight:700}
 /* face-à-face */
 .st-vs,.st-cine{position:fixed;inset:0;z-index:60;overflow-y:auto;-webkit-overflow-scrolling:touch;display:flex}
-.st-vs{background:linear-gradient(rgba(5,6,10,.62),rgba(5,6,10,.92)),var(--decor) center/cover no-repeat #05060A}
-.st-vsin{margin:auto;width:min(620px,100%);padding:16px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center}
-.st-vsc{height:min(36dvh,330px);aspect-ratio:5/7;animation:st-vsc .55s cubic-bezier(.2,1.2,.3,1) both}.st-vsc img{width:100%;height:100%;object-fit:cover;object-position:50% 15%;border-radius:12px;border:1px solid rgba(255,255,255,.35);box-shadow:0 0 44px 6px rgba(240,90,60,.42);-webkit-user-drag:none}
+/* face-à-face : une interface par monde (moderne, net, sans effet vieilli) */
+.vx{display:block;background:var(--vbg);color:#fff}
+.vx-wrap{position:relative;min-height:100%;display:flex;flex-direction:column;isolation:isolate}
+.vx-hero{position:relative;flex:none;height:64dvh;min-height:440px;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end}
+.vx-bg{position:absolute;inset:0;z-index:-2;background:var(--decor) center/cover no-repeat;filter:blur(3px) brightness(.5) saturate(1.05);transform:scale(1.04)}
+.vx-art{position:absolute;inset:0;z-index:-1;overflow:hidden}
+.vx-art img{width:100%;height:100%;object-fit:cover;object-position:50% var(--ay);-webkit-user-drag:none;user-select:none}
+.vx-art::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.28),transparent 18%,transparent 46%,var(--vbg) 97%)}
+.vx-top{position:absolute;z-index:4;left:16px;right:16px;top:14px;display:flex;align-items:flex-start;justify-content:space-between;gap:10px;font:700 12px/1.3 var(--f-body);text-shadow:0 1px 8px rgba(0,0,0,.9)}
+.vx-f{position:absolute;z-index:1;right:7%;top:0;width:13%;height:62%;overflow:visible;pointer-events:none}
+.vx-f polyline{fill:none;vector-effect:non-scaling-stroke}.vx-f .g{stroke:#9A6BFF;stroke-width:8px;opacity:.55;filter:blur(6px)}.vx-f .c{stroke:#fff;stroke-width:1.6px}
+.vx-id{position:relative;z-index:3;padding:0 16px 8px}
+.vx-name{margin:0;text-transform:uppercase;font-weight:400}
+.vx-title{margin:3px 0 0;font:800 14px/1.25 var(--f-body)}
+.vx-line{margin:9px 0 0;max-width:560px;font:700 16px/1.34 var(--f-body);font-style:italic;text-shadow:0 2px 12px rgba(0,0,0,.8)}
+.vx-side{position:relative;display:flex;flex-direction:column;flex:1;min-width:0}
+.vx-rows{flex:1;padding:4px 16px 0}
+.vx-r{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-top:1px solid rgba(255,255,255,.1)}.vx-r:first-child{border-top:0}
+.vx-r>div:last-child{flex:1;min-width:0}
+.vx-av{--d:44;flex:none;width:44px;height:44px;border-radius:50%;background:url(images/story/les-sept.jpg) no-repeat;background-size:calc(2000/var(--r)*var(--d)*1px) auto;background-position:calc((var(--r)/2 - var(--cx))/var(--r)*var(--d)*1px) calc((var(--r)/2 - var(--cy))/var(--r)*var(--d)*1px);box-shadow:0 0 0 2px var(--vbg),0 0 0 3.5px var(--ring)}
+.vx-av.theo{--cx:1752;--cy:480;--r:210}.vx-av.maya{--cx:1500;--cy:440;--r:230}.vx-av.lou{--cx:372;--cy:590;--r:210}
+.vx-av.boss{background-repeat:no-repeat;background-size:200% auto}
+.vx-lab{font:800 14px/1.25 var(--f-body);color:var(--lab)}
+.vx-say{margin:3px 0 0;font:700 14px/1.3 var(--f-body)}.vx-say::before{content:"« "}.vx-say::after{content:" »"}
+.vx-rule{margin:3px 0 0;font:500 13px/1.42 var(--f-body);color:rgba(255,255,255,.72)}
+.vx-cyc{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:6px 0 2px;font:800 12.5px var(--f-body)}
+.vx-cyc span{padding:4px 10px;border-radius:7px;background:rgba(255,255,255,.1)}.vx-cyc svg{width:18px;height:10px;fill:var(--lab)}
+.vx-cta{position:sticky;bottom:0;z-index:5;padding:20px 16px calc(12px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:8px;background:linear-gradient(180deg,transparent,var(--vbg) 34%)}
+.vx-cta .st-warn{text-align:center;font-size:13px}
+.vx-go{position:relative;width:100%;min-height:56px;border:0;border-radius:10px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;font-family:'Anton',var(--f-display);font-size:24px;letter-spacing:.06em;text-transform:uppercase;transition:transform .12s,filter .12s}
+.vx-go:hover:not(:disabled){filter:brightness(1.08)}.vx-go:active:not(:disabled){transform:scale(.985)}.vx-go:disabled{opacity:.45;cursor:not-allowed}
+.vx-sub{display:flex;gap:8px}.vx-sub .btn{flex:1;min-height:42px;background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.16)}
+
+/* Dragon Ball : scouter, ki, puissance */
+.vx-db{--vbg:#071226;--lab:#FFC83D;--ring:#49F5A8}
+.vx-db .vx-name{font-family:'Anton',var(--f-display);font-size:clamp(68px,20vw,112px);line-height:1;letter-spacing:.012em;transform:skewX(-7deg);transform-origin:left;background:linear-gradient(180deg,#fff 32%,#FFD65A 62%,#FF7A1A 92%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 3px 18px rgba(255,122,26,.65))}
+.vx-db .vx-title{color:#FFC83D}
+.vx-db .vx-art img{filter:contrast(1.05) saturate(1.08)}
+.vx-db .vx-art::before{content:"";position:absolute;left:0;right:0;bottom:0;height:42%;z-index:1;background:radial-gradient(70% 90% at 45% 100%,rgba(255,122,26,.42),transparent 72%);mix-blend-mode:screen}
+.vx-balls{display:flex;gap:6px}.vx-balls i{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font:900 8px/1 var(--f-body);font-style:normal;letter-spacing:-.5px;color:#D3201B;background:radial-gradient(circle at 34% 28%,#FFEBC2,#FFA52B 44%,#D9620A 94%);box-shadow:0 2px 8px rgba(0,0,0,.55)}.vx-balls i.off{color:rgba(255,255,255,.55);background:rgba(7,18,38,.55);box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.4)}.vx-balls i.done{filter:saturate(.75)}
+.vx-read{padding:7px 12px 8px;border-radius:10px;background:rgba(4,22,24,.62);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);box-shadow:inset 0 0 0 1px rgba(73,245,168,.45);color:#49F5A8;text-align:right;text-shadow:0 0 10px rgba(73,245,168,.5)}.vx-read small{display:block;font:700 11px var(--f-body)}.vx-read b{display:block;font:800 25px/1.1 var(--f-body);font-variant-numeric:tabular-nums;color:#CFFFE9}
+.vx-ret{position:absolute;z-index:2;width:112px;height:112px;margin:-56px 0 0 -56px;color:#49F5A8;filter:drop-shadow(0 0 5px rgba(73,245,168,.7));pointer-events:none}.vx-ret svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:1.5}.vx-ret .sp{transform-origin:50% 50%;animation:vx-spin 9s linear infinite}
+@keyframes vx-spin{to{transform:rotate(360deg)}}
+.vx-db .vx-cyc span{color:#49F5A8;background:rgba(73,245,168,.11);box-shadow:inset 0 0 0 1px rgba(73,245,168,.42)}
+.vx-db .vx-go{color:#1A0D00;background:linear-gradient(180deg,#FFB62E,#FF6A13);box-shadow:0 8px 26px rgba(255,106,19,.42)}
+
+/* Naruto : encre, brume, chakra */
+.vx-na{--vbg:#0B0C10;--lab:#FF7D5C;--ring:rgba(255,255,255,.55)}
+.vx-na .vx-art img{filter:contrast(1.07) saturate(.95)}
+.vx-mist{position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(60% 16% at 26% 58%,rgba(205,220,232,.22),transparent 72%),radial-gradient(54% 14% at 78% 42%,rgba(205,220,232,.16),transparent 72%);animation:vx-drift 16s ease-in-out infinite alternate}
+@keyframes vx-drift{from{transform:translateX(-5%)}to{transform:translateX(5%)}}
+.vx-band{display:flex;align-items:center;gap:9px}.vx-band svg{width:44px;height:20px;flex:none;filter:drop-shadow(0 1px 5px rgba(0,0,0,.7))}
+.vx-brush{position:absolute;z-index:-1;left:-14px;top:-8px;width:calc(100% - 14px);max-width:560px;height:clamp(84px,25vw,130px);fill:#C62828;overflow:visible}
+.vx-na .vx-name{font-family:'Anton',var(--f-display);font-size:clamp(66px,20vw,108px);line-height:1.02;letter-spacing:.018em;text-shadow:0 3px 0 rgba(0,0,0,.35)}
+.vx-na .vx-title{margin-top:8px;color:#FF9C82}
+.vx-na .vx-go{color:#fff;background:linear-gradient(180deg,#D93A2F,#9C1616);box-shadow:0 8px 26px rgba(198,40,40,.42)}.vx-na .vx-go svg{width:28px;height:28px;fill:none;stroke:currentColor;stroke-width:2.3;stroke-linecap:round}
+
+/* One Piece : avis de recherche, Grand Line */
+.vx-op{--vbg:#052433;--lab:#F0CD74;--ring:#F0CD74}
+.vx-op .vx-hero{height:auto;min-height:0;padding:50px 16px 6px;align-items:center}
+.vx-op .vx-bg{filter:blur(2px) brightness(.62) saturate(1.1)}.vx-op .vx-hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(5,36,51,.25),rgba(5,36,51,.45) 55%,var(--vbg) 98%)}
+.vx-post{position:relative;width:min(80vw,320px);padding:10px 16px 12px;text-align:center;color:#2B1A0C;background:linear-gradient(170deg,#F7EAC8,#EAD5A4);border-radius:3px;transform:rotate(-1.2deg);box-shadow:0 22px 46px rgba(0,0,0,.55),inset 0 0 0 1.5px #2B1A0C,inset 0 0 0 5px #F7EAC8,inset 0 0 0 6px rgba(43,26,12,.5)}
+.vx-post .vx-pw{font:400 clamp(44px,13vw,58px)/1.02 'Alfa Slab One',Georgia,serif;letter-spacing:.015em}
+.vx-post .vx-pph{height:clamp(170px,27dvh,250px);margin:5px 0;overflow:hidden;box-shadow:0 0 0 2px #2B1A0C;background:#000}.vx-post .vx-pph img{width:100%;height:100%;object-fit:cover;object-position:50% var(--ay);-webkit-user-drag:none}
+.vx-post .vx-pd{font:400 clamp(14px,4.4vw,18px) 'Alfa Slab One',Georgia,serif;letter-spacing:.05em}
+.vx-post .vx-name{font:400 clamp(25px,7.6vw,34px)/1.1 'Alfa Slab One',Georgia,serif;letter-spacing:.01em}
+.vx-post .vx-pb{font:800 clamp(24px,7.2vw,31px)/1.15 var(--f-body);font-variant-numeric:tabular-nums;color:#A31D14}
+.vx-post .vx-pm{font:800 10px var(--f-body);letter-spacing:.32em;margin-top:1px;color:rgba(43,26,12,.72)}
+.vx-post .vx-f{right:3%;top:2%;width:10%;height:96%}
+.vx-op .vx-id{width:100%;padding:12px 0 2px}.vx-op .vx-title{color:#F0CD74}.vx-op .vx-line{margin-top:6px}
+.vx-op .vx-cyc span{color:#F0CD74;background:rgba(240,205,116,.1);box-shadow:inset 0 0 0 1px rgba(240,205,116,.42)}
+.vx-op .vx-go{padding-bottom:7px;color:#231507;font-family:'Alfa Slab One',Georgia,serif;font-size:21px;background:linear-gradient(180deg,#F1D47F 0 80%,#C8343A 80%);box-shadow:0 8px 26px rgba(240,205,116,.24)}
+
+.vx-db .vx-name.long,.vx-na .vx-name.long{font-size:clamp(56px,17vw,92px)}
+/* entrées */
+.vx-db .vx-art img{animation:vx-zoom .4s cubic-bezier(.2,.9,.3,1) both}@keyframes vx-zoom{from{transform:scale(1.1)}}
+.vx-db .vx-name{animation:vx-slam .32s .18s cubic-bezier(.2,1.3,.4,1) both}@keyframes vx-slam{from{opacity:0;transform:skewX(-7deg) scale(1.35)}}
+.vx-ret{animation:vx-lock .55s .3s both}@keyframes vx-lock{from{opacity:0;transform:scale(2)}}
+.vx-na .vx-art{animation:vx-wipe .8s cubic-bezier(.3,.7,.2,1) both}@keyframes vx-wipe{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0)}}
+.vx-na .vx-brush{animation:vx-wipe .42s .5s ease-out both}.vx-na .vx-name{animation:vx-in .4s .62s both}
+.vx-post{animation:vx-post .5s cubic-bezier(.25,1.2,.45,1) both}@keyframes vx-post{from{opacity:0;transform:translateY(-34px) rotate(4deg) scale(1.05)}}
+@keyframes vx-in{from{opacity:0;transform:translateX(-12px)}}
+.vx-side{animation:st-up .4s .55s both}
+
+/* PC */
+@media(min-width:900px){
+ .vx-wrap{flex-direction:row;min-height:100dvh}
+ .vx-hero,.vx-op .vx-hero{flex:1 1 auto;height:auto;min-height:100dvh;min-width:0;padding-bottom:18px}
+ .vx-op .vx-hero{padding-top:40px;justify-content:center}
+ .vx-art{left:50%;right:auto;width:min(100%,640px);transform:translateX(-50%);-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+ .vx-na .vx-art{animation:none}
+ .vx-id{padding:0 32px 14px;width:min(100%,720px);margin:0 auto}
+ .vx-op .vx-id{text-align:center;padding-top:14px}.vx-op .vx-line{margin-inline:auto}
+ .vx-post{width:min(46vh,340px)}.vx-post .vx-pph{height:30vh}
+ .vx-top{left:24px;right:24px}
+ .vx-bg{filter:blur(14px) brightness(.26) saturate(.8);transform:scale(1.1)}.vx-op .vx-bg{filter:blur(3px) brightness(.5) saturate(1.05)}
+ .vx-art{width:min(100%,600px);-webkit-mask-image:linear-gradient(90deg,transparent,#000 20%,#000 80%,transparent);mask-image:linear-gradient(90deg,transparent,#000 20%,#000 80%,transparent)}
+ .vx-side{flex:0 0 440px;min-height:100dvh;background:var(--vbg);box-shadow:-1px 0 0 rgba(255,255,255,.08)}
+ .vx-rows{padding:18px 22px 0}.vx-cta{padding-inline:22px;margin-top:auto}
+}
+@media(prefers-reduced-motion:reduce){.vx *{animation:none!important}}
 @keyframes st-vsc{from{transform:scale(1.5);opacity:0;filter:blur(6px)}}
-.st-vsn{margin:0;font:900 clamp(32px,8vw,60px)/1 var(--f-display);text-shadow:0 3px 22px #000}
-.st-vsq{margin:0;max-width:540px;font:700 clamp(17px,3.4vw,23px)/1.3 var(--f-body);font-style:italic;color:#fff;text-shadow:0 2px 12px #000;animation:st-wipe .9s .35s ease-out both}.st-vsq::before{content:"« "}.st-vsq::after{content:" »"}
 @keyframes st-wipe{from{clip-path:inset(0 100% 0 0);opacity:.4}to{clip-path:inset(0 -5% 0 -5%);opacity:1}}
-.st-vsi{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px;width:100%;text-align:left;animation:st-up .4s .7s both}.st-vsi>div{padding:9px 11px;border-radius:11px;border:1px solid rgba(255,255,255,.14);background:rgba(8,10,18,.72)}.st-vsi p{margin:3px 0 0;font-size:13px;line-height:1.35}.st-vsi .al{border-color:rgba(242,194,48,.5)}.st-vsi .ar{border-color:rgba(154,107,255,.6)}
 @keyframes st-up{from{transform:translateY(10px);opacity:0}}
-.st-vsb{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;width:100%;animation:st-up .4s .85s both}.st-vsb .primary{flex:1 1 100%;min-height:52px;font-size:17px}
 /* récit */
 .st-cine{background:radial-gradient(60% 70% at 50% 20%,rgba(90,52,170,.42),transparent 70%),#05060A}.st-cinein{margin:auto;width:min(560px,100%);padding:26px 20px;display:flex;flex-direction:column;gap:14px;text-align:center}.st-cinein h2{margin:0;font:900 clamp(30px,7vw,52px)/1.05 var(--f-display);animation:st-up .5s both}.st-cinein p{margin:0;font-size:17px;line-height:1.5;animation:st-up .6s both}.st-cinein .btn{align-self:center;min-width:180px;animation:st-up .6s both}
 /* mobs */
@@ -1974,8 +2068,8 @@ body.cos-bg::before{content:"";position:fixed;inset:0;z-index:-1;background:line
 .st-objl{justify-content:center}.st-objl li.on span{color:var(--accent)}.st-rwl{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:6px}.st-rwl li{padding:5px 10px;border-radius:9px;border:1px solid rgba(242,194,48,.6);background:rgba(242,194,48,.12);font-weight:700;font-size:13px}
 .st-bhp{display:flex;flex-direction:column;align-items:center}.st-nx{white-space:nowrap}
 @media(max-width:700px){.st-bar{gap:4px}.st-bar .btn{min-height:30px;padding:3px 9px;font-size:11px}.st-arena{--cw:min(17vw,66px);--bw:min(29vw,108px);gap:5px}.st-fight{padding:8px}.st-log{margin:2px 0;font-size:12px;min-height:16px}}
-@media(max-height:560px){.st-vsc{height:30dvh}.st-ban{top:16%}}
-@media(prefers-reduced-motion:reduce){.st-fx,.st-vsc,.st-vsq,.st-vsi,.st-vsb,.st-eq,.st-ecard,.st-cinein h2,.st-cinein p,.st-cinein .btn,.st-pc.pup,.sp-path path.cr,.sp-all .sp-p.mv .sp-orb{animation:none!important}.st-ban.on{animation:none;opacity:1}.fx-wave::after{display:none}}
+@media(max-height:560px){.st-ban{top:16%}}
+@media(prefers-reduced-motion:reduce){.st-fx,.st-eq,.st-ecard,.st-cinein h2,.st-cinein p,.st-cinein .btn,.st-pc.pup,.sp-path path.cr,.sp-all .sp-p.mv .sp-orb{animation:none!important}.st-ban.on{animation:none;opacity:1}.fx-wave::after{display:none}}
 </style>
 
 <div class="app">
@@ -4247,35 +4341,26 @@ const ST_ROLES=['Tank','DPS','Distance'];
 const ST_OBJ=['Victoire','≥ 50 % de PV','Sans KO'];
 const STORY=[
  {k:'db',n:'Dragon Ball',sub:'Saga de Namek',kj:'龍',hero:'db-son-arc-buu',pl:'images/story/sphere-db.webp',acts:[
-  {t:'Les sbires de Freezer',b:'db-dodoria-arc-namek',bg:'images/story/bg-db.webp',pv:4.19,at:6.69,df:1,n:3,rw:300,tr:'armor',cyc:['Tank','Tank','DPS'],why:'Une brute : il casse d\'abord le mur.',
-   pre:'Le seigneur Freezer veut les sept boules. Toi, tu n\'es qu\'une carte à déchirer.',win:'Trop facile. Je rapporterai tes cartes à Freezer, en morceaux.',lose:'Impossible… le seigneur Freezer va me…',
-   w:[[{g:'Soldat de Freezer'},{g:'Soldat de Freezer'},{g:'Éclaireur de Freezer'}],[{g:'Soldat de Freezer'},{g:'Éclaireur de Freezer'},{g:'Lieutenant de Freezer',lt:1}]]},
-  {t:'Le bras droit',b:'db-zarbon-arc-namek',bg:'images/story/bg-db.webp',pv:4.19,at:7.89,df:1,n:3,rw:400,tr:'form2',cyc:['DPS','DPS','Distance'],cyc2:['Distance','Distance','DPS'],why:'Un vaniteux : il frappe celui qui brille le plus.',
-   pre:'Quel dommage d\'abîmer un si joli visage. Le tien, pas le mien.',win:'Tu as vu ma vraie forme. Personne ne s\'en vante après.',lose:'Même sous cette forme… ma beauté ne m\'a pas sauvé.',
-   w:[[{g:'Soldat de Freezer'},{g:'Soldat de Freezer'},{g:'Éclaireur de Freezer'}],[{g:'Éclaireur de Freezer'},{g:'Éclaireur de Freezer'},{g:'Lieutenant de Freezer',lt:1}]]},
-  {t:'Le commando Ginyu',b:'db-ginyu-arc-namek',bg:'images/story/bg-db.webp',pv:4.42,at:4.83,df:1,n:2,rw:600,tr:'swap',cyc:['Distance','Tank','DPS'],why:'Il pose, puis il jauge chaque rôle.',end:'bronze',
-   pre:'Commando Ginyu, au rapport ! Pose réglementaire… et ton corps m\'ira très bien.',win:'Victoire ! Et regarde-moi cette pose. Freezer sera ravi.',lose:'Pas comme ça… ma pose n\'était même pas finie…',
-   w:[[{g:'Recrue du commando'},{g:'Recrue du commando'},{g:'Soldat de Freezer'}],[{g:'Recrue du commando'},{g:'Recrue du commando'},{g:'Vétéran du commando',lt:1}]]}]},
+  {t:'Les sbires de Freezer',b:'db-dodoria-arc-namek',bg:'images/story/bg-db.webp',pv:4.65,at:4.2,df:1,n:3,rw:300,tr:'armor',cyc:['Tank','Tank','DPS'],why:'Une brute : il casse d\'abord le mur.',
+   pre:'Le seigneur Freezer veut les sept boules. Toi, tu n\'es qu\'une carte à déchirer.',win:'Trop facile. Je rapporterai tes cartes à Freezer, en morceaux.',lose:'Impossible… le seigneur Freezer va me…'},
+  {t:'Le bras droit',b:'db-zarbon-arc-namek',bg:'images/story/bg-db.webp',pv:5.35,at:4.89,df:1,n:3,rw:400,tr:'form2',cyc:['DPS','DPS','Distance'],cyc2:['Distance','Distance','DPS'],why:'Un vaniteux : il frappe celui qui brille le plus.',
+   pre:'Quel dommage d\'abîmer un si joli visage. Le tien, pas le mien.',win:'Tu as vu ma vraie forme. Personne ne s\'en vante après.',lose:'Même sous cette forme… ma beauté ne m\'a pas sauvé.'},
+  {t:'Le commando Ginyu',b:'db-ginyu-arc-namek',bg:'images/story/bg-db.webp',pv:8.25,at:2.27,df:1,n:2,rw:600,tr:'swap',cyc:['Distance','Tank','DPS'],why:'Il pose, puis il jauge chaque rôle.',end:'bronze',
+   pre:'Commando Ginyu, au rapport ! Pose réglementaire… et ton corps m\'ira très bien.',win:'Victoire ! Et regarde-moi cette pose. Freezer sera ravi.',lose:'Pas comme ça… ma pose n\'était même pas finie…'}]},
  {k:'na',n:'Naruto',sub:'Du Pays des Vagues à l\'Akatsuki',kj:'忍',hero:'na-naruto-shippuden-mode-ermite',pl:'images/story/sphere-na.webp',acts:[
-  {t:'Le démon de Kirigakure',b:'na-zabuza-pays-des-vagues',bg:'images/story/bg-na-vagues.webp',pv:4.77,at:4.23,df:1,n:2,rw:500,tr:'mist',cyc:['Tank','DPS','DPS'],why:'Un assassin : il va droit au plus grand danger.',
-   pre:'Huit points vitaux. Je choisirai lequel, dans la brume.',win:'Tu ne m\'as même pas entendu arriver.',lose:'Haku… on dirait que c\'est fini pour nous deux.',
-   w:[[{g:'Homme de main de Gatô'},{g:'Homme de main de Gatô'},{g:'Homme de main de Gatô'}],[{g:'Homme de main de Gatô'},{g:'Homme de main de Gatô'},{id:'na-haku-pays-des-vagues',lt:1}]]},
-  {t:'L\'Examen Chûnin',b:'na-orochimaru-examen-chunin',bg:'images/story/bg-na-foret.webp',pv:4.42,at:4.29,df:1,n:2,rw:650,tr:'shed',cyc:['Distance','Distance','DPS'],why:'Il étudie sa proie : il élimine d\'abord les tireurs.',
-   pre:'Ces cartes… quels corps magnifiques. Je veux tous les essayer.',win:'Merci pour cet échantillon. Kukuku.',lose:'Cette peau ne me servait plus. Je reviendrai sous une autre.',
-   w:[[{id:'na-kiba-examen-chunin'},{id:'na-choji-examen-chunin'},{id:'na-tenten-examen-chunin'}],[{id:'na-shino-examen-chunin'},{id:'na-ino-examen-chunin'},{id:'na-kabuto-examen-chunin',lt:1}]]},
-  {t:'L\'ombre de l\'Akatsuki',b:'na-kisame-akatsuki',bg:'images/story/bg-na-ame.webp',pv:3.26,at:3.8,df:1,n:2,rw:900,tr:'drain',cyc:['Tank','DPS','Tank'],why:'Il dévore la force : il cherche le plus solide.',end:'argent',
-   pre:'Samehada a faim, et ton chakra sent bon.',win:'Il ne reste rien de toi. Pas même une arête.',lose:'Drôle de fin… pour un démon sans queue.',
-   w:[[{g:'Ninja d\'Ame'},{g:'Ninja d\'Ame'},{g:'Ninja d\'Ame'}],[{g:'Ninja d\'Ame'},{g:'Ninja d\'Ame'},{g:'Ninja d\'élite d\'Ame',lt:1}]]}]},
+  {t:'Le démon de Kirigakure',b:'na-zabuza-pays-des-vagues',bg:'images/story/bg-na-vagues.webp',pv:6.62,at:2.75,df:1,n:2,rw:500,tr:'mist',cyc:['Tank','DPS','DPS'],why:'Un assassin : il va droit au plus grand danger.',
+   pre:'Huit points vitaux. Je choisirai lequel, dans la brume.',win:'Tu ne m\'as même pas entendu arriver.',lose:'Haku… on dirait que c\'est fini pour nous deux.'},
+  {t:'L\'Examen Chûnin',b:'na-orochimaru-examen-chunin',bg:'images/story/bg-na-foret.webp',pv:5.93,at:2.99,df:1,n:2,rw:650,tr:'shed',cyc:['Distance','Distance','DPS'],why:'Il étudie sa proie : il élimine d\'abord les tireurs.',
+   pre:'Ces cartes… quels corps magnifiques. Je veux tous les essayer.',win:'Merci pour cet échantillon. Kukuku.',lose:'Cette peau ne me servait plus. Je reviendrai sous une autre.'},
+  {t:'L\'ombre de l\'Akatsuki',b:'na-kisame-akatsuki',bg:'images/story/bg-na-ame.webp',pv:4.65,at:2.99,df:1,n:2,rw:900,tr:'drain',cyc:['Tank','DPS','Tank'],why:'Il dévore la force : il cherche le plus solide.',end:'argent',
+   pre:'Samehada a faim, et ton chakra sent bon.',win:'Il ne reste rien de toi. Pas même une arête.',lose:'Drôle de fin… pour un démon sans queue.'}]},
  {k:'op',n:'One Piece',sub:'D\'East Blue à Dressrosa',kj:'海',hero:'op-monkey-arc-wano',pl:'images/story/sphere-op.webp',acts:[
-  {t:'Arlong Park',b:'op-arlong-arlong-park',bg:'images/story/bg-op.webp',pv:9.87,at:3.08,df:1,n:2,rw:800,tr:'wave',cyc:['DPS','Tank','DPS'],why:'Une force brute : il fonce dans le tas.',
-   pre:'Les hommes-poissons sont nés supérieurs. Tu viens te noyer dans mon eau.',win:'Ici, seul l\'argent fait la loi. Et ton équipe ne vaut pas un berry.',lose:'Un humain… m\'a abattu ? Mon Arlong Park…',
-   w:[[{g:'Homme-poisson'},{g:'Homme-poisson'},{id:'op-alvida-east-blue'}],[{id:'op-baggy-east-blue'},{id:'op-nami-arlong-park'},{id:'op-roronoa-east-blue',lt:1}]]},
-  {t:'Le désert d\'Alabasta',b:'op-crocodile-alabasta',bg:'images/story/bg-op-alabasta.webp',pv:13.35,at:3.95,df:1,n:2,rw:1000,tr:'sand',cyc:['Distance','Tank','DPS'],why:'Il assèche tout ce qui reste à distance.',
-   pre:'Bienvenue à Alabasta. Ici, même les rois finissent en sable.',win:'Te voilà sec. Comme tout ce que je touche.',lose:'De l\'eau… encore de l\'eau. Tu n\'as pas plus peur de mourir que ce Chapeau de paille.',
-   w:[[{g:'Agent de Baroque Works'},{g:'Agent de Baroque Works'},{g:'Agent de Baroque Works'}],[{g:'Agent de Baroque Works'},{g:'Agent de Baroque Works'},{g:'Agent d\'élite',lt:1}]]},
-  {t:'Le joug de Dressrosa',b:'op-doflamingo-dressrosa',bg:'images/story/bg-op-dressrosa.webp',pv:9.41,at:3.83,df:1,n:2,rw:1400,tr:'puppet',cyc:['Distance','DPS','Tank'],why:'Il tire les fils de loin, et vise ceux qui visent.',end:'or',
-   pre:'Fufufu ! Tes cartes dansent déjà. Tu n\'as juste pas vu les fils.',win:'À Dressrosa, seuls les vainqueurs écrivent la justice.',lose:'Fufufu… L\'Archiviste aura ta tête. Tous mes fils ne sont pas coupés.',
-   w:[[{g:'Homme de la famille Donquixote'},{g:'Homme de la famille Donquixote'},{g:'Homme de la famille Donquixote'}],[{g:'Homme de la famille Donquixote'},{g:'Homme de la famille Donquixote'},{g:'Officier Donquixote',lt:1}]]}]}
+  {t:'Arlong Park',b:'op-arlong-arlong-park',bg:'images/story/bg-op.webp',pv:14.86,at:2.09,df:1,n:2,rw:800,tr:'wave',cyc:['DPS','Tank','DPS'],why:'Une force brute : il fonce dans le tas.',
+   pre:'Les hommes-poissons sont nés supérieurs. Tu viens te noyer dans mon eau.',win:'Ici, seul l\'argent fait la loi. Et ton équipe ne vaut pas un berry.',lose:'Un humain… m\'a abattu ? Mon Arlong Park…'},
+  {t:'Le désert d\'Alabasta',b:'op-crocodile-alabasta',bg:'images/story/bg-op-alabasta.webp',pv:18.22,at:2.9,df:1,n:2,rw:1000,tr:'sand',cyc:['Distance','Tank','DPS'],why:'Il assèche tout ce qui reste à distance.',
+   pre:'Bienvenue à Alabasta. Ici, même les rois finissent en sable.',win:'Te voilà sec. Comme tout ce que je touche.',lose:'De l\'eau… encore de l\'eau. Tu n\'as pas plus peur de mourir que ce Chapeau de paille.'},
+  {t:'Le joug de Dressrosa',b:'op-doflamingo-dressrosa',bg:'images/story/bg-op-dressrosa.webp',pv:16.14,at:2.18,df:1,n:2,rw:1400,tr:'puppet',cyc:['Distance','DPS','Tank'],why:'Il tire les fils de loin, et vise ceux qui visent.',end:'or',
+   pre:'Fufufu ! Tes cartes dansent déjà. Tu n\'as juste pas vu les fils.',win:'À Dressrosa, seuls les vainqueurs écrivent la justice.',lose:'Fufufu… L\'Archiviste aura ta tête. Tous mes fils ne sont pas coupés.'}]}
 ];
 const ST_TR={
  armor:{n:'Peau d\'acier',d:'Coups normaux −40 % tant qu\'une attaque spéciale n\'a pas brisé sa cuirasse.'},
@@ -4511,18 +4596,40 @@ function stFightHTML(){const R=ST_RUN,w=STORY[R.wi],a=w.acts[R.ai],c=CARD[a.b],r
   <div id="stres" class="st-res" hidden></div>
  </section>`}
 /* le face-à-face : plein écran, avant chaque combat */
-let ST_VS=null,ST_CINE=null,ST_DIFF='n';
+let ST_VS=null,ST_CINE=null,ST_DIFF='n',ST_MINIT=0;
 function stCycTxt(a){return a.cyc.map(r=>POS[r]).join(' → ')}
-function stVsHTML(){const {wi,ai,mode}=ST_VS,w=STORY[wi],a=w.acts[ai],c=CARD[a.b],art=artOf(c),tr=ST_TR[a.tr],t=evalTeam(FORMS[S.form].rows,S.team),al=stAlly(t,w.k),dx=mode==='def'?ST_DEF[w.k]:null,bad=stTeamMsg(w,mode),san=a.tr==='shed'&&t.cards.some(x=>x&&x.tags.includes('Sannin'));
-  return `<section class="st-vs" style="--decor:url(${a.bg})">
-   <div class="st-vsin"><div class="st-vsh"><span class="eyebrow">${mode==='def'?'Défi de l\'Archiviste':mode==='tr'?'Traque du jour':mode==='cau'?'Cauchemar':'Acte '+(ai+1)} · ${w.n}</span></div>
-    <div class="st-vsc">${art?`<img src="${art}" alt="${c.nom}" draggable="false">`:cardHTML(c,{note:c.note})}</div>
-    <h2 class="st-vsn">${c.nom}</h2><p class="st-vsq">${a.pre}</p>
-    <div class="st-vsi"><div><span class="eyebrow">${tr.n}</span><p>${tr.d}</p></div><div><span class="eyebrow">Ses frappes</span><p><b>${stCycTxt(a)}</b> <span>${a.why}</span></p></div>
-    ${dx?`<div class="ar"><span class="eyebrow">${dx.t}</span><p>${dx.d}</p></div>`:''}
-    ${al?`<div class="al"><span class="eyebrow">Allié du récit</span><p>${al/2} carte${al>2?'s':''} de ce monde : +${al} % de stats</p></div>`:''}${san?'<div class="al"><span class="eyebrow">Les Sannin le connaissent</span><p>Tes Sannin lui font +15 % de dégâts.</p></div>':''}</div>
-    ${bad?`<p class="small st-warn">${bad}</p>`:''}
-    <div class="st-vsb"><button class="btn primary" data-act="stStart"${bad?' disabled':''}>Combattre</button><button class="btn" data-act="tab" data-v="team">Mon équipe</button><button class="btn" data-act="stVsOut">Retour</button></div></div></section>`}
+/* face-à-face : f = visage du boss dans l'image (x,y entre 0 et 1), y = cadrage vertical */
+const ST_VX={
+ 'db-dodoria-arc-namek':{f:[.395,.255],y:'14%',n:22000},'db-zarbon-arc-namek':{f:[.47,.33],y:'22%',n:23000},'db-ginyu-arc-namek':{f:[.51,.39],y:'8%',n:120000},
+ 'na-zabuza-pays-des-vagues':{f:[.54,.21],y:'14%',t:'Déserteur de Kiri'},'na-orochimaru-examen-chunin':{f:[.52,.5],y:'52%',t:'Déserteur de Konoha'},'na-kisame-akatsuki':{f:[.5,.3],y:'26%',t:'Déserteur de Kiri, Akatsuki'},
+ 'op-arlong-arlong-park':{f:[.47,.17],y:'6%',n:20000000},'op-crocodile-alabasta':{f:[.5,.14],y:'5%',n:81000000},'op-doflamingo-dressrosa':{f:[.52,.16],y:'3%',n:340000000}};
+/* qui réagit au trait du boss : un des Sept, ou le boss lui-même (b) */
+const ST_VOX={armor:['theo','Les coups normaux passent pas. Il faut une spéciale !'],form2:['b','Tu voulais voir ce qu\'il y a dessous ?'],swap:['b','Change !'],mist:['b','Huit points vitaux. Lequel d\'abord ?'],shed:['lou','Il a changé de peau. Il fait toujours ça !'],drain:['theo','Son épée le soigne quand il touche. Finis-le vite.'],wave:['maya','Toute l\'équipe ! Toute l\'équipe !'],sand:['b','Tes soins ? Ils coulent entre mes doigts.'],puppet:['b','Danse.']};
+const stNum=n=>String(n).replace(/\B(?=(\d{3})+$)/g,' ');
+function stVsHTML(){const {wi,ai,mode}=ST_VS,w=STORY[wi],a=w.acts[ai],c=CARD[a.b],art=artOf(c),tr=ST_TR[a.tr],t=evalTeam(FORMS[S.form].rows,S.team),al=stAlly(t,w.k),dx=mode==='def'?ST_DEF[w.k]:null,bad=stTeamMsg(w,mode),san=a.tr==='shed'&&t.cards.some(x=>x&&x.tags.includes('Sannin')),vx=ST_VX[a.b]||{f:[.5,.2],y:'15%'},vo=ST_VOX[a.tr],lbl=(mode==='def'?'Défi de l\'Archiviste':mode==='tr'?'Traque du jour':mode==='cau'?'Cauchemar':'Acte '+(ai+1))+' · '+w.n;
+  const img=art?`<img src="${art}" alt="${c.nom}" draggable="false">`:'',
+   fail='<svg class="vx-f" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><polyline class="g" points="62,0 40,14 70,27 34,40 66,52 28,63 60,76 44,88 58,100"/><polyline class="c" points="62,0 40,14 70,27 34,40 66,52 28,63 60,76 44,88 58,100"/></svg>',
+   av=k=>k==='b'?`<div class="vx-av boss" role="img" aria-label="${c.nom}" style="background-image:url(${art});background-position:${(vx.f[0]*2-.5)*100}% ${Math.max(0,Math.min(1,(vx.f[1]*123-22)/79))*100}%"></div>`:`<div class="vx-av ${k}" role="img" aria-label="${k==='theo'?'Théo':k==='maya'?'Maya':'Lou'}"></div>`,
+   row=(k,lab,body)=>`<div class="vx-r">${av(k)}<div><div class="vx-lab">${lab}</div>${body}</div></div>`,
+   sep=w.k==='na'?'<svg viewBox="0 0 18 10" aria-hidden="true"><path d="M0 4h9L18 5 9 6H0zM2 2l3 3-3 3z" transform="matrix(-1 0 0 1 18 0)"/></svg>':'<svg viewBox="0 0 18 10" aria-hidden="true"><path d="M6 1l5 4-5 4V7L9 5 6 3z"/></svg>',
+   rows=row(vo?vo[0]:'theo',tr.n,`${vo?`<p class="vx-say">${vo[1]}</p>`:''}<p class="vx-rule">${tr.d}</p>`)+
+    row(vo&&vo[0]==='maya'?'theo':'maya','Ses frappes',`<div class="vx-cyc" aria-label="${stCycTxt(a)}">${a.cyc.map(r=>`<span>${POS[r]}</span>`).join(sep)}</div><p class="vx-rule">${a.why}</p>`)+
+    (dx?row('theo',dx.t,`<p class="vx-say">C'est un piège. Évidemment que c'est un piège.</p><p class="vx-rule">${dx.d}</p>`):'')+
+    (al?row('lou','Allié du récit',`<p class="vx-rule">${al/2} carte${al>2?'s':''} de ce monde : +${al} % de stats</p>`):'')+
+    (san?row('lou','Les Sannin le connaissent','<p class="vx-rule">Tes Sannin lui font +15 % de dégâts.</p>'):''),
+   name=`<h2 class="vx-name${w.k!=='op'&&c.nom.length>7?' long':''}">${c.nom}</h2>`,info=`<p class="vx-title">${a.t}</p><p class="vx-line">${a.pre}</p>`;
+  let hero;
+  if(w.k==='op')hero=`<div class="vx-top"><span>${lbl}</span></div><div class="vx-post"><div class="vx-pw">WANTED</div><div class="vx-pph">${img}</div><div class="vx-pd">DEAD OR ALIVE</div>${name}<div class="vx-pb">฿ ${stNum(vx.n||0)}-</div><div class="vx-pm">MARINE</div>${fail}</div><div class="vx-id">${info}</div>`;
+  else if(w.k==='na')hero=`<div class="vx-art">${img}</div><div class="vx-mist"></div>${fail}<div class="vx-top"><span class="vx-band"><svg viewBox="0 0 44 20" aria-hidden="true"><rect y="2" width="44" height="16" rx="2" fill="#15171C"/><rect x="11" y="3.500" width="22" height="13" rx="1.500" fill="#AEB7C0"/><path d="M15 8c2 2 4-2 6.500 0s4-2 6.500 0M15 12c2 2 4-2 6.500 0s4-2 6.500 0" stroke="#15171C" stroke-width="1.100" fill="none"/><path d="M9 14L35 6" stroke="#fff" stroke-width="1.500"/></svg><span>Bingo Book<br>${vx.t||''}</span></span><span style="text-align:right">${lbl}</span></div><div class="vx-id"><div style="position:relative"><svg class="vx-brush" viewBox="0 0 400 90" preserveAspectRatio="none" aria-hidden="true"><defs><filter id="vxb" x="-5%" y="-30%" width="110%" height="160%"><feTurbulence type="fractalNoise" baseFrequency=".012 .2" numOctaves="3" seed="3"/><feDisplacementMap in="SourceGraphic" scale="24"/></filter></defs><path d="M6 50C70 18 300 8 394 28L388 68C270 82 90 86 14 74Z" filter="url(#vxb)"/></svg>${name}</div>${info}</div>`;
+  else hero=`<div class="vx-art">${img}</div><div class="vx-ret" aria-hidden="true"><svg viewBox="0 0 100 100"><circle class="sp" cx="50" cy="50" r="42" stroke-dasharray="3 7"/><circle cx="50" cy="50" r="29"/><path d="M50 2v14M50 84v14M2 50h14M84 50h14"/></svg></div>${fail}<div class="vx-top">${mode==='n'||mode==='cau'?`<div><div class="vx-balls" aria-hidden="true">${w.acts.map((_,i)=>`<i class="${i<ai?'done':i>ai?'off':''}">${'★'.repeat(i+1)}</i>`).join('')}</div><div style="margin-top:6px">${lbl}</div></div>`:`<span>${lbl}</span>`}<div class="vx-read"><small>Puissance de combat</small><b id="vxPw" data-n="${vx.n||0}">${stNum(vx.n||0)}</b></div></div><div class="vx-id">${name}${info}</div>`;
+  setTimeout(stVxFx,0);
+  return `<section class="st-vs vx vx-${w.k}" style="--decor:url(${a.bg});--ay:${vx.y}" data-fx="${vx.f[0]}" data-fy="${vx.f[1]}"><div class="vx-wrap"><div class="vx-hero"><div class="vx-bg"></div>${hero}</div>
+   <div class="vx-side"><div class="vx-rows">${rows}</div><div class="vx-cta">${bad?`<p class="small st-warn">${bad}</p>`:''}<button class="vx-go" data-act="stStart"${bad?' disabled':''}>${w.k==='na'?'<svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 16c1-2 4-1 4 1.500s-3 5-6.500 4-5-6-2.500-9.500 8-4.500 11.500-1.500 4.500 9.500 1 13.500-11 4.500-15.500 1"/></svg>':''}Sceller</button><div class="vx-sub"><button class="btn" data-act="tab" data-v="team">Mon équipe</button><button class="btn" data-act="stVsOut">Retour</button></div></div></div></div></section>`}
+/* place le viseur du scouter sur le visage et fait monter la puissance */
+function stVxPlace(){const v=document.querySelector('.vx'),r=v&&v.querySelector('.vx-ret'),b=v&&v.querySelector('.vx-art'),i=b&&b.querySelector('img');if(!r||!i)return;const R=b.getBoundingClientRect(),H=v.querySelector('.vx-hero').getBoundingClientRect(),W=b.clientWidth,Ht=b.clientHeight,nw=i.naturalWidth||600,nh=i.naturalHeight||840,k=Math.max(W/nw,Ht/nh),dw=nw*k,dh=nh*k,ay=parseFloat(getComputedStyle(v).getPropertyValue('--ay'))/100;
+  r.style.left=(R.left-H.left+(W-dw)/2+v.dataset.fx*dw)+'px';r.style.top=(R.top-H.top+(Ht-dh)*ay+v.dataset.fy*dh)+'px'}
+function stVxFx(){stVxPlace();const i=document.querySelector('.vx-art img');if(i&&!i.complete)i.addEventListener('load',stVxPlace,{once:true});const p=document.getElementById('vxPw');if(!p||matchMedia('(prefers-reduced-motion:reduce)').matches)return;const n=+p.dataset.n,t0=performance.now();(function tick(t){if(!p.isConnected)return;const q=Math.min(1,Math.max(0,(t-t0)/850));p.textContent=stNum(Math.round(n*q*q/100)*100);if(q<1)requestAnimationFrame(tick)})(t0)}
+addEventListener('resize',stVxPlace);
 function stCineHTML(){const L=ST_LORE[ST_CINE];return `<section class="st-cine"><div class="st-cinein"><span class="eyebrow">L'histoire</span><h2>${L.t}</h2>${L.l.map((x,i)=>`<p style="animation-delay:${i*.45}s">${x}</p>`).join('')}<button class="btn primary" data-act="stCineOk" style="animation-delay:${L.l.length*.45}s">Continuer</button></div></section>`}
 function stNext(w){const i=w.acts.findIndex((a,k)=>!stDone(w.k,k));return i<0?w.acts.length-1:i}
 function stActHTML(wi,ai){const w=STORY[wi],a=w.acts[ai],c=CARD[a.b],cau=ST_DIFF==='cau'&&stCount(w)===w.acts.length,done=cau?stStars((stState().oc||{})[w.k+ai])>0:stDone(w.k,ai),open=cau||stActOpen(wi,ai),ok=cau?((stState().oc||{})[w.k+ai]||[0,0,0]):stObjOf(w,ai),B=stBoss(a,{cau}),nx=open&&!done;
@@ -4584,7 +4691,7 @@ function stExtraHTML(w,wi){if(stCount(w)<w.acts.length)return '';const q=stState
 ['La Faille s\'ouvre d\'abord sur Namek. Freezer y cherche encore les boules de cristal, et ses hommes obéissent désormais à l\'Archiviste.','The Rift opens on Namek first. Frieza still hunts the Dragon Balls there, and his men now obey the Archivist.','La Grieta se abre primero en Namek. Freezer aún busca allí las bolas de dragón, y sus hombres ahora obedecen al Archivista.'],['Dodoria, Zarbon, le commando Ginyu : trois échos à sceller pour refermer ce monde.','Dodoria, Zarbon, the Ginyu Force: three echoes to seal to close this world.','Dodoria, Zarbon, las Fuerzas Ginyu: tres ecos que sellar para cerrar este mundo.'],['Le monde des ninjas','The ninja world','El mundo ninja'],['La Faille s\'étend. Ici, les échos se cachent, se transforment et frappent sans bruit.','The Rift spreads. Here, echoes hide, change shape and strike silently.','La Grieta se extiende. Aquí los ecos se esconden, se transforman y golpean en silencio.'],['Du pont du Pays des Vagues au village d\'Ame : Zabuza, Orochimaru, puis Kisame.','From the Land of Waves bridge to the Village of Rain: Zabuza, Orochimaru, then Kisame.','Del puente del País de las Olas a la aldea de la Lluvia: Zabuza, Orochimaru y luego Kisame.'],['Dernier monde avant la source. Les échos y sont les plus forts, et ils règnent sur des pays entiers.','Last world before the source. The echoes here are the strongest, and they rule whole countries.','Último mundo antes de la fuente. Aquí los ecos son los más fuertes y gobiernan países enteros.'],['Arlong, Crocodile, Doflamingo : fais-les tomber, et la Faille ne tiendra plus qu\'à un fil.','Arlong, Crocodile, Doflamingo: bring them down, and the Rift will hang by a thread.','Arlong, Crocodile, Doflamingo: derríbalos, y la Grieta pendirá de un hilo.'],
 ['Namek est scellée','Namek is sealed','Namek está sellada'],['La fissure recule. L\'Archiviste a perdu ses premiers échos, et il sait maintenant ton nom.','The crack recedes. The Archivist has lost his first echoes, and now he knows your name.','La fisura retrocede. El Archivista ha perdido sus primeros ecos, y ahora sabe tu nombre.'],['Le monde des ninjas est scellé','The ninja world is sealed','El mundo ninja está sellado'],['La Faille n\'a plus qu\'un monde à dévorer. Quelque part au fond, l\'Archiviste range ses pages en colère.','The Rift has only one world left to devour. Somewhere deep down, the Archivist angrily sorts his pages.','A la Grieta solo le queda un mundo que devorar. En algún lugar del fondo, el Archivista ordena sus páginas con rabia.'],['La Faille tremble','The Rift trembles','La Grieta tiembla'],['Trois mondes scellés. Il ne reste que la source : le Multivers s\'est mis à battre, et l\'Archiviste t\'y attend.','Three worlds sealed. Only the source remains: the Multiverse has begun to pulse, and the Archivist awaits you there.','Tres mundos sellados. Solo queda la fuente: el Multiverso ha empezado a latir, y el Archivista te espera allí.'],['La suite à la prochaine mise à jour.','To be continued in the next update.','Continuará en la próxima actualización.'],
 ['Rareté plafonnée','Capped rarity','Rareza limitada'],['Aucune carte au-dessus de R dans ton équipe.','No card above R in your team.','Ninguna carta por encima de R en tu equipo.'],['Il te faut 7 cartes de rareté R ou moins.','You need 7 cards of rarity R or lower.','Necesitas 7 cartas de rareza R o inferior.'],['Un seul monde','One world only','Un solo mundo'],['Toute ton équipe doit venir du monde de Naruto.','Your whole team must come from the world of Naruto.','Todo tu equipo debe venir del mundo de Naruto.'],['Il te faut 7 cartes du monde de Naruto.','You need 7 cards from the world of Naruto.','Necesitas 7 cartas del mundo de Naruto.'],['Sans Soutien','No Support','Sin Apoyo'],['Ton Soutien reste sur le banc : aucun effet de Soutien pendant ce défi.','Your Support stays on the bench: no Support effects during this challenge.','Tu Apoyo se queda en el banquillo: ningún efecto de Apoyo durante este desafío.'],['Il te faut 7 cartes.','You need 7 cards.','Necesitas 7 cartas.'],['Ton équipe doit avoir 7 cartes.','Your team must have 7 cards.','Tu equipo debe tener 7 cartas.'],
-['Défi de l\'Archiviste','Archivist\'s Challenge','Desafío del Archivista'],['Traque du jour','Daily Hunt','Caza del día'],['Cauchemar','Nightmare','Pesadilla'],['Allié du récit','Story Ally','Aliado del relato'],['Appel du Gardien','Guardian\'s Call','Llamada del Guardián'],['Ses frappes','His strikes','Sus golpes'],['Combattre','Fight','Luchar'],['Mon équipe','My team','Mi equipo'],['Retour','Back','Volver'],['Continuer','Continue','Continuar'],['Rejouer','Replay','Repetir'],['Relever','Take it on','Aceptar'],['Normal','Normal','Normal'],['Cauchemar · boss +30 % de PV','Nightmare · boss +30% HP','Pesadilla · jefe +30 % de PV'],['Revoir l\'histoire','Replay the story','Ver la historia'],['L\'histoire','The story','La historia'],['Apparence','Appearance','Apariencia'],['Aucun','None','Ninguno'],['Sans récompense de pièces : l\'exploit compte','No coin reward: the feat is what counts','Sin recompensa de monedas: cuenta la hazaña'],['Lis ses habitudes, change ta formation ou ton équipe.','Read his habits, change your formation or your team.','Lee sus hábitos, cambia tu formación o tu equipo.'],['Les Sannin le connaissent','The Sannin know him','Los Sannin lo conocen'],['Tes Sannin lui font +15 % de dégâts.','Your Sannin deal +15% damage to him.','Tus Sannin le hacen +15 % de daño.'],['Les échos approchent.','The echoes are coming.','Los ecos se acercan.'],['Appel du Gardien : la prochaine frappe sera annulée.','Guardian\'s Call: the next strike will be cancelled.','Llamada del Guardián: el siguiente golpe se anulará.'],['La frappe est annulée.','The strike is cancelled.','El golpe se anula.'],['APPEL DU GARDIEN','GUARDIAN\'S CALL','LLAMADA DEL GUARDIÁN'],
+['Sceller','Seal','Sellar'],['Puissance de combat','Power level','Poder de pelea'],['Déserteur de Kiri','Kiri deserter','Desertor de Kiri'],['Déserteur de Konoha','Konoha deserter','Desertor de Konoha'],['Déserteur de Kiri, Akatsuki','Kiri deserter, Akatsuki','Desertor de Kiri, Akatsuki'],['Les coups normaux passent pas. Il faut une spéciale !','Normal hits won\'t get through. We need a special!','Los golpes normales no pasan. ¡Hace falta una especial!'],['Tu voulais voir ce qu\'il y a dessous ?','You wanted to see what\'s underneath?','¿Querías ver lo que hay debajo?'],['Change !','Change!','¡Cambio!'],['Huit points vitaux. Lequel d\'abord ?','Eight vital points. Which one first?','Ocho puntos vitales. ¿Cuál primero?'],['Il a changé de peau. Il fait toujours ça !','He shed his skin. He always does that!','Ha cambiado de piel. ¡Siempre hace eso!'],['Son épée le soigne quand il touche. Finis-le vite.','His sword heals him when he hits. Finish him fast.','Su espada lo cura al golpear. Acaba con él rápido.'],['Toute l\'équipe ! Toute l\'équipe !','The whole team! The whole team!','¡Todo el equipo! ¡Todo el equipo!'],['Tes soins ? Ils coulent entre mes doigts.','Your healing? It slips through my fingers.','¿Tus curas? Se escurren entre mis dedos.'],['Danse.','Dance.','Baila.'],['C\'est un piège. Évidemment que c\'est un piège.','It\'s a trap. Of course it\'s a trap.','Es una trampa. Claro que es una trampa.'],['Défi de l\'Archiviste','Archivist\'s Challenge','Desafío del Archivista'],['Traque du jour','Daily Hunt','Caza del día'],['Cauchemar','Nightmare','Pesadilla'],['Allié du récit','Story Ally','Aliado del relato'],['Appel du Gardien','Guardian\'s Call','Llamada del Guardián'],['Ses frappes','His strikes','Sus golpes'],['Combattre','Fight','Luchar'],['Mon équipe','My team','Mi equipo'],['Retour','Back','Volver'],['Continuer','Continue','Continuar'],['Rejouer','Replay','Repetir'],['Relever','Take it on','Aceptar'],['Normal','Normal','Normal'],['Cauchemar · boss +30 % de PV','Nightmare · boss +30% HP','Pesadilla · jefe +30 % de PV'],['Revoir l\'histoire','Replay the story','Ver la historia'],['L\'histoire','The story','La historia'],['Apparence','Appearance','Apariencia'],['Aucun','None','Ninguno'],['Sans récompense de pièces : l\'exploit compte','No coin reward: the feat is what counts','Sin recompensa de monedas: cuenta la hazaña'],['Lis ses habitudes, change ta formation ou ton équipe.','Read his habits, change your formation or your team.','Lee sus hábitos, cambia tu formación o tu equipo.'],['Les Sannin le connaissent','The Sannin know him','Los Sannin lo conocen'],['Tes Sannin lui font +15 % de dégâts.','Your Sannin deal +15% damage to him.','Tus Sannin le hacen +15 % de daño.'],['Les échos approchent.','The echoes are coming.','Los ecos se acercan.'],['Appel du Gardien : la prochaine frappe sera annulée.','Guardian\'s Call: the next strike will be cancelled.','Llamada del Guardián: el siguiente golpe se anulará.'],['La frappe est annulée.','The strike is cancelled.','El golpe se anula.'],['APPEL DU GARDIEN','GUARDIAN\'S CALL','LLAMADA DEL GUARDIÁN'],
 ['Fond d\'équipe','Team background','Fondo de equipo'],['Fond de combat','Battle background','Fondo de combate'],['Cadre de profil','Profile frame','Marco de perfil'],['Skin de booster','Booster skin','Aspecto de sobre'],
 ['Une brute : il casse d\'abord le mur.','A brute: he breaks the wall first.','Un bruto: primero rompe el muro.'],['Un vaniteux : il frappe celui qui brille le plus.','Vain: he hits whoever shines brightest.','Un vanidoso: golpea al que más brilla.'],['Il pose, puis il jauge chaque rôle.','He poses, then sizes up each role.','Posa, y luego mide cada rol.'],['Un assassin : il va droit au plus grand danger.','An assassin: he goes straight for the biggest threat.','Un asesino: va directo al mayor peligro.'],['Il étudie sa proie : il élimine d\'abord les tireurs.','He studies his prey: he removes the shooters first.','Estudia a su presa: primero elimina a los tiradores.'],['Il dévore la force : il cherche le plus solide.','He devours strength: he seeks the toughest.','Devora la fuerza: busca al más sólido.'],['Une force brute : il fonce dans le tas.','Brute force: he charges right in.','Fuerza bruta: carga de frente.'],['Il assèche tout ce qui reste à distance.','He dries up everything at range.','Reseca todo lo que está a distancia.'],['Il tire les fils de loin, et vise ceux qui visent.','He pulls the strings from afar, and targets those who aim.','Tira de los hilos desde lejos, y apunta a los que apuntan.']
 ].forEach(r=>{I18N.en[r[0]]=r[1];I18N.es[r[0]]=r[2]});
@@ -4698,7 +4805,7 @@ function spInit(){const sc=document.getElementById('spscene');if(!sc)return;if(!
   addEventListener('resize',spResize);}
 let ST_FROM=null;
 function spResize(){const sc=document.getElementById('spscene');if(!sc){removeEventListener('resize',spResize);return}if(!ST_FLY){spPlace(sc);spCamSet(sc,0,'ov',0)}}
-function spArrive(k){if(!document.getElementById('spscene')){stLid(0,0);return}ST_MODE='planet';ST_ARR=1;stState().sel=k;save();render();$('#main').scrollTop=0;setTimeout(()=>stLid(0,520),260)}
+function spArrive(k){if(!document.getElementById('spscene')){stLid(0,0);return}ST_MODE='planet';ST_ARR=1;stState().sel=k;stState().mode='planet';save();render();$('#main').scrollTop=0;setTimeout(()=>stLid(0,520),260)}
 /* v159 · « l'écran ferme les yeux » pour entrer dans la planète, puis les rouvre sur l'interface */
 function stLid(close,ms){let o=document.getElementById('stlid');if(!o){o=document.createElement('div');o.id='stlid';o.setAttribute('aria-hidden','true');o.innerHTML='<i class="t"></i><i class="b"></i>';document.body.appendChild(o)}
   o.style.setProperty('--ld',ms+'ms');o.classList.toggle('on',!!close)}
@@ -4706,14 +4813,14 @@ let ST_ARR=0;
 function spEnter(k){const wi=STORY.findIndex(w=>w.k===k);if(wi<0||ST_FLY)return;if(!stWorldOpen(wi)){toast('Termine d\'abord '+STORY[wi-1].n+'.');return}
   const sc=document.getElementById('spscene');if(!sc)return;SFX.tap();document.getElementById('sphint').style.opacity=0;
   spRun(sc,[{i:wi,kind:'fo',ms:900},{i:wi,kind:'in',ms:900,ease:'cubic-bezier(.5,0,.9,.5)',fade:1}],()=>spArrive(k))}
-function spOut(){if(ST_FLY)return;const q=stState(),wi=Math.max(0,STORY.findIndex(w=>w.k===q.sel));ST_FROM={i:wi,to:null};ST_MODE='space';render();$('#main').scrollTop=0}
+function spOut(){if(ST_FLY)return;const q=stState(),wi=Math.max(0,STORY.findIndex(w=>w.k===q.sel));ST_FROM={i:wi,to:null};ST_MODE='space';q.mode='space';save();render();$('#main').scrollTop=0}
 function spTo(dir){if(ST_FLY)return;const q=stState(),wi=Math.max(0,STORY.findIndex(w=>w.k===q.sel)),j=wi+(dir==='prev'?-1:1);if(j<0||j>=STORY.length)return;
   if(!stWorldOpen(j)){toast('Termine d\'abord '+STORY[j-1].n+'.');return}ST_FROM={i:wi,to:j};ST_MODE='space';render();$('#main').scrollTop=0}
 /* planète de l'interface : sphère qui tourne au survol */
 function stPlanetHTML(w,wi){const n=stCount(w),bs=CARD[w.acts[stNext(w)].b],art=artOf(bs);
   return `<div class="st-pl on" data-pl="${w.pl}"><span class="st-wrap"><canvas class="st-cv" width="${ST_SPN}" height="${ST_SPN}" aria-hidden="true"></canvas>${art?`<span class="st-head" title="${bs.nom}" style="background-image:url(${art})"></span>`:`<span class="st-head k">${w.kj}</span>`}</span><b>${w.n}</b><small>${n} / ${w.acts.length} actes</small></div>`}
 function vStory(){if(ST_RUN&&!ST_RUN.gone){setTimeout(stResume,0);return stFightHTML()}
-  if(ST_VS)return stVsHTML();const q0=stState();q0.pro=q0.pro||{};if(!ST_CINE&&!q0.pro.intro)ST_CINE='intro';if(ST_CINE)return stCineHTML();
+  const q0=stState();if(!ST_MINIT){ST_MINIT=1;if(q0.mode==='planet')ST_MODE='planet'}if(ST_VS)return stVsHTML();q0.pro=q0.pro||{};if(!ST_CINE&&!q0.pro.intro)ST_CINE='intro';if(ST_CINE)return stCineHTML();
   if(ST_MODE==='space')return vSpace();
   const q=stState();let wi=STORY.findIndex(w=>w.k===q.sel);if(wi<0||!stWorldOpen(wi)){wi=STORY.findIndex((w,i)=>stWorldOpen(i)&&stCount(w)<w.acts.length);if(wi<0)wi=0}
   const w=STORY[wi],full=S.team.filter(Boolean).length>=7;if(!q.pro[w.k]){ST_CINE=w.k;return stCineHTML()}if(stCount(w)<w.acts.length)ST_DIFF='n';setTimeout(stInit,0);const arr=ST_ARR;ST_ARR=0;
@@ -4843,7 +4950,7 @@ const ACT={
   bdg:v=>{const b=BADGES.find(x=>x[0]===v);if(b)toast(b[1]+' : '+b[3]+(b[4]()?' (obtenu)':''))},
   pfSound:()=>{ACT.mute();render()},
   lang:v=>{S.lang=v;document.documentElement.lang=v;save();render()},
-  tab:v=>{const need={sbc:'sbc',tour:'tour'}[v];if(need&&!unl(need)){toast(UNLOCK_N[need]+' : niveau '+UNLOCK[need]+' requis.');return}if(v!==S.tab){/* v100 : en quittant un onglet, il reviendra sur son sous-onglet de départ */({shop:()=>S.bsub='shop',album:()=>S.asub='coll',tour:()=>S.psub='tw'}[S.tab]||(()=>0))()}S.tab=v;save();render();$('#main').scrollTop=0},
+  tab:v=>{const need={sbc:'sbc',tour:'tour'}[v];if(need&&!unl(need)){toast(UNLOCK_N[need]+' : niveau '+UNLOCK[need]+' requis.');return}if(v!==S.tab){/* v100 : en quittant un onglet, il reviendra sur son sous-onglet de départ */({shop:()=>S.bsub='shop',album:()=>S.asub='coll',tour:()=>{if(S.psub!=='st')S.psub='tw'}}[S.tab]||(()=>0))()}S.tab=v;save();render();$('#main').scrollTop=0},
   initgo:v=>{const x=INIT[+v];if(!x)return;if(x.go==='tour')S.psub=x.sub;if(x.go==='album')S.asub=x.sub;if(x.go==='shop')S.bsub=x.bsub||(S.inv.length?'inv':'shop');ACT.tab(x.go)},
   initClaim:()=>{const i=initStep();if(i<0||!initDone(i))return;S.init['ok'+i]=1;const x=INIT[i];grant(x.rw);addXp(30);if(i===INIT.length-1)S.init.done=true;SFX.coin();save();render();
     showReward(i===INIT.length-1?'Initiation terminée':'Initiation · '+(i+1)+' / '+INIT.length,i===INIT.length-1?'Ton booster de bienvenue':x.t,x.rw.pack?{pack:x.rw.pack}:null,rwText(x.rw)+(x.rw.pack?' ajouté à Mes boosters':''))},
@@ -4862,7 +4969,7 @@ const ACT={
   stAuto:()=>{const q=stState();q.auto=!q.auto;save();const b=document.querySelector('.st-tg[data-act=stAuto]');if(b)b.classList.toggle('on',q.auto)},
   stSkip:()=>{if(ST_RUN&&!ST_RUN.fin)stEnd()},
   goTower:()=>{if(!unl('tour')){toast('La Tour Céleste : débloquée au niveau '+UNLOCK.tour+'.');return}S.tab='tour';S.psub='tw';save();render();$('#main').scrollTop=0},
-  psub:v=>{if(v==='tr'&&!unl('draft')){toast('Tournoi draft : débloqué au niveau '+UNLOCK.draft+'.');return}if(v==='st'&&!ST_FLY)ST_MODE='space';S.psub=v;clearTimeout(TRT);TRT=null;save();render();$('#main').scrollTop=0},
+  psub:v=>{if(v==='tr'&&!unl('draft')){toast('Tournoi draft : débloqué au niveau '+UNLOCK.draft+'.');return}S.psub=v;clearTimeout(TRT);TRT=null;save();render();$('#main').scrollTop=0},
   twFl:v=>twSheet(+v),
   twTeam:()=>{closeSheet();ACT.tab('team')},
   twRestart:()=>{const st=twState();if(st.run||st.fls[st.t]<TW_N)return;st.fls[st.t]=0;st.last=null;save();render();toast('Tour '+TOWERS[st.t].n+' recommencée.')},
