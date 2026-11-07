@@ -2021,6 +2021,32 @@ body.cos-bg::before{content:"";position:fixed;inset:0;z-index:-1;background:line
  .vx-rows{padding:18px 22px 0}.vx-cta{padding-inline:22px;margin-top:auto}
 }
 @media(prefers-reduced-motion:reduce){.vx *{animation:none!important}}
+/* v164 : face-à-face plus gros, aperçu de récompense, Ginyu */
+.vx-r{gap:14px;padding:16px 0}
+.vx .vx-w,.vx .st-who{width:60px;height:60px;background-size:calc(var(--w)/var(--r)*60px) auto;background-position:calc((var(--r)/2 - var(--cx))/var(--r)*60px) calc((var(--r)/2 - var(--cy))/var(--r)*60px);box-shadow:0 0 0 2px var(--vbg),0 0 0 4px var(--ring)}
+.vx-lab{font-size:18px}.vx-say{margin-top:5px;font-size:17px;line-height:1.35}.vx-rule{margin-top:5px;font-size:15px}
+.vx-cyc{gap:8px;margin:9px 0 4px;font-size:15px}.vx-cyc span{padding:6px 13px}.vx-cyc svg{width:22px;height:12px}
+.vx-title{font-size:17px;margin-top:6px}.vx-line{font-size:19px;margin-top:11px}
+.vx-pvw{padding:6px 0 18px}.vx-pv{position:relative;aspect-ratio:16/8;border-radius:12px;overflow:hidden;background:linear-gradient(rgba(0,0,0,.2),rgba(0,0,0,.4)),var(--bg) center/cover;box-shadow:0 0 0 2px rgba(154,107,255,.7),0 10px 30px rgba(0,0,0,.45);margin-bottom:12px}
+.vx-pvb{position:absolute;left:50%;top:9%;width:17%;aspect-ratio:5/7;transform:translateX(-50%);border-radius:6px;overflow:hidden;box-shadow:0 0 14px 2px rgba(255,255,255,.35)}.vx-pvb img{width:100%;height:100%;object-fit:cover;object-position:50% 15%}
+.vx-pvt{position:absolute;left:0;right:0;bottom:7%;display:flex;justify-content:center;gap:2.4%}.vx-pvt img{width:12.5%;aspect-ratio:5/7;object-fit:cover;object-position:50% 15%;border-radius:5px;box-shadow:0 0 0 1px rgba(255,255,255,.4)}
+.vx-pvw .vx-lab{color:#c9a6ff}
+@media(min-width:900px){
+ .vx-side{flex:0 0 560px}
+ .vx-rows{display:flex;flex-direction:column;justify-content:space-evenly;padding:20px 26px 0}
+ .vx-r{padding:12px 0;gap:18px}
+ .vx .vx-w,.vx .st-who{width:76px;height:76px;background-size:calc(var(--w)/var(--r)*76px) auto;background-position:calc((var(--r)/2 - var(--cx))/var(--r)*76px) calc((var(--r)/2 - var(--cy))/var(--r)*76px)}
+ .vx-lab{font-size:20px}.vx-say{font-size:20px}.vx-rule{font-size:16px}.vx-cyc{font-size:17px}
+ .vx-title{font-size:20px}.vx-line{font-size:24px;max-width:640px}
+ .vx-cta{padding:20px 26px 18px}
+}
+@media(min-width:900px) and (max-height:820px){.vx-r{padding:8px 0}.vx-say{font-size:18px}.vx-lab{font-size:18px}.vx-rule{font-size:15px}.vx .vx-w,.vx .st-who{width:64px;height:64px;background-size:calc(var(--w)/var(--r)*64px) auto;background-position:calc((var(--r)/2 - var(--cx))/var(--r)*64px) calc((var(--r)/2 - var(--cy))/var(--r)*64px)}}
+.vx-cta{background:linear-gradient(180deg,transparent,var(--vbg) 24%)}
+@media(min-width:900px){.vx-hero,.vx-op .vx-hero{height:100dvh;min-height:0;position:sticky;top:0;align-self:flex-start}}
+.st-beam{position:fixed;z-index:19;height:16px;margin-top:-8px;transform-origin:0 50%;border-radius:9px;background:linear-gradient(90deg,transparent,#c9a6ff 22%,#fff 50%,#9b5cff 78%,transparent);box-shadow:0 0 24px 9px rgba(140,80,240,.85);pointer-events:none;animation:st-beam .75s ease-out both}
+@keyframes st-beam{0%{clip-path:inset(0 100% 0 0);opacity:1}45%{clip-path:inset(0);opacity:1}100%{clip-path:inset(0 0 0 100%);opacity:0}}
+.st-boss.stolen .st-bcard{filter:hue-rotate(250deg) saturate(1.3);box-shadow:0 0 34px 10px rgba(140,80,240,.8);border-radius:8px;animation:st-glow2 1.6s ease-in-out infinite alternate}
+@keyframes st-glow2{to{box-shadow:0 0 50px 16px rgba(170,110,255,.95)}}
 @keyframes st-vsc{from{transform:scale(1.5);opacity:0;filter:blur(6px)}}
 @keyframes st-wipe{from{clip-path:inset(0 100% 0 0);opacity:.4}to{clip-path:inset(0 -5% 0 -5%);opacity:1}}
 @keyframes st-up{from{transform:translateY(10px);opacity:0}}
@@ -2034,7 +2060,7 @@ body.cos-bg::before{content:"";position:fixed;inset:0;z-index:-1;background:line
 .st-cinein .st-say{display:flex;gap:12px;align-items:flex-start;text-align:left;animation:st-up .5s both}.st-cinein .st-say p{margin:2px 0 0;font:700 16px/1.35 var(--f-body);animation:none}.st-say p::before{content:"« "}.st-say p::after{content:" »"}.st-say b{display:block;font:800 13px var(--f-body);color:var(--accent)}.st-say.arch b{color:#c9a6ff}
 .st-lore .st-cinein .btn{align-self:center}
 .st-intro{position:fixed;inset:0;z-index:60;background:#000;overflow:hidden}
-.st-ibg{position:absolute;inset:0}.st-ipl{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;animation:st-ipl 16s var(--t) linear both;-webkit-user-drag:none}
+.st-ibg{position:absolute;inset:0}.st-ipl{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;animation:st-ipl 20s var(--t) linear both;-webkit-user-drag:none}
 @keyframes st-ipl{0%{opacity:0;transform:scale(1)}5%{opacity:1}100%{opacity:1;transform:scale(1.14)}}
 .st-ishade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35),transparent 22%,transparent 52%,rgba(0,0,0,.82))}
 .st-ipt{position:absolute;left:0;right:0;bottom:calc(11% + env(safe-area-inset-bottom));margin:0;padding:0 7%;text-align:center;font:800 clamp(20px,5.4vw,36px)/1.25 var(--f-display);text-shadow:0 2px 18px #000;opacity:0;animation:st-ipt var(--d) var(--t) ease both}
@@ -2821,6 +2847,67 @@ function trTxt(t){const L=S.lang;if(!L||L==='fr'||!I18N[L])return t;const m=t.ma
 ['Coupe tous les fils que tu veux. L\'Archiviste tient le dernier.','Cut all the strings you want. The Archivist holds the last one.','Corta todos los hilos que quieras. El Archivista sostiene el último.']
 ].forEach(r=>{I18N.en[r[0]]=r[1];I18N.es[r[0]]=r[2]});
 I18P.en.push([/^Chapitre (\d)$/,m=>`Chapter ${m[1]}`]);I18P.es.push([/^Chapitre (\d)$/,m=>`Capítulo ${m[1]}`]);
+/* traductions v164 : voix des Sept, Ginyu, récompense du Défi */
+[['Armure en god mode : les coups normaux font du chip damage. Il te faut une spéciale pour la péter.','Armor in god mode: normal hits only chip away. You need a special to break it.','Armadura en modo dios: los golpes normales apenas rasguñan. Necesitas una especial para romperla.'],
+['Attention, phase 2 à 50 % de PV : stats en hausse et il change d\'aggro. Garde une spéciale sous le coude.','Heads up, phase 2 at 50% HP: stats up and he switches aggro. Keep a special in your back pocket.','Ojo, fase 2 al 50 % de PV: stats más altas y cambia de objetivo. Guarda una especial.'],
+['Sale skill : à 50 % il squatte ta meilleure carte. Tape le corps volé, et il retourne à sa place quand il tombe.','Nasty skill: at 50% he squats your best card. Hit the stolen body, and he goes back to his place when it drops.','Habilidad asquerosa: al 50 % se apodera de tu mejor carta. Golpea el cuerpo robado y vuelve a su sitio cuando caiga.'],
+['Au tour 2, brouillard et +30 % d\'esquive. Les spéciales ignorent l\'esquive : c\'est la seule hitbox qui compte.','On turn 2, fog and +30% dodge. Specials ignore dodge: it\'s the only hitbox that matters.','En el turno 2, niebla y +30 % de esquiva. Las especiales ignoran la esquiva: es la única hitbox que importa.'],
+['À 50 % de PV il reset une partie de sa vie. C\'est un DPS check : prépare ton burst en frame perfect.','At 50% HP he resets part of his health. It\'s a DPS check: line up your burst frame-perfect.','Al 50 % de PV recupera parte de su vida. Es un DPS check: prepara tu ráfaga al frame exacto.'],
+['Lifesteal : il récupère 30 % des dégâts qu\'il t\'inflige. Burst-le vite, sinon il s\'auto-heal à l\'infini.','Lifesteal: he recovers 30% of the damage he deals. Burst him down fast or he self-heals forever.','Robo de vida: recupera el 30 % del daño que hace. Acábalo rápido o se autocura sin fin.'],
+['AoE : un coup sur 3 touche toute l\'équipe. Gère tes soins, c\'est du dégât de zone pur.','AoE: one hit in 3 hits the whole team. Manage your healing, it\'s pure area damage.','AoE: un golpe de cada 3 alcanza a todo el equipo. Gestiona tus curas, es daño de área puro.'],
+['Au tour 3, nerf massif des soins : −40 % jusqu\'à la fin. Faudra gagner autrement qu\'au heal.','On turn 3, massive healing nerf: −40% until the end. You\'ll have to win without leaning on heals.','En el turno 3, nerfeo masivo de curas: −40 % hasta el final. Habrá que ganar sin depender de curar.'],
+['À 70 % et 40 % de PV, il prend le contrôle d\'une carte. Sous 15 %, one-shot chargé. Du mind control, fais gaffe.','At 70% and 40% HP he takes control of one of your cards. Under 15%, a charged one-shot. Mind control, be careful.','Al 70 % y 40 % de PV controla una de tus cartas. Por debajo del 15 %, golpe cargado. Control mental, ojo.'],
+['Chat, il tape les Tanks deux fois, puis un DPS. Genre il casse d\'abord le mur, lol.','Chat, he hits the Tanks twice, then a DPS. Like, he breaks the wall first, lol.','Chat, pega a los Tanks dos veces y luego a un DPS. O sea, primero rompe el muro, jaja.'],
+['Il vise les DPS, puis une Distance… moi, quoi ? Genre il est vexé que je brille plus que lui.','He goes for the DPS, then a Distance… me, basically? Like he\'s mad I shine more than him.','Va a por los DPS y luego a una Distancia… ¿yo, vamos? Como si le molestara que brille más que él.'],
+['Il pose et il nous scanne chacun son tour : Distance, Tank, DPS. Trop de mise en scène, je clip.','He poses and scans us one by one: Distance, Tank, DPS. Way too much staging, I\'m clipping this.','Posa y nos escanea uno a uno: Distancia, Tank, DPS. Demasiada puesta en escena, lo clipeo.'],
+['Il va droit sur le Tank, puis deux DPS. Hyper ciblé, les gars, c\'est un assassin.','He goes straight for the Tank, then two DPS. Super targeted, guys, he\'s an assassin.','Va directo al Tank y luego a dos DPS. Súper dirigido, chicos, es un asesino.'],
+['Il snipe les Distances d\'abord, deux fois. Je suis cuite, chat, dites-moi que j\'ai un bouclier.','He snipes the Distances first, twice. I\'m cooked, chat, tell me I have a shield.','Elimina primero a las Distancias, dos veces. Estoy frita, chat, decidme que tengo escudo.'],
+['Il cherche le plus costaud : Tank, DPS, Tank. Il a faim, genre vraiment.','He goes for the toughest: Tank, DPS, Tank. He\'s hungry, like, for real.','Va a por el más duro: Tank, DPS, Tank. Tiene hambre, pero de verdad.'],
+['Il fonce dans le tas : DPS, Tank, DPS. Subtilité zéro, frérot.','He charges into the pile: DPS, Tank, DPS. Zero subtlety, bro.','Se lanza al montón: DPS, Tank, DPS. Sutileza cero, colega.'],
+['Il assèche les Distances d\'abord, puis Tank, puis DPS. Je sens que mes soins vont pas aimer.','He dries out the Distances first, then Tank, then DPS. I feel like my heals won\'t like this.','Seca primero a las Distancias, luego Tank y luego DPS. Creo que a mis curas no les va a gustar.'],
+['Il tire les fils sur les Distances, puis DPS, puis Tank. Ça pue la marionnette, wesh.','He pulls strings on the Distances, then DPS, then Tank. Smells like puppet, no cap.','Mueve los hilos sobre las Distancias, luego DPS y luego Tank. Huele a marioneta, en serio.'],
+['Dodoria, lieutenant de Freezer. Force brute, subtilité nulle. Rien de sorcier : on casse son armure et il s\'effondre.','Dodoria, Frieza\'s lieutenant. Brute force, zero subtlety. Nothing fancy: break his armor and he collapses.','Dodoria, teniente de Freezer. Fuerza bruta, sutileza nula. Nada del otro mundo: rompe su armadura y se desploma.'],
+['Zarbon, bras droit de Freezer. Vaniteux au point d\'en mourir : sa seconde forme le dégoûte lui-même, c\'est établi dans le canon.','Zarbon, Frieza\'s right hand. So vain it kills him: his second form disgusts even him, it\'s established canon.','Zarbon, mano derecha de Freezer. Tan vanidoso que le cuesta la vida: su segunda forma le da asco hasta a él, es canon.'],
+['Le capitaine Ginyu et sa technique d\'échange de corps. Chaque pose est un rituel, pas un caprice : il faut l\'interrompre à temps.','Captain Ginyu and his body swap technique. Every pose is a ritual, not a whim: you must interrupt him in time.','El capitán Ginyu y su técnica de intercambio de cuerpos. Cada pose es un ritual, no un capricho: hay que interrumpirlo a tiempo.'],
+['Le Démon de la Brume : huit points vitaux, silence absolu. Et Haku n\'est jamais loin, ne l\'oubliez pas.','The Demon of the Mist: eight vital points, absolute silence. And Haku is never far, don\'t forget that.','El Demonio de la Niebla: ocho puntos vitales, silencio absoluto. Y Haku nunca anda lejos, no lo olvidéis.'],
+['Orochimaru, ancien Sannin, obsédé par l\'immortalité. Il change de corps comme on change de chemise. Ne le regardez pas dans les yeux, je vous en prie.','Orochimaru, former Sannin, obsessed with immortality. He changes bodies like shirts. Please don\'t look him in the eyes.','Orochimaru, antiguo Sannin, obsesionado con la inmortalidad. Cambia de cuerpo como de camisa. Por favor, no lo miréis a los ojos.'],
+['Kisame Hoshigaki, la bête sans queue. Samehada dévore le chakra, rien à voir avec un simple sabre. C\'est documenté.','Kisame Hoshigaki, the tailless beast. Samehada devours chakra, nothing like a simple sword. It\'s documented.','Kisame Hoshigaki, la bestia sin cola. Samehada devora chakra, nada que ver con una simple espada. Está documentado.'],
+['Arlong, un homme-poisson persuadé d\'être supérieur aux humains. Son parc est une prison, rien de plus. Ne vous laissez pas impressionner.','Arlong, a fish-man convinced he\'s superior to humans. His park is a prison, nothing more. Don\'t let him impress you.','Arlong, un hombre pez convencido de ser superior a los humanos. Su parque es una prisión, nada más. No os dejéis impresionar.'],
+['Sir Crocodile, ancien Shichibukai : le sable dessèche tout, y compris les soins. Il joue au héros pour mieux régner, un classique.','Sir Crocodile, former Shichibukai: sand dries up everything, healing included. He plays the hero to rule better, a classic.','Sir Crocodile, antiguo Shichibukai: la arena lo seca todo, también las curas. Hace de héroe para reinar mejor, un clásico.'],
+['Donquixote Doflamingo, roi de Dressrosa. Ses fils sont invisibles, son sourire est un piège. Aucune confiance, jamais.','Donquixote Doflamingo, king of Dressrosa. His strings are invisible, his smile is a trap. Never trust him.','Donquixote Doflamingo, rey de Dressrosa. Sus hilos son invisibles, su sonrisa es una trampa. Jamás confiéis en él.'],
+['Ce gros rose de merde ? Yo, j\'ai explosé des mecs plus flippants au pied de mon bloc. On va lui péter la gueule.','That fat pink piece of shit? Yo, I\'ve wrecked scarier dudes at the bottom of my block. We\'re gonna smash his face.','¿Ese gordo rosa de mierda? Yo, he reventado a tipos más chungos al pie de mi bloque. Le vamos a romper la cara.'],
+['Putain, il se prend pour un top model, ce connard. Fuck his face, je vais lui refaire le portrait.','Damn, he thinks he\'s a top model, that asshole. Fuck his face, I\'ll redo his portrait.','Joder, se cree modelo, el muy gilipollas. Fuck his face, le voy a rehacer el retrato.'],
+['Il fait des poses en plein combat ? Putain, c\'est quoi ce cirque. Je vais lui faire ravaler son show.','He\'s posing mid-fight? Damn, what is this circus. I\'ll make him swallow his show.','¿Posa en pleno combate? Joder, qué circo es este. Le voy a hacer tragarse el show.'],
+['Un mec qui bute dans le brouillard comme un lâche. Come on, montre ta gueule, enfoiré, qu\'on règle ça.','A dude who kills in the fog like a coward. Come on, show your face, motherfucker, let\'s settle this.','Un tío que mata en la niebla como un cobarde. Come on, enseña la cara, cabrón, y lo arreglamos.'],
+['Ce serpent de merde qui change de peau, yo, il me file la gerbe. Je veux sa tête sur ma cheminée.','That shitty snake changing skin, yo, he makes me wanna puke. I want his head on my mantel.','Esa serpiente de mierda que cambia de piel, yo, me da asco. Quiero su cabeza sobre mi chimenea.'],
+['Un putain de requin avec une épée qui bouffe tout ? Bah. Mes créanciers de Brooklyn tapent plus fort que lui.','A fucking shark with a sword that eats everything? Pff. My Brooklyn creditors hit harder than him.','¿Un puto tiburón con una espada que se lo come todo? Bah. Mis acreedores de Brooklyn pegan más fuerte que él.'],
+['Un poisson de merde qui me dit de compter mes dents ? Yo, je vais lui faire bouffer les siennes.','A shitty fish telling me to count my teeth? Yo, I\'ll make him eat his own.','¿Un pez de mierda diciéndome que cuente mis dientes? Yo, le haré comerse los suyos.'],
+['Un connard en manteau de fourrure qui joue au roi. J\'adore, ça me rappelle les caïds de Brooklyn. Je les défonçais aussi.','Some asshole in a fur coat playing king. I love it, reminds me of the Brooklyn bosses. I smashed those too.','Un cabrón con abrigo de piel haciéndose el rey. Me encanta, me recuerda a los jefes de Brooklyn. A esos también los reventaba.'],
+['Ce clown rose et ses putains de fils ? Fuck ça. Si je vois un fil sur moi, je lui plante son sourire dans la gorge.','That pink clown and his fucking strings? Fuck that. If I see one string on me, I\'ll shove his smile down his throat.','¿Ese payaso rosa y sus putos hilos? Fuck eso. Si veo un hilo sobre mí, le clavo su sonrisa en la garganta.'],
+['Putain, c\'est quoi ce bordel ? Yo, on s\'est fait kidnapper par un sachet de cartes ?','Fuck, what the hell is this? Yo, did we just get kidnapped by a pack of cards?','Joder, ¿qué cojones es esto? Yo, ¿nos ha secuestrado un sobre de cartas?'],
+['Restez derrière moi. Je ne sais pas où on est, mais je m\'en occupe.','Stay behind me. I don\'t know where we are, but I\'ll handle it.','Quedaos detrás de mí. No sé dónde estamos, pero yo me encargo.'],
+['Trois soleils, ces falaises… C\'est impossible. Et pourtant c\'est bien Namek, je reconnais l\'herbe bleue.','Three suns, those cliffs… It\'s impossible. And yet it really is Namek, I recognize the blue grass.','Tres soles, esos acantilados… Es imposible. Y sin embargo es Namek, reconozco la hierba azul.'],
+['Trois sceaux, une porte. Bon : c\'est un jeu, donc ça a une fin. Faut juste trouver la règle cassée.','Three seals, one door. Okay: it\'s a game, so it has an end. Just gotta find the broken rule.','Tres sellos, una puerta. Vale: es un juego, así que tiene final. Solo hay que encontrar la regla rota.'],
+['Ouais, on est chez Naruto ! Sérieux, on est CHEZ Naruto ! C\'est trop ouf !','Yeah, we\'re in Naruto! Seriously, we\'re IN Naruto! This is insane!','¡Sí, estamos en Naruto! ¡En serio, ESTAMOS en Naruto! ¡Es una locura!'],
+['Noé, calme-toi. Chat, vous voyez ça ? … Chat ? Merde, y\'a pas de réseau.','Noé, calm down. Chat, are you seeing this? … Chat? Damn, there\'s no signal.','Noé, tranquilo. Chat, ¿veis esto? … ¿Chat? Mierda, no hay cobertura.'],
+['Les ninjas de Kiri n\'ont pas la réputation d\'être accueillants. Ne touche à rien, Noé, je t\'en prie.','The Kiri ninja aren\'t known for being welcoming. Don\'t touch anything, Noé, please.','Los ninjas de Kiri no tienen fama de acogedores. No toques nada, Noé, por favor.'],
+['Noé est quelque part là-dedans. Je le ramène, point.','Noé is somewhere in there. I\'m bringing him back, period.','Noé está ahí dentro en alguna parte. Lo traigo de vuelta, punto.'],
+['Yo, je pourrais me casser, tu sais. Chacun sa merde. Mais putain… avance, je te couvre.','Yo, I could bail, you know. Every man for himself. But damn… move, I got your back.','Yo, podría largarme, ¿sabes? Cada uno con su mierda. Pero joder… avanza, te cubro.'],
+['Chat, c\'est la Grand Line ! Cette mer, genre, c\'est trop beau, je clippe tout.','Chat, it\'s the Grand Line! This sea, like, it\'s so beautiful, I\'m clipping everything.','¡Chat, es la Grand Line! Este mar, o sea, es preciosísimo, lo clipeo todo.'],
+['Armure activée, les coups normaux sont nerfés à mort. Spéciale obligatoire !','Armor on, normal hits are nerfed to death. Special required!','Armadura activada, los golpes normales quedan nerfeados a muerte. ¡Especial obligatoria!'],
+['Ouaaais ! L\'armure est pétée, c\'est trop ouf !','Yeeeah! The armor\'s busted, that\'s insane!','¡Síííí! ¡La armadura está rota, es una locura!'],
+['Il a mué ! Il fait toujours ça, c\'est documenté depuis le début !','He molted! He always does that, it\'s documented from the start!','¡Ha mudado! Siempre lo hace, ¡está documentado desde el principio!'],
+['Lifesteal détecté. Burst-le avant qu\'il s\'auto-heal !','Lifesteal detected. Burst him before he self-heals!','Robo de vida detectado. ¡Acábalo antes de que se autocure!'],
+['Derrière moi ! Je le prends, allez !','Behind me! I\'ll take it, go!','¡Detrás de mí! ¡Yo lo aguanto, vamos!'],
+['Ginyu prend le corps de ta meilleure carte : détruis-le !','Ginyu takes your best card\'s body: destroy it!','¡Ginyu toma el cuerpo de tu mejor carta: destrúyelo!'],
+['Ginyu reprend sa place, la carte revient.','Ginyu is back in his place, the card returns.','Ginyu recupera su sitio, la carta vuelve.'],
+['À 50 % de PV, il prend le corps de ta meilleure carte : elle quitte le combat et tout le monde doit détruire ce corps volé. Quand il tombe, Ginyu retrouve sa place et la carte revient. Il frappe 20 % plus fort.','At 50% HP, he takes your best card\'s body: it leaves the fight and everyone must destroy this stolen body. When it falls, Ginyu returns to his place and the card comes back. He hits 20% harder.','Al 50 % de PV toma el cuerpo de tu mejor carta: abandona el combate y todos deben destruir ese cuerpo robado. Cuando cae, Ginyu recupera su sitio y la carta vuelve. Golpea un 20 % más fuerte.'],
+['Qui est-ce ?','Who is it?','¿Quién es?'],['Corps volé','Stolen body','Cuerpo robado'],
+['Déjà débloqué. Tu peux le changer dans ton profil.','Already unlocked. You can change it in your profile.','Ya desbloqueado. Puedes cambiarlo en tu perfil.'],
+['Voilà ce que ça donnera dans tes combats. Aucun effet sur les stats.','This is how it will look in your fights. No effect on stats.','Así se verá en tus combates. Sin efecto en las estadísticas.']
+].forEach(r=>{I18N.en[r[0]]=r[1];I18N.es[r[0]]=r[2]});
+I18P.en.push([/^Corps volé · (\d+) %$/,m=>`Stolen body · ${m[1]}%`],[/^Récompense : fond de combat « (.+) »$/,m=>`Reward: battle background “${m[1]}”`],[/^Allié du récit : (\d+) cartes? de ce monde, \+(\d+) % de stats\.$/,m=>`Story ally: ${m[1]} card${m[1]>1?'s':''} from this world, +${m[2]}% stats.`]);
+I18P.es.push([/^Corps volé · (\d+) %$/,m=>`Cuerpo robado · ${m[1]} %`],[/^Récompense : fond de combat « (.+) »$/,m=>`Recompensa: fondo de combate «${m[1]}»`],[/^Allié du récit : (\d+) cartes? de ce monde, \+(\d+) % de stats\.$/,m=>`Aliado del relato: ${m[1]} carta${m[1]>1?'s':''} de este mundo, +${m[2]} % de stats.`]);
 let I18D=false;
 function i18nApply(root){const L=S.lang||'fr';if(L==='fr'&&!I18D)return;const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode:n=>/^(SCRIPT|STYLE|TEXTAREA)$/.test(n.parentNode.tagName)?NodeFilter.FILTER_REJECT:NodeFilter.FILTER_ACCEPT});let n;const L2=[];while(n=w.nextNode())L2.push(n);
   L2.forEach(n=>{const o=n._o!=null&&n.nodeValue===n._t?n._o:n.nodeValue,v=L==='fr'?o:trTxt(o);if(v!==n.nodeValue){n._o=o;n._t=v;n.nodeValue=v;I18D=true}});
@@ -4528,7 +4615,7 @@ const STORY=[
 const ST_TR={
  armor:{n:'Peau d\'acier',d:'Coups normaux −40 % tant qu\'une attaque spéciale n\'a pas brisé sa cuirasse.'},
  form2:{n:'Seconde forme',d:'À 50 % de PV, il se transforme : attaque et défense +25 %, et il change de cible.'},
- swap:{n:'Échange de corps',d:'À 50 % de PV, il vole le corps de ta meilleure carte : elle est hors combat 2 tours, et il frappe 20 % plus fort.'},
+ swap:{n:'Échange de corps',d:'À 50 % de PV, il prend le corps de ta meilleure carte : elle quitte le combat et tout le monde doit détruire ce corps volé. Quand il tombe, Ginyu retrouve sa place et la carte revient. Il frappe 20 % plus fort.'},
  mist:{n:'La brume',d:'Au tour 2, la brume monte : esquive +30 % pendant 3 tours. Les attaques spéciales la traversent.'},
  shed:{n:'La mue',d:'À 50 % de PV, il regagne 15 % de PV, une seule fois. Les cartes Sannin lui font 15 % de dégâts en plus.'},
  drain:{n:'Samehada',d:'Il se soigne de 30 % des dégâts qu\'il inflige.'},
@@ -4538,7 +4625,7 @@ const ST_TR={
 };
 /* [gros titre, précision] des événements plein écran */
 const ST_EV={armor:['PEAU D\'ACIER','Coups normaux −40 %. Une spéciale la brisera.'],armorBreak:['CUIRASSE BRISÉE','Les coups passent à nouveau.'],
- form2:['SECONDE FORME','Attaque et défense +25 %. Il change de cible.'],swap:['ÉCHANGE DE CORPS','Ta meilleure carte est hors combat 2 tours.'],swapEnd:['RETOUR','La carte reprend son corps.'],
+ form2:['SECONDE FORME','Attaque et défense +25 %. Il change de cible.'],swap:['ÉCHANGE DE CORPS','Ginyu prend le corps de ta meilleure carte : détruis-le !'],swapEnd:['RETOUR','Ginyu reprend sa place, la carte revient.'],
  mist:['LA BRUME','Esquive du boss +30 % pendant 3 tours.'],mistEnd:['LA BRUME SE LÈVE','Le boss redevient visible.'],shed:['LA MUE','Il sort de sa peau et regagne 15 % de PV.'],
  drain:['SAMEHADA','Chaque frappe le soigne.'],sand:['TEMPÊTE DE SABLE','Soins −40 %. Le Soutien garde ses autres effets.'],
  puppet:['MARIONNETTE','Une de tes cartes se retourne contre l\'équipe.'],breath:['DERNIER SOUFFLE','Sa prochaine frappe sera doublée !']};
@@ -4547,19 +4634,19 @@ const ST_PEO={theo:['Théo',1752,480,210],maya:['Maya',1500,440,230],lou:['Lou',
 function stWho(k){const p=ST_PEO[k];if(!p)return'';const a=k==='arch';return `<i class="st-who" role="img" aria-label="${p[0]}" style="--wi:url(images/story/intro-${a?5:6}.webp);--w:${a?1800:2000};--cx:${p[1]};--cy:${p[2]};--r:${p[3]}"></i>`}
 function stWhoB(a){const c=CARD[a.b],art=artOf(c),vx=ST_VX[a.b]||{f:[.5,.2]};if(!art)return'';return `<i class="st-who" role="img" aria-label="${c.nom}" style="background-image:url(${art});background-size:200% auto;background-position:${(vx.f[0]*2-.5)*100}% ${Math.max(0,Math.min(1,(vx.f[1]*2.8-.5)/1.8))*100}%"></i>`}
 /* qui réagit à chaque événement de boss ; 'b' = le boss lui-même */
-const ST_EVQ={armor:['theo','Les coups normaux passent pas. Il faut une spéciale !'],armorBreak:['noe','Ouais ! Dans ta face !'],form2:['b','Tu voulais voir ce qu\'il y a dessous ?'],swap:['b','Change !'],mist:['b','Huit points vitaux. Lequel d\'abord ?'],shed:['lou','Il a changé de peau. Il fait toujours ça !'],drain:['theo','Son épée le soigne quand il touche. Finis-le vite.'],sand:['b','Tes soins ? Ils coulent entre mes doigts.'],puppet:['b','Danse.'],breath:['yanis','Derrière moi ! Maintenant !']};
+const ST_EVQ={armor:['theo','Armure activée, les coups normaux sont nerfés à mort. Spéciale obligatoire !'],armorBreak:['noe','Ouaaais ! L\'armure est pétée, c\'est trop ouf !'],form2:['b','Tu voulais voir ce qu\'il y a dessous ?'],swap:['b','Change !'],mist:['b','Huit points vitaux. Lequel d\'abord ?'],shed:['lou','Il a mué ! Il fait toujours ça, c\'est documenté depuis le début !'],drain:['theo','Lifesteal détecté. Burst-le avant qu\'il s\'auto-heal !'],sand:['b','Tes soins ? Ils coulent entre mes doigts.'],puppet:['b','Danse.'],breath:['yanis','Derrière moi ! Je le prends, allez !']};
 function stEvWho(ev){const q=ST_EVQ[ev],R=ST_RUN;if(!q||!R)return null;const a=STORY[R.wi].acts[R.ai];return [q[0]==='b'?stWhoB(a):stWho(q[0]),q[1]]}
 const ST_CH={db:1,na:2,op:3};
 const ST_LORE={
- db:{t:'Namek',tag:'Trois soleils. Pas une seule ombre où se cacher.',bg:'images/story/bg-db.webp',say:[['yanis','Quelqu\'un peut me dire où on est ?'],['lou','Tu ne vas pas me croire.'],['theo','Trois sceaux. Une porte. C\'est un jeu : ça se termine.']]},
- na:{t:'Le monde des ninjas',tag:'Ici, celui que tu vois n\'est jamais celui qui te tue.',bg:'images/story/bg-na-vagues.webp',say:[['noe','On est chez Naruto. Sérieux. On est CHEZ Naruto.'],['maya','Personne ne regarde, Noé. Fais pas le malin.']]},
- op:{t:'Grand Line',tag:'Sur cette mer, les rois ne meurent pas. Ils reviennent réclamer.',bg:'images/story/bg-op.webp',say:[['yanis','Noé est quelque part là-dedans. Je le ramène.'],['dre','Yo, je pourrais me casser. Je sais. Avance.']]},
+ db:{t:'Namek',tag:'Trois soleils. Pas une seule ombre où se cacher.',bg:'images/story/bg-db.webp',say:[['dre','Putain, c\'est quoi ce bordel ? Yo, on s\'est fait kidnapper par un sachet de cartes ?'],['yanis','Restez derrière moi. Je ne sais pas où on est, mais je m\'en occupe.'],['lou','Trois soleils, ces falaises… C\'est impossible. Et pourtant c\'est bien Namek, je reconnais l\'herbe bleue.'],['theo','Trois sceaux, une porte. Bon : c\'est un jeu, donc ça a une fin. Faut juste trouver la règle cassée.']]},
+ na:{t:'Le monde des ninjas',tag:'Ici, celui que tu vois n\'est jamais celui qui te tue.',bg:'images/story/bg-na-vagues.webp',say:[['noe','Ouais, on est chez Naruto ! Sérieux, on est CHEZ Naruto ! C\'est trop ouf !'],['maya','Noé, calme-toi. Chat, vous voyez ça ? … Chat ? Merde, y\'a pas de réseau.'],['lou','Les ninjas de Kiri n\'ont pas la réputation d\'être accueillants. Ne touche à rien, Noé, je t\'en prie.']]},
+ op:{t:'Grand Line',tag:'Sur cette mer, les rois ne meurent pas. Ils reviennent réclamer.',bg:'images/story/bg-op.webp',say:[['yanis','Noé est quelque part là-dedans. Je le ramène, point.'],['dre','Yo, je pourrais me casser, tu sais. Chacun sa merde. Mais putain… avance, je te couvre.'],['maya','Chat, c\'est la Grand Line ! Cette mer, genre, c\'est trop beau, je clippe tout.']]},
  dbEnd:{t:'Namek scellée',bg:'images/story/intro-5.webp',q:'Sept petits clients, et déjà un sceau. Vous êtes bien meilleurs que les derniers.'},
  naEnd:{t:'Le monde des ninjas scellé',bg:'images/story/intro-5.webp',nar:'Noé a disparu. Yanis retrouve une carte par terre, avec le visage de son frère dessus.',q:'Il a tellement aimé ce monde. Regarde comme il est beau, en carte. Il m\'en manque six.'},
  opEnd:{t:'Grand Line scellée',bg:'images/story/intro-5.webp',nar:'La porte du Multivers s\'ouvre. Il reste une place vide dans l\'équipe.',q:'La porte est ouverte. Venez au Multivers. Apportez vos cartes. La boutique ne ferme jamais.',last:'La suite à la prochaine mise à jour.'}
 };
 /* intro : 6 plans lents ; [image, texte, durée en secondes] */
-const ST_INTRO=[['intro-1','Dernière partie avant la fermeture.',1.9],['intro-2','Une seule règle : ouvrir le sachet ensemble.',2],['intro-3','Le sachet s\'est déchiré. Le monde aussi.',2],['intro-4','Sept inconnus. Sept places.',1.9],['intro-5','Pour rentrer : sceller la Faille. Si tu perds : tu deviens une carte.',3.1],['intro-6','',0]];
+const ST_INTRO=[['intro-1','Dernière partie avant la fermeture.',2.5],['intro-2','Une seule règle : ouvrir le sachet ensemble.',2.6],['intro-3','Le sachet s\'est déchiré. Le monde aussi.',2.6],['intro-4','Sept inconnus. Sept places.',2.5],['intro-5','Pour rentrer : sceller la Faille. Si tu perds : tu deviens une carte.',4],['intro-6','',0]];
 function stIntroHTML(){let t=0;const T=ST_INTRO.map(p=>{const s=t;t+=p[2];return s});
   return `<section class="st-intro" aria-label="Introduction"><div class="st-ibg">${ST_INTRO.map((p,i)=>`<img class="st-ipl" style="--t:${T[i].toFixed(1)}s" src="images/story/${p[0]}.webp" alt="" draggable="false"${i?'':' fetchpriority="high"'}>`).join('')}</div><div class="st-ishade"></div>
    ${ST_INTRO.map((p,i)=>p[1]?`<p class="st-ipt" style="--t:${(T[i]+.25).toFixed(2)}s;--d:${(p[2]-.35).toFixed(2)}s">${p[1]}</p>`:'').join('')}
@@ -4615,11 +4702,11 @@ function stSim0(a,ids,form,o){
   const P=fighters(t,fx,{brk:0},ally?()=>1+ally/100:null).sort((u,v)=>PORD.indexOf(u.c.poste)-PORD.indexOf(v.c.poste));
   const B=stBoss(a,o);B.s[2]*=(1-fx.brk);const mx=P.map(x=>x.s[0]*ENG.HPX),hp=mx.slice(),mxB=B.s[0]*ENG.HPX;let hb=mxB;
   const W=stWaves(a,B,mxB),FXB={spec:0,crit:0},cnt=P.map(()=>0),rp={Tank:0,DPS:0,Distance:0},log=[],pup=P.map(()=>0);
-  let hits=0,bn=0,tp=0,rounds=0,ph=0,cur=null,strikes=0,cyc=a.cyc||ST_ROLES,armor=false,mist=0,sand=false,swapI=-1,swapT=0,charged=false,done={},stepN=a.n;
+  let hits=0,bn=0,tp=0,rounds=0,ph=0,cur=null,strikes=0,cyc=a.cyc||ST_ROLES,armor=false,mist=0,sand=false,swapI=-1,swapT=0,bodyHp=0,bodyMx=0,charged=false,done={},stepN=a.n;
   const act=()=>{const L=[];if(armor)L.push('armor');if(mist>0)L.push('mist');if(sand)L.push('sand');if(done.form2)L.push('form2');if(swapI>=0)L.push('swap'+swapI);pup.forEach((v,i)=>{if(v>0)L.push('pup'+i)});return L};
-  const bd=()=>{const L=[];if(armor)L.push('Cuirasse');if(mist>0)L.push('Brume · '+mist+' t.');if(sand)L.push('Sable');if(done.form2)L.push('Seconde forme');if(swapI>=0)L.push('Corps volé · '+swapT+' t.');if(pup.some(v=>v>0))L.push('Marionnette');if(charged)L.push('Frappe doublée');return L};
+  const bd=()=>{const L=[];if(armor)L.push('Cuirasse');if(mist>0)L.push('Brume · '+mist+' t.');if(sand)L.push('Sable');if(done.form2)L.push('Seconde forme');if(swapI>=0)L.push('Corps volé');if(pup.some(v=>v>0))L.push('Marionnette');if(charged)L.push('Frappe doublée');return L};
   const nextRole=()=>{for(let g=0;g<3;g++){const r=cyc[(tp+g)%3];if(P.some((x,i)=>x.c.poste===r&&hp[i]>0&&i!==swapI))return r}return null};
-  const snap=()=>({ph,b:Math.round(hb/mxB*100),p:hp.map((h,i)=>Math.round(h/mx[i]*100)),m:cur?cur.map(e=>Math.round(e.hp/e.mx*100)):null,nb:stepN-(hits%stepN),ns:cur?false:(charged||(bn+1)%3===0),nr:cur?null:nextRole(),a:act(),bd:bd()});
+  const snap=()=>({ph,b:Math.round(hb/mxB*100),p:hp.map((h,i)=>Math.round(h/mx[i]*100)),m:cur?cur.map(e=>Math.round(e.hp/e.mx*100)):null,nb:stepN-(hits%stepN),ns:cur?false:(charged||(bn+1)%3===0),nr:cur?null:nextRole(),a:act(),bd:bd(),y:bodyMx>0?Math.round(bodyHp/bodyMx*100):-1});
   const pick=()=>{for(let g=0;g<3;g++){const role=cyc[(tp+g)%3],L=[];P.forEach((x,i)=>{if(x.c.poste===role&&hp[i]>0&&i!==swapI)L.push(i)});if(L.length){tp=(tp+g+1)%3;return L[rp[role]++%L.length]}}
     for(let i=0;i<P.length;i++)if(hp[i]>0&&i!==swapI)return i;return -1};
   const alive=()=>hp.some(x=>x>0);
@@ -4648,13 +4735,14 @@ function stSim0(a,ids,form,o){
       if(mist>0&&kind!=='spec'&&Math.random()<.3)h={dmg:0,crit:false,dodge:true};else h=hitDmg(P[i],B,kind,fx);
       if(armor&&kind!=='spec'&&!h.dodge)h.dmg=Math.round(h.dmg*.6);
       if(a.tr==='shed'&&P[i].c.tags.includes('Sannin'))h.dmg=Math.round(h.dmg*1.15);
-      hb=Math.max(0,hb-h.dmg);hits++;log.push({k:'p',i,kind,dmg:h.dmg,crit:h.crit,dodge:h.dodge,...snap()});
+      if(bodyHp>0){bodyHp=Math.max(0,bodyHp-h.dmg);hits++;log.push({k:'p',i,kind,dmg:h.dmg,crit:h.crit,dodge:h.dodge,body:1,...snap()});if(bodyHp<=0){swapI=-1;bodyMx=0;B.s[1]/=1.2;ev('swapEnd')}}
+      else{hb=Math.max(0,hb-h.dmg);hits++;log.push({k:'p',i,kind,dmg:h.dmg,crit:h.crit,dodge:h.dodge,...snap()})}
       if(armor&&kind==='spec'&&h.dmg>0){armor=false;ev('armorBreak')}
       if(hb<=0)break outer;
       const fr=hb/mxB;
       if(a.tr==='form2'&&!done.form2&&fr<=.5){done.form2=1;B.s[1]*=1.25;B.s[2]*=1.25;if(a.cyc2){cyc=a.cyc2;tp=0}ev('form2')}
       if(a.tr==='shed'&&!done.shed&&fr<=.5){done.shed=1;hb=Math.min(mxB,hb+mxB*.15);ev('shed')}
-      if(a.tr==='swap'&&!done.swap&&fr<=.5){let bi=-1,bs=-1;P.forEach((x,k)=>{if(hp[k]>0&&x.s[1]>bs){bs=x.s[1];bi=k}});if(bi>=0&&hp.filter(v=>v>0).length>1){done.swap=1;swapI=bi;swapT=2;B.s[1]*=1.2;ev('swap',{i:bi})}}
+      if(a.tr==='swap'&&!done.swap&&fr<=.5){let bi=-1,bs=-1;P.forEach((x,k)=>{if(hp[k]>0&&x.s[1]>bs){bs=x.s[1];bi=k}});if(bi>=0&&hp.filter(v=>v>0).length>1){done.swap=1;swapI=bi;bodyMx=bodyHp=Math.round(mx[bi]*.5);B.s[1]*=1.2;ev('swap',{i:bi})}}
       if(a.tr==='puppet'){[.7,.4].forEach(th=>{if(!done['p'+th]&&fr<=th){const L=[];hp.forEach((v,x)=>{if(v>0)L.push(x)});if(L.length>1){done['p'+th]=1;const q=L[Math.floor(Math.random()*L.length)];pup[q]=2;ev('puppet',{i:q})}}});
         if(!done.br&&fr<.15){done.br=1;charged=true;ev('breath')}}
       if(hits%stepN===0){const j=pick();if(j<0)continue;strikes++;if(cancel.has(strikes)){log.push({k:'guard',...snap()});charged=false;continue}
@@ -4666,7 +4754,6 @@ function stSim0(a,ids,form,o){
     if(fx.cover>0&&hb>0){const v=Math.max(1,Math.round(mxB*fx.cover));hb=Math.max(1,hb-v);log.push({k:'cover',v,...snap()})}
     if(fx.heal>0&&healAll(fx.heal*(sand?.6:1)))log.push({k:'heal',...snap()});
     if(mist>0&&--mist===0)ev('mistEnd');
-    if(swapI>=0&&--swapT<=0){swapI=-1;B.s[1]/=1.2;ev('swapEnd')}
     pup.forEach((v,x)=>{if(v>0)pup[x]=v-1});
   }}
   const win=hb<=0,ko=hp.filter(x=>x<=0).length,tpc=hp.reduce((u,v)=>u+v,0)/mx.reduce((u,v)=>u+v,0);
@@ -4703,12 +4790,16 @@ function stDelay(e){const k=stState().spd===2?.5:1;if(e&&e.k==='ev')return Math.
 function stAnim(el,c,ms){if(!el)return;el.classList.remove(c);void el.offsetWidth;el.classList.add(c);setTimeout(()=>el.classList.remove(c),ms)}
 function stFloat(el,tx,cls){if(!el)return;const f=document.createElement('i');f.className='st-fl'+(cls?' '+cls:'');f.textContent=tx;el.appendChild(f);setTimeout(()=>f.remove(),700)}
 function stSupOn(R,pred,ms){R.r.sup.forEach((s,i)=>{if(pred(s))stAnim(document.getElementById('stsp'+i),'on',ms||900)})}
+function stBeam(from,to){const s=document.getElementById('stfight');if(!s||!from||!to)return;const A=from.getBoundingClientRect(),B=to.getBoundingClientRect(),x0=A.x+A.width/2,y0=A.y+A.height/2,x1=B.x+B.width/2,y1=B.y+B.height/2,Ln=Math.hypot(x1-x0,y1-y0),an=Math.atan2(y1-y0,x1-x0)*180/Math.PI,el=document.createElement('i');el.className='st-beam';el.style.cssText=`left:${x0}px;top:${y0}px;width:${Ln}px;transform:rotate(${an}deg)`;s.appendChild(el);setTimeout(()=>el.remove(),900)}
 function stBan(t,d,cls,who){const b=document.getElementById('stban');if(!b)return;b.className='st-ban '+(cls||'');b.innerHTML=`<b>${t}</b>${d?`<span>${d}</span>`:''}${who&&who[0]?`<p class="st-bq">${who[0]}<em>${who[1]}</em></p>`:''}`;void b.offsetWidth;b.classList.add('on');clearTimeout(b._t);b._t=setTimeout(()=>b.classList.remove('on'),1450)}
 function stPaint(){const R=ST_RUN;if(!R)return;const L=R.r.log,e=R.step>0?L[R.step-1]:null,n=R.r.waves.length,ph=e?e.ph:(n?0:n),sec=document.getElementById('stfight');
   const live=!R.fin;
   if(sec&&sec.dataset.ph!==String(ph)){sec.dataset.ph=ph;sec.dataset.st=ph<n?'mob':'boss';const mb=document.getElementById('stmobs');if(mb)mb.innerHTML=ph<n?stMobsHTML(R.r.waves[ph],R.wi):''}
-  const b=e?e.b:100,pp=e?e.p:R.r.ids.map(()=>100);
-  const bf=document.getElementById('stbf');if(bf)bf.style.width=b+'%';const bt=document.getElementById('stbt');if(bt)bt.textContent=Math.round(R.r.mxB*b/100)+' / '+Math.round(R.r.mxB);
+  const b=e?e.b:100,pp=e?e.p:R.r.ids.map(()=>100),by=!!(e&&e.y>=0);
+  const bf=document.getElementById('stbf');if(bf)bf.style.width=(by?e.y:b)+'%';const bt=document.getElementById('stbt');if(bt)bt.textContent=by?'Corps volé · '+e.y+' %':Math.round(R.r.mxB*b/100)+' / '+Math.round(R.r.mxB);
+  {const sw=(e?e.a:[]).map(x=>x.match(/^swap(\d+)$/)).find(Boolean),key=sw?sw[1]:'',bc=document.querySelector('.st-bcard'),bb=document.getElementById('stbc');
+   const upd=()=>{if(!bc||bc.dataset.who===key)return;bc.dataset.who=key;const cc=sw?CARD[R.r.ids[+key]]:CARD[STORY[R.wi].acts[R.ai].b];bc.innerHTML=cardHTML(cc,{note:cc.note});if(bb)bb.classList.toggle('stolen',!!sw)};
+   if(R.step>0&&!R.fin&&e&&e.k==='ev'&&e.ev==='swap')setTimeout(upd,520);else upd()}
   pp.forEach((v,i)=>{const f=document.getElementById('stpf'+i),c=document.getElementById('stpc'+i);if(f)f.style.width=v+'%';if(c)c.classList.toggle('ko',v<=0)});
   if(e&&e.m)e.m.forEach((v,i)=>{const f=document.getElementById('stmf'+i),c=document.getElementById('stm'+i);if(f)f.style.width=v+'%';if(c)c.classList.toggle('ko',v<=0)});
   document.querySelectorAll('.st-pc.act').forEach(x=>x.classList.remove('act'));
@@ -4737,7 +4828,7 @@ function stPaint(){const R=ST_RUN;if(!R)return;const L=R.r.log,e=R.step>0?L[R.st
   else if(e.k==='wave'){stBan('VAGUE '+e.n,'Les échos approchent.','wv');SFX.flip()}
   else if(e.k==='bossin'){stBan(nm(R.r.bid).toUpperCase(),'','bs');if(!S.mute)tone(70,0,.9,'sawtooth',.09,50)}
   else if(e.k==='rest'){R.r.ids.forEach((id,i)=>{if(pp[i]>0)stFloat(document.getElementById('stpc'+i),'+','hl')})}
-  else if(e.k==='ev'){const E=ST_EV[e.ev];stBan(E[0],E[1],'e-'+e.ev,stEvWho(e.ev));stAnim(sec,'fx-'+e.ev,1400);if(ST_SND[e.ev])ST_SND[e.ev]();if(e.ev==='form2'||e.ev==='shed'||e.ev==='armorBreak')stAnim(bo,'hit',500)}
+  else if(e.k==='ev'){const E=ST_EV[e.ev];stBan(E[0],E[1],'e-'+e.ev,stEvWho(e.ev));if(e.ev==='swap')stBeam(bo,document.getElementById('stpc'+e.i),'');stAnim(sec,'fx-'+e.ev,1400);if(ST_SND[e.ev])ST_SND[e.ev]();if(e.ev==='form2'||e.ev==='shed'||e.ev==='armorBreak')stAnim(bo,'hit',500)}
   else if(e.k==='cover'){stSupOn(R,s=>s.k==='cover');const t=e.ph<n?null:bo;if(t){stAnim(t,'hit',300);stFloat(t,'−'+e.v,'cv')}}
   else if(e.k==='heal'){stSupOn(R,s=>s.k==='heal');R.r.ids.forEach((id,i)=>{if(pp[i]>0)stFloat(document.getElementById('stpc'+i),'+','hl')})}}
 function stStep(){const R=ST_RUN;if(!R||S.tab!=='tour'||S.psub!=='st'||R.fin)return;
@@ -4781,19 +4872,57 @@ const ST_VX={
  'na-zabuza-pays-des-vagues':{f:[.54,.21],y:'14%',t:'Déserteur de Kiri'},'na-orochimaru-examen-chunin':{f:[.52,.5],y:'52%',t:'Déserteur de Konoha'},'na-kisame-akatsuki':{f:[.5,.3],y:'26%',t:'Déserteur de Kiri, Akatsuki'},
  'op-arlong-arlong-park':{f:[.47,.17],y:'6%',n:20000000},'op-crocodile-alabasta':{f:[.5,.14],y:'5%',n:81000000},'op-doflamingo-dressrosa':{f:[.52,.16],y:'3%',n:340000000}};
 /* qui réagit au trait du boss : un des Sept, ou le boss lui-même (b) */
-const ST_VOX={armor:['theo','Les coups normaux passent pas. Il faut une spéciale !'],form2:['b','Tu voulais voir ce qu\'il y a dessous ?'],swap:['b','Change !'],mist:['b','Huit points vitaux. Lequel d\'abord ?'],shed:['lou','Il a changé de peau. Il fait toujours ça !'],drain:['theo','Son épée le soigne quand il touche. Finis-le vite.'],wave:['maya','Toute l\'équipe ! Toute l\'équipe !'],sand:['b','Tes soins ? Ils coulent entre mes doigts.'],puppet:['b','Danse.']};
+/* ───── face-à-face v164 : chaque Sept parle avec sa voix ───── */
+const ST_TH={armor:'Armure en god mode : les coups normaux font du chip damage. Il te faut une spéciale pour la péter.',
+ form2:'Attention, phase 2 à 50 % de PV : stats en hausse et il change d\'aggro. Garde une spéciale sous le coude.',
+ swap:'Sale skill : à 50 % il squatte ta meilleure carte. Tape le corps volé, et il retourne à sa place quand il tombe.',
+ mist:'Au tour 2, brouillard et +30 % d\'esquive. Les spéciales ignorent l\'esquive : c\'est la seule hitbox qui compte.',
+ shed:'À 50 % de PV il reset une partie de sa vie. C\'est un DPS check : prépare ton burst en frame perfect.',
+ drain:'Lifesteal : il récupère 30 % des dégâts qu\'il t\'inflige. Burst-le vite, sinon il s\'auto-heal à l\'infini.',
+ wave:'AoE : un coup sur 3 touche toute l\'équipe. Gère tes soins, c\'est du dégât de zone pur.',
+ sand:'Au tour 3, nerf massif des soins : −40 % jusqu\'à la fin. Faudra gagner autrement qu\'au heal.',
+ puppet:'À 70 % et 40 % de PV, il prend le contrôle d\'une carte. Sous 15 %, one-shot chargé. Du mind control, fais gaffe.'};
+const ST_MAYA={'db-dodoria-arc-namek':'Chat, il tape les Tanks deux fois, puis un DPS. Genre il casse d\'abord le mur, lol.',
+ 'db-zarbon-arc-namek':'Il vise les DPS, puis une Distance… moi, quoi ? Genre il est vexé que je brille plus que lui.',
+ 'db-ginyu-arc-namek':'Il pose et il nous scanne chacun son tour : Distance, Tank, DPS. Trop de mise en scène, je clip.',
+ 'na-zabuza-pays-des-vagues':'Il va droit sur le Tank, puis deux DPS. Hyper ciblé, les gars, c\'est un assassin.',
+ 'na-orochimaru-examen-chunin':'Il snipe les Distances d\'abord, deux fois. Je suis cuite, chat, dites-moi que j\'ai un bouclier.',
+ 'na-kisame-akatsuki':'Il cherche le plus costaud : Tank, DPS, Tank. Il a faim, genre vraiment.',
+ 'op-arlong-arlong-park':'Il fonce dans le tas : DPS, Tank, DPS. Subtilité zéro, frérot.',
+ 'op-crocodile-alabasta':'Il assèche les Distances d\'abord, puis Tank, puis DPS. Je sens que mes soins vont pas aimer.',
+ 'op-doflamingo-dressrosa':'Il tire les fils sur les Distances, puis DPS, puis Tank. Ça pue la marionnette, wesh.'};
+const ST_LOU={'db-dodoria-arc-namek':'Dodoria, lieutenant de Freezer. Force brute, subtilité nulle. Rien de sorcier : on casse son armure et il s\'effondre.',
+ 'db-zarbon-arc-namek':'Zarbon, bras droit de Freezer. Vaniteux au point d\'en mourir : sa seconde forme le dégoûte lui-même, c\'est établi dans le canon.',
+ 'db-ginyu-arc-namek':'Le capitaine Ginyu et sa technique d\'échange de corps. Chaque pose est un rituel, pas un caprice : il faut l\'interrompre à temps.',
+ 'na-zabuza-pays-des-vagues':'Le Démon de la Brume : huit points vitaux, silence absolu. Et Haku n\'est jamais loin, ne l\'oubliez pas.',
+ 'na-orochimaru-examen-chunin':'Orochimaru, ancien Sannin, obsédé par l\'immortalité. Il change de corps comme on change de chemise. Ne le regardez pas dans les yeux, je vous en prie.',
+ 'na-kisame-akatsuki':'Kisame Hoshigaki, la bête sans queue. Samehada dévore le chakra, rien à voir avec un simple sabre. C\'est documenté.',
+ 'op-arlong-arlong-park':'Arlong, un homme-poisson persuadé d\'être supérieur aux humains. Son parc est une prison, rien de plus. Ne vous laissez pas impressionner.',
+ 'op-crocodile-alabasta':'Sir Crocodile, ancien Shichibukai : le sable dessèche tout, y compris les soins. Il joue au héros pour mieux régner, un classique.',
+ 'op-doflamingo-dressrosa':'Donquixote Doflamingo, roi de Dressrosa. Ses fils sont invisibles, son sourire est un piège. Aucune confiance, jamais.'};
+const ST_DRE={'db-dodoria-arc-namek':'Ce gros rose de merde ? Yo, j\'ai explosé des mecs plus flippants au pied de mon bloc. On va lui péter la gueule.',
+ 'db-zarbon-arc-namek':'Putain, il se prend pour un top model, ce connard. Fuck his face, je vais lui refaire le portrait.',
+ 'db-ginyu-arc-namek':'Il fait des poses en plein combat ? Putain, c\'est quoi ce cirque. Je vais lui faire ravaler son show.',
+ 'na-zabuza-pays-des-vagues':'Un mec qui bute dans le brouillard comme un lâche. Come on, montre ta gueule, enfoiré, qu\'on règle ça.',
+ 'na-orochimaru-examen-chunin':'Ce serpent de merde qui change de peau, yo, il me file la gerbe. Je veux sa tête sur ma cheminée.',
+ 'na-kisame-akatsuki':'Un putain de requin avec une épée qui bouffe tout ? Bah. Mes créanciers de Brooklyn tapent plus fort que lui.',
+ 'op-arlong-arlong-park':'Un poisson de merde qui me dit de compter mes dents ? Yo, je vais lui faire bouffer les siennes.',
+ 'op-crocodile-alabasta':'Un connard en manteau de fourrure qui joue au roi. J\'adore, ça me rappelle les caïds de Brooklyn. Je les défonçais aussi.',
+ 'op-doflamingo-dressrosa':'Ce clown rose et ses putains de fils ? Fuck ça. Si je vois un fil sur moi, je lui plante son sourire dans la gorge.'};
 const stNum=n=>String(n).replace(/\B(?=(\d{3})+$)/g,' ');
-function stVsHTML(){const {wi,ai,mode}=ST_VS,w=STORY[wi],a=w.acts[ai],c=CARD[a.b],art=artOf(c),tr=ST_TR[a.tr],t=evalTeam(FORMS[S.form].rows,S.team),al=stAlly(t,w.k),dx=mode==='def'?ST_DEF[w.k]:null,bad=stTeamMsg(w,mode),san=a.tr==='shed'&&t.cards.some(x=>x&&x.tags.includes('Sannin')),vx=ST_VX[a.b]||{f:[.5,.2],y:'15%'},vo=ST_VOX[a.tr],lbl=(mode==='def'?'Défi de l\'Archiviste':mode==='tr'?'Traque du jour':mode==='cau'?'Cauchemar':'Acte '+(ai+1))+' · '+w.n;
+function stVsHTML(){const {wi,ai,mode}=ST_VS,w=STORY[wi],a=w.acts[ai],c=CARD[a.b],art=artOf(c,true),tr=ST_TR[a.tr],t=evalTeam(FORMS[S.form].rows,S.team),al=stAlly(t,w.k),dx=mode==='def'?ST_DEF[w.k]:null,bad=stTeamMsg(w,mode),san=a.tr==='shed'&&t.cards.some(x=>x&&x.tags.includes('Sannin')),vx=ST_VX[a.b]||{f:[.5,.2],y:'15%'},lbl=(mode==='def'?'Défi de l\'Archiviste':mode==='tr'?'Traque du jour':mode==='cau'?'Cauchemar':'Acte '+(ai+1))+' · '+w.n;
   const img=art?`<img src="${art}" alt="${c.nom}" draggable="false">`:'',
    fail='<svg class="vx-f" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><polyline class="g" points="62,0 40,14 70,27 34,40 66,52 28,63 60,76 44,88 58,100"/><polyline class="c" points="62,0 40,14 70,27 34,40 66,52 28,63 60,76 44,88 58,100"/></svg>',
-   av=k=>k==='b'?`<div class="vx-av boss" role="img" aria-label="${c.nom}" style="background-image:url(${art});background-position:${(vx.f[0]*2-.5)*100}% ${Math.max(0,Math.min(1,(vx.f[1]*123-22)/79))*100}%"></div>`:`<div class="vx-av ${k}" role="img" aria-label="${k==='theo'?'Théo':k==='maya'?'Maya':'Lou'}"></div>`,
-   row=(k,lab,body)=>`<div class="vx-r">${av(k)}<div><div class="vx-lab">${lab}</div>${body}</div></div>`,
+   row=(k,lab,say,rule,extra)=>`<div class="vx-r">${stWho(k).replace('class="st-who"','class="st-who vx-w"')}<div><div class="vx-lab">${lab}</div>${say?`<p class="vx-say">${say}</p>`:''}${extra||''}${rule?`<p class="vx-rule">${rule}</p>`:''}</div></div>`,
    sep=w.k==='na'?'<svg viewBox="0 0 18 10" aria-hidden="true"><path d="M0 4h9L18 5 9 6H0zM2 2l3 3-3 3z" transform="matrix(-1 0 0 1 18 0)"/></svg>':'<svg viewBox="0 0 18 10" aria-hidden="true"><path d="M6 1l5 4-5 4V7L9 5 6 3z"/></svg>',
-   rows=row(vo?vo[0]:'theo',tr.n,`${vo?`<p class="vx-say">${vo[1]}</p>`:''}<p class="vx-rule">${tr.d}</p>`)+
-    row(vo&&vo[0]==='maya'?'theo':'maya','Ses frappes',`<div class="vx-cyc" aria-label="${stCycTxt(a)}">${a.cyc.map(r=>`<span>${POS[r]}</span>`).join(sep)}</div><p class="vx-rule">${a.why}</p>`)+
-    (dx?row('theo',dx.t,`<p class="vx-say">C'est un piège. Évidemment que c'est un piège.</p><p class="vx-rule">${dx.d}</p>`):'')+
-    (al?row('lou','Allié du récit',`<p class="vx-rule">${al/2} carte${al>2?'s':''} de ce monde : +${al} % de stats</p>`):'')+
-    (san?row('lou','Les Sannin le connaissent','<p class="vx-rule">Tes Sannin lui font +15 % de dégâts.</p>'):''),
+   cos=mode==='def'?ST_COS.find(x=>x.id==='f-'+w.k):null,own=cos&&cosState().own[cos.id],
+   rwd=cos?`<div class="vx-pvw"><div class="vx-pv" style="--bg:url(${cos.im})" role="img" aria-label="Aperçu du fond : ${cos.n}"><span class="vx-pvb"><img src="${art||''}" alt="" draggable="false"></span><span class="vx-pvt">${S.team.filter(Boolean).slice(0,5).map(id=>{const u=artOf(CARD[id]);return u?`<img src="${u}" alt="" draggable="false">`:''}).join('')}</span></div><div><div class="vx-lab">Récompense : fond de combat « ${cos.n} »</div><p class="vx-rule">${own?'Déjà débloqué. Tu peux le changer dans ton profil.':'Voilà ce que ça donnera dans tes combats. Aucun effet sur les stats.'}</p></div></div>`:'',
+   rows=rwd+row('theo',tr.n,ST_TH[a.tr],tr.d)+
+    row('maya','Ses frappes',ST_MAYA[a.b],a.why,`<div class="vx-cyc" aria-label="${stCycTxt(a)}">${a.cyc.map(r=>`<span>${POS[r]}</span>`).join(sep)}</div>`)+
+    (dx?row('theo',dx.t,'C\'est un piège. Évidemment que c\'est un piège.',dx.d):'')+
+    row('lou','Qui est-ce ?',ST_LOU[a.b],al?`Allié du récit : ${al/2} carte${al>2?'s':''} de ce monde, +${al} % de stats.`:'')+
+    row('dre','Dre',ST_DRE[a.b],'')+
+    (san?row('lou','Les Sannin le connaissent','','Tes Sannin lui font +15 % de dégâts.'):''),
    name=`<h2 class="vx-name${w.k!=='op'&&c.nom.length>7?' long':''}">${c.nom}</h2>`,info=`<p class="vx-title">${a.t}</p><p class="vx-line">${a.pre}</p>`;
   let hero;
   if(w.k==='op')hero=`<div class="vx-top"><span>${lbl}</span></div><div class="vx-post"><div class="vx-pw">WANTED</div><div class="vx-pph">${img}</div><div class="vx-pd">DEAD OR ALIVE</div>${name}<div class="vx-pb">฿ ${stNum(vx.n||0)}-</div><div class="vx-pm">MARINE</div>${fail}</div><div class="vx-id">${info}</div>`;
@@ -4971,6 +5100,7 @@ function spRun(sc,steps,done){let t=0;const quick=matchMedia('(prefers-reduced-m
   steps.forEach(st=>{setTimeout(()=>{spCamSet(sc,st.i,st.kind,quick?0:st.ms,st.ease);if(st.fade)setTimeout(()=>stLid(1,quick?0:Math.round(st.ms*.5)),quick?0:st.ms*.5)},t);t+=quick?0:st.ms});
   setTimeout(()=>{ST_FLY=0;done()},t+(quick?30:60))}
 function spInit(){const sc=document.getElementById('spscene');if(!sc)return;if(!SP_V0){SP_V0=1;SP_V=spHome()}spPlace(sc);spGest(sc);
+  if(!sc._clk){sc._clk=1;sc.addEventListener('click',e=>{if(ST_FLY||e.target.closest('.sp-p,.sp-ctl'))return;let best=null,bd=1e9;sc.querySelectorAll('.sp-p[data-k]').forEach(el=>{const o=el.querySelector('.sp-orb').getBoundingClientRect(),r=o.width/2,d=Math.hypot(e.clientX-(o.x+r),e.clientY-(o.y+o.height/2));if(d<=r*1.15&&d<bd){bd=d;best=el}});if(best)ACT.spEnter(best.dataset.k)})}
   const fr=ST_FROM;ST_FROM=null;
   if(fr){/* arrivée depuis une planète : la caméra est déjà collée dessus */
     spCamSet(sc,fr.i,'in',0);
