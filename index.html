@@ -551,7 +551,7 @@ nav.tabs button[aria-current="page"] svg{color:var(--accent)}
 .rv-cap .hint{font-size:13px;color:var(--muted)}
 .rv-ui{display:flex;justify-content:space-between;align-items:center;padding-block:12px}
 .sum{display:grid;grid-template-columns:repeat(3,1fr);gap:16px 10px;width:100%;max-width:400px}
-.sum .cw{animation:flyin .45s both;animation-delay:calc(var(--i) * 80ms)}
+.sum .cw{animation:flyin .4s both;animation-delay:calc(var(--i) * 50ms)}
 @keyframes flyin{from{transform:translateY(30px) scale(.8);opacity:0}}
 .sum-btns{display:flex;gap:10px;width:100%;max-width:400px}
 .stage.is-sum{justify-content:flex-start;overflow-y:auto;min-height:0;padding-top:20px;cursor:default}.stage.is-sum::before{position:fixed}
@@ -2075,8 +2075,10 @@ body.cos-bg::before{content:"";position:fixed;inset:0;z-index:-1;background:line
 .cm-side{display:contents}.cm-info{display:none}
 .badge.dup{top:-6px;left:50%;transform:translateX(-50%);background:var(--surface-2);color:var(--muted);border:1px solid var(--line);white-space:nowrap;font-size:9px}
 .badge.best{bottom:-8px;left:50%;transform:translateX(-50%);background:var(--bg);color:var(--accent);border:1px solid var(--accent);white-space:nowrap;font-size:9px}.bl-pc{display:none}
-#cm:not([hidden]) #cmCard{animation:cmIn .22s ease-out both}@keyframes cmIn{from{opacity:0;transform:scale(.94)}}
-@media (prefers-reduced-motion:reduce){#cm:not([hidden]) #cmCard{animation:cmFade .12s linear both}@keyframes cmFade{from{opacity:0}}.sum .cw{transition:none!important}.sum .cw:hover{transform:none!important}}
+.sum .cw.hi::after{content:"";position:absolute;inset:0;border-radius:12px;pointer-events:none;z-index:4;background:linear-gradient(105deg,transparent 38%,rgba(255,255,255,.42) 50%,transparent 62%);background-size:260% 100%;animation:sumShine .8s calc(var(--i)*50ms + .45s) ease-out 1 both}
+@keyframes sumShine{from{background-position:130% 0;opacity:1}to{background-position:-40% 0;opacity:0}}
+.stage .big-pack{transition:filter .1s ease}.stage .big-pack:active{filter:brightness(1.18)}
+@media (prefers-reduced-motion:reduce){.sum .cw{transition:none!important}.sum .cw:hover{transform:none!important}.sum .cw.hi::after{animation:none;display:none}.stage .big-pack:active{filter:none}}
 @media (min-width:1024px){
  .stage.is-sum{padding:24px 3vw 18px;justify-content:safe center;gap:34px}
  .stage.is-sum .sum{max-width:1180px;grid-template-columns:repeat(var(--n,5),minmax(0,1fr));gap:26px 18px}
@@ -3142,7 +3144,7 @@ function drawRV0(){scnSndSync();if(!RV||RV.ph==='pack'||RV.ph==='tear'||RV.ph===
     st.innerHTML=`<div class="big-pack ${RV.ph==='tear'?'tearing':''}" style="--pc:${P(RV.key).bg}"><div class="bp-w"><div class="bp-m">${pk(RV.key)}</div><div class="bp-t" aria-hidden="true">${pk(RV.key)}</div></div>${fly}</div>${rays}<div class="rv-cap"><span class="hint">${RV.ph==='tear'?'':'Touche pour ouvrir'}</span></div>`;return}
   if(RV.ph==='sum'){st.style.setProperty('--glow','var(--line)');$('#rvCount').textContent=`${n} CARTES`;
     st.classList.add('is-sum');const bi=n>1?RV.cards.reduce((a,x,i)=>{const c1=CARD[x.id],b1=CARD[RV.cards[a].id];return RORD[c1.r]>RORD[b1.r]||(RORD[c1.r]===RORD[b1.r]&&c1.note>b1.note)?i:a},0):-1;
-    st.innerHTML=`<p class="small muted sum-hint">Touche une carte pour la voir en grand.</p><div class="sum" style="--n:${Math.min(n,5)}">${RV.cards.map((x,i)=>`<button class="cw" data-act="rvCard" data-v="${i}" aria-label="Voir ${CARD[x.id].nom} en grand" style="--i:${i}">${cardHTML(CARD[x.id],{big:true})}${x.isNew?'<span class="badge new">NOUVELLE</span>':'<span class="badge dup">DOUBLON</span>'}${i===bi?'<span class="badge best">★ MEILLEURE NOTE<span class="bl-pc"> DU TIRAGE</span></span>':''}</button>`).join('')}</div>
+    st.innerHTML=`<p class="small muted sum-hint">Touche une carte pour la voir en grand.</p><div class="sum" style="--n:${Math.min(n,5)}">${RV.cards.map((x,i)=>`<button class="cw${RORD[CARD[x.id].r]>=2?' hi':''}" data-act="rvCard" data-v="${i}" aria-label="Voir ${CARD[x.id].nom} en grand" style="--i:${i}">${cardHTML(CARD[x.id],{big:true})}${x.isNew?'<span class="badge new">NOUVELLE</span>':'<span class="badge dup">DOUBLON</span>'}${i===bi?'<span class="badge best">★ MEILLEURE NOTE<span class="bl-pc"> DU TIRAGE</span></span>':''}</button>`).join('')}</div>
     <div class="sum-btns">${S.inv.includes(RV.key)?`<button class="btn primary" data-act="nextinv">Ouvrir un des miens · ×${S.inv.filter(k=>k===RV.key).length}</button>`:P(RV.key).price&&S.coins>=P(RV.key).price?`<button class="btn primary" data-act="again">Racheter · ${fmt(P(RV.key).price)}</button>`:''}<button class="btn" data-act="rvClose">Continuer</button></div>${S.inv.length&&!S.inv.includes(RV.key)?`<p class="small muted" style="margin:0;text-align:center">Tu as encore ${S.inv.length} booster${S.inv.length>1?'s':''} dans Mes boosters.</p>`:''}`;return}
   const x=RV.cards[RV.i],c=CARD[x.id];st.style.setProperty('--glow',`var(--r-${c.r.toLowerCase()})`);$('#rvCount').textContent=`CARTE ${RV.i+1} / ${n}`;
   rvQueue();
@@ -3496,15 +3498,31 @@ const RNAME={N:'Commune',R:'Rare',SR:'Très rare',SSR:'Élite',UR:'Sommet',LR:'L
 function cmInfoHTML(c,n){return `<span class="eyebrow">${MONDES[c.m].n}</span><h2 class="cm-nm">${c.nom}</h2><p class="cm-vl">${c.scn?'Scène iconique · « '+c.scn+' »':c.vl}${c.awk?' · Éveillée':''}</p><div class="cm-tg"><span class="cm-rar" style="--rc:${RCOL[c.r]}">${RNAME[c.r]} · ${c.r}</span><span class="cm-ro">${c.cl} · ${PLNAME[c.poste]||c.poste}</span></div><p class="cm-nt small muted">${n==null?'':n?'Tu en as '+n+'. ':'Pas encore dans ta collection. '}Clique sur la carte pour la retourner : stats et tags.</p>`}
 function viewCard(id){const c=CARD[id];$('#cmInfo').innerHTML=cmInfoHTML(c,S.owned[id]||0);$('#cmCard').innerHTML=`<button data-act="cflip" aria-label="Retourner la carte" style="display:block"><div data-swipe>${cardHTML(c,{back:true,big:true})}</div></button>`;
   $('#cmAct').innerHTML=`<span class="small muted">${S.owned[id]?'Tu en as '+S.owned[id]+'.':(S.seen[id]?'Plus dans ta collection.':'Hors collection.')}</span>`;
-  $('#cmWhy').innerHTML='';/* 21/10 : plus de « Fort / Faible » ni de justification affichés — le joueur lit les stats et repère lui-même les points faibles */$('#cm').hidden=false}
-let CMNAV=null;
+  $('#cmWhy').innerHTML='';/* 21/10 : plus de « Fort / Faible » ni de justification affichés — le joueur lit les stats et repère lui-même les points faibles */const wasHid=$('#cm').hidden;CM_CUR=id;$('#cm').hidden=false;if(wasHid)cmAnimIn(id)}
+let CMNAV=null,CM_FROM=null,CM_ID0=null,CM_CUR=null;
+/* v163 : la carte part de sa vignette (200-250 ms) et y revient à la fermeture ; fondu court si « réduire les animations » */
+document.addEventListener('click',e=>{const w=e.target.closest&&e.target.closest('.cw');if(w&&!e.target.closest('#cm'))CM_FROM=w.querySelector('.card')},true);
+const cmReduced=()=>matchMedia('(prefers-reduced-motion:reduce)').matches;
+function cmAnimIn(id){const cm=$('#cm'),el=$('#cmCard .card'),src=CM_FROM;CM_ID0=id;if(!el)return;
+  try{if(cmReduced()){cm.animate([{opacity:0},{opacity:1}],{duration:120});return}
+    cm.animate([{opacity:0},{opacity:1}],{duration:200,easing:'ease-out'});
+    if(src&&src.isConnected){const a=src.getBoundingClientRect(),b=el.getBoundingClientRect();if(a.width>8&&b.width>8){el.animate([{transformOrigin:'0 0',transform:`translate(${a.left-b.left}px,${a.top-b.top}px) scale(${a.width/b.width})`},{transformOrigin:'0 0',transform:'none'}],{duration:230,easing:'cubic-bezier(.2,.8,.2,1)'});return}}
+    el.animate([{opacity:0,transform:'scale(.94)'},{opacity:1,transform:'none'}],{duration:200,easing:'ease-out'})}catch(_){}}
+let cmClosing=false;
+function cmClose(){const cm=$('#cm');if(cm.hidden||cmClosing)return;const el=$('#cmCard .card'),src=CM_FROM;
+  const fin=()=>{cmClosing=false;cm.hidden=true};
+  if(!el||cmReduced()){fin();return}
+  cmClosing=true;let moved=false;
+  try{if(CM_CUR===CM_ID0&&src&&src.isConnected){const a=src.getBoundingClientRect(),b=el.getBoundingClientRect();if(a.width>8&&b.width>8){moved=true;el.animate([{transformOrigin:'0 0',transform:'none'},{transformOrigin:'0 0',transform:`translate(${a.left-b.left}px,${a.top-b.top}px) scale(${a.width/b.width})`}],{duration:200,easing:'cubic-bezier(.4,0,.6,1)',fill:'forwards'})}}
+    cm.animate([{opacity:1},{opacity:0}],{duration:moved?200:140,easing:'ease-in',fill:'forwards'})}catch(_){}
+  setTimeout(fin,moved?210:150)}
 function cmNav(id,list,peek,pos){CMNAV=list&&list.length>1?{list,peek,pos}:null;openCard(id,peek,true)}
 function openCard(id,peek,nav){if(!nav)CMNAV=null;
-  const c=CARD[id],n=S.owned[id]||0;$('#cmInfo').innerHTML=cmInfoHTML(c,n);
+  const c=CARD[id],n=S.owned[id]||0,wasHid=$('#cm').hidden;CM_CUR=id;$('#cmInfo').innerHTML=cmInfoHTML(c,n);
   $('#cmCard').innerHTML=`<button data-act="cflip" aria-label="Retourner la carte" style="display:block"><div data-swipe>${cardHTML(c,{back:true,gone:n===0,big:true})}</div></button>`;
   $('#cmAct').innerHTML=(clipOf(c)&&S.seen[id]?`<button class="btn sm primary" data-act="replay" data-v="${id}">▶ Revoir la scène</button>`:'')+(peek?'':n?`<button class="btn sm" data-act="lock" data-v="${id}">${S.locked[id]?'Déverrouiller':'Verrouiller'}</button>${n>1&&!S.locked[id]?`<button class="btn sm" data-act="sell1" data-v="${id}">Vendre 1 doublon · +${fmt(SELL[c.r])}</button>`:''}<span class="small muted" style="width:100%;text-align:center">Tu en as ${n}.</span>`:`<span class="small muted">Donnée en SBC. Elle reste dans l'album.</span>`);
   if(CMNAV)CMNAV.id=id;$('#cmWhy').innerHTML=CMNAV?(()=>{const i=CMNAV.pos!=null?CMNAV.pos:CMNAV.list.indexOf(id);return `<span class="cm-nav"><button class="btn sm" data-act="cmStep" data-v="-1" aria-label="Carte précédente" ${i<=0?'disabled':''}>‹</button><span class="small muted">${i+1} / ${CMNAV.list.length}</span><button class="btn sm" data-act="cmStep" data-v="1" aria-label="Carte suivante" ${i>=CMNAV.list.length-1?'disabled':''}>›</button></span>`})():'';/* 21/10 : plus de « Fort / Faible » ni de justification affichés — le joueur lit les stats et repère lui-même les points faibles */
-  $('#cm').hidden=false;
+  $('#cm').hidden=false;if(wasHid)cmAnimIn(id);
 }
 
 /* ---------- actions ---------- */
@@ -5083,7 +5101,7 @@ const ACT={
   bnpick:v=>bnPick(+v),
   bnClose:()=>{$('#bonn').hidden=true;render()},
   cflip:(v,t)=>{t.querySelector('.card').classList.toggle('flipped');SFX.flip()},
-  cmClose:()=>{$('#cm').hidden=true},
+  cmClose:()=>{cmClose()},
   lock:v=>{if(S.locked[v])delete S.locked[v];else S.locked[v]=true;save();render();openCard(v);toast(S.locked[v]?'Carte verrouillée : elle ne sera ni vendue ni proposée en SBC.':'Carte déverrouillée.')},
   sell1:v=>{if((S.owned[v]||0)<2||S.locked[v])return;S.owned[v]--;S.coins+=sellVal(v);ev('sell');SFX.coin();save();render();openCard(v)},
   csort:()=>{const so=CSORT[S.asort]?S.asort:'def';$('#shTitle').textContent='Trier les cartes';$('#shBack').textContent='Fermer';$('#shBody').innerHTML=`<div class="sortl">${Object.entries(CSORT).map(([k,[t]])=>`<button class="sorto" data-act="csortv" data-v="${k}" aria-pressed="${k===so}">${t}${k===so?'<span aria-hidden="true">✓</span>':''}</button>`).join('')}</div>`;openSheet()},
@@ -5179,9 +5197,9 @@ if(/[?&#]test\b/.test(location.href))setTimeout(openAdmin,400);
 document.addEventListener('click',e=>{const t=e.target.closest('[data-act]');if(!t||t.disabled)return;const f=ACT[t.dataset.act];if(f)f(t.dataset.v,t,e)});
 $('#sheet').addEventListener('click',e=>{if(e.target.id==='sheet')closeSheet()});
 document.addEventListener('keydown',e=>{const tg=e.target;if(/^[1-7]$/.test(e.key)&&innerWidth>=1024&&!e.ctrlKey&&!e.metaKey&&!e.altKey&&!(tg&&(tg.tagName==='INPUT'||tg.tagName==='SELECT'||tg.tagName==='TEXTAREA'))&&$('#sheet').hidden&&$('#cm').hidden&&$('#reveal').hidden){const b=document.querySelectorAll('nav.tabs button[data-act=tab]')[+e.key-1];if(b){b.click();return}}});
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(!$('#cm').hidden)$('#cm').hidden=true;else if(!$('#sheet').hidden)closeSheet()}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(!$('#cm').hidden)cmClose();else if(!$('#sheet').hidden)closeSheet()}
   else if((e.key==='ArrowLeft'||e.key==='ArrowRight')&&!$('#cm').hidden&&CMNAV&&!e.ctrlKey&&!e.metaKey&&!e.altKey){e.preventDefault();ACT.cmStep(e.key==='ArrowLeft'?-1:1)}});
-$('#cm').addEventListener('click',e=>{if(e.target.id==='cm')$('#cm').hidden=true});
+$('#cm').addEventListener('click',e=>{if(e.target.id==='cm')cmClose()});
 
 /* ---------- démarrage ---------- */
 function start(d){
