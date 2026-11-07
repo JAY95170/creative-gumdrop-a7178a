@@ -1898,7 +1898,7 @@ body{--t1:#1A2040;--t2:#0A0D1C;background:radial-gradient(90% 52% at 50% 16%,var
 .sp-hd.q{border-color:var(--line);color:var(--muted)}
 .sp-scene.sp-fly .sp-lb,.sp-scene.sp-fly .sp-hd,.sp-scene.sp-fly .sp-path,.sp-scene.sp-fly .sp-hint{opacity:0}
 .sp-hint{position:absolute;left:0;right:0;top:12px;text-align:center;margin:0;font:11px var(--f-mono);letter-spacing:.08em;color:var(--muted);text-shadow:0 1px 4px #000,0 0 2px #000;pointer-events:none;transition:opacity .3s}
-.sp-scene{min-height:min(440px,calc(100dvh - 190px));touch-action:none;cursor:grab;-webkit-user-select:none;user-select:none}.sp-scene.sp-drag,.sp-scene.sp-drag .sp-p{cursor:grabbing}
+.sp-scene{min-height:min(440px,calc(100dvh - 190px));touch-action:none;cursor:grab;-webkit-user-select:none;user-select:none}.sp-scene.sp-drag,.sp-scene.sp-drag .sp-p{cursor:grabbing}.sp-drag .sp-path path.cr{filter:none;animation:none}.sp-scene *{-webkit-touch-callout:none}
 .sp-p:not(.mv) .sp-orb{background:radial-gradient(circle at 35% 30%,#2a3350,#0a0d18 70%)}.st-pl:not(.rdy) .st-wrap{border-radius:50%;background:radial-gradient(circle at 35% 30%,#2a3350,#0a0d18 70%)}
 .sp-ctl{position:absolute;right:10px;bottom:10px;z-index:5;display:flex;flex-direction:column;gap:6px;transition:opacity .3s}
 .sp-ctl button{width:44px;height:44px;padding:0;display:grid;place-items:center;border-radius:50%;border:1px solid var(--line);background:rgba(10,12,22,.72);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);color:var(--text);font:600 22px/1 var(--f-display);cursor:pointer;-webkit-tap-highlight-color:transparent;transition:border-color .2s,color .2s,opacity .2s}
@@ -1907,6 +1907,75 @@ body{--t1:#1A2040;--t2:#0A0D1C;background:radial-gradient(90% 52% at 50% 16%,var
 @media(max-height:500px){.sp-hint{display:none}.sp-ctl{right:auto;bottom:auto;left:10px;top:10px;flex-direction:row;gap:4px}.sp-ctl button{width:36px;height:36px;font-size:18px}}
 @media(prefers-reduced-motion:reduce){.sp-vx{animation:none}}
 @media(prefers-reduced-motion:reduce){.st-boss.hit,.st-pc.hit,.st-pc.atk,.st-boss.atk,.st-sp.on,.st-fl{animation:none}.st-wrap,.st-img{transition:none}}
+/* v161 · Histoire : face-à-face, événements de boss, mobs, Faille, cosmétiques */
+body.cos-bg::before{content:"";position:fixed;inset:0;z-index:-1;background:linear-gradient(rgba(5,6,10,.7),rgba(5,6,10,.86)),var(--cos-bg) center/cover no-repeat}
+.who .av.fr-db{box-shadow:0 0 0 2px #39c98f,0 0 12px rgba(57,201,143,.7)}.who .av.fr-na{box-shadow:0 0 0 2px #f08a2c,0 0 12px rgba(240,138,44,.7)}.who .av.fr-op{box-shadow:0 0 0 2px #3f9fe0,0 0 12px rgba(63,159,224,.7)}.who .av.fr-or{box-shadow:0 0 0 2px var(--accent),0 0 16px rgba(242,194,48,.85)}
+.pf-cos{display:flex;flex-direction:column;gap:12px}.pf-cos h4{margin:0 0 6px;font:600 10px var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}.pf-cor{display:flex;flex-wrap:wrap;gap:6px}
+.pf-cob{display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:5px 10px;border-radius:10px;border:1px solid var(--line);background:rgba(255,255,255,.05);color:var(--text);font:600 12px var(--f-body);cursor:pointer}.pf-cob[aria-pressed=true]{border-color:var(--accent);color:var(--accent)}.pf-cob.lk{opacity:.5}.pf-cob img{width:26px;height:26px;object-fit:cover;border-radius:6px}
+/* Faille */
+.sp-path path.cr{stroke:#d9c8ff;stroke-width:2.2;stroke-dasharray:none;stroke-linejoin:round;filter:drop-shadow(0 0 3px #fff) drop-shadow(0 0 9px #9a6bff);animation:sp-cr 2.6s ease-in-out infinite alternate}@keyframes sp-cr{to{opacity:.62}}
+.sp-all .sp-p.mv .sp-orb{box-shadow:0 0 34px 10px rgba(154,107,255,.6);animation:sp-beat 1.7s ease-in-out infinite}@keyframes sp-beat{50%{box-shadow:0 0 60px 20px rgba(154,107,255,.85)}}
+.st-strip{display:flex;flex-wrap:wrap;gap:8px;align-items:stretch;margin-top:10px}.st-trk{flex:1 1 240px;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.05)}.st-trk b{display:block;font:800 14px var(--f-display)}.st-trk small{color:var(--muted)}
+.st-mode{margin:10px 0 0}.st-dfi{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:10px;padding:12px 14px;border:1px solid rgba(154,107,255,.5);border-radius:14px;background:linear-gradient(120deg,rgba(84,50,160,.28),rgba(255,255,255,.03))}.st-dfi h3{margin:2px 0;font:800 16px var(--f-display)}.st-dfi.done{border-color:var(--accent)}.st-dfi p{margin:0}
+.st-bi .tr{color:var(--accent);font-weight:700}
+/* face-à-face */
+.st-vs,.st-cine{position:fixed;inset:0;z-index:60;overflow-y:auto;-webkit-overflow-scrolling:touch;display:flex}
+.st-vs{background:linear-gradient(rgba(5,6,10,.62),rgba(5,6,10,.92)),var(--decor) center/cover no-repeat #05060A}
+.st-vsin{margin:auto;width:min(620px,100%);padding:16px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center}
+.st-vsc{height:min(36dvh,330px);aspect-ratio:5/7;animation:st-vsc .55s cubic-bezier(.2,1.2,.3,1) both}.st-vsc img{width:100%;height:100%;object-fit:cover;object-position:50% 15%;border-radius:12px;border:1px solid rgba(255,255,255,.35);box-shadow:0 0 44px 6px rgba(240,90,60,.42);-webkit-user-drag:none}
+@keyframes st-vsc{from{transform:scale(1.5);opacity:0;filter:blur(6px)}}
+.st-vsn{margin:0;font:900 clamp(32px,8vw,60px)/1 var(--f-display);text-shadow:0 3px 22px #000}
+.st-vsq{margin:0;max-width:540px;font:700 clamp(17px,3.4vw,23px)/1.3 var(--f-body);font-style:italic;color:#fff;text-shadow:0 2px 12px #000;animation:st-wipe .9s .35s ease-out both}.st-vsq::before{content:"« "}.st-vsq::after{content:" »"}
+@keyframes st-wipe{from{clip-path:inset(0 100% 0 0);opacity:.4}to{clip-path:inset(0 -5% 0 -5%);opacity:1}}
+.st-vsi{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px;width:100%;text-align:left;animation:st-up .4s .7s both}.st-vsi>div{padding:9px 11px;border-radius:11px;border:1px solid rgba(255,255,255,.14);background:rgba(8,10,18,.72)}.st-vsi p{margin:3px 0 0;font-size:13px;line-height:1.35}.st-vsi .al{border-color:rgba(242,194,48,.5)}.st-vsi .ar{border-color:rgba(154,107,255,.6)}
+@keyframes st-up{from{transform:translateY(10px);opacity:0}}
+.st-vsb{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;width:100%;animation:st-up .4s .85s both}.st-vsb .primary{flex:1 1 100%;min-height:52px;font-size:17px}
+/* récit */
+.st-cine{background:radial-gradient(60% 70% at 50% 20%,rgba(90,52,170,.42),transparent 70%),#05060A}.st-cinein{margin:auto;width:min(560px,100%);padding:26px 20px;display:flex;flex-direction:column;gap:14px;text-align:center}.st-cinein h2{margin:0;font:900 clamp(30px,7vw,52px)/1.05 var(--f-display);animation:st-up .5s both}.st-cinein p{margin:0;font-size:17px;line-height:1.5;animation:st-up .6s both}.st-cinein .btn{align-self:center;min-width:180px;animation:st-up .6s both}
+/* mobs */
+.st-foe{display:contents}.st-mobs{display:none;justify-content:center;gap:10px;flex-wrap:wrap}.st-fight[data-st=mob] .st-mobs{display:flex}.st-fight[data-st=mob] .st-boss{display:none}.st-fight[data-st=boss] .st-mobs{display:none}
+.st-mb{position:relative;width:calc(var(--cw)*1.05);display:flex;flex-direction:column;gap:3px;align-items:center;transition:opacity .3s}.st-mb.lt{width:calc(var(--cw)*1.35)}.st-mb.ko{opacity:.25;filter:grayscale(1)}.st-mc{width:100%}.st-mb .st-hp{width:100%}
+.st-mb.hit .st-mc{animation:st-flash .3s}.st-mb.atk .st-mc{transform:translateY(5px)}
+.st-sil{position:relative;aspect-ratio:5/7;border-radius:6px;border:1px solid rgba(255,255,255,.28);background:radial-gradient(90% 60% at 50% 25%,#3a2a58,#0b0d16);display:grid;place-items:end center;overflow:hidden}.st-sil svg{width:88%;fill:#05060A}.st-sil b{position:absolute;left:5px;top:3px;font:900 11px var(--f-display);color:var(--accent)}.st-mb.lt .st-sil{border-color:var(--accent);background:radial-gradient(90% 60% at 50% 25%,#6e2a3a,#0b0d16)}
+.st-fight{isolation:isolate}.st-bar{flex-wrap:wrap;gap:6px;position:relative;z-index:6}.st-gd{border-color:rgba(154,107,255,.7)!important}.st-gd:disabled{opacity:.4}
+.st-bd{display:flex;flex-wrap:wrap;justify-content:center;gap:4px;margin-top:3px}.st-bd em{font:700 10px var(--f-mono);font-style:normal;padding:2px 6px;border-radius:7px;background:rgba(240,90,60,.25);border:1px solid rgba(240,90,60,.6)}.st-nx{display:block;min-height:15px;margin-top:3px;font:600 11px var(--f-mono);color:#ffd9a0;text-shadow:0 1px 4px #000}
+/* événements : calques qui durent (dans la section) et bannière plein écran */
+.st-fx{position:absolute;inset:0;z-index:4;pointer-events:none;overflow:hidden;border-radius:inherit;opacity:0;transition:opacity .9s}
+.st-arena,.st-log{position:relative;z-index:2}
+[data-fx~=mist] .st-fx{opacity:1;background:radial-gradient(60% 26% at 18% 24%,rgba(226,234,238,.82),transparent 72%),radial-gradient(70% 30% at 82% 44%,rgba(214,226,232,.78),transparent 72%),radial-gradient(90% 34% at 40% 72%,rgba(232,238,240,.72),transparent 72%);filter:blur(7px);animation:st-mist 7s ease-in-out infinite alternate}@keyframes st-mist{to{transform:translate(5%,-4%) scale(1.14)}}
+[data-fx~=mist] .st-bcard{filter:brightness(.16) blur(1.5px);transition:filter .8s}
+[data-fx~=sand] .st-fx{opacity:1;background:radial-gradient(50% 40% at 30% 40%,rgba(226,170,86,.42),transparent 70%),radial-gradient(60% 40% at 75% 66%,rgba(205,140,60,.4),transparent 70%),radial-gradient(45% 30% at 62% 18%,rgba(240,195,120,.32),transparent 70%);filter:blur(9px);animation:st-sand 4s linear infinite alternate}@keyframes st-sand{to{transform:translate(-9%,3%) scale(1.2)}}
+[data-fx~=armor] .st-bcard{filter:drop-shadow(0 0 13px rgba(255,215,110,.95)) saturate(.75) brightness(1.08)}
+[data-fx~=form2] .st-bcard{filter:drop-shadow(0 0 18px rgba(190,40,100,.95)) saturate(1.25);transform:scale(1.05)}
+.st-fight.fx-form2,.st-fight.fx-armorBreak,.st-fight.fx-breath{animation:st-shake .55s}@keyframes st-shake{20%{transform:translate(-5px,3px)}40%{transform:translate(5px,-3px)}60%{transform:translate(-3px,-2px)}80%{transform:translate(3px,2px)}}
+.st-fight::after{content:"";position:absolute;inset:0;z-index:5;pointer-events:none;opacity:0;border-radius:inherit}
+.fx-form2::after{background:radial-gradient(circle at 50% 25%,rgba(190,40,100,.7),rgba(5,6,10,.85));animation:st-glow 1.3s both}
+.fx-breath::after{box-shadow:inset 0 0 130px 40px rgba(220,30,30,.85);animation:st-glow 1.4s both}
+.fx-swap::after{background:radial-gradient(circle at 50% 55%,rgba(140,80,240,.85),rgba(70,30,140,.4) 45%,transparent 72%);animation:st-glow 1.3s both}
+.fx-shed::after{background:radial-gradient(circle at 50% 22%,rgba(240,240,210,.85),rgba(120,160,90,.35) 45%,transparent 72%);animation:st-glow 1s both}
+.fx-armorBreak::after{background:radial-gradient(circle at 50% 22%,rgba(255,225,130,.9),transparent 60%);animation:st-glow .9s both}
+.fx-armor::after{background:radial-gradient(circle at 50% 22%,rgba(255,215,110,.55),transparent 62%);animation:st-glow 1.2s both}
+.fx-drain::after{background:radial-gradient(circle at 50% 22%,rgba(60,170,230,.6),transparent 55%);animation:st-glow .6s both}
+.fx-puppet::after{background:radial-gradient(circle at 50% 55%,rgba(240,70,150,.5),transparent 62%);animation:st-glow 1.2s both}
+.fx-wave::after{background:linear-gradient(100deg,transparent 18%,rgba(90,190,235,.32) 34%,rgba(225,247,255,.92) 49%,rgba(40,130,205,.75) 58%,transparent 76%);opacity:1;animation:st-wv .95s ease-in both}@keyframes st-wv{from{transform:translateX(-110%)}to{transform:translateX(110%)}}
+@keyframes st-glow{20%{opacity:1}100%{opacity:0}}
+.st-bcard{transition:filter .35s,transform .35s}.st-fl.dr{color:#7fd4ff}
+.st-pc.swp .st-fc{filter:grayscale(1) brightness(.45);box-shadow:0 0 18px 5px rgba(140,80,240,.85);border-radius:6px}.st-pc.swp .st-n::after{content:" · corps volé";color:#c9a6ff}
+.st-pc.pup .st-fc{filter:hue-rotate(285deg) saturate(1.5);box-shadow:0 0 15px 4px rgba(240,70,150,.75);border-radius:6px}.st-pc.pup{animation:st-sway 1.3s ease-in-out infinite}@keyframes st-sway{50%{transform:translateY(-4px) rotate(1.4deg)}}
+.st-ban{position:fixed;left:0;right:0;top:32%;z-index:20;padding:15px 16px;display:flex;flex-direction:column;align-items:center;gap:5px;text-align:center;background:linear-gradient(90deg,transparent,rgba(5,6,10,.92) 18%,rgba(5,6,10,.92) 82%,transparent);pointer-events:none;opacity:0;visibility:hidden}.st-ban.on{visibility:visible;animation:st-ban 1.35s both}.st-ban b{font:900 clamp(26px,7.6vw,58px)/1.02 var(--f-display);text-shadow:0 2px 14px rgba(0,0,0,.9)}.st-ban span{font:600 clamp(13px,3vw,16px) var(--f-body)}
+@keyframes st-ban{0%{opacity:0;transform:scale(1.25)}14%{opacity:1;transform:scale(1)}84%{opacity:1}100%{opacity:0;transform:translateY(-8px)}}
+.st-ban.e-mist b,.st-ban.e-mistEnd b{color:#dceaf0}.st-ban.e-sand b{color:#f0c378}.st-ban.e-armor b,.st-ban.e-armorBreak b{color:#ffd76e}.st-ban.e-form2 b,.st-ban.e-breath b{color:#ff5a6a}.st-ban.e-swap b,.st-ban.e-swapEnd b,.st-ban.gd b{color:#c9a6ff}.st-ban.e-shed b{color:#d8e6a8}.st-ban.e-drain b{color:#7fd4ff}.st-ban.e-puppet b{color:#ff7ab8}.st-ban.bs b{color:var(--accent)}
+/* fin de combat */
+.st-res{position:fixed;inset:0;z-index:62;margin:0;padding:0;border:0;border-radius:0;background:none;display:block}.st-res[hidden]{display:none}
+.st-eb{position:absolute;inset:0;overflow-y:auto;display:flex;background:linear-gradient(rgba(5,6,10,.76),rgba(5,6,10,.95)),var(--decor) center/cover no-repeat #05060A}.st-ein{margin:auto;width:min(560px,100%);padding:18px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center}
+.st-ecard{width:min(38vw,170px);animation:st-vsc .5s both}.st-ecard.fall{filter:grayscale(.85) brightness(.6);transform:rotate(-7deg) translateY(6px)}
+.st-ew{font:900 clamp(34px,9vw,62px)/1 var(--f-display)}.st-ew.win{color:var(--accent)}.st-ew.lose{color:#ff6a6a}
+.st-eq{margin:0;font:700 clamp(17px,3.6vw,22px)/1.3 var(--f-body);font-style:italic;animation:st-wipe .9s .25s ease-out both}.st-eq::before{content:"« "}.st-eq::after{content:" »"}
+.st-objl{justify-content:center}.st-objl li.on span{color:var(--accent)}.st-rwl{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:6px}.st-rwl li{padding:5px 10px;border-radius:9px;border:1px solid rgba(242,194,48,.6);background:rgba(242,194,48,.12);font-weight:700;font-size:13px}
+.st-bhp{display:flex;flex-direction:column;align-items:center}.st-nx{white-space:nowrap}
+@media(max-width:700px){.st-bar{gap:4px}.st-bar .btn{min-height:30px;padding:3px 9px;font-size:11px}.st-arena{--cw:min(17vw,66px);--bw:min(29vw,108px);gap:5px}.st-fight{padding:8px}.st-log{margin:2px 0;font-size:12px;min-height:16px}}
+@media(max-height:560px){.st-vsc{height:30dvh}.st-ban{top:16%}}
+@media(prefers-reduced-motion:reduce){.st-fx,.st-vsc,.st-vsq,.st-vsi,.st-vsb,.st-eq,.st-ecard,.st-cinein h2,.st-cinein p,.st-cinein .btn,.st-pc.pup,.sp-path path.cr,.sp-all .sp-p.mv .sp-orb{animation:none!important}.st-ban.on{animation:none;opacity:1}.fx-wave::after{display:none}}
 </style>
 
 <div class="app">
@@ -2317,7 +2386,7 @@ const LR_OR=.0002;/* 0,02 % par Booster Or, sans garantie */
 function seals(){const x=season();return (S.seal&&S.seal[x.id])||0}
 function sealAdd(){const x=season();S.seal=S.seal||{};S.seal[x.id]=(S.seal[x.id]||0)+1}
 const SA_T={bronze:[1,'村','BRONZE','Hameau'],argent:[2,'町','ARGENT','Bourg'],or:[3,'都','OR','Cité'],ecl:[4,'輝','ÉCLATANT','Céleste']};
-function pk(key){const p=P(key),T=SA_T[key],t=T?T[0]:0,im=T&&season().img&&season().img[key==='ecl'?'or':key],kj=T?T[1]:p.k,nm=T?T[2]:String(p.lbl||'').toUpperCase(),n=p.slots&&p.slots.length,sub=(T?T[3]+' · ':'')+(n?n+' carte'+(n>1?'s':''):'');
+function pk(key){const p=P(key),T=SA_T[key],t=T?T[0]:0,sk0=T?cosGet('pack'):null,im=sk0?sk0.im:T&&season().img&&season().img[key==='ecl'?'or':key],kj=T?T[1]:p.k,nm=T?T[2]:String(p.lbl||'').toUpperCase(),n=p.slots&&p.slots.length,sub=(T?T[3]+' · ':'')+(n?n+' carte'+(n>1?'s':''):'');
   return `<div class="pk sa t${t}" style="--pc:${p.bg}"><div class="sa-w"><div class="sc"><div class="sa-art">${im?`<img src="${im}" alt="" draggable="false">`:`<i class="sa-k">${kj}</i>`}${t===4?'<i class="sa-holo"></i>':''}</div><i class="sa-cr a"></i><i class="sa-cr b"></i><i class="sa-sh a"></i><i class="sa-sh b"></i><div class="sa-tear"><span class="sa-tt">開封 · OUVRIR ICI</span></div><div class="sa-word">ACG<span>${season().n.toUpperCase()}</span></div><i class="sa-shade"></i><div class="sa-tier"><b>${nm}</b><span class="sa-sub">${sub}</span></div>${im||T?`<i class="sa-hk">${kj}</i>`:''}<i class="sa-pil"></i><i class="sa-sheen"></i></div></div></div>`}
 function lrBanner(){const x=season(),c=CARD[x.lr];if(!c)return '';const u=artOf(c,true),own=S.owned[x.lr]>0;
   return `<button class="lrb" data-act="lrInfo" aria-label="LR de la saison : ${c.nom}, voir comment l'obtenir"><span class="lrb-im"${u?` style="background-image:url(${u})"`:''}></span><span class="lrb-sh"></span><span class="lrb-t"><i>LR de la saison · ${x.n}</i><b>${c.nom}</b><em>${c.vl}</em><small>${own?'Dans ta collection':'Fin de la saison dans '+seasonLeft()+' j'}</small></span><span class="lrb-r">LR</span></button>`}
@@ -2436,7 +2505,7 @@ function dupes(){return Object.keys(S.owned).filter(id=>S.owned[id]>1&&!S.locked
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 function avatarCard(){const p=S.prof||{};if(p.av&&CARD[p.av]&&S.owned[p.av]>0&&artOf(CARD[p.av]))return CARD[p.av];let b=null;Object.keys(S.owned).forEach(id=>{const c=CARD[id];if(c&&S.owned[id]>0&&!c.scn&&artOf(c)&&(!b||c.note>b.note))b=c});return b}
 function whoHTML(){const p=S.prof||{},nm=p.name||'Joueur',c=avatarCard(),u=c?artOf(c):null;
-  return `<span class="av">${u?`<img src="${u}" alt="">`:esc(nm.slice(0,1).toUpperCase())}</span><span style="display:flex;flex-direction:column;gap:3px;min-width:0"><span class="who-n">${esc(nm)}</span><span class="who-l">Niv. ${lvl()}</span></span>`}
+  const fr0=cosGet('frame');return `<span class="av${fr0?' fr-'+fr0.id.slice(2):''}">${u?`<img src="${u}" alt="">`:esc(nm.slice(0,1).toUpperCase())}</span><span style="display:flex;flex-direction:column;gap:3px;min-width:0"><span class="who-n">${esc(nm)}</span><span class="who-l">Niv. ${lvl()}</span></span>`}
 /* ---------- Langues : FR (par défaut), EN, ES. Traducteur d'interface : remplace les textes affichés par leur équivalent.
    Les noms de cartes, de mondes et les textes de fiche restent d'origine ; on complète le dictionnaire par étapes. ---------- */
 const I18T=[
@@ -2526,7 +2595,7 @@ function render(){
   const dots={obj:claimables(),album:albumClaimables(),home:canLogin()?1:0,shop:(initStep()>=0&&initDone(initStep()))||freeState().stock>0?1:0,sbc:unl('sbc')&&S.tab!=='sbc'&&allSbc().some(x=>sbcGuess(x).s==='ok')?1:0};
   document.querySelectorAll('#tabs button').forEach(b=>{b.setAttribute('aria-current',b.dataset.v===S.tab?'page':'false');const nd={sbc:'sbc',tour:'tour'}[b.dataset.v];b.classList.toggle('locked',!!nd&&!unl(nd));const d=b.querySelector('.dot');if(d)d.remove();if(dots[b.dataset.v])b.insertAdjacentHTML('beforeend','<span class="dot"></span>')});
   if(S.tab!=='team')FP=false;
-  applyTint();
+  applyTint();cosApply();
   $('#main').innerHTML=({home:vHome,shop:vShop,album:vAlbum,team:vTeam,sbc:vSbc,tour:vPlay,obj:vObj,prof:vProf}[S.tab]||vShop)();
   fitTeam();spxPlace();i18nApply(document.body);
   if(S.tab==='home'&&canLogin()&&!LG_POP&&(S.introOff||INTRO_SEEN)){LG_POP=true;setTimeout(()=>{if(S.tab==='home'&&canLogin()&&$('#sheet').hidden&&$('#reveal').hidden)loginSheet()},500)}
@@ -2600,12 +2669,13 @@ function vProf(){
   <section class="sec"><div class="pf-h"><div class="eyebrow">Badges</div><span class="small muted">${nb} / ${BADGES.length}</span></div>
    <div class="pf-bds">${BADGES.map(b=>{const o=b[4]();return `<button class="pf-bd${o?'':' lk'}" data-act="bdg" data-v="${b[0]}" aria-label="${b[1]}${o?', obtenu':', verrouillé'}"><i>${b[2]}</i><span>${b[1]}</span></button>`}).join('')}</div></section>
   <section class="sec"><div class="eyebrow">Comprendre le jeu</div><div class="pf-box pf-help">${[['Les 6 stats','PV : la vie. Plus elle est haute, plus la carte tient longtemps. ATT : la force des attaques normales. DEF : réduit les dégâts reçus. VIT : détermine qui frappe en premier, les chances de double coup et d\'esquive. TEC : chances de coup critique et perforation de la défense. POU : puissance de l\'attaque spéciale, et efficacité d\'un Soutien.'],['La note','La note d\'une carte résume ses stats pour son poste. La note d\'équipe est la moyenne de ses 7 cartes.'],['La chemistry','Chaque carte gagne jusqu\'à 3 points de chemistry grâce aux cartes du même monde, de la même classe ou au même tag. Chaque point augmente ses stats de 5 %. Une carte hors poste n\'en gagne pas et joue à 85 % de ses stats.'],['Les postes','Tank, DPS et Distance se battent poste contre poste. Le Soutien ne se bat pas : son effet dépend de sa classe et de son POU (soin, bonus d\'ATT/DEF, brise-garde, critiques, spéciales, couverture).'],['Les raretés','N, R, SR, SSR, UR, LR : plus la rareté est haute, plus la carte est difficile à obtenir. Une carte éveillée a de meilleures stats.']].map(([t,d])=>`<details><summary>${t}</summary><p>${d}</p></details>`).join('')}</div></section>
-  <section class="sec"><div class="eyebrow">Réglages</div><div class="pf-box pf-set">
+  ${stCosHTML()}<section class="sec"><div class="eyebrow">Réglages</div><div class="pf-box pf-set">
    <button class="pf-row" data-act="pfSound" role="switch" aria-checked="${!S.mute}"><span>Son</span><span class="pf-sw${S.mute?'':' on'}"></span></button>
    <div class="pf-row" role="group" aria-label="Langue"><span>Langue</span><span class="pf-lg">${['fr','en','es'].map(l=>`<button data-act="lang" data-v="${l}" aria-pressed="${(S.lang||'fr')===l}">${l.toUpperCase()}</button>`).join('')}</span></div>
    <button class="pf-row" data-act="introShow">Revoir la présentation</button>
    <button class="pf-row" data-act="reset">Effacer la partie</button></div></section>
   </div></div>`}
+function stCosHTML(){const c=cosState();return `<section class="sec"><div class="eyebrow">Apparence</div><div class="pf-box pf-cos">${Object.keys(ST_COT).map(ty=>`<div><h4>${ST_COT[ty]}</h4><div class="pf-cor"><button class="pf-cob" data-act="cosSet" data-v="${ty}," aria-pressed="${!c[ty]}">Aucun</button>${ST_COS.filter(x=>x.ty===ty).map(x=>`<button class="pf-cob${c.own[x.id]?'':' lk'}" data-act="cosSet" data-v="${ty},${x.id}" aria-pressed="${c[ty]===x.id}" title="${x.how}">${x.im?`<img src="${x.im}" alt="">`:''}<span>${x.n}</span></button>`).join('')}</div></div>`).join('')}</div></section>`}
 function profEdit(){const p=S.prof||{};CTX={prof:1,av:p.av||null};$('#shTitle').textContent='Nom et avatar';$('#shBack').textContent='Fermer';
   const L=Object.keys(S.owned).filter(id=>S.owned[id]>0&&CARD[id]&&!CARD[id].scn&&artOf(CARD[id])).sort((a,b)=>RORD[CARD[b].r]-RORD[CARD[a].r]||CARD[b].note-CARD[a].note).slice(0,24),cur=avatarCard();
   $('#shBody').innerHTML=`<label class="small muted" for="pfName">Nom (3 à 16 caractères)</label><input id="pfName" class="pf-in" maxlength="16" value="${esc(p.name||'')}" placeholder="Joueur" autocomplete="off">
@@ -4177,18 +4247,88 @@ const ST_ROLES=['Tank','DPS','Distance'];
 const ST_OBJ=['Victoire','≥ 50 % de PV','Sans KO'];
 const STORY=[
  {k:'db',n:'Dragon Ball',sub:'Saga de Namek',kj:'龍',hero:'db-son-arc-buu',pl:'images/story/sphere-db.webp',acts:[
-  {t:'Les sbires de Freezer',b:'db-dodoria-arc-namek',bg:'images/story/bg-db.webp',pv:10.25,at:1.8,df:1,n:3,rw:300},
-  {t:'Le bras droit',b:'db-zarbon-arc-namek',bg:'images/story/bg-db.webp',pv:8.3,at:2.2,df:1,n:3,rw:400},
-  {t:'Le commando Ginyu',b:'db-ginyu-arc-namek',bg:'images/story/bg-db.webp',pv:6.35,at:2.6,df:1,n:2,rw:600,rage:1.2}]},
+  {t:'Les sbires de Freezer',b:'db-dodoria-arc-namek',bg:'images/story/bg-db.webp',pv:4.19,at:6.69,df:1,n:3,rw:300,tr:'armor',cyc:['Tank','Tank','DPS'],why:'Une brute : il casse d\'abord le mur.',
+   pre:'Le seigneur Freezer veut les sept boules. Toi, tu n\'es qu\'une carte à déchirer.',win:'Trop facile. Je rapporterai tes cartes à Freezer, en morceaux.',lose:'Impossible… le seigneur Freezer va me…',
+   w:[[{g:'Soldat de Freezer'},{g:'Soldat de Freezer'},{g:'Éclaireur de Freezer'}],[{g:'Soldat de Freezer'},{g:'Éclaireur de Freezer'},{g:'Lieutenant de Freezer',lt:1}]]},
+  {t:'Le bras droit',b:'db-zarbon-arc-namek',bg:'images/story/bg-db.webp',pv:4.19,at:7.89,df:1,n:3,rw:400,tr:'form2',cyc:['DPS','DPS','Distance'],cyc2:['Distance','Distance','DPS'],why:'Un vaniteux : il frappe celui qui brille le plus.',
+   pre:'Quel dommage d\'abîmer un si joli visage. Le tien, pas le mien.',win:'Tu as vu ma vraie forme. Personne ne s\'en vante après.',lose:'Même sous cette forme… ma beauté ne m\'a pas sauvé.',
+   w:[[{g:'Soldat de Freezer'},{g:'Soldat de Freezer'},{g:'Éclaireur de Freezer'}],[{g:'Éclaireur de Freezer'},{g:'Éclaireur de Freezer'},{g:'Lieutenant de Freezer',lt:1}]]},
+  {t:'Le commando Ginyu',b:'db-ginyu-arc-namek',bg:'images/story/bg-db.webp',pv:4.42,at:4.83,df:1,n:2,rw:600,tr:'swap',cyc:['Distance','Tank','DPS'],why:'Il pose, puis il jauge chaque rôle.',end:'bronze',
+   pre:'Commando Ginyu, au rapport ! Pose réglementaire… et ton corps m\'ira très bien.',win:'Victoire ! Et regarde-moi cette pose. Freezer sera ravi.',lose:'Pas comme ça… ma pose n\'était même pas finie…',
+   w:[[{g:'Recrue du commando'},{g:'Recrue du commando'},{g:'Soldat de Freezer'}],[{g:'Recrue du commando'},{g:'Recrue du commando'},{g:'Vétéran du commando',lt:1}]]}]},
  {k:'na',n:'Naruto',sub:'Du Pays des Vagues à l\'Akatsuki',kj:'忍',hero:'na-naruto-shippuden-mode-ermite',pl:'images/story/sphere-na.webp',acts:[
-  {t:'Le démon de Kirigakure',b:'na-zabuza-pays-des-vagues',bg:'images/story/bg-na-1.webp',pv:6.84,at:3.0,df:1,n:2,rw:500},
-  {t:'L\'Examen Chûnin',b:'na-orochimaru-examen-chunin',bg:'images/story/bg-na-1.webp',pv:5.21,at:3.2,df:1,n:2,rw:650},
-  {t:'L\'ombre de l\'Akatsuki',b:'na-kisame-akatsuki',bg:'images/story/bg-na-2.webp',pv:5.12,at:3.4,df:1,n:2,rw:900,rage:1.2}]},
+  {t:'Le démon de Kirigakure',b:'na-zabuza-pays-des-vagues',bg:'images/story/bg-na-vagues.webp',pv:4.77,at:4.23,df:1,n:2,rw:500,tr:'mist',cyc:['Tank','DPS','DPS'],why:'Un assassin : il va droit au plus grand danger.',
+   pre:'Huit points vitaux. Je choisirai lequel, dans la brume.',win:'Tu ne m\'as même pas entendu arriver.',lose:'Haku… on dirait que c\'est fini pour nous deux.',
+   w:[[{g:'Homme de main de Gatô'},{g:'Homme de main de Gatô'},{g:'Homme de main de Gatô'}],[{g:'Homme de main de Gatô'},{g:'Homme de main de Gatô'},{id:'na-haku-pays-des-vagues',lt:1}]]},
+  {t:'L\'Examen Chûnin',b:'na-orochimaru-examen-chunin',bg:'images/story/bg-na-foret.webp',pv:4.42,at:4.29,df:1,n:2,rw:650,tr:'shed',cyc:['Distance','Distance','DPS'],why:'Il étudie sa proie : il élimine d\'abord les tireurs.',
+   pre:'Ces cartes… quels corps magnifiques. Je veux tous les essayer.',win:'Merci pour cet échantillon. Kukuku.',lose:'Cette peau ne me servait plus. Je reviendrai sous une autre.',
+   w:[[{id:'na-kiba-examen-chunin'},{id:'na-choji-examen-chunin'},{id:'na-tenten-examen-chunin'}],[{id:'na-shino-examen-chunin'},{id:'na-ino-examen-chunin'},{id:'na-kabuto-examen-chunin',lt:1}]]},
+  {t:'L\'ombre de l\'Akatsuki',b:'na-kisame-akatsuki',bg:'images/story/bg-na-ame.webp',pv:3.26,at:3.8,df:1,n:2,rw:900,tr:'drain',cyc:['Tank','DPS','Tank'],why:'Il dévore la force : il cherche le plus solide.',end:'argent',
+   pre:'Samehada a faim, et ton chakra sent bon.',win:'Il ne reste rien de toi. Pas même une arête.',lose:'Drôle de fin… pour un démon sans queue.',
+   w:[[{g:'Ninja d\'Ame'},{g:'Ninja d\'Ame'},{g:'Ninja d\'Ame'}],[{g:'Ninja d\'Ame'},{g:'Ninja d\'Ame'},{g:'Ninja d\'élite d\'Ame',lt:1}]]}]},
  {k:'op',n:'One Piece',sub:'D\'East Blue à Dressrosa',kj:'海',hero:'op-monkey-arc-wano',pl:'images/story/sphere-op.webp',acts:[
-  {t:'Arlong Park',b:'op-arlong-arlong-park',bg:'images/story/bg-op.webp',pv:12.79,at:3.6,df:1,n:2,rw:800},
-  {t:'Le désert d\'Alabasta',b:'op-crocodile-alabasta',bg:'images/story/bg-op.webp',pv:13.43,at:3.8,df:1,n:2,rw:1000},
-  {t:'Le joug de Dressrosa',b:'op-doflamingo-dressrosa',bg:'images/story/bg-op.webp',pv:9.12,at:4.0,df:1,n:2,rw:1400,rage:1.2}]}
+  {t:'Arlong Park',b:'op-arlong-arlong-park',bg:'images/story/bg-op.webp',pv:9.87,at:3.08,df:1,n:2,rw:800,tr:'wave',cyc:['DPS','Tank','DPS'],why:'Une force brute : il fonce dans le tas.',
+   pre:'Les hommes-poissons sont nés supérieurs. Tu viens te noyer dans mon eau.',win:'Ici, seul l\'argent fait la loi. Et ton équipe ne vaut pas un berry.',lose:'Un humain… m\'a abattu ? Mon Arlong Park…',
+   w:[[{g:'Homme-poisson'},{g:'Homme-poisson'},{id:'op-alvida-east-blue'}],[{id:'op-baggy-east-blue'},{id:'op-nami-arlong-park'},{id:'op-roronoa-east-blue',lt:1}]]},
+  {t:'Le désert d\'Alabasta',b:'op-crocodile-alabasta',bg:'images/story/bg-op-alabasta.webp',pv:13.35,at:3.95,df:1,n:2,rw:1000,tr:'sand',cyc:['Distance','Tank','DPS'],why:'Il assèche tout ce qui reste à distance.',
+   pre:'Bienvenue à Alabasta. Ici, même les rois finissent en sable.',win:'Te voilà sec. Comme tout ce que je touche.',lose:'De l\'eau… encore de l\'eau. Tu n\'as pas plus peur de mourir que ce Chapeau de paille.',
+   w:[[{g:'Agent de Baroque Works'},{g:'Agent de Baroque Works'},{g:'Agent de Baroque Works'}],[{g:'Agent de Baroque Works'},{g:'Agent de Baroque Works'},{g:'Agent d\'élite',lt:1}]]},
+  {t:'Le joug de Dressrosa',b:'op-doflamingo-dressrosa',bg:'images/story/bg-op-dressrosa.webp',pv:9.41,at:3.83,df:1,n:2,rw:1400,tr:'puppet',cyc:['Distance','DPS','Tank'],why:'Il tire les fils de loin, et vise ceux qui visent.',end:'or',
+   pre:'Fufufu ! Tes cartes dansent déjà. Tu n\'as juste pas vu les fils.',win:'À Dressrosa, seuls les vainqueurs écrivent la justice.',lose:'Fufufu… L\'Archiviste aura ta tête. Tous mes fils ne sont pas coupés.',
+   w:[[{g:'Homme de la famille Donquixote'},{g:'Homme de la famille Donquixote'},{g:'Homme de la famille Donquixote'}],[{g:'Homme de la famille Donquixote'},{g:'Homme de la famille Donquixote'},{g:'Officier Donquixote',lt:1}]]}]}
 ];
+const ST_TR={
+ armor:{n:'Peau d\'acier',d:'Coups normaux −40 % tant qu\'une attaque spéciale n\'a pas brisé sa cuirasse.'},
+ form2:{n:'Seconde forme',d:'À 50 % de PV, il se transforme : attaque et défense +25 %, et il change de cible.'},
+ swap:{n:'Échange de corps',d:'À 50 % de PV, il vole le corps de ta meilleure carte : elle est hors combat 2 tours, et il frappe 20 % plus fort.'},
+ mist:{n:'La brume',d:'Au tour 2, la brume monte : esquive +30 % pendant 3 tours. Les attaques spéciales la traversent.'},
+ shed:{n:'La mue',d:'À 50 % de PV, il regagne 15 % de PV, une seule fois. Les cartes Sannin lui font 15 % de dégâts en plus.'},
+ drain:{n:'Samehada',d:'Il se soigne de 30 % des dégâts qu\'il inflige.'},
+ wave:{n:'Vague de dents',d:'Une frappe sur 3 touche tous tes combattants à 35 %.'},
+ sand:{n:'Tempête de sable',d:'Au tour 3, le sable réduit tes soins de 40 % jusqu\'à la fin du combat.'},
+ puppet:{n:'Marionnette',d:'À 70 % et 40 % de PV, il contrôle une carte 2 tours. Sous 15 %, sa prochaine frappe est doublée, et annoncée.'}
+};
+/* [gros titre, précision] des événements plein écran */
+const ST_EV={armor:['PEAU D\'ACIER','Coups normaux −40 %. Une spéciale la brisera.'],armorBreak:['CUIRASSE BRISÉE','Les coups passent à nouveau.'],
+ form2:['SECONDE FORME','Attaque et défense +25 %. Il change de cible.'],swap:['ÉCHANGE DE CORPS','Ta meilleure carte est hors combat 2 tours.'],swapEnd:['RETOUR','La carte reprend son corps.'],
+ mist:['LA BRUME','Esquive du boss +30 % pendant 3 tours.'],mistEnd:['LA BRUME SE LÈVE','Le boss redevient visible.'],shed:['LA MUE','Il sort de sa peau et regagne 15 % de PV.'],
+ drain:['SAMEHADA','Chaque frappe le soigne.'],sand:['TEMPÊTE DE SABLE','Soins −40 %. Le Soutien garde ses autres effets.'],
+ puppet:['MARIONNETTE','Une de tes cartes se retourne contre l\'équipe.'],breath:['DERNIER SOUFFLE','Sa prochaine frappe sera doublée !']};
+const ST_LORE={
+ intro:{t:'La Faille',l:['Tes cartes ne sont pas du papier. Chacune garde l\'écho d\'un héros.','Une nuit, le ciel s\'est fendu : c\'est la Faille. Elle relie les mondes, et elle en recrache les plus grands ennemis.','C\'est l\'œuvre de l\'Archiviste. Il veut posséder chaque écho de chaque univers, et il a ouvert la Faille pour les rappeler tous.','Monde après monde, bats ses échos et referme la Faille. Au bout, le Multivers : c\'est là qu\'il t\'attend.']},
+ db:{t:'Namek',l:['La Faille s\'ouvre d\'abord sur Namek. Freezer y cherche encore les boules de cristal, et ses hommes obéissent désormais à l\'Archiviste.','Dodoria, Zarbon, le commando Ginyu : trois échos à sceller pour refermer ce monde.']},
+ na:{t:'Le monde des ninjas',l:['La Faille s\'étend. Ici, les échos se cachent, se transforment et frappent sans bruit.','Du pont du Pays des Vagues au village d\'Ame : Zabuza, Orochimaru, puis Kisame.']},
+ op:{t:'Grand Line',l:['Dernier monde avant la source. Les échos y sont les plus forts, et ils règnent sur des pays entiers.','Arlong, Crocodile, Doflamingo : fais-les tomber, et la Faille ne tiendra plus qu\'à un fil.']},
+ dbEnd:{t:'Namek est scellée',l:['La fissure recule. L\'Archiviste a perdu ses premiers échos, et il sait maintenant ton nom.']},
+ naEnd:{t:'Le monde des ninjas est scellé',l:['La Faille n\'a plus qu\'un monde à dévorer. Quelque part au fond, l\'Archiviste range ses pages en colère.']},
+ opEnd:{t:'La Faille tremble',l:['Trois mondes scellés. Il ne reste que la source : le Multivers s\'est mis à battre, et l\'Archiviste t\'y attend.','La suite à la prochaine mise à jour.']}
+};
+const ST_STAR=[0,80,250,400];
+/* Défi de l'Archiviste : un par monde, contre le boss de l'acte 3, déverrouillé quand le monde est fini. Récompense : fond de combat. */
+const ST_DEF={db:{t:'Rareté plafonnée',d:'Aucune carte au-dessus de R dans ton équipe.',ok:ids=>ids.every(id=>id&&RORD[CARD[id].r]<=RORD.R),msg:'Il te faut 7 cartes de rareté R ou moins.'},
+ na:{t:'Un seul monde',d:'Toute ton équipe doit venir du monde de Naruto.',ok:ids=>ids.every(id=>id&&CARD[id].m==='na'),msg:'Il te faut 7 cartes du monde de Naruto.'},
+ op:{t:'Sans Soutien',d:'Ton Soutien reste sur le banc : aucun effet de Soutien pendant ce défi.',ok:ids=>ids.every(Boolean),msg:'Il te faut 7 cartes.',nosup:1}};
+/* cosmétiques : aucun effet sur les stats ni les chances */
+const ST_COS=[
+ {id:'t-db',ty:'team',n:'Namek',im:'images/story/bg-db.webp',how:'9 étoiles sur Dragon Ball'},
+ {id:'t-na',ty:'team',n:'Forêt de la Mort',im:'images/story/bg-na-foret.webp',how:'9 étoiles sur Naruto'},
+ {id:'t-op',ty:'team',n:'Dressrosa',im:'images/story/bg-op-dressrosa.webp',how:'9 étoiles sur One Piece'},
+ {id:'f-db',ty:'fight',n:'Plaines de Namek',im:'images/story/bg-db.webp',how:'Défi de l\'Archiviste de Dragon Ball'},
+ {id:'f-na',ty:'fight',n:'Village d\'Ame',im:'images/story/bg-na-ame.webp',how:'Défi de l\'Archiviste de Naruto'},
+ {id:'f-op',ty:'fight',n:'Désert d\'Alabasta',im:'images/story/bg-op-alabasta.webp',how:'Défi de l\'Archiviste de One Piece'},
+ {id:'c-db',ty:'frame',n:'Cadre de Namek',how:'Finir Dragon Ball en Cauchemar'},
+ {id:'c-na',ty:'frame',n:'Cadre de Konoha',how:'Finir Naruto en Cauchemar'},
+ {id:'c-op',ty:'frame',n:'Cadre de Grand Line',how:'Finir One Piece en Cauchemar'},
+ {id:'c-or',ty:'frame',n:'Cadre doré',how:'Finir les trois mondes en Cauchemar'},
+ {id:'p-db',ty:'pack',n:'Sachet de Namek',im:'images/story/bg-db.webp',col:'#1f7a5c',how:'9 étoiles sur Dragon Ball en Cauchemar'},
+ {id:'p-na',ty:'pack',n:'Sachet de la Forêt',im:'images/story/bg-na-foret.webp',col:'#2c5a3a',how:'9 étoiles sur Naruto en Cauchemar'},
+ {id:'p-op',ty:'pack',n:'Sachet de Dressrosa',im:'images/story/bg-op-dressrosa.webp',col:'#2a6fb0',how:'9 étoiles sur One Piece en Cauchemar'}];
+const ST_COT={team:'Fond d\'équipe',fight:'Fond de combat',frame:'Cadre de profil',pack:'Skin de booster'};
+function cosState(){const c=S.cos=S.cos||{};c.own=c.own||{};return c}
+function cosGet(ty){const c=cosState(),id=c[ty];return id&&c.own[id]?ST_COS.find(x=>x.id===id):null}
+function cosGive(id){const c=cosState();if(c.own[id])return null;c.own[id]=1;const x=ST_COS.find(y=>y.id===id);if(!c[x.ty])c[x.ty]=id;return ST_COT[x.ty]+' : '+x.n}
+function cosMatch(){if(S.tab!=='tour')return false;const p=S.psub;if(p==='tw')return !!(S.tw&&S.tw.run&&S.tw.run.ph==='match');if(p==='tr')return !!(S.tr&&S.tr.run&&S.tr.run.ph==='match');return false}
+function cosApply(){const x=S.tab==='team'?cosGet('team'):cosMatch()?cosGet('fight'):null,b=document.body;b.classList.toggle('cos-bg',!!x);if(x)b.style.setProperty('--cos-bg','url('+x.im+')')}
 let ST_RUN=null,ST_T=null,ST_SX=0;
 function stState(){if(!S.st)S.st={d:{},o:{},sel:'db',spd:1,auto:false};const q=S.st;q.d=q.d||{};q.o=q.o||{};if(q.spd!==2)q.spd=1;return q}
 function stDone(k,i){const d=stState().d[k];return !!(d&&d[i])}
@@ -4196,98 +4336,262 @@ function stCount(w){return w.acts.filter((a,i)=>stDone(w.k,i)).length}
 function stWorldOpen(wi){return wi===0||stCount(STORY[wi-1])===STORY[wi-1].acts.length}
 function stActOpen(wi,ai){return stWorldOpen(wi)&&(ai===0||stDone(STORY[wi].k,ai-1))}
 function stObjOf(w,ai){return stState().o[w.k+ai]||[0,0,0]}
-/* stats du boss : celles de la carte (un Soutien reçoit un profil équilibré), puis multiplicateurs de l'acte */
-function stBoss(a){const c=CARD[a.b];let s=c.s.slice();if(c.poste==='Soutien'){const T=c.note;s=[T*.95,T*1.05,T*.9,T,T*.8,T]}
-  s[0]*=a.pv;s[1]*=a.at;s[2]*=(a.df||1);return {c,s}}
-/* combat complet, calculé d'un coup ; le journal sert au replay */
-function stSim(a,ids,form){
-  const t=evalTeam(FORMS[form||'lance'].rows,ids),fx=teamFx(t);
-  const P=fighters(t,fx,{brk:0}).sort((u,v)=>PORD.indexOf(u.c.poste)-PORD.indexOf(v.c.poste));
-  const B=stBoss(a);B.s[2]*=(1-fx.brk);
-  const mx=P.map(x=>x.s[0]*ENG.HPX),hp=mx.slice(),mxB=B.s[0]*ENG.HPX;let hb=mxB;
-  const FXB={spec:0,crit:0},cnt=P.map(()=>0),rp={Tank:0,DPS:0,Distance:0},log=[];
-  let hits=0,bn=0,tp=0,rage=false,rounds=0;
-  const pct=()=>({b:Math.round(hb/mxB*100),p:hp.map((h,i)=>Math.round(h/mx[i]*100))});
-  const pick=()=>{for(let g=0;g<3;g++){const role=ST_ROLES[(tp+g)%3];const L=[];P.forEach((x,i)=>{if(x.c.poste===role&&hp[i]>0)L.push(i)});if(L.length){tp=(tp+g+1)%3;return L[rp[role]++%L.length]}}return -1};
-  outer:for(rounds=1;rounds<=40;rounds++){
-    for(let i=0;i<P.length;i++){if(hp[i]<=0)continue;
-      const kind=(cnt[i]++%3===2)?'spec':'hit',h=hitDmg(P[i],B,kind,fx);hb=Math.max(0,hb-h.dmg);hits++;
-      log.push({k:'p',i,kind,dmg:h.dmg,crit:h.crit,dodge:h.dodge,...pct()});
+/* stats du boss : celles de la carte (un Soutien reçoit un profil équilibré), puis multiplicateurs de l'acte ; Cauchemar : +30 % de PV */
+function stBoss(a,o){const c=CARD[a.b];let s=c.s.slice();if(c.poste==='Soutien'){const T=c.note;s=[T*.95,T*1.05,T*.9,T,T*.8,T]}
+  s[0]*=a.pv*(o&&o.cau?1.3:1);s[1]*=a.at;s[2]*=(a.df||1);return {c,s}}
+function stWorldOf(a){return STORY.find(w=>w.acts.includes(a))}
+/* Allié du récit : +2 % de stats d'équipe par carte en poste du monde combattu, plafond +12 % */
+function stAlly(t,wk){return Math.min(12,t.cards.filter((c,i)=>c&&t.inPos[i]&&c.m===wk).length*2)}
+/* mobs : même échelle que le boss de l'acte (n'importe quelle carte peut en être un, seules les stats de l'acte comptent) */
+function stWaves(a,B,mxB){return (a.w||[]).map(L=>L.map(m=>{const lt=!!m.lt,k=lt?.34:.2;const s=[0,B.s[1]*k,B.s[2]*.5,B.s[3],20,B.s[1]*k];const mx=mxB*(lt?.14:.06);return {...m,s,mx,hp:mx}}))}
+/* combat complet, calculé d'un coup ; le journal sert au replay. Graine fixe : l'Appel du Gardien recalcule le même combat avec une frappe annulée */
+function stSim(a,ids,form,o){o=o||{};const seed=(o.seed||(Math.random()*4294967295))>>>0,_r=Math.random;let z=seed;
+  Math.random=()=>{z=z+0x6D2B79F5|0;let t=Math.imul(z^z>>>15,1|z);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296};
+  try{const r=stSim0(a,ids,form,o);r.seed=seed;return r}finally{Math.random=_r}}
+function stSim0(a,ids,form,o){
+  const w=stWorldOf(a),team=o.nosup?ids.map(id=>id&&CARD[id].poste==='Soutien'?null:id):ids,t=evalTeam(FORMS[form||'lance'].rows,team),fx=teamFx(t),ally=stAlly(t,w?w.k:''),cancel=new Set(o.cancel||[]);
+  const P=fighters(t,fx,{brk:0},ally?()=>1+ally/100:null).sort((u,v)=>PORD.indexOf(u.c.poste)-PORD.indexOf(v.c.poste));
+  const B=stBoss(a,o);B.s[2]*=(1-fx.brk);const mx=P.map(x=>x.s[0]*ENG.HPX),hp=mx.slice(),mxB=B.s[0]*ENG.HPX;let hb=mxB;
+  const W=stWaves(a,B,mxB),FXB={spec:0,crit:0},cnt=P.map(()=>0),rp={Tank:0,DPS:0,Distance:0},log=[],pup=P.map(()=>0);
+  let hits=0,bn=0,tp=0,rounds=0,ph=0,cur=null,strikes=0,cyc=a.cyc||ST_ROLES,armor=false,mist=0,sand=false,swapI=-1,swapT=0,charged=false,done={},stepN=a.n;
+  const act=()=>{const L=[];if(armor)L.push('armor');if(mist>0)L.push('mist');if(sand)L.push('sand');if(done.form2)L.push('form2');if(swapI>=0)L.push('swap'+swapI);pup.forEach((v,i)=>{if(v>0)L.push('pup'+i)});return L};
+  const bd=()=>{const L=[];if(armor)L.push('Cuirasse');if(mist>0)L.push('Brume · '+mist+' t.');if(sand)L.push('Sable');if(done.form2)L.push('Seconde forme');if(swapI>=0)L.push('Corps volé · '+swapT+' t.');if(pup.some(v=>v>0))L.push('Marionnette');if(charged)L.push('Frappe doublée');return L};
+  const nextRole=()=>{for(let g=0;g<3;g++){const r=cyc[(tp+g)%3];if(P.some((x,i)=>x.c.poste===r&&hp[i]>0&&i!==swapI))return r}return null};
+  const snap=()=>({ph,b:Math.round(hb/mxB*100),p:hp.map((h,i)=>Math.round(h/mx[i]*100)),m:cur?cur.map(e=>Math.round(e.hp/e.mx*100)):null,nb:stepN-(hits%stepN),ns:cur?false:(charged||(bn+1)%3===0),nr:cur?null:nextRole(),a:act(),bd:bd()});
+  const pick=()=>{for(let g=0;g<3;g++){const role=cyc[(tp+g)%3],L=[];P.forEach((x,i)=>{if(x.c.poste===role&&hp[i]>0&&i!==swapI)L.push(i)});if(L.length){tp=(tp+g+1)%3;return L[rp[role]++%L.length]}}
+    for(let i=0;i<P.length;i++)if(hp[i]>0&&i!==swapI)return i;return -1};
+  const alive=()=>hp.some(x=>x>0);
+  const healAll=k=>{let any=false;hp.forEach((h,i)=>{if(h>0&&h<mx[i]){hp[i]=Math.min(mx[i],h+Math.round(mx[i]*k));any=true}});return any};
+  /* --- vagues de mobs : ils n'achèvent jamais (seul le lieutenant peut mettre une carte KO) --- */
+  W.forEach((L,wi)=>{if(!alive())return;ph=wi;cur=L;stepN=3;log.push({k:'wave',n:wi+1,of:W.length,...snap()});let en=0,safe=0;const saveCyc=cyc;cyc=ST_ROLES;
+    while(alive()&&cur.some(e=>e.hp>0)&&safe++<30){rounds++;
+      for(let i=0;i<P.length;i++){if(hp[i]<=0)continue;const ti=cur.findIndex(e=>e.hp>0);if(ti<0)break;const kind=(cnt[i]++%3===2)?'spec':'hit',h=hitDmg(P[i],cur[ti],kind,fx);cur[ti].hp=Math.max(0,cur[ti].hp-h.dmg);hits++;
+        log.push({k:'p',i,t:ti,kind,dmg:h.dmg,crit:h.crit,dodge:h.dodge,...snap()});if(!cur.some(e=>e.hp>0))break;
+        if(hits%3===0){const A=cur.map((e,x)=>x).filter(x=>cur[x].hp>0),ei=A[en++%A.length],j=pick();if(j<0)break;strikes++;if(cancel.has(strikes)){log.push({k:'guard',...snap()});continue}
+          const h2=hitDmg(cur[ei],P[j],'hit',FXB);hp[j]=Math.max(cur[ei].lt?0:1,hp[j]-h2.dmg);log.push({k:'mb',e:ei,j,dmg:h2.dmg,dodge:h2.dodge,...snap()});if(!alive())break}}
+      if(!alive())break;
+      /* le Soutien agit à chaque tour, même celui où la vague tombe */
+      if(fx.cover>0&&cur.some(e=>e.hp>0)){const e=cur.find(x=>x.hp>0),v=Math.max(1,Math.round(e.mx*fx.cover));e.hp=Math.max(0,e.hp-v);log.push({k:'cover',v,...snap()})}
+      if(fx.heal>0&&healAll(fx.heal))log.push({k:'heal',...snap()})}
+    cyc=saveCyc;if(alive()&&wi<W.length-1&&healAll(.1))log.push({k:'rest',...snap()})});
+  /* --- le boss --- */
+  ph=W.length;cur=null;stepN=a.n;hits=0;const ev=(n,x)=>log.push({k:'ev',ev:n,...(x||{}),...snap()});
+  if(alive()){log.push({k:'bossin',...snap()});if(a.tr==='armor'){armor=true;ev('armor')}if(a.tr==='drain')ev('drain');
+  let rb=0;outer:for(;rb<40;){rb++;rounds++;
+    if(a.tr==='mist'&&rb===2){mist=3;ev('mist')}
+    if(a.tr==='sand'&&rb===3){sand=true;ev('sand')}
+    for(let i=0;i<P.length;i++){if(hp[i]<=0||i===swapI)continue;
+      if(pup[i]>0){const L=[];hp.forEach((v,x)=>{if(v>0&&x!==i&&x!==swapI)L.push(x)});if(L.length){const j=L[Math.floor(Math.random()*L.length)],h=hitDmg(P[i],P[j],'hit',FXB),d=Math.round(h.dmg*.35);hp[j]=Math.max(0,hp[j]-d);log.push({k:'pup',i,j,dmg:d,dodge:h.dodge,...snap()});if(!alive())break outer}continue}
+      const kind=(cnt[i]++%3===2)?'spec':'hit';let h;
+      if(mist>0&&kind!=='spec'&&Math.random()<.3)h={dmg:0,crit:false,dodge:true};else h=hitDmg(P[i],B,kind,fx);
+      if(armor&&kind!=='spec'&&!h.dodge)h.dmg=Math.round(h.dmg*.6);
+      if(a.tr==='shed'&&P[i].c.tags.includes('Sannin'))h.dmg=Math.round(h.dmg*1.15);
+      hb=Math.max(0,hb-h.dmg);hits++;log.push({k:'p',i,kind,dmg:h.dmg,crit:h.crit,dodge:h.dodge,...snap()});
+      if(armor&&kind==='spec'&&h.dmg>0){armor=false;ev('armorBreak')}
       if(hb<=0)break outer;
-      if(!rage&&a.rage&&hb<=mxB*.5){rage=true;B.s[1]*=a.rage;log.push({k:'rage',...pct()})}
-      if(hits%a.n===0){const j=pick();if(j<0)break outer;const bk=(++bn%3===0)?'spec':'hit',h2=hitDmg(B,P[j],bk,FXB);hp[j]=Math.max(0,hp[j]-h2.dmg);
-        log.push({k:'b',j,kind:bk,dmg:h2.dmg,crit:h2.crit,dodge:h2.dodge,...pct()});if(!hp.some(x=>x>0))break outer}
+      const fr=hb/mxB;
+      if(a.tr==='form2'&&!done.form2&&fr<=.5){done.form2=1;B.s[1]*=1.25;B.s[2]*=1.25;if(a.cyc2){cyc=a.cyc2;tp=0}ev('form2')}
+      if(a.tr==='shed'&&!done.shed&&fr<=.5){done.shed=1;hb=Math.min(mxB,hb+mxB*.15);ev('shed')}
+      if(a.tr==='swap'&&!done.swap&&fr<=.5){let bi=-1,bs=-1;P.forEach((x,k)=>{if(hp[k]>0&&x.s[1]>bs){bs=x.s[1];bi=k}});if(bi>=0&&hp.filter(v=>v>0).length>1){done.swap=1;swapI=bi;swapT=2;B.s[1]*=1.2;ev('swap',{i:bi})}}
+      if(a.tr==='puppet'){[.7,.4].forEach(th=>{if(!done['p'+th]&&fr<=th){const L=[];hp.forEach((v,x)=>{if(v>0)L.push(x)});if(L.length>1){done['p'+th]=1;const q=L[Math.floor(Math.random()*L.length)];pup[q]=2;ev('puppet',{i:q})}}});
+        if(!done.br&&fr<.15){done.br=1;charged=true;ev('breath')}}
+      if(hits%stepN===0){const j=pick();if(j<0)continue;strikes++;if(cancel.has(strikes)){log.push({k:'guard',...snap()});charged=false;continue}
+        const sp=(++bn%3===0)||charged,bk=sp?'spec':'hit',h2=hitDmg(B,P[j],bk,FXB);if(charged){h2.dmg*=2;charged=false}hp[j]=Math.max(0,hp[j]-h2.dmg);
+        const heal=a.tr==='drain'&&h2.dmg>0?Math.round(h2.dmg*.3):0;if(heal)hb=Math.min(mxB,hb+heal);
+        let zs=null;if(a.tr==='wave'&&bk==='spec'){zs=[];hp.forEach((v,m)=>{if(m!==j&&v>0&&m!==swapI){const z2=hitDmg(B,P[m],'hit',FXB),dz=Math.round(z2.dmg*.35);hp[m]=Math.max(0,v-dz);zs.push([m,dz])}})}
+        log.push({k:'b',j,kind:bk,dmg:h2.dmg,crit:h2.crit,dodge:h2.dodge,heal,zs,...snap()});if(!alive())break outer}
     }
-    if(fx.cover>0&&hb>0){const v=Math.max(1,Math.round(mxB*fx.cover));hb=Math.max(1,hb-v);log.push({k:'cover',v,...pct()})}
-    if(fx.heal>0){let any=false;hp.forEach((h,i)=>{if(h>0&&h<mx[i]){hp[i]=Math.min(mx[i],h+Math.round(mx[i]*fx.heal));any=true}});if(any)log.push({k:'heal',...pct()})}
-  }
+    if(fx.cover>0&&hb>0){const v=Math.max(1,Math.round(mxB*fx.cover));hb=Math.max(1,hb-v);log.push({k:'cover',v,...snap()})}
+    if(fx.heal>0&&healAll(fx.heal*(sand?.6:1)))log.push({k:'heal',...snap()});
+    if(mist>0&&--mist===0)ev('mistEnd');
+    if(swapI>=0&&--swapT<=0){swapI=-1;B.s[1]/=1.2;ev('swapEnd')}
+    pup.forEach((v,x)=>{if(v>0)pup[x]=v-1});
+  }}
   const win=hb<=0,ko=hp.filter(x=>x<=0).length,tpc=hp.reduce((u,v)=>u+v,0)/mx.reduce((u,v)=>u+v,0);
-  return {win,ko,tp:tpc,rounds,log,obj:[win,win&&tpc>=.5,win&&ko===0],ids:P.map(x=>x.c.id),mx,mxB,bid:a.b,sup:t.cards.filter(c=>c&&c.poste==='Soutien').map(c=>{const w=fx.who.find(x=>x.id===c.id);return {id:c.id,k:w?w.k:null}})}
+  return {win,ko,tp:tpc,rounds,log,ally,strikes,obj:[win,win&&tpc>=.5,win&&ko===0],ids:P.map(x=>x.c.id),mx,mxB,bid:a.b,waves:W.map(L=>L.map(({id,g,lt})=>({id,g,lt}))),sup:t.cards.filter(c=>c&&c.poste==='Soutien').map(c=>{const w2=fx.who.find(x=>x.id===c.id);return {id:c.id,k:w2?w2.k:null}})}
 }
-function stFight(wi,ai){
-  const w=STORY[wi],a=w&&w.acts[ai];if(!w||!a||!stActOpen(wi,ai))return;
-  if(S.team.filter(Boolean).length<7){toast('Ton équipe doit avoir 7 cartes.');return}
-  const q=stState(),r=stSim(a,S.team,S.form),first=!stDone(w.k,ai),ok=(q.o[w.k+ai]||[0,0,0]).slice();let gain=0,newO=0;
-  if(r.win){if(first){gain+=a.rw;(q.d[w.k]=q.d[w.k]||[0,0,0])[ai]=1;addXp(25)}else gain+=10;
-    r.obj.forEach((v,i)=>{if(v&&!ok[i]){ok[i]=1;gain+=100;newO++}});q.o[w.k+ai]=ok;S.coins+=gain}
-  clearTimeout(ST_T);ST_RUN={wi,ai,r,step:0,fin:false,gain,first,newO};q.sel=w.k;SFX.tap();save();render();$('#main').scrollTop=0}
-function stDelay(e){const k=stState().spd===2?.5:1;return Math.round((!e||e.k==='p'?300:640)*k)}
+function stMode(w,mode){return {cau:mode==='cau'||mode==='tr',nosup:mode==='def'&&ST_DEF[w.k].nosup}}
+function stTeamMsg(w,mode){if(S.team.filter(Boolean).length<7)return 'Ton équipe doit avoir 7 cartes.';if(mode==='def'&&!ST_DEF[w.k].ok(S.team))return ST_DEF[w.k].msg;return ''}
+function stFight(wi,ai,mode){mode=mode||'n';
+  const w=STORY[wi],a=w&&w.acts[ai];if(!w||!a)return;if(mode==='n'&&!stActOpen(wi,ai))return;
+  const msg=stTeamMsg(w,mode);if(msg){toast(msg);return}
+  const q=stState(),o=stMode(w,mode),r=stSim(a,S.team,S.form,o);
+  clearTimeout(ST_T);ST_VS=null;ST_RUN={wi,ai,mode,o,r,step:0,fin:false,rw:[],called:false,paid:false};q.sel=w.k;SFX.tap();save();render();$('#main').scrollTop=0}
+/* récompenses : données une seule fois, à la fin du combat (après un éventuel Appel du Gardien) */
+function stStars(o){return (o||[]).filter(Boolean).length}
+function stPay(R){if(R.paid)return;R.paid=true;const r=R.r,w=STORY[R.wi],a=w.acts[R.ai],q=stState(),L=R.rw,give=x=>{grant(x);if(x.coins)L.push('+ '+fmt(x.coins)+' pièces');if(x.pack)L.push(P(x.pack).n);if(x.stone)L.push(x.stone+' pierre d\'éveil')},cos=id=>{const t=cosGive(id);if(t)L.push(t)};
+  if(!r.win){save();return}
+  if(R.mode==='n'){const first=!stDone(w.k,R.ai);if(first){(q.d[w.k]=q.d[w.k]||[0,0,0])[R.ai]=1;addXp(25);give({coins:a.rw});if(a.end){give({pack:a.end});R.outro=w.k+'End'}}
+    const key=w.k+R.ai,was=(q.o[key]||[0,0,0]).slice(),now=was.map((v,i)=>v||(r.obj[i]?1:0)),d=ST_STAR[stStars(now)]-ST_STAR[stars0(q,key,was)];q.o[key]=now;q.ps=q.ps||{};q.ps[key]=stStars(now);
+    if(d>0)give({coins:d});else if(!first)give({coins:10});
+    if(w.acts.every((_,i)=>stStars(q.o[w.k+i])===3)&&!(q.w9&&q.w9[w.k])){(q.w9=q.w9||{})[w.k]=1;give({stone:1});cos('t-'+w.k)}}
+  else if(R.mode==='cau'){q.oc=q.oc||{};const key=w.k+R.ai,was=q.oc[key]||[0,0,0];q.oc[key]=was.map((v,i)=>v||(r.obj[i]?1:0));give({coins:10});
+    if(w.acts.every((_,i)=>stStars(q.oc[w.k+i])>0))cos('c-'+w.k);if(w.acts.every((_,i)=>stStars(q.oc[w.k+i])===3))cos('p-'+w.k);
+    if(STORY.every(x=>x.acts.every((_,i)=>stStars(q.oc[x.k+i])>0)))cos('c-or')}
+  else if(R.mode==='def'){q.df=q.df||{};if(!q.df[w.k]){q.df[w.k]=1;cos('f-'+w.k)}else give({coins:10})}
+  else if(R.mode==='tr'){const k=dk();if((q.tr||{}).d!==k){q.tr={d:k};give({coins:100})}else give({coins:10})}
+  save()}
+/* étoiles déjà payées avec l'ancien barème (v157-v160 : 100 pièces par objectif) : on ne paie que la différence avec le nouveau */
+function stars0(q,key,was){return q.ps&&q.ps[key]!=null?q.ps[key]:stStars(was)}
+/* traque du jour : un acte d'un monde terminé, en Cauchemar */
+function stTrack(){const L=[];STORY.forEach((w,wi)=>{if(stCount(w)===w.acts.length)w.acts.forEach((a,ai)=>L.push([wi,ai]))});if(!L.length)return null;let h=0;for(const ch of dk())h=(h*31+ch.charCodeAt(0))>>>0;return L[h%L.length]}
+const ST_SND={armor:()=>{tone(320,0,.25,'square',.05,520);noise(0,.2,.1,2500,5000)},armorBreak:()=>{noise(0,.45,.3,900,5000);tone(180,0,.3,'sawtooth',.07,70)},form2:()=>{tone(60,0,1.1,'sawtooth',.09,190);noise(0,.9,.14,200,1400)},swap:()=>{tone(220,0,.6,'sine',.08,880);tone(880,.3,.5,'sine',.06,220)},swapEnd:()=>tone(660,0,.3,'sine',.06,330),
+ mist:()=>noise(0,1.8,.12,240,700),mistEnd:()=>noise(0,.8,.06,700,1800),shed:()=>{noise(0,.5,.16,1400,400);tone(140,0,.5,'triangle',.08,300)},drain:()=>tone(90,0,.6,'sawtooth',.06,50),sand:()=>noise(0,1.6,.14,2200,3800),puppet:()=>{tone(1100,0,.12,'triangle',.05,1500);tone(740,.1,.18,'triangle',.05,520);tone(990,.24,.2,'triangle',.05,360)},breath:()=>{tone(70,0,1,'sawtooth',.11,48);tone(70,.25,.8,'square',.05,44)}};
+function stDelay(e){const k=stState().spd===2?.5:1;if(e&&e.k==='ev')return Math.round(1500*k);if(e&&(e.k==='wave'||e.k==='bossin'))return Math.round(1100*k);const mob=e&&ST_RUN&&e.ph<ST_RUN.r.waves.length;return Math.round((!e||e.k==='p'?300:640)*k*(mob?.5:1))}
 function stAnim(el,c,ms){if(!el)return;el.classList.remove(c);void el.offsetWidth;el.classList.add(c);setTimeout(()=>el.classList.remove(c),ms)}
 function stFloat(el,tx,cls){if(!el)return;const f=document.createElement('i');f.className='st-fl'+(cls?' '+cls:'');f.textContent=tx;el.appendChild(f);setTimeout(()=>f.remove(),700)}
 function stSupOn(R,pred,ms){R.r.sup.forEach((s,i)=>{if(pred(s))stAnim(document.getElementById('stsp'+i),'on',ms||900)})}
-function stPaint(){const R=ST_RUN;if(!R)return;const L=R.r.log,e=R.step>0?L[R.step-1]:null,b=e?e.b:100,pp=e?e.p:R.r.ids.map(()=>100);
+function stBan(t,d,cls){const b=document.getElementById('stban');if(!b)return;b.className='st-ban '+(cls||'');b.innerHTML=`<b>${t}</b>${d?`<span>${d}</span>`:''}`;void b.offsetWidth;b.classList.add('on');clearTimeout(b._t);b._t=setTimeout(()=>b.classList.remove('on'),1350)}
+function stPaint(){const R=ST_RUN;if(!R)return;const L=R.r.log,e=R.step>0?L[R.step-1]:null,n=R.r.waves.length,ph=e?e.ph:(n?0:n),sec=document.getElementById('stfight');
+  const live=!R.fin;
+  if(sec&&sec.dataset.ph!==String(ph)){sec.dataset.ph=ph;sec.dataset.st=ph<n?'mob':'boss';const mb=document.getElementById('stmobs');if(mb)mb.innerHTML=ph<n?stMobsHTML(R.r.waves[ph],R.wi):''}
+  const b=e?e.b:100,pp=e?e.p:R.r.ids.map(()=>100);
   const bf=document.getElementById('stbf');if(bf)bf.style.width=b+'%';const bt=document.getElementById('stbt');if(bt)bt.textContent=Math.round(R.r.mxB*b/100)+' / '+Math.round(R.r.mxB);
   pp.forEach((v,i)=>{const f=document.getElementById('stpf'+i),c=document.getElementById('stpc'+i);if(f)f.style.width=v+'%';if(c)c.classList.toggle('ko',v<=0)});
+  if(e&&e.m)e.m.forEach((v,i)=>{const f=document.getElementById('stmf'+i),c=document.getElementById('stm'+i);if(f)f.style.width=v+'%';if(c)c.classList.toggle('ko',v<=0)});
   document.querySelectorAll('.st-pc.act').forEach(x=>x.classList.remove('act'));
-  const lg=document.getElementById('stlog'),bo=document.getElementById('stbc');
-  if(lg){if(!e)lg.textContent='Le combat commence.';else{const nm=id=>CARD[id].nom;let tx='';
+  /* effets qui durent : décrits par le journal, donc justes même après « Passer » */
+  const A=e?e.a:[];if(sec)sec.dataset.fx=A.filter(x=>!/\d/.test(x)).join(' ');
+  document.querySelectorAll('.st-pc.swp,.st-pc.pup').forEach(x=>x.classList.remove('swp','pup'));
+  A.forEach(x=>{const m=x.match(/^(swap|pup)(\d+)$/);if(m){const c=document.getElementById('stpc'+m[2]);if(c)c.classList.add(m[1]==='swap'?'swp':'pup')}});
+  const bd=document.getElementById('stbd');if(bd)bd.innerHTML=(e?e.bd:[]).map(x=>`<em>${x}</em>`).join('');
+  const nx=document.getElementById('stnx');if(nx)nx.textContent=!e||R.fin||ph<n||!e.nr?'':'Frappe dans '+e.nb+' coup'+(e.nb>1?'s':'')+' · vise '+POS[e.nr]+(e.ns?' · spéciale':'');
+  const cl=document.getElementById('stcall');if(cl)cl.disabled=R.called||R.fin;
+  const lg=document.getElementById('stlog'),bo=document.getElementById('stbc'),nm=id=>CARD[id].nom,mobN=i=>{const m=R.r.waves[ph]&&R.r.waves[ph][i];return m?(m.id?CARD[m.id].nom:m.g):''},tg=x=>x.ph<n?document.getElementById('stm'+x.t):bo;
+  if(lg){if(!e)lg.textContent=n?'Les échos approchent.':'Le combat commence.';else{let tx='';
     if(e.k==='p')tx=nm(R.r.ids[e.i])+(e.dodge?' : esquivé.':' frappe'+(e.kind==='spec'?' (attaque spéciale)':'')+' : −'+e.dmg+(e.crit?' · critique':''));
-    else if(e.k==='b')tx=nm(R.r.bid)+(e.dodge?' rate '+nm(R.r.ids[e.j])+'.':' touche '+nm(R.r.ids[e.j])+' : −'+e.dmg+(e.kind==='spec'?' (spécial)':''));
-    else if(e.k==='rage')tx=nm(R.r.bid)+' passe en rage.';else if(e.k==='cover')tx='Un Soutien couvre l\'équipe : −'+e.v+' au boss.';else tx='Les Soutiens soignent l\'équipe.';lg.textContent=tx}}
-  if(!e){stSupOn(R,()=>true,1100);return}
-  if(e.k==='p'){const a=document.getElementById('stpc'+e.i);if(a){a.classList.add('act');stAnim(a,'atk',300)}
-    stAnim(bo,'hit',300);stFloat(bo,e.dodge?'esquive':'−'+e.dmg,e.crit?'cr':'')}
-  else if(e.k==='b'){const t=document.getElementById('stpc'+e.j);stAnim(bo,'atk',300);if(t){stAnim(t,'hit',300);stFloat(t,e.dodge?'esquive':'−'+e.dmg)}}
-  else if(e.k==='rage'){if(bo)bo.classList.add('rage')}
-  else if(e.k==='cover'){stSupOn(R,s=>s.k==='cover');stAnim(bo,'hit',300);stFloat(bo,'−'+e.v,'cv')}
+    else if(e.k==='b')tx=nm(R.r.bid)+(e.dodge?' rate '+nm(R.r.ids[e.j])+'.':' touche '+nm(R.r.ids[e.j])+' : −'+e.dmg+(e.kind==='spec'?' (spécial)':'')+(e.heal?' · se soigne de '+e.heal:'')+(e.zs&&e.zs.length?' · la vague touche toute l\'équipe':''));
+    else if(e.k==='mb')tx=mobN(e.e)+(e.dodge?' rate '+nm(R.r.ids[e.j])+'.':' touche '+nm(R.r.ids[e.j])+' : −'+e.dmg);
+    else if(e.k==='pup')tx=nm(R.r.ids[e.i])+', sous contrôle, frappe '+nm(R.r.ids[e.j])+' : −'+e.dmg;
+    else if(e.k==='guard')tx='Appel du Gardien : la frappe est annulée.';
+    else if(e.k==='wave')tx='Vague '+e.n+' sur '+e.of;else if(e.k==='bossin')tx=nm(R.r.bid)+' entre en scène.';else if(e.k==='rest')tx='Tes cartes reprennent leur souffle : +10 % de PV.';
+    else if(e.k==='ev')tx=ST_EV[e.ev][0]+' : '+ST_EV[e.ev][1];else if(e.k==='cover')tx='Un Soutien couvre l\'équipe : −'+e.v+'.';else tx='Les Soutiens soignent l\'équipe.';lg.textContent=tx}}
+  if(!live)return;if(!e){stSupOn(R,()=>true,1100);return}
+  if(e.k==='p'){const a=document.getElementById('stpc'+e.i);if(a){a.classList.add('act');stAnim(a,'atk',300)}const t=tg(e);stAnim(t,'hit',300);stFloat(t,e.dodge?'esquive':'−'+e.dmg,e.crit?'cr':'')}
+  else if(e.k==='b'||e.k==='mb'){const f=document.getElementById('stpc'+e.j),s=e.k==='b'?bo:document.getElementById('stm'+e.e);stAnim(s,'atk',300);if(f){stAnim(f,'hit',300);stFloat(f,e.dodge?'esquive':'−'+e.dmg)}
+    if(e.heal){stFloat(bo,'+'+e.heal,'dr');stAnim(sec,'fx-drain',600)}if(e.zs&&e.zs.length){stAnim(sec,'fx-wave',1000);if(!S.mute)noise(0,.8,.2,500,1500);e.zs.forEach(([m,d])=>{const c=document.getElementById('stpc'+m);stAnim(c,'hit',300);stFloat(c,'−'+d)})}}
+  else if(e.k==='pup'){const a=document.getElementById('stpc'+e.i),f=document.getElementById('stpc'+e.j);stAnim(a,'atk',300);if(f){stAnim(f,'hit',300);stFloat(f,'−'+e.dmg)}}
+  else if(e.k==='guard'){stBan('APPEL DU GARDIEN','La frappe est annulée.','gd');if(!S.mute)tone(880,0,.4,'sine',.1,1320)}
+  else if(e.k==='wave'){stBan('VAGUE '+e.n,'Les échos approchent.','wv');SFX.flip()}
+  else if(e.k==='bossin'){stBan(nm(R.r.bid).toUpperCase(),'','bs');if(!S.mute)tone(70,0,.9,'sawtooth',.09,50)}
+  else if(e.k==='rest'){R.r.ids.forEach((id,i)=>{if(pp[i]>0)stFloat(document.getElementById('stpc'+i),'+','hl')})}
+  else if(e.k==='ev'){const E=ST_EV[e.ev];stBan(E[0],E[1],'e-'+e.ev);stAnim(sec,'fx-'+e.ev,1400);if(ST_SND[e.ev])ST_SND[e.ev]();if(e.ev==='form2'||e.ev==='shed'||e.ev==='armorBreak')stAnim(bo,'hit',500)}
+  else if(e.k==='cover'){stSupOn(R,s=>s.k==='cover');const t=e.ph<n?null:bo;if(t){stAnim(t,'hit',300);stFloat(t,'−'+e.v,'cv')}}
   else if(e.k==='heal'){stSupOn(R,s=>s.k==='heal');R.r.ids.forEach((id,i)=>{if(pp[i]>0)stFloat(document.getElementById('stpc'+i),'+','hl')})}}
 function stStep(){const R=ST_RUN;if(!R||S.tab!=='tour'||S.psub!=='st'||R.fin)return;
   if(R.step>=R.r.log.length){stEnd();return}R.step++;stPaint();ST_T=setTimeout(stStep,stDelay(R.r.log[R.step-1]))}
-function stEnd(){const R=ST_RUN;if(!R)return;R.fin=true;R.step=R.r.log.length;clearTimeout(ST_T);stPaint();const o=document.getElementById('stres');if(o){o.hidden=false;o.scrollIntoView({block:'nearest',behavior:'smooth'})}
-  if(R.r.win)SFX.coin();if(!R.r.win&&stState().auto){ST_T=setTimeout(()=>{if(ST_RUN===R&&S.tab==='tour'&&S.psub==='st')stFight(R.wi,R.ai)},1500)}}
-function stResume(){const R=ST_RUN;if(!R)return;stPaint();const o=document.getElementById('stres');if(o)o.hidden=!R.fin;if(!R.fin){clearTimeout(ST_T);ST_T=setTimeout(stStep,stDelay(null))}}
+function stEnd(){const R=ST_RUN;if(!R)return;R.fin=true;R.step=R.r.log.length;clearTimeout(ST_T);stPay(R);stPaint();const o=document.getElementById('stres');if(o){o.innerHTML=stEndHTML(R);o.hidden=false}
+  if(R.r.win)SFX.reward();else if(!S.mute)tone(110,0,.9,'sawtooth',.07,55);if(!R.r.win&&stState().auto){ST_T=setTimeout(()=>{if(ST_RUN===R&&S.tab==='tour'&&S.psub==='st')stFight(R.wi,R.ai,R.mode)},1800)}}
+function stResume(){const R=ST_RUN;if(!R)return;stPaint();const o=document.getElementById('stres');if(o){o.hidden=!R.fin;if(R.fin)o.innerHTML=stEndHTML(R)}if(!R.fin){clearTimeout(ST_T);ST_T=setTimeout(stStep,stDelay(null))}}
+/* Appel du Gardien : une fois par combat, annule la prochaine frappe. Même graine : tout ce qui a déjà été joué reste identique */
+function stCall(){const R=ST_RUN;if(!R||R.called||R.fin)return;const L=R.r.log;let n=0;for(let i=0;i<R.step;i++){const k=L[i].k;if(k==='b'||k==='mb'||k==='guard')n++}
+  const w=STORY[R.wi],a=w.acts[R.ai];R.called=true;R.r=stSim(a,S.team,S.form,{...R.o,seed:R.r.seed,cancel:[n+1]});SFX.tap();const c=document.getElementById('stcall');if(c)c.disabled=true;toast('Appel du Gardien : la prochaine frappe sera annulée.')}
 /* v158 · le combat garde la formation : boss en haut, Tank → DPS → Distance, les Soutiens minuscules tout en bas */
 function stFormHTML(ids){let k=-1;return ST_ROLES.map(role=>{const L=ids.map((id,i)=>[id,i]).filter(x=>CARD[x[0]].poste===role);
   return L.length?`<div class="st-row">${L.map(([id,i])=>`<div class="st-pc" id="stpc${i}"><div class="st-fc">${cardHTML(CARD[id],{mini:true})}</div><div class="st-hp"><i id="stpf${i}"></i></div><span class="st-n">${CARD[id].nom}</span></div>`).join('')}</div>`:''}).join('')}
 function stSupHTML(sup){if(!sup.length)return '';const K={heal:'soigne',cover:'couvre',buff:'renforce',brk:'brise la garde',crit:'critique',spec:'spécial'};
   return `<div class="st-sups" aria-label="Soutiens">${sup.map((s,i)=>{const c=CARD[s.id],a=artOf(c);return `<span class="st-sp" id="stsp${i}" title="${c.nom}${s.k?' · '+K[s.k]:''}">${a?`<i style="background-image:url(${a})"></i>`:`<i>${c.nom[0]}</i>`}</span>`}).join('')}</div>`}
-function stFightHTML(){const R=ST_RUN,w=STORY[R.wi],a=w.acts[R.ai],c=CARD[a.b],r=R.r,q=stState();
-  const objs=r.obj.map((v,i)=>`<li class="${v?'on':''}"><span>${v?'✓':'·'}</span>${ST_OBJ[i]}</li>`).join('');
-  return `<section class="st-fight" style="--decor:url(${a.bg})">
-  <div class="st-bar"><button class="btn" data-act="stBack">← Quitter</button><span class="eyebrow">${w.n} · acte ${R.ai+1}</span>
-   <button class="btn st-tg${q.spd===2?' on':''}" data-act="stSpd">×2</button><button class="btn st-tg${q.auto?' on':''}" data-act="stAuto">Replay auto</button><button class="btn" data-act="stSkip">Passer</button></div>
-  <div class="st-arena"><div class="st-boss" id="stbc"><div class="st-bcard">${cardHTML(c,{note:c.note})}</div>
-    <div class="st-bhp"><div class="st-hp big"><i id="stbf"></i></div><span id="stbt" class="eyebrow"></span></div></div>
+const ST_SIL='<svg viewBox="0 0 60 84" aria-hidden="true"><path d="M30 10c6 0 10 5 10 11s-4 11-10 11-10-5-10-11 4-11 10-11zm-17 74c0-20 3-38 17-44 14 6 17 24 17 44z"/></svg>';
+function stMobsHTML(L,wi){const w=STORY[wi];return L.map((m,i)=>`<div class="st-mb${m.lt?' lt':''}" id="stm${i}"><div class="st-mc">${m.id?cardHTML(CARD[m.id],{mini:true}):`<div class="st-sil">${ST_SIL}<b>${w.kj}</b></div>`}</div><div class="st-hp"><i id="stmf${i}"></i></div><span class="st-n">${m.id?CARD[m.id].nom:m.g}${m.lt?' · lieutenant':''}</span></div>`).join('')}
+function stEndHTML(R){const r=R.r,w=STORY[R.wi],a=w.acts[R.ai],c=CARD[a.b],art=artOf(c);
+  return `<div class="st-eb" style="--decor:url(${a.bg})"><div class="st-ein"><div class="st-ecard${r.win?' fall':''}">${cardHTML(c,{note:c.note})}</div>
+   <b class="st-ew ${r.win?'win':'lose'}">${r.win?'Victoire':'Défaite'}</b><p class="st-eq">${r.win?a.lose:a.win}</p>
+   ${R.mode==='def'?'':`<ul class="st-objl">${r.obj.map((v,i)=>`<li class="${v?'on':''}"><span>${v?'★':'☆'}</span>${ST_OBJ[i]}</li>`).join('')}</ul>`}
+   ${R.rw.length?`<ul class="st-rwl">${R.rw.map(x=>`<li>${x}</li>`).join('')}</ul>`:(r.win?'':'<p class="small muted">Lis ses habitudes, change ta formation ou ton équipe.</p>')}
+   <div class="st-resb"><button class="btn primary" data-act="stBack">Continuer</button><button class="btn" data-act="stRetry">Rejouer</button></div></div></div>`}
+function stFightHTML(){const R=ST_RUN,w=STORY[R.wi],a=w.acts[R.ai],c=CARD[a.b],r=R.r,q=stState(),lb={cau:'Cauchemar · ',tr:'Traque du jour · ',def:'Défi de l\'Archiviste · '}[R.mode]||'';
+  return `<section class="st-fight" id="stfight" style="--decor:url(${a.bg})" data-ph="" data-st="" data-fx="">
+  <div class="st-fx" aria-hidden="true"></div><div id="stban" class="st-ban" role="status"></div>
+  <div class="st-bar"><button class="btn" data-act="stBack">← Quitter</button><span class="eyebrow">${lb}${w.n} · acte ${R.ai+1}</span>
+   <button class="btn st-tg${q.spd===2?' on':''}" data-act="stSpd">×2</button><button class="btn st-tg${q.auto?' on':''}" data-act="stAuto">Replay auto</button><button class="btn st-gd" id="stcall" data-act="stCall"${R.called?' disabled':''}>Appel du Gardien</button><button class="btn" data-act="stSkip">Passer</button></div>
+  <div class="st-arena"><div class="st-foe"><div class="st-boss" id="stbc"><div class="st-bcard">${cardHTML(c,{note:c.note})}</div>
+    <div class="st-bhp"><div class="st-hp big"><i id="stbf"></i></div><span id="stbt" class="eyebrow"></span><div id="stbd" class="st-bd"></div><span id="stnx" class="st-nx"></span></div></div><div class="st-mobs" id="stmobs"></div></div>
    <div class="st-form">${stFormHTML(r.ids)}${stSupHTML(r.sup)}</div></div>
   <p id="stlog" class="st-log"></p>
-  <div id="stres" class="st-res" hidden><b class="${r.win?'win':'lose'}">${r.win?'Victoire':'Défaite'}</b>
-   <ul class="st-objl">${objs}</ul>
-   <p class="small muted">${r.win?(R.gain>0?'+ '+R.gain+' pièces'+(R.first?' · acte terminé':''):''):'Le boss résiste. Change ton équipe ou réessaie.'}</p>
-   <div class="st-resb"><button class="btn primary" data-act="stBack">Continuer</button><button class="btn" data-act="stRetry">Rejouer</button></div></div>
+  <div id="stres" class="st-res" hidden></div>
  </section>`}
+/* le face-à-face : plein écran, avant chaque combat */
+let ST_VS=null,ST_CINE=null,ST_DIFF='n';
+function stCycTxt(a){return a.cyc.map(r=>POS[r]).join(' → ')}
+function stVsHTML(){const {wi,ai,mode}=ST_VS,w=STORY[wi],a=w.acts[ai],c=CARD[a.b],art=artOf(c),tr=ST_TR[a.tr],t=evalTeam(FORMS[S.form].rows,S.team),al=stAlly(t,w.k),dx=mode==='def'?ST_DEF[w.k]:null,bad=stTeamMsg(w,mode),san=a.tr==='shed'&&t.cards.some(x=>x&&x.tags.includes('Sannin'));
+  return `<section class="st-vs" style="--decor:url(${a.bg})">
+   <div class="st-vsin"><div class="st-vsh"><span class="eyebrow">${mode==='def'?'Défi de l\'Archiviste':mode==='tr'?'Traque du jour':mode==='cau'?'Cauchemar':'Acte '+(ai+1)} · ${w.n}</span></div>
+    <div class="st-vsc">${art?`<img src="${art}" alt="${c.nom}" draggable="false">`:cardHTML(c,{note:c.note})}</div>
+    <h2 class="st-vsn">${c.nom}</h2><p class="st-vsq">${a.pre}</p>
+    <div class="st-vsi"><div><span class="eyebrow">${tr.n}</span><p>${tr.d}</p></div><div><span class="eyebrow">Ses frappes</span><p><b>${stCycTxt(a)}</b> <span>${a.why}</span></p></div>
+    ${dx?`<div class="ar"><span class="eyebrow">${dx.t}</span><p>${dx.d}</p></div>`:''}
+    ${al?`<div class="al"><span class="eyebrow">Allié du récit</span><p>${al/2} carte${al>2?'s':''} de ce monde : +${al} % de stats</p></div>`:''}${san?'<div class="al"><span class="eyebrow">Les Sannin le connaissent</span><p>Tes Sannin lui font +15 % de dégâts.</p></div>':''}</div>
+    ${bad?`<p class="small st-warn">${bad}</p>`:''}
+    <div class="st-vsb"><button class="btn primary" data-act="stStart"${bad?' disabled':''}>Combattre</button><button class="btn" data-act="tab" data-v="team">Mon équipe</button><button class="btn" data-act="stVsOut">Retour</button></div></div></section>`}
+function stCineHTML(){const L=ST_LORE[ST_CINE];return `<section class="st-cine"><div class="st-cinein"><span class="eyebrow">L'histoire</span><h2>${L.t}</h2>${L.l.map((x,i)=>`<p style="animation-delay:${i*.45}s">${x}</p>`).join('')}<button class="btn primary" data-act="stCineOk" style="animation-delay:${L.l.length*.45}s">Continuer</button></div></section>`}
 function stNext(w){const i=w.acts.findIndex((a,k)=>!stDone(w.k,k));return i<0?w.acts.length-1:i}
-function stActHTML(wi,ai){const w=STORY[wi],a=w.acts[ai],c=CARD[a.b],done=stDone(w.k,ai),open=stActOpen(wi,ai),ok=stObjOf(w,ai),B=stBoss(a),nx=open&&!done;
-  const hp=Math.round(B.s[0]*ENG.HPX),at=Math.round(B.s[1]);
+function stActHTML(wi,ai){const w=STORY[wi],a=w.acts[ai],c=CARD[a.b],cau=ST_DIFF==='cau'&&stCount(w)===w.acts.length,done=cau?stStars((stState().oc||{})[w.k+ai])>0:stDone(w.k,ai),open=cau||stActOpen(wi,ai),ok=cau?((stState().oc||{})[w.k+ai]||[0,0,0]):stObjOf(w,ai),B=stBoss(a,{cau}),nx=open&&!done;
+  const hp=Math.round(B.s[0]*ENG.HPX),at=Math.round(B.s[1]),tr=ST_TR[a.tr],rwt=cau?'Sans récompense de pièces : l\'exploit compte':'1re victoire : '+fmt(a.rw)+' pièces'+(a.end?' + '+P(a.end).n:'');
   return `<article class="st-act${done?' done':''}${open?'':' lk'}${nx?' nx':''}" style="--decor:url(${a.bg})">
    <div class="st-ah"><span class="eyebrow">Acte ${ai+1}</span><span class="st-stt">${done?'Terminé':open?'À faire':'Verrouillé'}</span></div>
    <h3>${a.t}</h3>
    <div class="st-bossrow"><div class="st-bc">${cardHTML(c,{note:c.note})}</div>
-    <div class="st-bi"><b>${c.nom}</b><span>♥ ${hp} · ⚔ ${at}</span><span>Frappe tous les ${a.n} coups</span>${a.rage?'<span>Rage à 50 % de PV</span>':''}</div></div>
-   <ul class="st-obj">${ST_OBJ.map((o,i)=>`<li class="${ok[i]?'on':''}"><span>${ok[i]?'✓':'·'}</span>${o}</li>`).join('')}</ul>
-   ${open?`<button class="btn primary wide" data-act="stGo" data-v="${wi},${ai}">${done?'Rejouer':'Combattre'}</button>`:`<button class="btn wide" data-act="stGo" data-v="${wi},${ai}" aria-disabled="true">${LOCK} Verrouillé</button>`}
-   <small class="muted">Récompense : ${a.rw} pièces · provisoire</small></article>`}
+    <div class="st-bi"><b>${c.nom}</b><span>♥ ${hp} · ⚔ ${at}</span><span class="tr">${tr.n}</span><span>Vise : ${stCycTxt(a)}</span></div></div>
+   <ul class="st-obj">${ST_OBJ.map((o,i)=>`<li class="${ok[i]?'on':''}"><span>${ok[i]?'★':'☆'}</span>${o}</li>`).join('')}</ul>
+   ${open?`<button class="btn primary wide" data-act="stGo" data-v="${wi},${ai},${cau?'cau':'n'}">${done?'Rejouer':'Combattre'}</button>`:`<button class="btn wide" data-act="stGo" data-v="${wi},${ai},n" aria-disabled="true">${LOCK} Verrouillé</button>`}
+   <small class="muted">${rwt}</small></article>`}
+function stExtraHTML(w,wi){if(stCount(w)<w.acts.length)return '';const q=stState(),dx=ST_DEF[w.k],dn=(q.df||{})[w.k];
+  return `<div class="st-mode"><div class="seg"><button data-act="stDiff" data-v="n" aria-pressed="${ST_DIFF!=='cau'}">Normal</button><button data-act="stDiff" data-v="cau" aria-pressed="${ST_DIFF==='cau'}">Cauchemar · boss +30 % de PV</button></div></div>
+   <article class="st-dfi${dn?' done':''}"><div><span class="eyebrow">Défi de l'Archiviste</span><h3>${dx.t}</h3><p class="small muted"><span>${dx.d}</span> <span>Récompense : ${ST_COS.find(x=>x.id==='f-'+w.k).n}</span></p></div><button class="btn" data-act="stGo" data-v="${wi},2,def">${dn?'Rejouer':'Relever'}</button></article>`}
+/* v161 · traductions du mode Histoire (FR / EN / ES) */
+[
+['Le seigneur Freezer veut les sept boules. Toi, tu n\'es qu\'une carte à déchirer.','Lord Frieza wants the seven balls. You are just a card to tear up.','El señor Freezer quiere las siete bolas. Tú solo eres una carta que romper.'],
+['Trop facile. Je rapporterai tes cartes à Freezer, en morceaux.','Too easy. I\'ll bring your cards to Frieza, in pieces.','Demasiado fácil. Le llevaré tus cartas a Freezer, en pedazos.'],
+['Impossible… le seigneur Freezer va me…','Impossible… Lord Frieza will…','Imposible… el señor Freezer me va a…'],
+['Quel dommage d\'abîmer un si joli visage. Le tien, pas le mien.','Such a shame to ruin a pretty face. Yours, not mine.','Qué pena estropear una cara tan bonita. La tuya, no la mía.'],
+['Tu as vu ma vraie forme. Personne ne s\'en vante après.','You saw my true form. Nobody brags about that afterwards.','Has visto mi verdadera forma. Nadie presume de ello después.'],
+['Même sous cette forme… ma beauté ne m\'a pas sauvé.','Even in this form… my beauty couldn\'t save me.','Ni en esta forma… mi belleza me ha salvado.'],
+['Commando Ginyu, au rapport ! Pose réglementaire… et ton corps m\'ira très bien.','Ginyu Force, reporting! Regulation pose… and your body will suit me just fine.','¡Fuerzas Especiales Ginyu, presentes! Pose reglamentaria… y tu cuerpo me sentará muy bien.'],
+['Victoire ! Et regarde-moi cette pose. Freezer sera ravi.','Victory! And look at that pose. Frieza will be delighted.','¡Victoria! Y mira qué pose. Freezer estará encantado.'],
+['Pas comme ça… ma pose n\'était même pas finie…','Not like this… I hadn\'t even finished my pose…','Así no… ni siquiera había terminado mi pose…'],
+['Huit points vitaux. Je choisirai lequel, dans la brume.','Eight vital points. I\'ll choose which one, in the mist.','Ocho puntos vitales. Elegiré cuál, en la niebla.'],
+['Tu ne m\'as même pas entendu arriver.','You never even heard me coming.','Ni siquiera me oíste llegar.'],
+['Haku… on dirait que c\'est fini pour nous deux.','Haku… looks like it\'s over for us both.','Haku… parece que se acabó para los dos.'],
+['Ces cartes… quels corps magnifiques. Je veux tous les essayer.','These cards… such magnificent bodies. I want to try them all.','Estas cartas… qué cuerpos tan magníficos. Quiero probarlos todos.'],
+['Merci pour cet échantillon. Kukuku.','Thank you for the sample. Kukuku.','Gracias por la muestra. Kukuku.'],
+['Cette peau ne me servait plus. Je reviendrai sous une autre.','I had no more use for this skin. I\'ll return in another.','Esta piel ya no me servía. Volveré con otra.'],
+['Samehada a faim, et ton chakra sent bon.','Samehada is hungry, and your chakra smells good.','Samehada tiene hambre, y tu chakra huele bien.'],
+['Il ne reste rien de toi. Pas même une arête.','Nothing left of you. Not even a fishbone.','No queda nada de ti. Ni una espina.'],
+['Drôle de fin… pour un démon sans queue.','Funny end… for a tailless demon.','Curioso final… para un demonio sin cola.'],
+['Les hommes-poissons sont nés supérieurs. Tu viens te noyer dans mon eau.','Fish-men are born superior. You came to drown in my water.','Los hombres-pez nacen superiores. Vienes a ahogarte en mi agua.'],
+['Ici, seul l\'argent fait la loi. Et ton équipe ne vaut pas un berry.','Here, only money makes the law. And your team isn\'t worth one berry.','Aquí solo manda el dinero. Y tu equipo no vale ni un berry.'],
+['Un humain… m\'a abattu ? Mon Arlong Park…','A human… brought me down? My Arlong Park…','¿Un humano… me ha derribado? Mi Arlong Park…'],
+['Bienvenue à Alabasta. Ici, même les rois finissent en sable.','Welcome to Alabasta. Here, even kings end up as sand.','Bienvenido a Alabasta. Aquí, hasta los reyes acaban en arena.'],
+['Te voilà sec. Comme tout ce que je touche.','Now you\'re dry. Like everything I touch.','Ya estás seco. Como todo lo que toco.'],
+['De l\'eau… encore de l\'eau. Tu n\'as pas plus peur de mourir que ce Chapeau de paille.','Water… water again. You fear death no more than that Straw Hat.','Agua… otra vez agua. No temes morir más que ese Sombrero de Paja.'],
+['Fufufu ! Tes cartes dansent déjà. Tu n\'as juste pas vu les fils.','Fufufu! Your cards are already dancing. You just haven\'t seen the strings.','¡Fufufu! Tus cartas ya bailan. Solo que no has visto los hilos.'],
+['À Dressrosa, seuls les vainqueurs écrivent la justice.','In Dressrosa, only the winners write justice.','En Dressrosa, solo los vencedores escriben la justicia.'],
+['Fufufu… L\'Archiviste aura ta tête. Tous mes fils ne sont pas coupés.','Fufufu… The Archivist will have your head. Not all my strings are cut.','Fufufu… El Archivista tendrá tu cabeza. No todos mis hilos están cortados.'],
+['Peau d\'acier','Steel Skin','Piel de acero'],['Coups normaux −40 % tant qu\'une attaque spéciale n\'a pas brisé sa cuirasse.','Normal hits −40% until a special attack breaks his armor.','Golpes normales −40 % hasta que un ataque especial rompa su coraza.'],
+['Seconde forme','Second Form','Segunda forma'],['À 50 % de PV, il se transforme : attaque et défense +25 %, et il change de cible.','At 50% HP he transforms: attack and defense +25%, and he changes targets.','Al 50 % de PV se transforma: ataque y defensa +25 %, y cambia de objetivo.'],
+['Échange de corps','Body Change','Cambio de cuerpo'],['À 50 % de PV, il vole le corps de ta meilleure carte : elle est hors combat 2 tours, et il frappe 20 % plus fort.','At 50% HP he steals your best card\'s body: it is out for 2 turns, and he hits 20% harder.','Al 50 % de PV roba el cuerpo de tu mejor carta: queda fuera 2 turnos, y golpea un 20 % más fuerte.'],
+['La brume','The Mist','La niebla'],['Au tour 2, la brume monte : esquive +30 % pendant 3 tours. Les attaques spéciales la traversent.','On turn 2 the mist rises: dodge +30% for 3 turns. Special attacks pierce it.','En el turno 2 sube la niebla: esquiva +30 % durante 3 turnos. Los ataques especiales la atraviesan.'],
+['La mue','The Shedding','La muda'],['À 50 % de PV, il regagne 15 % de PV, une seule fois. Les cartes Sannin lui font 15 % de dégâts en plus.','At 50% HP he regains 15% HP, once. Sannin cards deal 15% more damage to him.','Al 50 % de PV recupera un 15 % de PV, una vez. Las cartas Sannin le hacen un 15 % más de daño.'],
+['Samehada','Samehada','Samehada'],['Il se soigne de 30 % des dégâts qu\'il inflige.','He heals for 30% of the damage he deals.','Se cura el 30 % del daño que inflige.'],
+['Vague de dents','Wave of Teeth','Ola de dientes'],['Une frappe sur 3 touche tous tes combattants à 35 %.','One strike in 3 hits all your fighters at 35%.','Uno de cada 3 golpes alcanza a todos tus luchadores al 35 %.'],
+['Tempête de sable','Sandstorm','Tormenta de arena'],['Au tour 3, le sable réduit tes soins de 40 % jusqu\'à la fin du combat.','On turn 3 the sand cuts your healing by 40% until the end of the fight.','En el turno 3 la arena reduce tus curas un 40 % hasta el final del combate.'],
+['Marionnette','Puppet','Marioneta'],['À 70 % et 40 % de PV, il contrôle une carte 2 tours. Sous 15 %, sa prochaine frappe est doublée, et annoncée.','At 70% and 40% HP he controls a card for 2 turns. Below 15%, his next strike is doubled, and announced.','Al 70 % y 40 % de PV controla una carta 2 turnos. Por debajo del 15 %, su siguiente golpe se duplica, y se anuncia.'],
+['PEAU D\'ACIER','STEEL SKIN','PIEL DE ACERO'],['Coups normaux −40 %. Une spéciale la brisera.','Normal hits −40%. A special will break it.','Golpes normales −40 %. Un especial la romperá.'],['CUIRASSE BRISÉE','ARMOR BROKEN','CORAZA ROTA'],['Les coups passent à nouveau.','Hits land again.','Los golpes vuelven a entrar.'],
+['SECONDE FORME','SECOND FORM','SEGUNDA FORMA'],['Attaque et défense +25 %. Il change de cible.','Attack and defense +25%. He changes targets.','Ataque y defensa +25 %. Cambia de objetivo.'],['ÉCHANGE DE CORPS','BODY CHANGE','CAMBIO DE CUERPO'],['Ta meilleure carte est hors combat 2 tours.','Your best card is out for 2 turns.','Tu mejor carta queda fuera 2 turnos.'],['RETOUR','RETURN','REGRESO'],['La carte reprend son corps.','The card takes its body back.','La carta recupera su cuerpo.'],
+['LA BRUME','THE MIST','LA NIEBLA'],['Esquive du boss +30 % pendant 3 tours.','Boss dodge +30% for 3 turns.','Esquiva del jefe +30 % durante 3 turnos.'],['LA BRUME SE LÈVE','THE MIST LIFTS','LA NIEBLA SE DISIPA'],['Le boss redevient visible.','The boss can be seen again.','El jefe vuelve a verse.'],['LA MUE','THE SHEDDING','LA MUDA'],['Il sort de sa peau et regagne 15 % de PV.','He slips out of his skin and regains 15% HP.','Sale de su piel y recupera un 15 % de PV.'],
+['SAMEHADA','SAMEHADA','SAMEHADA'],['Chaque frappe le soigne.','Every strike heals him.','Cada golpe lo cura.'],['TEMPÊTE DE SABLE','SANDSTORM','TORMENTA DE ARENA'],['Soins −40 %. Le Soutien garde ses autres effets.','Healing −40%. Support keeps its other effects.','Curas −40 %. El Apoyo conserva sus otros efectos.'],['MARIONNETTE','PUPPET','MARIONETA'],['Une de tes cartes se retourne contre l\'équipe.','One of your cards turns on the team.','Una de tus cartas se vuelve contra el equipo.'],['DERNIER SOUFFLE','LAST BREATH','ÚLTIMO ALIENTO'],['Sa prochaine frappe sera doublée !','His next strike will be doubled!','¡Su siguiente golpe será doble!'],
+['La Faille','The Rift','La Grieta'],['Tes cartes ne sont pas du papier. Chacune garde l\'écho d\'un héros.','Your cards are not paper. Each one holds the echo of a hero.','Tus cartas no son papel. Cada una guarda el eco de un héroe.'],['Une nuit, le ciel s\'est fendu : c\'est la Faille. Elle relie les mondes, et elle en recrache les plus grands ennemis.','One night the sky split open: the Rift. It links the worlds, and spits out their greatest enemies.','Una noche el cielo se partió: es la Grieta. Une los mundos y escupe a sus mayores enemigos.'],['C\'est l\'œuvre de l\'Archiviste. Il veut posséder chaque écho de chaque univers, et il a ouvert la Faille pour les rappeler tous.','It is the work of the Archivist. He wants to own every echo of every universe, and he opened the Rift to call them all back.','Es obra del Archivista. Quiere poseer cada eco de cada universo, y abrió la Grieta para llamarlos a todos.'],['Monde après monde, bats ses échos et referme la Faille. Au bout, le Multivers : c\'est là qu\'il t\'attend.','World after world, beat his echoes and close the Rift. At the end, the Multiverse: that is where he awaits you.','Mundo tras mundo, vence a sus ecos y cierra la Grieta. Al final, el Multiverso: allí te espera.'],
+['La Faille s\'ouvre d\'abord sur Namek. Freezer y cherche encore les boules de cristal, et ses hommes obéissent désormais à l\'Archiviste.','The Rift opens on Namek first. Frieza still hunts the Dragon Balls there, and his men now obey the Archivist.','La Grieta se abre primero en Namek. Freezer aún busca allí las bolas de dragón, y sus hombres ahora obedecen al Archivista.'],['Dodoria, Zarbon, le commando Ginyu : trois échos à sceller pour refermer ce monde.','Dodoria, Zarbon, the Ginyu Force: three echoes to seal to close this world.','Dodoria, Zarbon, las Fuerzas Ginyu: tres ecos que sellar para cerrar este mundo.'],['Le monde des ninjas','The ninja world','El mundo ninja'],['La Faille s\'étend. Ici, les échos se cachent, se transforment et frappent sans bruit.','The Rift spreads. Here, echoes hide, change shape and strike silently.','La Grieta se extiende. Aquí los ecos se esconden, se transforman y golpean en silencio.'],['Du pont du Pays des Vagues au village d\'Ame : Zabuza, Orochimaru, puis Kisame.','From the Land of Waves bridge to the Village of Rain: Zabuza, Orochimaru, then Kisame.','Del puente del País de las Olas a la aldea de la Lluvia: Zabuza, Orochimaru y luego Kisame.'],['Dernier monde avant la source. Les échos y sont les plus forts, et ils règnent sur des pays entiers.','Last world before the source. The echoes here are the strongest, and they rule whole countries.','Último mundo antes de la fuente. Aquí los ecos son los más fuertes y gobiernan países enteros.'],['Arlong, Crocodile, Doflamingo : fais-les tomber, et la Faille ne tiendra plus qu\'à un fil.','Arlong, Crocodile, Doflamingo: bring them down, and the Rift will hang by a thread.','Arlong, Crocodile, Doflamingo: derríbalos, y la Grieta pendirá de un hilo.'],
+['Namek est scellée','Namek is sealed','Namek está sellada'],['La fissure recule. L\'Archiviste a perdu ses premiers échos, et il sait maintenant ton nom.','The crack recedes. The Archivist has lost his first echoes, and now he knows your name.','La fisura retrocede. El Archivista ha perdido sus primeros ecos, y ahora sabe tu nombre.'],['Le monde des ninjas est scellé','The ninja world is sealed','El mundo ninja está sellado'],['La Faille n\'a plus qu\'un monde à dévorer. Quelque part au fond, l\'Archiviste range ses pages en colère.','The Rift has only one world left to devour. Somewhere deep down, the Archivist angrily sorts his pages.','A la Grieta solo le queda un mundo que devorar. En algún lugar del fondo, el Archivista ordena sus páginas con rabia.'],['La Faille tremble','The Rift trembles','La Grieta tiembla'],['Trois mondes scellés. Il ne reste que la source : le Multivers s\'est mis à battre, et l\'Archiviste t\'y attend.','Three worlds sealed. Only the source remains: the Multiverse has begun to pulse, and the Archivist awaits you there.','Tres mundos sellados. Solo queda la fuente: el Multiverso ha empezado a latir, y el Archivista te espera allí.'],['La suite à la prochaine mise à jour.','To be continued in the next update.','Continuará en la próxima actualización.'],
+['Rareté plafonnée','Capped rarity','Rareza limitada'],['Aucune carte au-dessus de R dans ton équipe.','No card above R in your team.','Ninguna carta por encima de R en tu equipo.'],['Il te faut 7 cartes de rareté R ou moins.','You need 7 cards of rarity R or lower.','Necesitas 7 cartas de rareza R o inferior.'],['Un seul monde','One world only','Un solo mundo'],['Toute ton équipe doit venir du monde de Naruto.','Your whole team must come from the world of Naruto.','Todo tu equipo debe venir del mundo de Naruto.'],['Il te faut 7 cartes du monde de Naruto.','You need 7 cards from the world of Naruto.','Necesitas 7 cartas del mundo de Naruto.'],['Sans Soutien','No Support','Sin Apoyo'],['Ton Soutien reste sur le banc : aucun effet de Soutien pendant ce défi.','Your Support stays on the bench: no Support effects during this challenge.','Tu Apoyo se queda en el banquillo: ningún efecto de Apoyo durante este desafío.'],['Il te faut 7 cartes.','You need 7 cards.','Necesitas 7 cartas.'],['Ton équipe doit avoir 7 cartes.','Your team must have 7 cards.','Tu equipo debe tener 7 cartas.'],
+['Défi de l\'Archiviste','Archivist\'s Challenge','Desafío del Archivista'],['Traque du jour','Daily Hunt','Caza del día'],['Cauchemar','Nightmare','Pesadilla'],['Allié du récit','Story Ally','Aliado del relato'],['Appel du Gardien','Guardian\'s Call','Llamada del Guardián'],['Ses frappes','His strikes','Sus golpes'],['Combattre','Fight','Luchar'],['Mon équipe','My team','Mi equipo'],['Retour','Back','Volver'],['Continuer','Continue','Continuar'],['Rejouer','Replay','Repetir'],['Relever','Take it on','Aceptar'],['Normal','Normal','Normal'],['Cauchemar · boss +30 % de PV','Nightmare · boss +30% HP','Pesadilla · jefe +30 % de PV'],['Revoir l\'histoire','Replay the story','Ver la historia'],['L\'histoire','The story','La historia'],['Apparence','Appearance','Apariencia'],['Aucun','None','Ninguno'],['Sans récompense de pièces : l\'exploit compte','No coin reward: the feat is what counts','Sin recompensa de monedas: cuenta la hazaña'],['Lis ses habitudes, change ta formation ou ton équipe.','Read his habits, change your formation or your team.','Lee sus hábitos, cambia tu formación o tu equipo.'],['Les Sannin le connaissent','The Sannin know him','Los Sannin lo conocen'],['Tes Sannin lui font +15 % de dégâts.','Your Sannin deal +15% damage to him.','Tus Sannin le hacen +15 % de daño.'],['Les échos approchent.','The echoes are coming.','Los ecos se acercan.'],['Appel du Gardien : la prochaine frappe sera annulée.','Guardian\'s Call: the next strike will be cancelled.','Llamada del Guardián: el siguiente golpe se anulará.'],['La frappe est annulée.','The strike is cancelled.','El golpe se anula.'],['APPEL DU GARDIEN','GUARDIAN\'S CALL','LLAMADA DEL GUARDIÁN'],
+['Fond d\'équipe','Team background','Fondo de equipo'],['Fond de combat','Battle background','Fondo de combate'],['Cadre de profil','Profile frame','Marco de perfil'],['Skin de booster','Booster skin','Aspecto de sobre'],
+['Une brute : il casse d\'abord le mur.','A brute: he breaks the wall first.','Un bruto: primero rompe el muro.'],['Un vaniteux : il frappe celui qui brille le plus.','Vain: he hits whoever shines brightest.','Un vanidoso: golpea al que más brilla.'],['Il pose, puis il jauge chaque rôle.','He poses, then sizes up each role.','Posa, y luego mide cada rol.'],['Un assassin : il va droit au plus grand danger.','An assassin: he goes straight for the biggest threat.','Un asesino: va directo al mayor peligro.'],['Il étudie sa proie : il élimine d\'abord les tireurs.','He studies his prey: he removes the shooters first.','Estudia a su presa: primero elimina a los tiradores.'],['Il dévore la force : il cherche le plus solide.','He devours strength: he seeks the toughest.','Devora la fuerza: busca al más sólido.'],['Une force brute : il fonce dans le tas.','Brute force: he charges right in.','Fuerza bruta: carga de frente.'],['Il assèche tout ce qui reste à distance.','He dries up everything at range.','Reseca todo lo que está a distancia.'],['Il tire les fils de loin, et vise ceux qui visent.','He pulls the strings from afar, and targets those who aim.','Tira de los hilos desde lejos, y apunta a los que apuntan.']
+].forEach(r=>{I18N.en[r[0]]=r[1];I18N.es[r[0]]=r[2]});
+I18P.en.push([/^1re victoire : (.+) pièces( \+ .+)?$/,m=>`First win: ${m[1]} coins${m[2]||''}`],[/^Frappe dans (\d+) coups? · vise (.+?)( · spéciale)?$/,m=>`Strike in ${m[1]} hit${m[1]>1?'s':''} · targets ${m[2]}${m[3]?' · special':''}`],[/^\+ (.+) pièces$/,m=>`+ ${m[1]} coins`],[/^VAGUE (\d+)$/,m=>`WAVE ${m[1]}`],[/^Vise : (.+)$/,m=>`Targets: ${m[1]}`],[/^Récompense : (.+)$/,m=>`Reward: ${m[1]}`],[/^(\d+) cartes? de ce monde : \+(\d+) % de stats$/,m=>`${m[1]} card${m[1]>1?'s':''} from this world: +${m[2]}% stats`],[/^(\d+) \/ (\d+) actes · (\d+) \/ 9 étoiles$/,m=>`${m[1]} / ${m[2]} acts · ${m[3]} / 9 stars`]);
+I18P.es.push([/^1re victoire : (.+) pièces( \+ .+)?$/,m=>`Primera victoria: ${m[1]} monedas${m[2]||''}`],[/^Frappe dans (\d+) coups? · vise (.+?)( · spéciale)?$/,m=>`Golpe en ${m[1]} ataque${m[1]>1?'s':''} · apunta a ${m[2]}${m[3]?' · especial':''}`],[/^\+ (.+) pièces$/,m=>`+ ${m[1]} monedas`],[/^VAGUE (\d+)$/,m=>`OLEADA ${m[1]}`],[/^Vise : (.+)$/,m=>`Apunta a: ${m[1]}`],[/^Récompense : (.+)$/,m=>`Recompensa: ${m[1]}`],[/^(\d+) cartes? de ce monde : \+(\d+) % de stats$/,m=>`${m[1]} carta${m[1]>1?'s':''} de este mundo: +${m[2]} % de stats`],[/^(\d+) \/ (\d+) actes · (\d+) \/ 9 étoiles$/,m=>`${m[1]} / ${m[2]} actos · ${m[3]} / 9 estrellas`]);
 /* sphère : on lit le disque de l'illustration (hémisphère de face) et on le « déroule » ; l'arrière est le miroir de l'avant */
-const ST_TEX={},ST_SPN=512,ST_SPH=(()=>{const N=ST_SPN,ph=[],ct=[],la=[],sh=[],al=[],ix=[];for(let y=0;y<N;y++)for(let x=0;x<N;x++){const nx=(x+.5-N/2)/(N/2),ny=(y+.5-N/2)/(N/2),r2=nx*nx+ny*ny;if(r2>1.02)continue;const r=Math.sqrt(r2),nz=Math.sqrt(Math.max(0,1-r2));ix.push(y*N+x);al.push(Math.min(1,Math.max(0,(1-r)*N/2)));ph.push(Math.atan2(nx,nz));ct.push(Math.sqrt(Math.max(0,1-ny*ny)));la.push(Math.asin(ny)/Math.PI+.5);sh.push(.64+.5*Math.max(0,-.45*nx-.5*ny+.74*nz))}
+const ST_TEX={},ST_SPN=matchMedia('(pointer:coarse)').matches?340:512,ST_SPH=(()=>{const N=ST_SPN,ph=[],ct=[],la=[],sh=[],al=[],ix=[];for(let y=0;y<N;y++)for(let x=0;x<N;x++){const nx=(x+.5-N/2)/(N/2),ny=(y+.5-N/2)/(N/2),r2=nx*nx+ny*ny;if(r2>1.02)continue;const r=Math.sqrt(r2),nz=Math.sqrt(Math.max(0,1-r2));ix.push(y*N+x);al.push(Math.min(1,Math.max(0,(1-r)*N/2)));ph.push(Math.atan2(nx,nz));ct.push(Math.sqrt(Math.max(0,1-ny*ny)));la.push(Math.asin(ny)/Math.PI+.5);sh.push(.64+.5*Math.max(0,-.45*nx-.5*ny+.74*nz))}
   return {ix:Int32Array.from(ix),ph:Float32Array.from(ph),ct:Float32Array.from(ct),la:Float32Array.from(la),sh:Float32Array.from(sh),al:Float32Array.from(al)}})();
 function stTex(src){return ST_TEX[src]||(ST_TEX[src]=new Promise(res=>{const im=new Image();im.onload=()=>{try{const W=2048,H=1024,c=document.createElement('canvas');c.width=W;c.height=H;const x=c.getContext('2d');x.imageSmoothingQuality='high';x.drawImage(im,0,0,W,H);res({d:x.getImageData(0,0,W,H).data,W,H})}catch(_){res(null)}};im.onerror=()=>res(null);im.src=src}))}
 /* patron équirectangulaire 360° : longitude = ph + rotation (raccord gauche/droite), latitude = asin(y) */
@@ -4311,7 +4615,7 @@ function stSpin(btn,mode){const cv=btn.querySelector('.st-cv');if(!cv||matchMedi
     if(ST_SP.size)ST_RAF=requestAnimationFrame(loop);else ST_RAF=0};ST_RAF=requestAnimationFrame(loop)}}
 /* v159 · scène spatiale : système solaire en 3D CSS (caméra = translate3d), clic = on fonce dans la planète, changer de planète = on voyage jusqu'à elle */
 let ST_MODE='space',ST_FLY=0,ST_SPR=0;
-const SP_P=900,SP_Z=[0,-300,-620,-900],SP_ZMIN=-900,SP_ZMAX=450,SP_REF=-300;let SP_V={x:0,y:0,z:0},SP_TW=0;/* SP_V : vue choisie par le joueur (déplacement + zoom), gardée pendant la session */
+const SP_P=900,SP_Z=[0,-300,-620,-900],SP_ZMIN=-900,SP_ZMAX=450,SP_REF=-300;let SP_V={x:0,y:0,z:0},SP_TW=0,SP_V0=0;const spHome=()=>matchMedia('(pointer:coarse)').matches||innerWidth<700?{x:0,y:0,z:-340}:{x:0,y:0,z:0};/* SP_V : vue choisie par le joueur (déplacement + zoom), gardée pendant la session */
 function spGeo(W,H){const land=W>H*1.1,D=Math.min(220,land?H*.4:W*.46),F=land?[[-.30,.11],[-.02,-.13],[.26,.12],[.40,-.25]]:[[-.22,.20],[.18,-.03],[-.14,-.22],[.22,-.36]];
   return {D,pl:F.map((f,i)=>{const z=SP_Z[i],s=SP_P/(SP_P-z);return {x:f[0]*W/s,y:f[1]*H/s,z,s,px:f[0]*W,py:f[1]*H}})}}
 function spCam(g,i,kind){if(kind==='ov')return `translate3d(${SP_V.x}px,${SP_V.y}px,${SP_V.z}px)`;const p=g.pl[i];return `translate3d(${-p.x}px,${-p.y}px,${-p.z+(kind==='in'?760:250)}px)`}
@@ -4325,7 +4629,9 @@ function vSpace(){setTimeout(spInit,0);
    <div class="sp-world" id="spworld"><div class="sp-sun" id="spsun" aria-hidden="true"></div>${STORY.map((w,i)=>spPlanetHTML(w,i)).join('')}
     <button class="sp-p lk mv" data-act="stMulti" data-i="3" data-pl="" aria-label="Multivers · verrouillé"><span class="sp-orb"><span class="sp-vx"></span></span><span class="sp-hd q">多</span><span class="sp-lb"><b>Multivers</b><small>Prochaine mise à jour</small></span></button></div>
    <div class="sp-ctl" role="group" aria-label="Zoom"><button data-act="spZoom" data-v="in" aria-label="Zoomer">+</button><button data-act="spZoom" data-v="out" aria-label="Dézoomer">−</button><button data-act="spZoom" data-v="home" aria-label="Recentrer"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="6"/><path d="M12 2v5M12 17v5M2 12h5M17 12h5"/></svg></button></div>
-   <p class="sp-hint" id="sphint">${matchMedia('(pointer:coarse)').matches?'Glisse · pince · touche une planète':'Glisse · molette · clique sur une planète'}</p></section>`}
+   <p class="sp-hint" id="sphint">${matchMedia('(pointer:coarse)').matches?'Glisse · pince · touche une planète':'Glisse · molette · clique sur une planète'}</p></section>${stStripHTML()}`}
+function stStripHTML(){const T=stTrack(),q=stState();let h='';if(T){const w=STORY[T[0]],a=w.acts[T[1]],c=CARD[a.b],dn=(q.tr||{}).d===dk();h=`<div class="st-trk"><div><span class="eyebrow">Traque du jour</span><b>${c.nom}</b><small>${dn?'Faite aujourd\'hui':'Boss +30 % de PV · 100 pièces, une fois par jour'}</small></div><button class="btn" data-act="stGo" data-v="${T[0]},${T[1]},tr">${dn?'Rejouer':'Traquer'}</button></div>`}
+  return `<div class="st-strip">${h}<button class="btn" data-act="stLore">Revoir l'histoire</button></div>`}
 function spGeoNow(sc){const g=spGeo(sc.clientWidth,sc.clientHeight);sc._g=g;return g}
 function spPlace(sc){const g=spGeoNow(sc),D=g.D;sc.style.setProperty('--D',D+'px');
   sc.querySelectorAll('.sp-p').forEach(el=>{const i=+el.dataset.i,p=g.pl[i];el.style.transform=`translate3d(${p.x}px,${p.y}px,${p.z}px) translate(-50%,-50%)`;el.style.setProperty('--sz',(D*(i===3?.8:1))+'px')});
@@ -4334,36 +4640,50 @@ function spPlace(sc){const g=spGeoNow(sc),D=g.D;sc.style.setProperty('--D',D+'px
 /* textes, têtes et pointillés suivent la vue du joueur (ils gardent une taille lisible à l'écran) */
 function spHud(sc){const g=sc._g;if(!g)return;const W=sc.clientWidth,H=sc.clientHeight,pts=[];
   sc.querySelectorAll('.sp-p').forEach(el=>{const i=+el.dataset.i,p=g.pl[i],k=SP_P/(SP_P-(p.z+SP_V.z));pts[i]=[W/2+(p.x+SP_V.x)*k,H/2+(p.y+SP_V.y)*k];el.style.setProperty('--is',(1/k).toFixed(3));el.style.setProperty('--hs',(Math.max(.55,Math.min(1,k/p.s))/k).toFixed(3));el.style.setProperty('--ls',(Math.max(.75,Math.min(1,k/p.s))/k).toFixed(3))});sc.classList.toggle('sp-far',SP_V.z<-450);
-  let d='M'+pts[0].join(' ');for(let k=1;k<pts.length;k++){const a=pts[k-1],b=pts[k];d+=` Q${(a[0]+b[0])/2+(k%2?40:-40)} ${(a[1]+b[1])/2-30} ${b[0]} ${b[1]}`}
-  const sv=sc.querySelector('#sppath');sv.setAttribute('viewBox','0 0 '+W+' '+H);sv.innerHTML=`<path d="${d}"/>`;
-  const bt=v=>sc.querySelector(`.sp-ctl [data-v="${v}"]`);bt('in').disabled=SP_V.z>=SP_ZMAX;bt('out').disabled=SP_V.z<=SP_ZMIN;bt('home').disabled=!SP_V.x&&!SP_V.y&&!SP_V.z}
+  let d='',cr='';const sealed=STORY.filter(w=>stCount(w)===w.acts.length).length;sc.classList.toggle('sp-all',sealed>=STORY.length);
+  for(let k=1;k<pts.length;k++){const a=pts[k-1],b=pts[k];if(k<=sealed){d+=`M${a[0]} ${a[1]} Q${(a[0]+b[0])/2+(k%2?40:-40)} ${(a[1]+b[1])/2-30} ${b[0]} ${b[1]}`;continue}
+    /* la Faille : un trait irrégulier entre les mondes pas encore scellés ; elle recule à chaque monde scellé */
+    const dx=b[0]-a[0],dy=b[1]-a[1],len=Math.hypot(dx,dy)||1,nx=-dy/len,ny=dx/len;cr+=`M${a[0]} ${a[1]}`;for(let i=1;i<=9;i++){const t=i/10,o=(Math.sin(k*3.1+i*2.3)+Math.cos(i*1.7+k*5.3))*len*.038;cr+=` L${(a[0]+dx*t+nx*o).toFixed(1)} ${(a[1]+dy*t+ny*o).toFixed(1)}`}cr+=` L${b[0]} ${b[1]}`}
+  const sv=sc.querySelector('#sppath');sv.setAttribute('viewBox','0 0 '+W+' '+H);sv.innerHTML=`${d?`<path d="${d}"/>`:''}${cr?`<path class="cr" d="${cr}"/>`:''}`;
+  const bt=v=>sc.querySelector(`.sp-ctl [data-v="${v}"]`);bt('in').disabled=SP_V.z>=SP_ZMAX;bt('out').disabled=SP_V.z<=SP_ZMIN;const H0=spHome();bt('home').disabled=SP_V.x===H0.x&&SP_V.y===H0.y&&SP_V.z===H0.z}
 function spClamp(sc){const W=sc.clientWidth*.8,H=sc.clientHeight*.8,c=(v,a,b)=>Math.max(a,Math.min(b,v));SP_V.z=c(SP_V.z,SP_ZMIN,SP_ZMAX);SP_V.x=c(SP_V.x,-W,W);SP_V.y=c(SP_V.y,-H,H)}
-function spView(sc){spClamp(sc);spCamSet(sc,0,'ov',0);spHud(sc)}
+function spView(sc){spClamp(sc);const w=sc.querySelector('#spworld');w.style.transition='none';w.style.transform=spCam(sc._g,0,'ov');sc.style.setProperty('--sk',spStarK('ov'));sc.style.setProperty('--sd','0ms');sc.style.setProperty('--px',SP_V.x+'px');sc.style.setProperty('--py',SP_V.y+'px');spHud(sc)}
 const spRefK=z=>SP_P/(SP_P-(SP_REF+z));
 /* zoom : le point sous le doigt ou la souris (ux,uy, depuis le centre) reste en place */
 function spZoomAt(ux,uy,z){const nz=Math.max(SP_ZMIN,Math.min(SP_ZMAX,z)),a=spRefK(SP_V.z),b=spRefK(nz);SP_V.x+=ux/b-ux/a;SP_V.y+=uy/b-uy/a;SP_V.z=nz}
-function spZoom(v){const sc=document.getElementById('spscene');if(!sc||ST_FLY)return;SFX.tap();const to=v==='home'?{x:0,y:0,z:0}:{x:SP_V.x,y:SP_V.y,z:Math.max(SP_ZMIN,Math.min(SP_ZMAX,SP_V.z+(v==='in'?225:-225)))},from={...SP_V},id=++SP_TW,t0=performance.now(),ms=matchMedia('(prefers-reduced-motion:reduce)').matches?0:260;
+function spZoom(v){const sc=document.getElementById('spscene');if(!sc||ST_FLY)return;SFX.tap();const to=v==='home'?spHome():{x:SP_V.x,y:SP_V.y,z:Math.max(SP_ZMIN,Math.min(SP_ZMAX,SP_V.z+(v==='in'?225:-225)))},from={...SP_V},id=++SP_TW,t0=performance.now(),ms=matchMedia('(prefers-reduced-motion:reduce)').matches?0:260;
   const step=now=>{if(id!==SP_TW||!sc.isConnected)return;const q=ms?Math.max(0,Math.min(1,(now-t0)/ms)):1,e=q*(2-q);SP_V={x:from.x+(to.x-from.x)*e,y:from.y+(to.y-from.y)*e,z:from.z+(to.z-from.z)*e};spView(sc);if(q<1)requestAnimationFrame(step)};requestAnimationFrame(step)}
 /* gestes : glisser = se déplacer, pincer ou molette = zoomer ; un toucher sans glisser reste un clic sur la planète */
 function spGest(sc){if(sc._gest)return;sc._gest=1;const pts=new Map();let moved=false,d0=0,mx0=0,my0=0;
   const two=()=>{const[a,b]=[...pts.values()];return {d:Math.hypot(a.x-b.x,a.y-b.y),mx:(a.x+b.x)/2,my:(a.y+b.y)/2}};
   const hide=()=>{const h=document.getElementById('sphint');if(h)h.style.opacity=0};
-  sc.addEventListener('pointerdown',e=>{if(ST_FLY||e.target.closest('.sp-ctl')||(e.pointerType==='mouse'&&e.button))return;SP_TW++;if(!pts.size)moved=false;pts.set(e.pointerId,{x:e.clientX,y:e.clientY,sx:e.clientX,sy:e.clientY});
+  sc.addEventListener('pointerdown',e=>{if(e.pointerType==='touch'||ST_FLY||e.target.closest('.sp-ctl')||(e.pointerType==='mouse'&&e.button))return;SP_TW++;if(!pts.size)moved=false;pts.set(e.pointerId,{x:e.clientX,y:e.clientY,sx:e.clientX,sy:e.clientY});
     if(pts.size===2){const t=two();d0=t.d;mx0=t.mx;my0=t.my;moved=true;hide()}});
-  sc.addEventListener('pointermove',e=>{const p=pts.get(e.pointerId);if(!p||ST_FLY)return;
+  sc.addEventListener('pointermove',e=>{if(e.pointerType==='touch')return;const p=pts.get(e.pointerId);if(!p||ST_FLY)return;
     if(pts.size===1){if(!moved&&Math.hypot(e.clientX-p.sx,e.clientY-p.sy)<(e.pointerType==='mouse'?6:10))return;
       if(!moved){moved=true;p.x=e.clientX;p.y=e.clientY;sc.classList.add('sp-drag');hide();try{sc.setPointerCapture(e.pointerId)}catch(_){}return}
       const k=spRefK(SP_V.z);SP_V.x+=(e.clientX-p.x)/k;SP_V.y+=(e.clientY-p.y)/k;p.x=e.clientX;p.y=e.clientY;spView(sc);return}
     p.x=e.clientX;p.y=e.clientY;if(pts.size!==2)return;const t=two();if(d0>0&&t.d>0){const r=sc.getBoundingClientRect(),k=spRefK(SP_V.z);SP_V.x+=(t.mx-mx0)/k;SP_V.y+=(t.my-my0)/k;spZoomAt(t.mx-r.left-r.width/2,t.my-r.top-r.height/2,SP_P-SP_P/(k*t.d/d0)-SP_REF);spView(sc)}d0=t.d;mx0=t.mx;my0=t.my});
   const end=e=>{if(!pts.delete(e.pointerId))return;d0=0;if(pts.size===1)pts.clear();if(!pts.size){sc.classList.remove('sp-drag');if(moved)window.__swiped=Date.now()}};
   sc.addEventListener('pointerup',end);sc.addEventListener('pointercancel',end);
+  let lx=0,ly=0,sx=0,sy=0,tr=0,tOn=false;const sched=()=>{if(tr)return;tr=requestAnimationFrame(()=>{tr=0;if(sc.isConnected)spView(sc)})};
+  const pair=T=>({d:Math.hypot(T[0].clientX-T[1].clientX,T[0].clientY-T[1].clientY),mx:(T[0].clientX+T[1].clientX)/2,my:(T[0].clientY+T[1].clientY)/2});
+  sc.addEventListener('touchstart',e=>{if(ST_FLY||e.target.closest('.sp-ctl'))return;SP_TW++;const T=e.touches;if(T.length===1){tOn=true;moved=false;sx=lx=T[0].clientX;sy=ly=T[0].clientY}
+    else if(T.length>=2){tOn=true;moved=true;e.preventDefault();const q=pair(T);d0=q.d;mx0=q.mx;my0=q.my;sc.classList.add('sp-drag');hide()}},{passive:false});
+  sc.addEventListener('touchmove',e=>{if(!tOn||ST_FLY)return;const T=e.touches;
+    if(T.length>=2){e.preventDefault();const q=pair(T),r=sc.getBoundingClientRect(),k=spRefK(SP_V.z);if(d0>0&&q.d>0){SP_V.x+=(q.mx-mx0)/k;SP_V.y+=(q.my-my0)/k;spZoomAt(q.mx-r.left-r.width/2,q.my-r.top-r.height/2,SP_P-SP_P/(k*q.d/d0)-SP_REF);sched()}d0=q.d;mx0=q.mx;my0=q.my;return}
+    const x=T[0].clientX,y=T[0].clientY;if(!moved&&Math.hypot(x-sx,y-sy)<10)return;e.preventDefault();if(!moved){moved=true;lx=x;ly=y;sc.classList.add('sp-drag');hide();return}
+    const k=spRefK(SP_V.z);SP_V.x+=(x-lx)/k;SP_V.y+=(y-ly)/k;lx=x;ly=y;sched()},{passive:false});
+  const tEnd=e=>{if(!tOn)return;const T=e.touches;if(T.length===1){lx=T[0].clientX;ly=T[0].clientY;d0=0;return}if(T.length>=2){const q=pair(T);d0=q.d;mx0=q.mx;my0=q.my;return}tOn=false;d0=0;sc.classList.remove('sp-drag');if(moved)window.__swiped=Date.now()};
+  sc.addEventListener('touchend',tEnd);sc.addEventListener('touchcancel',tEnd);
+  ['gesturestart','gesturechange','gestureend'].forEach(n=>sc.addEventListener(n,e=>e.preventDefault(),{passive:false}));
   sc.addEventListener('wheel',e=>{if(ST_FLY)return;const dy=e.deltaY*(e.deltaMode===1?33:1),z=Math.max(SP_ZMIN,Math.min(SP_ZMAX,SP_V.z-dy*(e.ctrlKey?4:.9)));if(z===SP_V.z)return;e.preventDefault();SP_TW++;hide();const r=sc.getBoundingClientRect();spZoomAt(e.clientX-r.left-r.width/2,e.clientY-r.top-r.height/2,z);spView(sc)},{passive:false})}
 function spCamSet(sc,i,kind,ms,ease){const w=sc.querySelector('#spworld'),g=sc._g;w.style.transition=ms?`transform ${ms}ms ${ease||'cubic-bezier(.65,0,.35,1)'}`:'none';w.style.transform=spCam(g,i,kind);
   sc.style.setProperty('--sk',spStarK(kind));sc.style.setProperty('--sd',ms+'ms');sc.style.setProperty('--px',(kind==='ov'?SP_V.x:0)+'px');sc.style.setProperty('--py',(kind==='ov'?SP_V.y:0)+'px');if(!ms)void w.offsetWidth}
 function spRun(sc,steps,done){let t=0;const quick=matchMedia('(prefers-reduced-motion:reduce)').matches;ST_FLY=1;sc.classList.add('sp-fly');
   steps.forEach(st=>{setTimeout(()=>{spCamSet(sc,st.i,st.kind,quick?0:st.ms,st.ease);if(st.fade)setTimeout(()=>stLid(1,quick?0:Math.round(st.ms*.5)),quick?0:st.ms*.5)},t);t+=quick?0:st.ms});
   setTimeout(()=>{ST_FLY=0;done()},t+(quick?30:60))}
-function spInit(){const sc=document.getElementById('spscene');if(!sc)return;spPlace(sc);spGest(sc);
+function spInit(){const sc=document.getElementById('spscene');if(!sc)return;if(!SP_V0){SP_V0=1;SP_V=spHome()}spPlace(sc);spGest(sc);
   const fr=ST_FROM;ST_FROM=null;
   if(fr){/* arrivée depuis une planète : la caméra est déjà collée dessus */
     spCamSet(sc,fr.i,'in',0);
@@ -4373,7 +4693,7 @@ function spInit(){const sc=document.getElementById('spscene');if(!sc)return;spPl
   sc.querySelectorAll('.sp-p').forEach(b=>{const src=b.dataset.pl;if(!src)return;stTex(src).then(t=>{if(t&&b.isConnected){const cv=b.querySelector('canvas');stDrawSph(cv,t,0);b.classList.add('rdy');b._t=t}})});
   const p=sc.querySelectorAll('.sp-p[data-pl]'),R={};let last=performance.now(),fr0=0;
   const loop=now=>{if(!sc.isConnected)return;const dt=Math.min(.05,(now-last)/1e3);last=now;fr0++;let nPl=0;
-    p.forEach((b,k)=>{if(!b._t)return;const i=+b.dataset.i,hv=b.matches(':hover')&&!ST_FLY;R[i]=(R[i]||0)+dt*(hv?1.5:.2);nPl++;if(hv||fr0%p.length===k)stDrawSph(b.querySelector('canvas'),b._t,R[i])});
+    if(!sc.classList.contains('sp-drag'))p.forEach((b,k)=>{if(!b._t)return;const i=+b.dataset.i,hv=b.matches(':hover')&&!ST_FLY;R[i]=(R[i]||0)+dt*(hv?1.5:.2);nPl++;if(hv||fr0%p.length===k)stDrawSph(b.querySelector('canvas'),b._t,R[i])});
     ST_SPR=requestAnimationFrame(loop)};cancelAnimationFrame(ST_SPR);ST_SPR=requestAnimationFrame(loop);
   addEventListener('resize',spResize);}
 let ST_FROM=null;
@@ -4393,14 +4713,15 @@ function spTo(dir){if(ST_FLY)return;const q=stState(),wi=Math.max(0,STORY.findIn
 function stPlanetHTML(w,wi){const n=stCount(w),bs=CARD[w.acts[stNext(w)].b],art=artOf(bs);
   return `<div class="st-pl on" data-pl="${w.pl}"><span class="st-wrap"><canvas class="st-cv" width="${ST_SPN}" height="${ST_SPN}" aria-hidden="true"></canvas>${art?`<span class="st-head" title="${bs.nom}" style="background-image:url(${art})"></span>`:`<span class="st-head k">${w.kj}</span>`}</span><b>${w.n}</b><small>${n} / ${w.acts.length} actes</small></div>`}
 function vStory(){if(ST_RUN&&!ST_RUN.gone){setTimeout(stResume,0);return stFightHTML()}
+  if(ST_VS)return stVsHTML();const q0=stState();q0.pro=q0.pro||{};if(!ST_CINE&&!q0.pro.intro)ST_CINE='intro';if(ST_CINE)return stCineHTML();
   if(ST_MODE==='space')return vSpace();
   const q=stState();let wi=STORY.findIndex(w=>w.k===q.sel);if(wi<0||!stWorldOpen(wi)){wi=STORY.findIndex((w,i)=>stWorldOpen(i)&&stCount(w)<w.acts.length);if(wi<0)wi=0}
-  const w=STORY[wi],full=S.team.filter(Boolean).length>=7;setTimeout(stInit,0);const arr=ST_ARR;ST_ARR=0;
+  const w=STORY[wi],full=S.team.filter(Boolean).length>=7;if(!q.pro[w.k]){ST_CINE=w.k;return stCineHTML()}if(stCount(w)<w.acts.length)ST_DIFF='n';setTimeout(stInit,0);const arr=ST_ARR;ST_ARR=0;
   const sq=S.team.map(id=>id&&CARD[id]?`<div class="st-sqc">${cardHTML(CARD[id],{mini:true})}</div>`:`<div class="st-sqc e">+</div>`).join('');
   return `<div class="st-main${arr?' arr':''}"><section class="st-sky" id="stsky">${stPlanetHTML(w,wi)}
     <div class="st-nav"><button class="btn" data-act="spOut">← Système solaire</button><div class="st-nav2"><button class="btn" data-act="spTo" data-v="prev"${wi===0?' disabled':''}>◀ Précédente</button><button class="btn" data-act="spTo" data-v="next"${wi===STORY.length-1?' disabled':''}>Suivante ▶</button></div></div></section>
-   <section class="st-world"><header><span class="eyebrow">Histoire · ${w.n}</span><h2>${w.sub}</h2><p class="small muted">${stCount(w)} / ${w.acts.length} actes terminés · le boss vise ton Tank, puis tes DPS, puis tes Distances</p></header>
-    <div class="st-acts">${w.acts.map((a,i)=>stActHTML(wi,i)).join('')}</div>
+   <section class="st-world"><header><span class="eyebrow">Histoire · ${w.n}</span><h2>${w.sub}</h2><p class="small muted">${stCount(w)} / ${w.acts.length} actes · ${w.acts.reduce((n,_,i)=>n+stStars(stObjOf(w,i)),0)} / 9 étoiles</p></header>
+    ${stExtraHTML(w,wi)}<div class="st-acts">${w.acts.map((a,i)=>stActHTML(wi,i)).join('')}</div>
     <aside class="st-side"><span class="eyebrow">Ton équipe</span><div class="st-sq">${sq}</div>${full?'':'<p class="small st-warn">Il manque des cartes : l\'équipe doit en avoir 7.</p>'}<button class="btn wide" data-act="tab" data-v="team">Modifier l'équipe</button></aside></section></div>`}
 function stInit(){const sky=document.getElementById('stsky');if(!sky)return;
   sky.querySelectorAll('.st-pl[data-pl]').forEach(b=>{stTex(b.dataset.pl).then(t=>{if(t&&b.isConnected){stDrawSph(b.querySelector('.st-cv'),t,0);b.classList.add('rdy')}});
@@ -4528,11 +4849,15 @@ const ACT={
     showReward(i===INIT.length-1?'Initiation terminée':'Initiation · '+(i+1)+' / '+INIT.length,i===INIT.length-1?'Ton booster de bienvenue':x.t,x.rw.pack?{pack:x.rw.pack}:null,rwText(x.rw)+(x.rw.pack?' ajouté à Mes boosters':''))},
   noop:()=>{},
   stWorld:v=>{const wi=STORY.findIndex(w=>w.k===v);if(wi<0)return;if(!stWorldOpen(wi)){toast('Termine d\'abord '+STORY[wi-1].n+'.');return}stState().sel=v;save();render()},
-  stMulti:()=>toast('Le Multivers, où attendent les plus grands méchants : après les trois premiers mondes. Prochaine mise à jour.'),
-  stGo:v=>{const [wi,ai]=String(v).split(',').map(Number);if(!stActOpen(wi,ai)){toast(stWorldOpen(wi)?'Termine d\'abord l\'acte '+ai+'.':'Monde verrouillé.');return}stFight(wi,ai)},
+  stMulti:()=>toast('Le Multivers, la source de la Faille : l\'Archiviste y attend. Prochaine mise à jour.'),
+  stGo:v=>{const P3=String(v).split(','),wi=+P3[0],ai=+P3[1],mode=P3[2]||'n';if(mode==='n'&&!stActOpen(wi,ai)){toast(stWorldOpen(wi)?'Termine d\'abord l\'acte '+ai+'.':'Monde verrouillé.');return}ST_VS={wi,ai,mode};SFX.tap();render();$('#main').scrollTop=0},
+  stStart:()=>{if(ST_VS)stFight(ST_VS.wi,ST_VS.ai,ST_VS.mode)},stVsOut:()=>{ST_VS=null;render()},
+  stCineOk:()=>{const q=stState();q.pro=q.pro||{};q.pro[ST_CINE]=1;ST_CINE=null;save();render();$('#main').scrollTop=0},stLore:()=>{ST_CINE='intro';render()},
+  stDiff:v=>{ST_DIFF=v;render()},stCall:()=>stCall(),
+  cosSet:v=>{const [ty,id]=String(v).split(','),c=cosState();if(id&&!c.own[id]){const x=ST_COS.find(y=>y.id===id);toast(x?'À débloquer : '+x.how:'');return}c[ty]=id||null;save();render()},
   spEnter:v=>spEnter(v),spOut:()=>spOut(),spZoom:v=>spZoom(v),spTo:v=>spTo(v),
-  stBack:()=>{clearTimeout(ST_T);ST_RUN=null;render();$('#main').scrollTop=0},
-  stRetry:()=>{const R=ST_RUN;if(R)stFight(R.wi,R.ai)},
+  stBack:()=>{clearTimeout(ST_T);const R=ST_RUN,q=stState();q.pro=q.pro||{};if(R&&R.outro&&!q.pro[R.outro])ST_CINE=R.outro;ST_RUN=null;render();$('#main').scrollTop=0},
+  stRetry:()=>{const R=ST_RUN;if(R)stFight(R.wi,R.ai,R.mode)},
   stSpd:()=>{const q=stState();q.spd=q.spd===2?1:2;save();const b=document.querySelector('.st-tg[data-act=stSpd]');if(b)b.classList.toggle('on',q.spd===2)},
   stAuto:()=>{const q=stState();q.auto=!q.auto;save();const b=document.querySelector('.st-tg[data-act=stAuto]');if(b)b.classList.toggle('on',q.auto)},
   stSkip:()=>{if(ST_RUN&&!ST_RUN.fin)stEnd()},
