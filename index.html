@@ -1939,7 +1939,7 @@ body.cos-bg::before{content:"";position:fixed;inset:0;z-index:-1;background:line
 .vx-rows{flex:1;padding:4px 16px 0}
 .vx-r{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-top:1px solid rgba(255,255,255,.1)}.vx-r:first-child{border-top:0}
 .vx-r>div:last-child{flex:1;min-width:0}
-.vx-av{--d:44;flex:none;width:44px;height:44px;border-radius:50%;background:url(images/story/les-sept.jpg) no-repeat;background-size:calc(2000/var(--r)*var(--d)*1px) auto;background-position:calc((var(--r)/2 - var(--cx))/var(--r)*var(--d)*1px) calc((var(--r)/2 - var(--cy))/var(--r)*var(--d)*1px);box-shadow:0 0 0 2px var(--vbg),0 0 0 3.5px var(--ring)}
+.vx-av{--d:44;flex:none;width:44px;height:44px;border-radius:50%;background:url(images/story/intro-6.webp) no-repeat;background-size:calc(2000/var(--r)*var(--d)*1px) auto;background-position:calc((var(--r)/2 - var(--cx))/var(--r)*var(--d)*1px) calc((var(--r)/2 - var(--cy))/var(--r)*var(--d)*1px);box-shadow:0 0 0 2px var(--vbg),0 0 0 3.5px var(--ring)}
 .vx-av.theo{--cx:1752;--cy:480;--r:210}.vx-av.maya{--cx:1500;--cy:440;--r:230}.vx-av.lou{--cx:372;--cy:590;--r:210}
 .vx-av.boss{background-repeat:no-repeat;background-size:200% auto}
 .vx-lab{font:800 14px/1.25 var(--f-body);color:var(--lab)}
@@ -2026,6 +2026,28 @@ body.cos-bg::before{content:"";position:fixed;inset:0;z-index:-1;background:line
 @keyframes st-up{from{transform:translateY(10px);opacity:0}}
 /* récit */
 .st-cine{background:radial-gradient(60% 70% at 50% 20%,rgba(90,52,170,.42),transparent 70%),#05060A}.st-cinein{margin:auto;width:min(560px,100%);padding:26px 20px;display:flex;flex-direction:column;gap:14px;text-align:center}.st-cinein h2{margin:0;font:900 clamp(30px,7vw,52px)/1.05 var(--f-display);animation:st-up .5s both}.st-cinein p{margin:0;font-size:17px;line-height:1.5;animation:st-up .6s both}.st-cinein .btn{align-self:center;min-width:180px;animation:st-up .6s both}
+/* lore : voix des Sept, intro, ouverture et fin des mondes */
+.st-who{display:inline-block;flex:none;width:40px;height:40px;border-radius:50%;background:var(--wi) no-repeat;background-size:calc(var(--w)/var(--r)*40px) auto;background-position:calc((var(--r)/2 - var(--cx))/var(--r)*40px) calc((var(--r)/2 - var(--cy))/var(--r)*40px);box-shadow:0 0 0 2px #05060A,0 0 0 3.5px rgba(255,255,255,.55)}
+.st-lore{background:linear-gradient(rgba(5,6,10,.66),rgba(5,6,10,.95)),var(--decor) center/cover no-repeat #05060A}
+.st-lore.st-cine .st-cinein{align-items:stretch;text-align:left}.st-lore h2{margin-bottom:2px}
+.st-tag{font:700 clamp(18px,4.6vw,24px)/1.3 var(--f-body)!important;font-style:italic}
+.st-cinein .st-say{display:flex;gap:12px;align-items:flex-start;text-align:left;animation:st-up .5s both}.st-cinein .st-say p{margin:2px 0 0;font:700 16px/1.35 var(--f-body);animation:none}.st-say p::before{content:"« "}.st-say p::after{content:" »"}.st-say b{display:block;font:800 13px var(--f-body);color:var(--accent)}.st-say.arch b{color:#c9a6ff}
+.st-lore .st-cinein .btn{align-self:center}
+.st-intro{position:fixed;inset:0;z-index:60;background:#000;overflow:hidden}
+.st-ibg{position:absolute;inset:0}.st-ipl{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;animation:st-ipl 16s var(--t) linear both;-webkit-user-drag:none}
+@keyframes st-ipl{0%{opacity:0;transform:scale(1)}5%{opacity:1}100%{opacity:1;transform:scale(1.14)}}
+.st-ishade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35),transparent 22%,transparent 52%,rgba(0,0,0,.82))}
+.st-ipt{position:absolute;left:0;right:0;bottom:calc(11% + env(safe-area-inset-bottom));margin:0;padding:0 7%;text-align:center;font:800 clamp(20px,5.4vw,36px)/1.25 var(--f-display);text-shadow:0 2px 18px #000;opacity:0;animation:st-ipt var(--d) var(--t) ease both}
+@keyframes st-ipt{0%{opacity:0;transform:translateY(10px)}16%{opacity:1;transform:none}84%{opacity:1}100%{opacity:0}}
+.st-ifin{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:10px;padding:0 7% calc(10% + env(safe-area-inset-bottom));text-align:center;pointer-events:none}
+.st-ifin h2{margin:0;font:900 clamp(44px,13vw,110px)/1 var(--f-display);letter-spacing:.04em;text-shadow:0 0 40px rgba(154,107,255,.9),0 4px 20px #000;animation:st-ifin .7s var(--t) cubic-bezier(.2,1.2,.3,1) both}
+.st-ifin p{margin:0;font:700 clamp(18px,4.6vw,28px) var(--f-body);font-style:italic;color:var(--accent);animation:st-up .6s calc(var(--t) + .6s) both}
+.st-ifin .btn{pointer-events:auto;margin-top:8px;min-width:200px;animation:st-up .6s calc(var(--t) + 1.4s) both}
+@keyframes st-ifin{from{opacity:0;transform:scale(1.35)}}
+.st-iskip{position:absolute;z-index:3;top:calc(14px + env(safe-area-inset-top));right:14px;padding:9px 16px;min-height:40px;border-radius:99px;background:rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.3);color:#fff;font:700 13px var(--f-body);cursor:pointer}
+.st-bq{display:flex;align-items:center;gap:10px;margin:8px 0 0;max-width:min(92vw,560px);text-align:left}.st-bq em{font:700 clamp(14px,3.4vw,18px)/1.28 var(--f-body);font-style:italic}.st-bq em::before{content:"« "}.st-bq em::after{content:" »"}
+.st-ban.e-wave b{color:#7fd6ff}
+@media(prefers-reduced-motion:reduce){.st-intro *{animation:none!important}.st-ipl{opacity:0}.st-ipl:last-child{opacity:1}.st-ipt{display:none}}
 /* mobs */
 .st-foe{display:contents}.st-mobs{display:none;justify-content:center;gap:10px;flex-wrap:wrap}.st-fight[data-st=mob] .st-mobs{display:flex}.st-fight[data-st=mob] .st-boss{display:none}.st-fight[data-st=boss] .st-mobs{display:none}
 .st-mb{position:relative;width:calc(var(--cw)*1.05);display:flex;flex-direction:column;gap:3px;align-items:center;transition:opacity .3s}.st-mb.lt{width:calc(var(--cw)*1.35)}.st-mb.ko{opacity:.25;filter:grayscale(1)}.st-mc{width:100%}.st-mb .st-hp{width:100%}
@@ -2056,7 +2078,7 @@ body.cos-bg::before{content:"";position:fixed;inset:0;z-index:-1;background:line
 .st-bcard{transition:filter .35s,transform .35s}.st-fl.dr{color:#7fd4ff}
 .st-pc.swp .st-fc{filter:grayscale(1) brightness(.45);box-shadow:0 0 18px 5px rgba(140,80,240,.85);border-radius:6px}.st-pc.swp .st-n::after{content:" · corps volé";color:#c9a6ff}
 .st-pc.pup .st-fc{filter:hue-rotate(285deg) saturate(1.5);box-shadow:0 0 15px 4px rgba(240,70,150,.75);border-radius:6px}.st-pc.pup{animation:st-sway 1.3s ease-in-out infinite}@keyframes st-sway{50%{transform:translateY(-4px) rotate(1.4deg)}}
-.st-ban{position:fixed;left:0;right:0;top:32%;z-index:20;padding:15px 16px;display:flex;flex-direction:column;align-items:center;gap:5px;text-align:center;background:linear-gradient(90deg,transparent,rgba(5,6,10,.92) 18%,rgba(5,6,10,.92) 82%,transparent);pointer-events:none;opacity:0;visibility:hidden}.st-ban.on{visibility:visible;animation:st-ban 1.35s both}.st-ban b{font:900 clamp(26px,7.6vw,58px)/1.02 var(--f-display);text-shadow:0 2px 14px rgba(0,0,0,.9)}.st-ban span{font:600 clamp(13px,3vw,16px) var(--f-body)}
+.st-ban{position:fixed;left:0;right:0;top:32%;z-index:20;padding:15px 16px;display:flex;flex-direction:column;align-items:center;gap:5px;text-align:center;background:linear-gradient(90deg,transparent,rgba(5,6,10,.92) 18%,rgba(5,6,10,.92) 82%,transparent);pointer-events:none;opacity:0;visibility:hidden}.st-ban.on{visibility:visible;animation:st-ban 1.45s both}.st-ban b{font:900 clamp(26px,7.6vw,58px)/1.02 var(--f-display);text-shadow:0 2px 14px rgba(0,0,0,.9)}.st-ban span{font:600 clamp(13px,3vw,16px) var(--f-body)}
 @keyframes st-ban{0%{opacity:0;transform:scale(1.25)}14%{opacity:1;transform:scale(1)}84%{opacity:1}100%{opacity:0;transform:translateY(-8px)}}
 .st-ban.e-mist b,.st-ban.e-mistEnd b{color:#dceaf0}.st-ban.e-sand b{color:#f0c378}.st-ban.e-armor b,.st-ban.e-armorBreak b{color:#ffd76e}.st-ban.e-form2 b,.st-ban.e-breath b{color:#ff5a6a}.st-ban.e-swap b,.st-ban.e-swapEnd b,.st-ban.gd b{color:#c9a6ff}.st-ban.e-shed b{color:#d8e6a8}.st-ban.e-drain b{color:#7fd4ff}.st-ban.e-puppet b{color:#ff7ab8}.st-ban.bs b{color:var(--accent)}
 /* fin de combat */
@@ -2744,6 +2766,61 @@ const I18P={
  en:[[/^Prêt · (\d+) \/ (\d+)$/,m=>`Ready · ${m[1]} / ${m[2]}`],[/^Dans (.+)$/,m=>`In ${m[1]}`],[/^(\d+) faisables?$/,m=>`${m[1]} doable`],[/^Aucun faisable$/,()=>'None doable'],[/^Niveau (\d+)$/,m=>`Level ${m[1]}`],[/^Étage (\d+) \/ (\d+)$/,m=>`Floor ${m[1]} / ${m[2]}`],[/^(\d+) à récupérer$/,m=>`${m[1]} to claim`],[/^À jour$/,()=>'Up to date'],[/^Ouvrir · (\d+) \/ (\d+)$/,m=>`Open · ${m[1]} / ${m[2]}`],[/^Mes boosters · (\d+)$/,m=>`My boosters · ${m[1]}`],[/^(\d+) cartes? découvertes?$/,m=>`${m[1]} cards discovered`],[/^Série : (\d+) jours?$/,m=>`Streak: ${m[1]} day${m[1]>1?'s':''}`],[/^Ouvrir ×10 · (.+)$/,m=>`Open ×10 · ${m[1]}`],[/^Faille : (.+)$/,m=>`Weakness: ${m[1]}`],[/^Passer le match · se débloque après 3 matchs \((\d+) \/ 3\)$/,m=>`Skip the match · unlocks after 3 matches (${m[1]} / 3)`],[/^([\d  ]+) · Acheter$/,m=>`${m[1]} · Buy`],[/^([\d  ]+) · Acheter et ouvrir ×10$/,m=>`${m[1]} · Buy and open ×10`],[/^([\d  ]+) · Retenter \(\+1 essai\)$/,m=>`${m[1]} · Retry (+1 attempt)`],[/^Booster (Bronze|Argent|Or)$/,m=>`${{Bronze:'Bronze',Argent:'Silver',Or:'Gold'}[m[1]]} booster`],[/^(Bronze|Argent|Or)$/,m=>({Bronze:'Bronze',Argent:'Silver',Or:'Gold'}[m[1]])],[/^Garantie SSR : (\d+) \/ (\d+) boosters$/,m=>`SSR guarantee: ${m[1]} / ${m[2]} boosters`],[/^(\d+) \/ (\d+) aujourd'hui$/,m=>`${m[1]} / ${m[2]} today`],[/^Tes (\d+) cartes les plus rares · touche pour changer$/,m=>`Your ${m[1]} rarest cards · tap to switch`],[/^Tes plus belles cartes apparaîtront ici$/,()=>'Your best cards will appear here'],[/^Ouvre un booster$/,()=>'Open a booster']],
  es:[[/^Prêt · (\d+) \/ (\d+)$/,m=>`Listo · ${m[1]} / ${m[2]}`],[/^Dans (.+)$/,m=>`En ${m[1]}`],[/^(\d+) faisables?$/,m=>`${m[1]} posible${m[1]>1?'s':''}`],[/^Aucun faisable$/,()=>'Ninguno posible'],[/^Niveau (\d+)$/,m=>`Nivel ${m[1]}`],[/^Étage (\d+) \/ (\d+)$/,m=>`Piso ${m[1]} / ${m[2]}`],[/^(\d+) à récupérer$/,m=>`${m[1]} por reclamar`],[/^À jour$/,()=>'Al día'],[/^Ouvrir · (\d+) \/ (\d+)$/,m=>`Abrir · ${m[1]} / ${m[2]}`],[/^Mes boosters · (\d+)$/,m=>`Mis boosters · ${m[1]}`],[/^(\d+) cartes? découvertes?$/,m=>`${m[1]} cartas descubiertas`],[/^Série : (\d+) jours?$/,m=>`Racha: ${m[1]} día${m[1]>1?'s':''}`],[/^Ouvrir ×10 · (.+)$/,m=>`Abrir ×10 · ${m[1]}`],[/^Faille : (.+)$/,m=>`Debilidad: ${m[1]}`],[/^Passer le match · se débloque après 3 matchs \((\d+) \/ 3\)$/,m=>`Saltar el partido · se desbloquea tras 3 partidos (${m[1]} / 3)`],[/^([\d  ]+) · Acheter$/,m=>`${m[1]} · Comprar`],[/^([\d  ]+) · Acheter et ouvrir ×10$/,m=>`${m[1]} · Comprar y abrir ×10`],[/^([\d  ]+) · Retenter \(\+1 essai\)$/,m=>`${m[1]} · Reintentar (+1 intento)`],[/^Booster (Bronze|Argent|Or)$/,m=>`Booster ${{Bronze:'Bronce',Argent:'Plata',Or:'Oro'}[m[1]]}`],[/^(Bronze|Argent|Or)$/,m=>({Bronze:'Bronce',Argent:'Plata',Or:'Oro'}[m[1]])],[/^Garantie SSR : (\d+) \/ (\d+) boosters$/,m=>`Garantía SSR: ${m[1]} / ${m[2]} boosters`],[/^(\d+) \/ (\d+) aujourd'hui$/,m=>`${m[1]} / ${m[2]} hoy`],[/^Tes (\d+) cartes les plus rares · touche pour changer$/,m=>`Tus ${m[1]} cartas más raras · toca para cambiar`],[/^Tes plus belles cartes apparaîtront ici$/,()=>'Tus mejores cartas aparecerán aquí'],[/^Ouvre un booster$/,()=>'Abre un booster']]};
 function trTxt(t){const L=S.lang;if(!L||L==='fr'||!I18N[L])return t;const m=t.match(/^(\s*)([\s\S]*?)(\s*)$/),k=m[2];if(!k)return t;let v=I18N[L][k];if(v==null){for(const [re,f] of I18P[L]){const r=k.match(re);if(r){v=f(r);break}}}return v==null?t:m[1]+v+m[3]}
+/* traductions du lore (Les Sept) */
+[['Dernière partie avant la fermeture.','One last game before closing time.','Una última partida antes del cierre.'],
+['Une seule règle : ouvrir le sachet ensemble.','One rule only: open the pack together.','Una sola regla: abrir el sobre juntos.'],
+['Le sachet s\'est déchiré. Le monde aussi.','The pack tore open. So did the world.','El sobre se rasgó. El mundo también.'],
+['Sept inconnus. Sept places.','Seven strangers. Seven seats.','Siete desconocidos. Siete plazas.'],
+['Pour rentrer : sceller la Faille. Si tu perds : tu deviens une carte.','To get home: seal the Rift. If you lose: you become a card.','Para volver: sellar la Grieta. Si pierdes: te conviertes en carta.'],
+['LA FAILLE','THE RIFT','LA GRIETA'],['Tous ensemble. À trois.','All together. On three.','Todos juntos. A la de tres.'],['Passer','Skip','Saltar'],
+['Trois soleils. Pas une seule ombre où se cacher.','Three suns. Not a single shadow to hide in.','Tres soles. Ni una sola sombra donde esconderse.'],
+['Quelqu\'un peut me dire où on est ?','Can someone tell me where we are?','¿Alguien puede decirme dónde estamos?'],['Tu ne vas pas me croire.','You won\'t believe me.','No me vas a creer.'],
+['Trois sceaux. Une porte. C\'est un jeu : ça se termine.','Three seals. One door. It\'s a game: it ends.','Tres sellos. Una puerta. Es un juego: se acaba.'],
+['Ici, celui que tu vois n\'est jamais celui qui te tue.','Here, the one you see is never the one who kills you.','Aquí, el que ves nunca es el que te mata.'],
+['On est chez Naruto. Sérieux. On est CHEZ Naruto.','We\'re in Naruto. Seriously. We\'re IN Naruto.','Estamos en Naruto. En serio. ESTAMOS en Naruto.'],
+['Personne ne regarde, Noé. Fais pas le malin.','Nobody\'s watching, Noé. Don\'t show off.','Nadie mira, Noé. No te hagas el listo.'],
+['Sur cette mer, les rois ne meurent pas. Ils reviennent réclamer.','On this sea, kings don\'t die. They come back to collect.','En este mar, los reyes no mueren. Vuelven a reclamar.'],
+['Noé est quelque part là-dedans. Je le ramène.','Noé is somewhere in there. I\'m bringing him back.','Noé está ahí dentro en alguna parte. Lo traigo de vuelta.'],
+['Yo, je pourrais me casser. Je sais. Avance.','Yo, I could bail. I know. Keep moving.','Yo, podría largarme. Lo sé. Avanza.'],
+['Namek scellée','Namek sealed','Namek sellada'],['Le monde des ninjas scellé','The ninja world sealed','El mundo ninja sellado'],['Grand Line scellée','Grand Line sealed','Grand Line sellada'],
+['Sept petits clients, et déjà un sceau. Vous êtes bien meilleurs que les derniers.','Seven little customers, and already a seal. You\'re far better than the last ones.','Siete clientitos, y ya un sello. Sois mucho mejores que los últimos.'],
+['Noé a disparu. Yanis retrouve une carte par terre, avec le visage de son frère dessus.','Noé is gone. Yanis finds a card on the ground, with his brother\'s face on it.','Noé ha desaparecido. Yanis encuentra una carta en el suelo, con la cara de su hermano.'],
+['Il a tellement aimé ce monde. Regarde comme il est beau, en carte. Il m\'en manque six.','He loved this world so much. Look how beautiful he is as a card. I\'m missing six.','Amó tanto este mundo. Mira qué bonito está en carta. Me faltan seis.'],
+['La porte du Multivers s\'ouvre. Il reste une place vide dans l\'équipe.','The Multiverse door opens. One seat in the team stays empty.','La puerta del Multiverso se abre. Queda un asiento vacío en el equipo.'],
+['La porte est ouverte. Venez au Multivers. Apportez vos cartes. La boutique ne ferme jamais.','The door is open. Come to the Multiverse. Bring your cards. The shop never closes.','La puerta está abierta. Venid al Multiverso. Traed vuestras cartas. La tienda nunca cierra.'],
+['La suite à la prochaine mise à jour.','More in the next update.','Más en la próxima actualización.'],
+['Ouais ! Dans ta face !','Yeah! Right in your face!','¡Sí! ¡En toda la cara!'],['Derrière moi ! Maintenant !','Behind me! Now!','¡Detrás de mí! ¡Ahora!'],['Pas cette fois.','Not this time.','Esta vez no.'],
+['VAGUE DE DENTS','WAVE OF TEETH','OLA DE DIENTES'],['Toute l\'équipe est touchée.','The whole team is hit.','Todo el equipo recibe el golpe.'],
+['ÉCHO SCELLÉ','ECHO SEALED','ECO SELLADO'],['TES CARTES SE TAISENT','YOUR CARDS FALL SILENT','TUS CARTAS CALLAN'],['On y retourne','Back at it','Volvemos'],
+['Sept gamins tombés du ciel. Freezer ne veut pas de survivants. Moi, j\'aime quand ils essaient.','Seven kids fallen from the sky. Frieza wants no survivors. Me, I like it when they try.','Siete críos caídos del cielo. Freezer no quiere supervivientes. A mí me gusta cuando lo intentan.'],
+['Reste à terre. Sur Namek, la poussière n\'a pas de nom.','Stay down. On Namek, the dust has no name.','Quédate en el suelo. En Namek, el polvo no tiene nombre.'],
+['Dis à Freezer… non. Ne lui dis rien.','Tell Frieza… no. Tell him nothing.','Dile a Freezer… no. No le digas nada.'],
+['Regarde-moi bien. C\'est la dernière belle chose que tu verras.','Take a good look at me. It\'s the last beautiful thing you\'ll ever see.','Mírame bien. Es lo último bonito que verás.'],
+['Tu m\'as forcé à être laid. Personne ne survit à ça.','You forced me to be ugly. No one survives that.','Me obligaste a ser feo. Nadie sobrevive a eso.'],
+['Ce visage… ne le regarde pas…','That face… don\'t look at it…','Esa cara… no la mires…'],
+['Sept contre un ? Enfin une équipe qui comprend la mise en scène.','Seven against one? Finally a team that understands staging.','¿Siete contra uno? Por fin un equipo que entiende la puesta en escena.'],
+['Merci pour le corps. Je te rendrai ce qu\'il en reste.','Thanks for the body. I\'ll give back what\'s left of it.','Gracias por el cuerpo. Te devolveré lo que quede.'],
+['Ma pose… elle était… parfaite.','My pose… it was… perfect.','Mi pose… era… perfecta.'],
+['Dans la brume, le démon n\'a plus de nom. Toi non plus, bientôt.','In the mist, the demon has no name. Soon, neither will you.','En la niebla, el demonio no tiene nombre. Pronto tú tampoco.'],
+['Tu as entendu quelque chose ? Non. Personne n\'entend.','Did you hear something? No. Nobody hears.','¿Has oído algo? No. Nadie oye.'],
+['Haku… attends-moi. Cette fois, c\'est moi qui marche jusqu\'à toi.','Haku… wait for me. This time, I\'m the one walking to you.','Haku… espérame. Esta vez soy yo quien camina hasta ti.'],
+['Des corps venus d\'un autre monde. Tu m\'apportes exactement ce que je cherchais.','Bodies from another world. You bring me exactly what I was looking for.','Cuerpos de otro mundo. Me traes justo lo que buscaba.'],
+['Ne pleure pas tes cartes. Je les ferai vivre plus longtemps que toi.','Don\'t cry over your cards. I\'ll make them live longer than you.','No llores por tus cartas. Las haré vivir más que tú.'],
+['Tue cette peau, si ça te rassure. Je suis déjà ailleurs.','Kill this skin if it reassures you. I\'m already elsewhere.','Mata esta piel, si te tranquiliza. Ya estoy en otro lugar.'],
+['On m\'appelle le démon sans queue. Samehada, elle, a très faim.','They call me the tailless demon. Samehada, though, is very hungry.','Me llaman el demonio sin cola. Samehada, en cambio, tiene mucha hambre.'],
+['Quelle légèreté, tes cartes. Il n\'y avait presque rien à manger.','How light your cards are. There was almost nothing to eat.','Qué ligeras tus cartas. Casi no había nada que comer.'],
+['Au moins… c\'est un vrai combat qui m\'aura eu.','At least… it was a real fight that got me.','Al menos… me venció un combate de verdad.'],
+['Un humain dans mon eau. Compte tes cartes. Compte tes dents.','A human in my water. Count your cards. Count your teeth.','Un humano en mi agua. Cuenta tus cartas. Cuenta tus dientes.'],
+['Ici, tout se paie. Et tu n\'as plus rien.','Here, everything has a price. And you have nothing left.','Aquí todo se paga. Y ya no te queda nada.'],
+['Une main humaine… sur mon Park… Impossible.','A human hand… on my Park… Impossible.','Una mano humana… sobre mi Park… Imposible.'],
+['Vous voulez rentrer chez vous ? Ici, même les rois finissent en sable.','You want to go home? Here, even kings end up as sand.','¿Queréis volver a casa? Aquí hasta los reyes acaban convertidos en arena.'],
+['Même pas un nom sur une dune.','Not even a name on a dune.','Ni un nombre en una duna.'],
+['De l\'eau… encore. Tu as le même regard que ce gamin au chapeau.','Water… again. You have the same look as that kid with the hat.','Agua… otra vez. Tienes la misma mirada que ese chaval del sombrero.'],
+['Fufufu ! Tu crois tenir tes cartes ? Regarde tes doigts.','Fufufu! You think you\'re holding your cards? Look at your fingers.','¡Fufufu! ¿Crees que sostienes tus cartas? Mira tus dedos.'],
+['Le rideau tombe. La marionnette reste.','The curtain falls. The puppet remains.','Cae el telón. La marioneta se queda.'],
+['Coupe tous les fils que tu veux. L\'Archiviste tient le dernier.','Cut all the strings you want. The Archivist holds the last one.','Corta todos los hilos que quieras. El Archivista sostiene el último.']
+].forEach(r=>{I18N.en[r[0]]=r[1];I18N.es[r[0]]=r[2]});
+I18P.en.push([/^Chapitre (\d)$/,m=>`Chapter ${m[1]}`]);I18P.es.push([/^Chapitre (\d)$/,m=>`Capítulo ${m[1]}`]);
 let I18D=false;
 function i18nApply(root){const L=S.lang||'fr';if(L==='fr'&&!I18D)return;const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode:n=>/^(SCRIPT|STYLE|TEXTAREA)$/.test(n.parentNode.tagName)?NodeFilter.FILTER_REJECT:NodeFilter.FILTER_ACCEPT});let n;const L2=[];while(n=w.nextNode())L2.push(n);
   L2.forEach(n=>{const o=n._o!=null&&n.nodeValue===n._t?n._o:n.nodeValue,v=L==='fr'?o:trTxt(o);if(v!==n.nodeValue){n._o=o;n._t=v;n.nodeValue=v;I18D=true}});
@@ -4428,25 +4505,25 @@ const ST_OBJ=['Victoire','≥ 50 % de PV','Sans KO'];
 const STORY=[
  {k:'db',n:'Dragon Ball',sub:'Saga de Namek',kj:'龍',hero:'db-son-arc-buu',pl:'images/story/sphere-db.webp',acts:[
   {t:'Les sbires de Freezer',b:'db-dodoria-arc-namek',bg:'images/story/bg-db.webp',pv:4.65,at:4.2,df:1,n:3,rw:300,tr:'armor',cyc:['Tank','Tank','DPS'],why:'Une brute : il casse d\'abord le mur.',
-   pre:'Le seigneur Freezer veut les sept boules. Toi, tu n\'es qu\'une carte à déchirer.',win:'Trop facile. Je rapporterai tes cartes à Freezer, en morceaux.',lose:'Impossible… le seigneur Freezer va me…'},
+   pre:'Sept gamins tombés du ciel. Freezer ne veut pas de survivants. Moi, j\'aime quand ils essaient.',win:'Reste à terre. Sur Namek, la poussière n\'a pas de nom.',lose:'Dis à Freezer… non. Ne lui dis rien.'},
   {t:'Le bras droit',b:'db-zarbon-arc-namek',bg:'images/story/bg-db.webp',pv:5.35,at:4.89,df:1,n:3,rw:400,tr:'form2',cyc:['DPS','DPS','Distance'],cyc2:['Distance','Distance','DPS'],why:'Un vaniteux : il frappe celui qui brille le plus.',
-   pre:'Quel dommage d\'abîmer un si joli visage. Le tien, pas le mien.',win:'Tu as vu ma vraie forme. Personne ne s\'en vante après.',lose:'Même sous cette forme… ma beauté ne m\'a pas sauvé.'},
+   pre:'Regarde-moi bien. C\'est la dernière belle chose que tu verras.',win:'Tu m\'as forcé à être laid. Personne ne survit à ça.',lose:'Ce visage… ne le regarde pas…'},
   {t:'Le commando Ginyu',b:'db-ginyu-arc-namek',bg:'images/story/bg-db.webp',pv:8.25,at:2.27,df:1,n:2,rw:600,tr:'swap',cyc:['Distance','Tank','DPS'],why:'Il pose, puis il jauge chaque rôle.',end:'bronze',
-   pre:'Commando Ginyu, au rapport ! Pose réglementaire… et ton corps m\'ira très bien.',win:'Victoire ! Et regarde-moi cette pose. Freezer sera ravi.',lose:'Pas comme ça… ma pose n\'était même pas finie…'}]},
+   pre:'Sept contre un ? Enfin une équipe qui comprend la mise en scène.',win:'Merci pour le corps. Je te rendrai ce qu\'il en reste.',lose:'Ma pose… elle était… parfaite.'}]},
  {k:'na',n:'Naruto',sub:'Du Pays des Vagues à l\'Akatsuki',kj:'忍',hero:'na-naruto-shippuden-mode-ermite',pl:'images/story/sphere-na.webp',acts:[
   {t:'Le démon de Kirigakure',b:'na-zabuza-pays-des-vagues',bg:'images/story/bg-na-vagues.webp',pv:6.62,at:2.75,df:1,n:2,rw:500,tr:'mist',cyc:['Tank','DPS','DPS'],why:'Un assassin : il va droit au plus grand danger.',
-   pre:'Huit points vitaux. Je choisirai lequel, dans la brume.',win:'Tu ne m\'as même pas entendu arriver.',lose:'Haku… on dirait que c\'est fini pour nous deux.'},
+   pre:'Dans la brume, le démon n\'a plus de nom. Toi non plus, bientôt.',win:'Tu as entendu quelque chose ? Non. Personne n\'entend.',lose:'Haku… attends-moi. Cette fois, c\'est moi qui marche jusqu\'à toi.'},
   {t:'L\'Examen Chûnin',b:'na-orochimaru-examen-chunin',bg:'images/story/bg-na-foret.webp',pv:5.93,at:2.99,df:1,n:2,rw:650,tr:'shed',cyc:['Distance','Distance','DPS'],why:'Il étudie sa proie : il élimine d\'abord les tireurs.',
-   pre:'Ces cartes… quels corps magnifiques. Je veux tous les essayer.',win:'Merci pour cet échantillon. Kukuku.',lose:'Cette peau ne me servait plus. Je reviendrai sous une autre.'},
+   pre:'Des corps venus d\'un autre monde. Tu m\'apportes exactement ce que je cherchais.',win:'Ne pleure pas tes cartes. Je les ferai vivre plus longtemps que toi.',lose:'Tue cette peau, si ça te rassure. Je suis déjà ailleurs.'},
   {t:'L\'ombre de l\'Akatsuki',b:'na-kisame-akatsuki',bg:'images/story/bg-na-ame.webp',pv:4.65,at:2.99,df:1,n:2,rw:900,tr:'drain',cyc:['Tank','DPS','Tank'],why:'Il dévore la force : il cherche le plus solide.',end:'argent',
-   pre:'Samehada a faim, et ton chakra sent bon.',win:'Il ne reste rien de toi. Pas même une arête.',lose:'Drôle de fin… pour un démon sans queue.'}]},
+   pre:'On m\'appelle le démon sans queue. Samehada, elle, a très faim.',win:'Quelle légèreté, tes cartes. Il n\'y avait presque rien à manger.',lose:'Au moins… c\'est un vrai combat qui m\'aura eu.'}]},
  {k:'op',n:'One Piece',sub:'D\'East Blue à Dressrosa',kj:'海',hero:'op-monkey-arc-wano',pl:'images/story/sphere-op.webp',acts:[
   {t:'Arlong Park',b:'op-arlong-arlong-park',bg:'images/story/bg-op.webp',pv:14.86,at:2.09,df:1,n:2,rw:800,tr:'wave',cyc:['DPS','Tank','DPS'],why:'Une force brute : il fonce dans le tas.',
-   pre:'Les hommes-poissons sont nés supérieurs. Tu viens te noyer dans mon eau.',win:'Ici, seul l\'argent fait la loi. Et ton équipe ne vaut pas un berry.',lose:'Un humain… m\'a abattu ? Mon Arlong Park…'},
+   pre:'Un humain dans mon eau. Compte tes cartes. Compte tes dents.',win:'Ici, tout se paie. Et tu n\'as plus rien.',lose:'Une main humaine… sur mon Park… Impossible.'},
   {t:'Le désert d\'Alabasta',b:'op-crocodile-alabasta',bg:'images/story/bg-op-alabasta.webp',pv:18.22,at:2.9,df:1,n:2,rw:1000,tr:'sand',cyc:['Distance','Tank','DPS'],why:'Il assèche tout ce qui reste à distance.',
-   pre:'Bienvenue à Alabasta. Ici, même les rois finissent en sable.',win:'Te voilà sec. Comme tout ce que je touche.',lose:'De l\'eau… encore de l\'eau. Tu n\'as pas plus peur de mourir que ce Chapeau de paille.'},
+   pre:'Vous voulez rentrer chez vous ? Ici, même les rois finissent en sable.',win:'Même pas un nom sur une dune.',lose:'De l\'eau… encore. Tu as le même regard que ce gamin au chapeau.'},
   {t:'Le joug de Dressrosa',b:'op-doflamingo-dressrosa',bg:'images/story/bg-op-dressrosa.webp',pv:16.14,at:2.18,df:1,n:2,rw:1400,tr:'puppet',cyc:['Distance','DPS','Tank'],why:'Il tire les fils de loin, et vise ceux qui visent.',end:'or',
-   pre:'Fufufu ! Tes cartes dansent déjà. Tu n\'as juste pas vu les fils.',win:'À Dressrosa, seuls les vainqueurs écrivent la justice.',lose:'Fufufu… L\'Archiviste aura ta tête. Tous mes fils ne sont pas coupés.'}]}
+   pre:'Fufufu ! Tu crois tenir tes cartes ? Regarde tes doigts.',win:'Le rideau tombe. La marionnette reste.',lose:'Coupe tous les fils que tu veux. L\'Archiviste tient le dernier.'}]}
 ];
 const ST_TR={
  armor:{n:'Peau d\'acier',d:'Coups normaux −40 % tant qu\'une attaque spéciale n\'a pas brisé sa cuirasse.'},
@@ -4465,15 +4542,29 @@ const ST_EV={armor:['PEAU D\'ACIER','Coups normaux −40 %. Une spéciale la bri
  mist:['LA BRUME','Esquive du boss +30 % pendant 3 tours.'],mistEnd:['LA BRUME SE LÈVE','Le boss redevient visible.'],shed:['LA MUE','Il sort de sa peau et regagne 15 % de PV.'],
  drain:['SAMEHADA','Chaque frappe le soigne.'],sand:['TEMPÊTE DE SABLE','Soins −40 %. Le Soutien garde ses autres effets.'],
  puppet:['MARIONNETTE','Une de tes cartes se retourne contre l\'équipe.'],breath:['DERNIER SOUFFLE','Sa prochaine frappe sera doublée !']};
+/* ───── Lore « Les Sept » : voix, intro, ouverture et fin des mondes ───── */
+const ST_PEO={theo:['Théo',1752,480,210],maya:['Maya',1500,440,230],lou:['Lou',372,590,210],yanis:['Yanis',740,400,200],dre:['Dre',590,350,200],noe:['Noé',1255,395,200],toi:['Toi',985,400,200],arch:['L\'Archiviste',900,300,300]};
+function stWho(k){const p=ST_PEO[k];if(!p)return'';const a=k==='arch';return `<i class="st-who" role="img" aria-label="${p[0]}" style="--wi:url(images/story/intro-${a?5:6}.webp);--w:${a?1800:2000};--cx:${p[1]};--cy:${p[2]};--r:${p[3]}"></i>`}
+function stWhoB(a){const c=CARD[a.b],art=artOf(c),vx=ST_VX[a.b]||{f:[.5,.2]};if(!art)return'';return `<i class="st-who" role="img" aria-label="${c.nom}" style="background-image:url(${art});background-size:200% auto;background-position:${(vx.f[0]*2-.5)*100}% ${Math.max(0,Math.min(1,(vx.f[1]*2.8-.5)/1.8))*100}%"></i>`}
+/* qui réagit à chaque événement de boss ; 'b' = le boss lui-même */
+const ST_EVQ={armor:['theo','Les coups normaux passent pas. Il faut une spéciale !'],armorBreak:['noe','Ouais ! Dans ta face !'],form2:['b','Tu voulais voir ce qu\'il y a dessous ?'],swap:['b','Change !'],mist:['b','Huit points vitaux. Lequel d\'abord ?'],shed:['lou','Il a changé de peau. Il fait toujours ça !'],drain:['theo','Son épée le soigne quand il touche. Finis-le vite.'],sand:['b','Tes soins ? Ils coulent entre mes doigts.'],puppet:['b','Danse.'],breath:['yanis','Derrière moi ! Maintenant !']};
+function stEvWho(ev){const q=ST_EVQ[ev],R=ST_RUN;if(!q||!R)return null;const a=STORY[R.wi].acts[R.ai];return [q[0]==='b'?stWhoB(a):stWho(q[0]),q[1]]}
+const ST_CH={db:1,na:2,op:3};
 const ST_LORE={
- intro:{t:'La Faille',l:['Tes cartes ne sont pas du papier. Chacune garde l\'écho d\'un héros.','Une nuit, le ciel s\'est fendu : c\'est la Faille. Elle relie les mondes, et elle en recrache les plus grands ennemis.','C\'est l\'œuvre de l\'Archiviste. Il veut posséder chaque écho de chaque univers, et il a ouvert la Faille pour les rappeler tous.','Monde après monde, bats ses échos et referme la Faille. Au bout, le Multivers : c\'est là qu\'il t\'attend.']},
- db:{t:'Namek',l:['La Faille s\'ouvre d\'abord sur Namek. Freezer y cherche encore les boules de cristal, et ses hommes obéissent désormais à l\'Archiviste.','Dodoria, Zarbon, le commando Ginyu : trois échos à sceller pour refermer ce monde.']},
- na:{t:'Le monde des ninjas',l:['La Faille s\'étend. Ici, les échos se cachent, se transforment et frappent sans bruit.','Du pont du Pays des Vagues au village d\'Ame : Zabuza, Orochimaru, puis Kisame.']},
- op:{t:'Grand Line',l:['Dernier monde avant la source. Les échos y sont les plus forts, et ils règnent sur des pays entiers.','Arlong, Crocodile, Doflamingo : fais-les tomber, et la Faille ne tiendra plus qu\'à un fil.']},
- dbEnd:{t:'Namek est scellée',l:['La fissure recule. L\'Archiviste a perdu ses premiers échos, et il sait maintenant ton nom.']},
- naEnd:{t:'Le monde des ninjas est scellé',l:['La Faille n\'a plus qu\'un monde à dévorer. Quelque part au fond, l\'Archiviste range ses pages en colère.']},
- opEnd:{t:'La Faille tremble',l:['Trois mondes scellés. Il ne reste que la source : le Multivers s\'est mis à battre, et l\'Archiviste t\'y attend.','La suite à la prochaine mise à jour.']}
+ db:{t:'Namek',tag:'Trois soleils. Pas une seule ombre où se cacher.',bg:'images/story/bg-db.webp',say:[['yanis','Quelqu\'un peut me dire où on est ?'],['lou','Tu ne vas pas me croire.'],['theo','Trois sceaux. Une porte. C\'est un jeu : ça se termine.']]},
+ na:{t:'Le monde des ninjas',tag:'Ici, celui que tu vois n\'est jamais celui qui te tue.',bg:'images/story/bg-na-vagues.webp',say:[['noe','On est chez Naruto. Sérieux. On est CHEZ Naruto.'],['maya','Personne ne regarde, Noé. Fais pas le malin.']]},
+ op:{t:'Grand Line',tag:'Sur cette mer, les rois ne meurent pas. Ils reviennent réclamer.',bg:'images/story/bg-op.webp',say:[['yanis','Noé est quelque part là-dedans. Je le ramène.'],['dre','Yo, je pourrais me casser. Je sais. Avance.']]},
+ dbEnd:{t:'Namek scellée',bg:'images/story/intro-5.webp',q:'Sept petits clients, et déjà un sceau. Vous êtes bien meilleurs que les derniers.'},
+ naEnd:{t:'Le monde des ninjas scellé',bg:'images/story/intro-5.webp',nar:'Noé a disparu. Yanis retrouve une carte par terre, avec le visage de son frère dessus.',q:'Il a tellement aimé ce monde. Regarde comme il est beau, en carte. Il m\'en manque six.'},
+ opEnd:{t:'Grand Line scellée',bg:'images/story/intro-5.webp',nar:'La porte du Multivers s\'ouvre. Il reste une place vide dans l\'équipe.',q:'La porte est ouverte. Venez au Multivers. Apportez vos cartes. La boutique ne ferme jamais.',last:'La suite à la prochaine mise à jour.'}
 };
+/* intro : 6 plans lents ; [image, texte, durée en secondes] */
+const ST_INTRO=[['intro-1','Dernière partie avant la fermeture.',1.9],['intro-2','Une seule règle : ouvrir le sachet ensemble.',2],['intro-3','Le sachet s\'est déchiré. Le monde aussi.',2],['intro-4','Sept inconnus. Sept places.',1.9],['intro-5','Pour rentrer : sceller la Faille. Si tu perds : tu deviens une carte.',3.1],['intro-6','',0]];
+function stIntroHTML(){let t=0;const T=ST_INTRO.map(p=>{const s=t;t+=p[2];return s});
+  return `<section class="st-intro" aria-label="Introduction"><div class="st-ibg">${ST_INTRO.map((p,i)=>`<img class="st-ipl" style="--t:${T[i].toFixed(1)}s" src="images/story/${p[0]}.webp" alt="" draggable="false"${i?'':' fetchpriority="high"'}>`).join('')}</div><div class="st-ishade"></div>
+   ${ST_INTRO.map((p,i)=>p[1]?`<p class="st-ipt" style="--t:${(T[i]+.25).toFixed(2)}s;--d:${(p[2]-.35).toFixed(2)}s">${p[1]}</p>`:'').join('')}
+   <div class="st-ifin" style="--t:${t.toFixed(1)}s"><h2>LA FAILLE</h2><p>Tous ensemble. À trois.</p><button class="btn primary" data-act="stCineOk">Continuer</button></div>
+   <button class="st-iskip" data-act="stCineOk">Passer</button></section>`}
 const ST_STAR=[0,80,250,400];
 /* Défi de l'Archiviste : un par monde, contre le boss de l'acte 3, déverrouillé quand le monde est fini. Récompense : fond de combat. */
 const ST_DEF={db:{t:'Rareté plafonnée',d:'Aucune carte au-dessus de R dans ton équipe.',ok:ids=>ids.every(id=>id&&RORD[CARD[id].r]<=RORD.R),msg:'Il te faut 7 cartes de rareté R ou moins.'},
@@ -4612,7 +4703,7 @@ function stDelay(e){const k=stState().spd===2?.5:1;if(e&&e.k==='ev')return Math.
 function stAnim(el,c,ms){if(!el)return;el.classList.remove(c);void el.offsetWidth;el.classList.add(c);setTimeout(()=>el.classList.remove(c),ms)}
 function stFloat(el,tx,cls){if(!el)return;const f=document.createElement('i');f.className='st-fl'+(cls?' '+cls:'');f.textContent=tx;el.appendChild(f);setTimeout(()=>f.remove(),700)}
 function stSupOn(R,pred,ms){R.r.sup.forEach((s,i)=>{if(pred(s))stAnim(document.getElementById('stsp'+i),'on',ms||900)})}
-function stBan(t,d,cls){const b=document.getElementById('stban');if(!b)return;b.className='st-ban '+(cls||'');b.innerHTML=`<b>${t}</b>${d?`<span>${d}</span>`:''}`;void b.offsetWidth;b.classList.add('on');clearTimeout(b._t);b._t=setTimeout(()=>b.classList.remove('on'),1350)}
+function stBan(t,d,cls,who){const b=document.getElementById('stban');if(!b)return;b.className='st-ban '+(cls||'');b.innerHTML=`<b>${t}</b>${d?`<span>${d}</span>`:''}${who&&who[0]?`<p class="st-bq">${who[0]}<em>${who[1]}</em></p>`:''}`;void b.offsetWidth;b.classList.add('on');clearTimeout(b._t);b._t=setTimeout(()=>b.classList.remove('on'),1450)}
 function stPaint(){const R=ST_RUN;if(!R)return;const L=R.r.log,e=R.step>0?L[R.step-1]:null,n=R.r.waves.length,ph=e?e.ph:(n?0:n),sec=document.getElementById('stfight');
   const live=!R.fin;
   if(sec&&sec.dataset.ph!==String(ph)){sec.dataset.ph=ph;sec.dataset.st=ph<n?'mob':'boss';const mb=document.getElementById('stmobs');if(mb)mb.innerHTML=ph<n?stMobsHTML(R.r.waves[ph],R.wi):''}
@@ -4640,13 +4731,13 @@ function stPaint(){const R=ST_RUN;if(!R)return;const L=R.r.log,e=R.step>0?L[R.st
   if(!live)return;if(!e){stSupOn(R,()=>true,1100);return}
   if(e.k==='p'){const a=document.getElementById('stpc'+e.i);if(a){a.classList.add('act');stAnim(a,'atk',300)}const t=tg(e);stAnim(t,'hit',300);stFloat(t,e.dodge?'esquive':'−'+e.dmg,e.crit?'cr':'')}
   else if(e.k==='b'||e.k==='mb'){const f=document.getElementById('stpc'+e.j),s=e.k==='b'?bo:document.getElementById('stm'+e.e);stAnim(s,'atk',300);if(f){stAnim(f,'hit',300);stFloat(f,e.dodge?'esquive':'−'+e.dmg)}
-    if(e.heal){stFloat(bo,'+'+e.heal,'dr');stAnim(sec,'fx-drain',600)}if(e.zs&&e.zs.length){stAnim(sec,'fx-wave',1000);if(!S.mute)noise(0,.8,.2,500,1500);e.zs.forEach(([m,d])=>{const c=document.getElementById('stpc'+m);stAnim(c,'hit',300);stFloat(c,'−'+d)})}}
+    if(e.heal){stFloat(bo,'+'+e.heal,'dr');stAnim(sec,'fx-drain',600)}if(e.zs&&e.zs.length){stBan('VAGUE DE DENTS','Toute l\'équipe est touchée.','e-wave',[stWho('maya'),'Toute l\'équipe ! Toute l\'équipe !']);stAnim(sec,'fx-wave',1000);if(!S.mute)noise(0,.8,.2,500,1500);e.zs.forEach(([m,d])=>{const c=document.getElementById('stpc'+m);stAnim(c,'hit',300);stFloat(c,'−'+d)})}}
   else if(e.k==='pup'){const a=document.getElementById('stpc'+e.i),f=document.getElementById('stpc'+e.j);stAnim(a,'atk',300);if(f){stAnim(f,'hit',300);stFloat(f,'−'+e.dmg)}}
-  else if(e.k==='guard'){stBan('APPEL DU GARDIEN','La frappe est annulée.','gd');if(!S.mute)tone(880,0,.4,'sine',.1,1320)}
+  else if(e.k==='guard'){stBan('APPEL DU GARDIEN','La frappe est annulée.','gd',[stWho('toi'),'Pas cette fois.']);if(!S.mute)tone(880,0,.4,'sine',.1,1320)}
   else if(e.k==='wave'){stBan('VAGUE '+e.n,'Les échos approchent.','wv');SFX.flip()}
   else if(e.k==='bossin'){stBan(nm(R.r.bid).toUpperCase(),'','bs');if(!S.mute)tone(70,0,.9,'sawtooth',.09,50)}
   else if(e.k==='rest'){R.r.ids.forEach((id,i)=>{if(pp[i]>0)stFloat(document.getElementById('stpc'+i),'+','hl')})}
-  else if(e.k==='ev'){const E=ST_EV[e.ev];stBan(E[0],E[1],'e-'+e.ev);stAnim(sec,'fx-'+e.ev,1400);if(ST_SND[e.ev])ST_SND[e.ev]();if(e.ev==='form2'||e.ev==='shed'||e.ev==='armorBreak')stAnim(bo,'hit',500)}
+  else if(e.k==='ev'){const E=ST_EV[e.ev];stBan(E[0],E[1],'e-'+e.ev,stEvWho(e.ev));stAnim(sec,'fx-'+e.ev,1400);if(ST_SND[e.ev])ST_SND[e.ev]();if(e.ev==='form2'||e.ev==='shed'||e.ev==='armorBreak')stAnim(bo,'hit',500)}
   else if(e.k==='cover'){stSupOn(R,s=>s.k==='cover');const t=e.ph<n?null:bo;if(t){stAnim(t,'hit',300);stFloat(t,'−'+e.v,'cv')}}
   else if(e.k==='heal'){stSupOn(R,s=>s.k==='heal');R.r.ids.forEach((id,i)=>{if(pp[i]>0)stFloat(document.getElementById('stpc'+i),'+','hl')})}}
 function stStep(){const R=ST_RUN;if(!R||S.tab!=='tour'||S.psub!=='st'||R.fin)return;
@@ -4666,10 +4757,10 @@ const ST_SIL='<svg viewBox="0 0 60 84" aria-hidden="true"><path d="M30 10c6 0 10
 function stMobsHTML(L,wi){const w=STORY[wi];return L.map((m,i)=>`<div class="st-mb${m.lt?' lt':''}" id="stm${i}"><div class="st-mc">${m.id?cardHTML(CARD[m.id],{mini:true}):`<div class="st-sil">${ST_SIL}<b>${w.kj}</b></div>`}</div><div class="st-hp"><i id="stmf${i}"></i></div><span class="st-n">${m.id?CARD[m.id].nom:m.g}${m.lt?' · lieutenant':''}</span></div>`).join('')}
 function stEndHTML(R){const r=R.r,w=STORY[R.wi],a=w.acts[R.ai],c=CARD[a.b],art=artOf(c);
   return `<div class="st-eb" style="--decor:url(${a.bg})"><div class="st-ein"><div class="st-ecard${r.win?' fall':''}">${cardHTML(c,{note:c.note})}</div>
-   <b class="st-ew ${r.win?'win':'lose'}">${r.win?'Victoire':'Défaite'}</b><p class="st-eq">${r.win?a.lose:a.win}</p>
+   <b class="st-ew ${r.win?'win':'lose'}">${r.win?'ÉCHO SCELLÉ':'TES CARTES SE TAISENT'}</b><p class="st-eq">${r.win?a.lose:a.win}</p>
    ${R.mode==='def'?'':`<ul class="st-objl">${r.obj.map((v,i)=>`<li class="${v?'on':''}"><span>${v?'★':'☆'}</span>${ST_OBJ[i]}</li>`).join('')}</ul>`}
    ${R.rw.length?`<ul class="st-rwl">${R.rw.map(x=>`<li>${x}</li>`).join('')}</ul>`:(r.win?'':'<p class="small muted">Lis ses habitudes, change ta formation ou ton équipe.</p>')}
-   <div class="st-resb"><button class="btn primary" data-act="stBack">Continuer</button><button class="btn" data-act="stRetry">Rejouer</button></div></div></div>`}
+   <div class="st-resb"><button class="btn primary" data-act="stBack">Continuer</button><button class="btn" data-act="stRetry">${r.win?'On y retourne':'Tous ensemble. À trois.'}</button></div></div></div>`}
 function stFightHTML(){const R=ST_RUN,w=STORY[R.wi],a=w.acts[R.ai],c=CARD[a.b],r=R.r,q=stState(),lb={cau:'Cauchemar · ',tr:'Traque du jour · ',def:'Défi de l\'Archiviste · '}[R.mode]||'';
   return `<section class="st-fight" id="stfight" style="--decor:url(${a.bg})" data-ph="" data-st="" data-fx="">
   <div class="st-fx" aria-hidden="true"></div><div id="stban" class="st-ban" role="status"></div>
@@ -4716,7 +4807,10 @@ function stVxPlace(){const v=document.querySelector('.vx'),r=v&&v.querySelector(
   r.style.left=(R.left-H.left+(W-dw)/2+v.dataset.fx*dw)+'px';r.style.top=(R.top-H.top+(Ht-dh)*ay+v.dataset.fy*dh)+'px'}
 function stVxFx(){stVxPlace();const i=document.querySelector('.vx-art img');if(i&&!i.complete)i.addEventListener('load',stVxPlace,{once:true});const p=document.getElementById('vxPw');if(!p||matchMedia('(prefers-reduced-motion:reduce)').matches)return;const n=+p.dataset.n,t0=performance.now();(function tick(t){if(!p.isConnected)return;const q=Math.min(1,Math.max(0,(t-t0)/850));p.textContent=stNum(Math.round(n*q*q/100)*100);if(q<1)requestAnimationFrame(tick)})(t0)}
 addEventListener('resize',stVxPlace);
-function stCineHTML(){const L=ST_LORE[ST_CINE];return `<section class="st-cine"><div class="st-cinein"><span class="eyebrow">L'histoire</span><h2>${L.t}</h2>${L.l.map((x,i)=>`<p style="animation-delay:${i*.45}s">${x}</p>`).join('')}<button class="btn primary" data-act="stCineOk" style="animation-delay:${L.l.length*.45}s">Continuer</button></div></section>`}
+function stCineHTML(){if(ST_CINE==='intro')return stIntroHTML();const L=ST_LORE[ST_CINE],end=/End$/.test(ST_CINE),k=ST_CINE.slice(0,2);let d=0;const nx=()=>`style="animation-delay:${(d++*.5).toFixed(2)}s"`;
+  return `<section class="st-cine st-lore" style="--decor:url(${L.bg})"><div class="st-cinein">${end?'':`<span class="eyebrow">Chapitre ${ST_CH[k]}</span>`}<h2>${L.t}</h2>${L.tag?`<p class="st-tag" ${nx()}>${L.tag}</p>`:''}${L.nar?`<p ${nx()}>${L.nar}</p>`:''}
+   ${(L.say||[]).map(([w,x])=>`<div class="st-say" ${nx()}>${stWho(w)}<div><b>${ST_PEO[w][0]}</b><p>${x}</p></div></div>`).join('')}${L.q?`<div class="st-say arch" ${nx()}>${stWho('arch')}<div><b>L'Archiviste</b><p>${L.q}</p></div></div>`:''}${L.last?`<p class="small muted" ${nx()}>${L.last}</p>`:''}
+   <button class="btn primary" data-act="stCineOk" ${nx()}>Continuer</button></div></section>`}
 function stNext(w){const i=w.acts.findIndex((a,k)=>!stDone(w.k,k));return i<0?w.acts.length-1:i}
 function stActHTML(wi,ai){const w=STORY[wi],a=w.acts[ai],c=CARD[a.b],cau=ST_DIFF==='cau'&&stCount(w)===w.acts.length,done=cau?stStars((stState().oc||{})[w.k+ai])>0:stDone(w.k,ai),open=cau||stActOpen(wi,ai),ok=cau?((stState().oc||{})[w.k+ai]||[0,0,0]):stObjOf(w,ai),B=stBoss(a,{cau}),nx=open&&!done;
   const hp=Math.round(B.s[0]*ENG.HPX),at=Math.round(B.s[1]),tr=ST_TR[a.tr],rwt=cau?'Sans récompense de pièces : l\'exploit compte':'1re victoire : '+fmt(a.rw)+' pièces'+(a.end?' + '+P(a.end).n:'');
